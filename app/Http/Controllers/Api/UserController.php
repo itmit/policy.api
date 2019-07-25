@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use \Illuminate\Http\Response;
+use Illuminate\Http\Response;
+use App\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Carbon;
 
-class UserController extends Controller
+class UserController extends ApiBaseController
 {
     public $successStatus = 200;
     
@@ -16,13 +19,33 @@ class UserController extends Controller
      * @return Response 
      */ 
     public function login() { 
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])) { 
-            $user = Auth::user(); 
-            $success['token'] =  $user->createToken('MyApp')->accessToken; 
-            return response()->json(['success' => $success], $this->successStatus); 
-        } else { 
-            return response()->json(['error' => 'Unauthorised'], 401); 
-        } 
+        $user = User::whereRow('email = "' . request('login') . '" or phone = "' . request('login') . '"')
+        ->get()->first();
+
+        if ($user != null) {
+            if (Hash::check(request('password'), $user->password))
+            {
+                Auth::login($user);
+            }
+
+            if (Auth::check()) {
+                $tokenResult = $user->createToken(config('app.name'));
+                $token = $tokenResult->token;
+                $token->expires_at = Carbon::now()->addWeeks(1);
+                $token->save();
+
+                return $this->sendResponse([
+                    'access_token' => $tokenResult->accessToken,
+                    'token_type' => 'Bearer',
+                    'expires_at' => Carbon::parse(
+                        $tokenResult->token->expires_at
+                    )->toDateTimeString()
+                ],
+                    'Authorization is successful');
+            }
+        }
+
+        return $this->SendError('Authorization error', 'Unauthorised', 401);
     }
 
     /** 
@@ -30,27 +53,41 @@ class UserController extends Controller
      * 
      * @return Response 
      */ 
-    public function register(Request $request) 
+    public function register_create(Request $request) 
     { 
-        $validator = Validator::make($request->all(), [ 
-            'name' => 'required', 
-            'email' => 'required|email', 
-            'password' => 'required', 
-            'c_password' => 'required|same:password', 
-        ]);
+        // $validator = Validator::make($request->all(), [ 
+        //     'name' => 'required', 
+        //     'email' => 'required|email', 
+        //     'password' => 'required', 
+        //     'c_password' => 'required|same:password', 
+        // ]);
 
-        if ($validator->fails()) { 
-            return response()->json(['error'=>$validator->errors()], 401);            
-        }
+        // if ($validator->fails()) { 
+        //     return response()->json(['error'=>$validator->errors()], 401);            
+        // }
 
         $input = $request->all(); 
         $input['password'] = bcrypt($input['password']);
+ 
+        $user = User::create([
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'phone' => $input['phone'],
+            'password' => bcrypt($input['password']),
+            'name' => $input['name'],
+            'city' => $input['city'],
+            'field_of_activity' => $input['field_of_activity'],
+            'organization' => $input['organization'],
+            'position' => $input['position'],
+            'birthday' => $input['birthday'],
+        ]);
 
-        $user = User::create($input); 
-        $success['token'] =  $user->createToken('MyApp')->accessToken; 
-        $success['name'] =  $user->name;
+        // $success['token'] =  $user->createToken('MyApp')->accessToken; 
+        // $success['name'] =  $user->name;
 
-        return response()->json(['success' => $success], $this->successStatus); 
+        // return response()->json(['success' => $success], $this->successStatus); 
+
+        // return $this->sendResponse(['suc' ] ,'Authorization is successful');
     }
 
     /** 
