@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class UserController extends ApiBaseController
 {
@@ -70,7 +71,6 @@ class UserController extends ApiBaseController
         $input['password'] = bcrypt($input['password']);
  
         $user = User::create([
-            'name' => $input['name'],
             'email' => $input['email'],
             'phone' => $input['phone'],
             'password' => bcrypt($input['password']),
