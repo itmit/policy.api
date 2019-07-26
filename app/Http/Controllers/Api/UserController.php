@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use App\User;
+use App\Rating;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -29,6 +30,7 @@ class UserController extends ApiBaseController
     public function getUserByUid()
     {
         $user = User::where('uid', '=', request('uid'))->get();
+        return $rating = User::find(1)->like;
 
         if(!is_null($user))
         {
