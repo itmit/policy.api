@@ -18,7 +18,12 @@ class UserController extends ApiBaseController
     
     public function index()
     {
-        return $users = User::all();
+        $users = User::all();
+
+        return $this->sendResponse([
+            $users
+        ],
+            'Users returned');
     }
 
 }

@@ -134,6 +134,10 @@ class AuthController extends ApiBaseController
             $token->expires_at = Carbon::now()->addWeeks(1);
             $token->save();
 
+            $user_rating = Rating::create([
+                'user_id' => Auth::id(),
+            ]);
+
             return $this->sendResponse([
                 'access_token' => $tokenResult->accessToken,
                 'token_type' => 'Bearer',
