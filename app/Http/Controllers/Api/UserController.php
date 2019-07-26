@@ -134,7 +134,7 @@ class UserController extends ApiBaseController
 
         return response()->json(['success' => $success], $this->successStatus); 
 
-        return $this->sendResponse(['suc' ] ,'Authorization is successful');
+        // return $this->sendResponse(['suc' ] ,'Authorization is successful');
     }
 
     /** 
