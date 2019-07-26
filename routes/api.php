@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::post('login', 'Api\UserController@login')->name('login');
-Route::post('register', 'Api\UserController@register')->name('register');
+Route::post('login', 'Api\AuthController@login')->name('login');
+Route::post('register', 'Api\AuthController@register')->name('register');
 
 Route::group(['middleware' => 'auth:api'], function() {
-    Route::post('details', 'Api\UserController@details');
+    Route::post('details', 'Api\AuthController@details');
 });

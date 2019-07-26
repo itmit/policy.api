@@ -12,7 +12,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class UserController extends ApiBaseController
+class AuthController extends ApiBaseController
 {
     public $successStatus = 200;
     
@@ -70,6 +70,7 @@ class UserController extends ApiBaseController
                 'organization' => 'required', 
                 'position' => 'required', 
                 'birthday' => 'required', 
+                'uid' => 'required',
             ]);
         }
 
@@ -85,6 +86,7 @@ class UserController extends ApiBaseController
                 'organization' => 'required', 
                 'position' => 'required', 
                 'birthday' => 'required', 
+                'uid' => 'required',
             ]);
         }
 
@@ -101,6 +103,7 @@ class UserController extends ApiBaseController
                 'organization' => 'required', 
                 'position' => 'required', 
                 'birthday' => 'required', 
+                'uid' => 'required',
             ]);
         }
 
@@ -120,6 +123,7 @@ class UserController extends ApiBaseController
             'organization' => $input['organization'],
             'position' => $input['position'],
             'birthday' => $input['birthday'],
+            'uid' => $input['uid'],
         ]);
 
         Auth::login($user);     
@@ -155,6 +159,5 @@ class UserController extends ApiBaseController
             $user
         ],
             'Details returned');
-        // return response()->json(['success' => $user], $this->successStatus); 
     } 
 }
