@@ -30,7 +30,7 @@ class UserController extends ApiBaseController
     public function getUserByUid()
     {
         $user = User::where('uid', '=', request('uid'))->get();
-        return $rating = User::find(1)->rating;
+        // return $rating = User::find(1)->rating;
 
         if(!is_null($user))
         {
