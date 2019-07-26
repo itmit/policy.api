@@ -26,9 +26,9 @@ class UserController extends ApiBaseController
             'Users returned');
     }
 
-    public function getUserByUid(Request $request)
+    public function getUserByUid()
     {
-        return $request;
+        return request('uid');
 
         return User::where('uid', '=', $uid)->get();
 
