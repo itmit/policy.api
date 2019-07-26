@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('position'); // должность
             $table->string('link'); // ссылка
             $table->date('birthday'); // дата рождения
-            $table->string('uid'); // id пользователя из приложения
+            $table->string('uid')->unique(); // id пользователя из приложения
             $table->rememberToken();
             $table->timestamps();
         });
