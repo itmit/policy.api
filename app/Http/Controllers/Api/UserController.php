@@ -28,6 +28,8 @@ class UserController extends ApiBaseController
 
     public function getUserByUid(Request $uid)
     {
+        return $uid;
+
         $user = User::where('uid', $uid)->first();
 
         return $this->sendResponse([
