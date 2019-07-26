@@ -64,50 +64,77 @@ class UserController extends ApiBaseController
      */ 
     public function register(Request $request) 
     { 
-        if($request->email && !$request->phone)
+        if($request->email && !$request->phone) // регистрация по email-адресу
         {
-            echo 'email ';
+            $validator = Validator::make($request->all(), [ 
+                'name' => 'required', 
+                'email' => 'required|email', 
+                'password' => 'required', 
+                'c_password' => 'required|same:password', 
+                'city' => 'required', 
+                'field_of_activity' => 'required', 
+                'organization' => 'required', 
+                'position' => 'required', 
+                'birthday' => 'required', 
+            ]);
         }
-        if($request->phone && !$request->email)
-        {
-            echo 'phone ';
-        }
-        if($request->email && $request->phone)
-        {
-            echo 'both';
-        }
-        // $validator = Validator::make($request->all(), [ 
-        //     'name' => 'required', 
-        //     'email' => 'required|email', 
-        //     'password' => 'required', 
-        //     'c_password' => 'required|same:password', 
-        // ]);
 
-        // if ($validator->fails()) { 
-        //     return response()->json(['error'=>$validator->errors()], 401);            
-        // }
+        if($request->phone && !$request->email) // регистрация по телефону
+        {
+            $validator = Validator::make($request->all(), [ 
+                'name' => 'required', 
+                'phone' => 'required', 
+                'password' => 'required', 
+                'c_password' => 'required|same:password', 
+                'city' => 'required', 
+                'field_of_activity' => 'required', 
+                'organization' => 'required', 
+                'position' => 'required', 
+                'birthday' => 'required', 
+            ]);
+        }
 
-        // $input = $request->all(); 
+        if($request->email && $request->phone) // регистрация по обоям??
+        {
+            $validator = Validator::make($request->all(), [ 
+                'name' => 'required', 
+                'email' => 'required|email', 
+                'phone' => 'required', 
+                'password' => 'required', 
+                'c_password' => 'required|same:password', 
+                'city' => 'required', 
+                'field_of_activity' => 'required', 
+                'organization' => 'required', 
+                'position' => 'required', 
+                'birthday' => 'required', 
+            ]);
+        }
+
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+
+        $input = $request->all(); 
         // $input['password'] = bcrypt($input['password']);
  
-        // $user = User::create([
-        //     'email' => $input['email'],
-        //     'phone' => $input['phone'],
-        //     'password' => bcrypt($input['password']),
-        //     'name' => $input['name'],
-        //     'city' => $input['city'],
-        //     'field_of_activity' => $input['field_of_activity'],
-        //     'organization' => $input['organization'],
-        //     'position' => $input['position'],
-        //     'birthday' => $input['birthday'],
-        // ]);
+        $user = User::create([
+            'email' => $input['email'],
+            'phone' => $input['phone'],
+            'password' => bcrypt($input['password']),
+            'name' => $input['name'],
+            'city' => $input['city'],
+            'field_of_activity' => $input['field_of_activity'],
+            'organization' => $input['organization'],
+            'position' => $input['position'],
+            'birthday' => $input['birthday'],
+        ]);
 
-        // $success['token'] =  $user->createToken('MyApp')->accessToken; 
-        // $success['name'] =  $user->name;
+        $success['token'] =  $user->createToken('MyApp')->accessToken; 
+        $success['name'] =  $user->name;
 
-        // return response()->json(['success' => $success], $this->successStatus); 
+        return response()->json(['success' => $success], $this->successStatus); 
 
-        // return $this->sendResponse(['suc' ] ,'Authorization is successful');
+        return $this->sendResponse(['suc' ] ,'Authorization is successful');
     }
 
     /** 
