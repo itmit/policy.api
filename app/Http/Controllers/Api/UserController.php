@@ -151,6 +151,10 @@ class UserController extends ApiBaseController
     public function details() 
     { 
         $user = Auth::user(); 
-        return response()->json(['success' => $user], $this->successStatus); 
+        return $this->sendResponse([
+            $user
+        ],
+            'Details returned');
+        // return response()->json(['success' => $user], $this->successStatus); 
     } 
 }
