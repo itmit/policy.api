@@ -30,32 +30,27 @@ class UserController extends ApiBaseController
         if ($user != null) {
             if (Hash::check(request('password'), $user->password))
             {
-                // Auth::login($user);
-                return 'true';
-            }
-            else
-            {
-                return 'false';
+                Auth::login($user);
             }
 
-            // if (Auth::check()) {
-            //     $tokenResult = $user->createToken(config('app.name'));
-            //     $token = $tokenResult->token;
-            //     $token->expires_at = Carbon::now()->addWeeks(1);
-            //     $token->save();
+            if (Auth::check()) {
+                $tokenResult = $user->createToken(config('app.name'));
+                $token = $tokenResult->token;
+                $token->expires_at = Carbon::now()->addWeeks(1);
+                $token->save();
 
-            //     return $this->sendResponse([
-            //         'access_token' => $tokenResult->accessToken,
-            //         'token_type' => 'Bearer',
-            //         'expires_at' => Carbon::parse(
-            //             $tokenResult->token->expires_at
-            //         )->toDateTimeString()
-            //     ],
-            //         'Authorization is successful');
-            // }
+                return $this->sendResponse([
+                    'access_token' => $tokenResult->accessToken,
+                    'token_type' => 'Bearer',
+                    'expires_at' => Carbon::parse(
+                        $tokenResult->token->expires_at
+                    )->toDateTimeString()
+                ],
+                    'Authorization is successful');
+            }
         }
 
-        // return $this->SendError('Authorization error', 'Unauthorised', 401);
+        return $this->SendError('Authorization error', 'Unauthorised', 401);
     }
 
     /** 
@@ -70,7 +65,7 @@ class UserController extends ApiBaseController
             $validator = Validator::make($request->all(), [ 
                 'name' => 'required', 
                 'email' => 'required|email', 
-                'password' => 'required', 
+                'password' => 'required|min:8', 
                 'c_password' => 'required|same:password', 
                 'city' => 'required', 
                 'field_of_activity' => 'required', 
@@ -85,7 +80,7 @@ class UserController extends ApiBaseController
             $validator = Validator::make($request->all(), [ 
                 'name' => 'required', 
                 'phone' => 'required', 
-                'password' => 'required', 
+                'password' => 'required|min:6', 
                 'c_password' => 'required|same:password', 
                 'city' => 'required', 
                 'field_of_activity' => 'required', 
@@ -101,7 +96,7 @@ class UserController extends ApiBaseController
                 'name' => 'required', 
                 'email' => 'required|email', 
                 'phone' => 'required', 
-                'password' => 'required', 
+                'password' => 'required|min:6', 
                 'c_password' => 'required|same:password', 
                 'city' => 'required', 
                 'field_of_activity' => 'required', 
@@ -116,7 +111,6 @@ class UserController extends ApiBaseController
         }
 
         $input = $request->all(); 
-        // $input['password'] = bcrypt($input['password']);
  
         $user = User::create([
             'email' => $input['email'],
