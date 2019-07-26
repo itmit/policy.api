@@ -27,24 +27,29 @@ class UserController extends ApiBaseController
         if ($user != null) {
             if (Hash::check(request('password'), $user->password))
             {
-                Auth::login($user);
+                // Auth::login($user);
+                return 'true';
+            }
+            else
+            {
+                return 'false';
             }
 
-            if (Auth::check()) {
-                $tokenResult = $user->createToken(config('app.name'));
-                $token = $tokenResult->token;
-                $token->expires_at = Carbon::now()->addWeeks(1);
-                $token->save();
+            // if (Auth::check()) {
+            //     $tokenResult = $user->createToken(config('app.name'));
+            //     $token = $tokenResult->token;
+            //     $token->expires_at = Carbon::now()->addWeeks(1);
+            //     $token->save();
 
-                return $this->sendResponse([
-                    'access_token' => $tokenResult->accessToken,
-                    'token_type' => 'Bearer',
-                    'expires_at' => Carbon::parse(
-                        $tokenResult->token->expires_at
-                    )->toDateTimeString()
-                ],
-                    'Authorization is successful');
-            }
+            //     return $this->sendResponse([
+            //         'access_token' => $tokenResult->accessToken,
+            //         'token_type' => 'Bearer',
+            //         'expires_at' => Carbon::parse(
+            //             $tokenResult->token->expires_at
+            //         )->toDateTimeString()
+            //     ],
+            //         'Authorization is successful');
+            // }
         }
 
         return $this->SendError('Authorization error', 'Unauthorised', 401);
