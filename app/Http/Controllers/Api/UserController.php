@@ -24,30 +24,30 @@ class UserController extends ApiBaseController
         return $user = User::whereRaw('email = "' . request('login') . '" or phone = "' . request('login') . '"')
         ->get()->first();
 
-        // if ($user != null) {
-        //     if (Hash::check(request('password'), $user->password))
-        //     {
-        //         Auth::login($user);
-        //     }
+        if ($user != null) {
+            if (Hash::check(request('password'), $user->password))
+            {
+                Auth::login($user);
+            }
 
-        //     if (Auth::check()) {
-        //         $tokenResult = $user->createToken(config('app.name'));
-        //         $token = $tokenResult->token;
-        //         $token->expires_at = Carbon::now()->addWeeks(1);
-        //         $token->save();
+            if (Auth::check()) {
+                $tokenResult = $user->createToken(config('app.name'));
+                $token = $tokenResult->token;
+                $token->expires_at = Carbon::now()->addWeeks(1);
+                $token->save();
 
-        //         return $this->sendResponse([
-        //             'access_token' => $tokenResult->accessToken,
-        //             'token_type' => 'Bearer',
-        //             'expires_at' => Carbon::parse(
-        //                 $tokenResult->token->expires_at
-        //             )->toDateTimeString()
-        //         ],
-        //             'Authorization is successful');
-        //     }
-        // }
+                return $this->sendResponse([
+                    'access_token' => $tokenResult->accessToken,
+                    'token_type' => 'Bearer',
+                    'expires_at' => Carbon::parse(
+                        $tokenResult->token->expires_at
+                    )->toDateTimeString()
+                ],
+                    'Authorization is successful');
+            }
+        }
 
-        // return $this->SendError('Authorization error', 'Unauthorised', 401);
+        return $this->SendError('Authorization error', 'Unauthorised', 401);
     }
 
     /** 
