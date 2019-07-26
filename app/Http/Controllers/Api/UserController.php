@@ -24,9 +24,7 @@ class UserController extends ApiBaseController
     public function login() { 
         $user = User::whereRaw('email = "' . request('login') . '" or phone = "' . request('login') . '"')
         ->get()->first();
-
-        echo 'req: ' . request('password') . ' db: ' . $user->password;
-
+        
         if ($user != null) {
             if (Hash::check(request('password'), $user->password))
             {
