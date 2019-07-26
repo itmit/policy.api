@@ -20,4 +20,5 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('details', 'Api\AuthController@details');
 
     Route::post('user/index', 'Api\UserController@index');
+    Route::post('user/getUserByUid', 'Api\UserController@getUserByUid');
 });
