@@ -22,7 +22,9 @@ class UserController extends ApiBaseController
      */ 
     public function login() { 
 
-        return request('login');
+        // return request('login');
+
+        return User::all();
 
         // $user = User::whereRaw('email = "' . request('login') . '" or phone = "' . request('login') . '"')
         // ->get()->first();
