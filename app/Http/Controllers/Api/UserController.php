@@ -122,9 +122,6 @@ class UserController extends ApiBaseController
             'birthday' => $input['birthday'],
         ]);
 
-        // $success['token'] =  $user->createToken('MyApp')->accessToken; 
-        // $success['name'] =  $user->name;
-
         Auth::login($user);     
 
         if (Auth::check()) {
@@ -144,8 +141,6 @@ class UserController extends ApiBaseController
         }
         
         return $this->SendError('Authorization error', 'Unauthorised', 401);
-
-        // return $this->sendResponse(['suc' ] ,'Authorization is successful');
     }
 
     /** 
