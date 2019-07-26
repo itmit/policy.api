@@ -26,16 +26,16 @@ class UserController extends ApiBaseController
 
         echo 'req: ' . request('password') . ' db: ' . $user->password;
 
-        // if ($user != null) {
-        //     if (Hash::check(request('password'), $user->password))
-        //     {
-        //         // Auth::login($user);
-        //         return 'true';
-        //     }
-        //     else
-        //     {
-        //         return 'false';
-        //     }
+        if ($user != null) {
+            if (Hash::check(request('password'), $user->password))
+            {
+                // Auth::login($user);
+                return 'true';
+            }
+            else
+            {
+                return 'false';
+            }
 
             // if (Auth::check()) {
             //     $tokenResult = $user->createToken(config('app.name'));
@@ -52,7 +52,7 @@ class UserController extends ApiBaseController
             //     ],
             //         'Authorization is successful');
             // }
-        // }
+        }
 
         // return $this->SendError('Authorization error', 'Unauthorised', 401);
     }
@@ -64,6 +64,18 @@ class UserController extends ApiBaseController
      */ 
     public function register(Request $request) 
     { 
+        if($request->email && !$request->phone)
+        {
+            echo 'email ';
+        }
+        if($request->phone && !$request->email)
+        {
+            echo 'phone ';
+        }
+        if($request->email && $request->phone)
+        {
+            echo 'both';
+        }
         // $validator = Validator::make($request->all(), [ 
         //     'name' => 'required', 
         //     'email' => 'required|email', 
@@ -75,20 +87,20 @@ class UserController extends ApiBaseController
         //     return response()->json(['error'=>$validator->errors()], 401);            
         // }
 
-        $input = $request->all(); 
-        $input['password'] = bcrypt($input['password']);
+        // $input = $request->all(); 
+        // $input['password'] = bcrypt($input['password']);
  
-        $user = User::create([
-            'email' => $input['email'],
-            'phone' => $input['phone'],
-            'password' => bcrypt($input['password']),
-            'name' => $input['name'],
-            'city' => $input['city'],
-            'field_of_activity' => $input['field_of_activity'],
-            'organization' => $input['organization'],
-            'position' => $input['position'],
-            'birthday' => $input['birthday'],
-        ]);
+        // $user = User::create([
+        //     'email' => $input['email'],
+        //     'phone' => $input['phone'],
+        //     'password' => bcrypt($input['password']),
+        //     'name' => $input['name'],
+        //     'city' => $input['city'],
+        //     'field_of_activity' => $input['field_of_activity'],
+        //     'organization' => $input['organization'],
+        //     'position' => $input['position'],
+        //     'birthday' => $input['birthday'],
+        // ]);
 
         // $success['token'] =  $user->createToken('MyApp')->accessToken; 
         // $success['name'] =  $user->name;
