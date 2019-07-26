@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::post('login', 'Api\UserController@login')->name('login');
-Route::post('register_create', 'Api\UserController@register_create')->name('register_create');
+Route::post('register', 'Api\UserController@register')->name('register');
 
 
 

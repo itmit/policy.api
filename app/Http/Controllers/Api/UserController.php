@@ -24,16 +24,18 @@ class UserController extends ApiBaseController
         $user = User::whereRaw('email = "' . request('login') . '" or phone = "' . request('login') . '"')
         ->get()->first();
 
-        if ($user != null) {
-            if (Hash::check(request('password'), $user->password))
-            {
-                // Auth::login($user);
-                return 'true';
-            }
-            else
-            {
-                return 'false';
-            }
+        echo 'req: ' . request('password') . ' db: ' . $user->password;
+
+        // if ($user != null) {
+        //     if (Hash::check(request('password'), $user->password))
+        //     {
+        //         // Auth::login($user);
+        //         return 'true';
+        //     }
+        //     else
+        //     {
+        //         return 'false';
+        //     }
 
             // if (Auth::check()) {
             //     $tokenResult = $user->createToken(config('app.name'));
@@ -50,9 +52,9 @@ class UserController extends ApiBaseController
             //     ],
             //         'Authorization is successful');
             // }
-        }
+        // }
 
-        return $this->SendError('Authorization error', 'Unauthorised', 401);
+        // return $this->SendError('Authorization error', 'Unauthorised', 401);
     }
 
     /** 
@@ -60,7 +62,7 @@ class UserController extends ApiBaseController
      * 
      * @return Response 
      */ 
-    public function register_create(Request $request) 
+    public function register(Request $request) 
     { 
         // $validator = Validator::make($request->all(), [ 
         //     'name' => 'required', 
