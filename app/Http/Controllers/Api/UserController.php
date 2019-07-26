@@ -21,33 +21,36 @@ class UserController extends ApiBaseController
      * @return Response 
      */ 
     public function login() { 
-        $user = User::whereRaw('email = "' . request('login') . '" or phone = "' . request('login') . '"')
-        ->get()->first();
 
-        if ($user != null) {
-            if (Hash::check(request('password'), $user->password))
-            {
-                Auth::login($user);
-            }
+        return request('login');
 
-            if (Auth::check()) {
-                $tokenResult = $user->createToken(config('app.name'));
-                $token = $tokenResult->token;
-                $token->expires_at = Carbon::now()->addWeeks(1);
-                $token->save();
+        // $user = User::whereRaw('email = "' . request('login') . '" or phone = "' . request('login') . '"')
+        // ->get()->first();
 
-                return $this->sendResponse([
-                    'access_token' => $tokenResult->accessToken,
-                    'token_type' => 'Bearer',
-                    'expires_at' => Carbon::parse(
-                        $tokenResult->token->expires_at
-                    )->toDateTimeString()
-                ],
-                    'Authorization is successful');
-            }
-        }
+        // if ($user != null) {
+        //     if (Hash::check(request('password'), $user->password))
+        //     {
+        //         Auth::login($user);
+        //     }
 
-        return $this->SendError('Authorization error', 'Unauthorised', 401);
+        //     if (Auth::check()) {
+        //         $tokenResult = $user->createToken(config('app.name'));
+        //         $token = $tokenResult->token;
+        //         $token->expires_at = Carbon::now()->addWeeks(1);
+        //         $token->save();
+
+        //         return $this->sendResponse([
+        //             'access_token' => $tokenResult->accessToken,
+        //             'token_type' => 'Bearer',
+        //             'expires_at' => Carbon::parse(
+        //                 $tokenResult->token->expires_at
+        //             )->toDateTimeString()
+        //         ],
+        //             'Authorization is successful');
+        //     }
+        // }
+
+        // return $this->SendError('Authorization error', 'Unauthorised', 401);
     }
 
     /** 
