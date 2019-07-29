@@ -63,9 +63,13 @@ class UserController extends ApiBaseController
             ->update(['name' => $request->name, 'city' => $request->city, 'field_of_activity' => $request->field_of_activity,
             'organization' => $request->organization, 'position' => $request->position]);
 
-        return $this->sendResponse([
-            $user
-        ],
-            'Updated');
+        if($user > 0)
+        {
+            return $this->sendResponse([
+                $user
+            ],
+                'Updated');
+        }
+        return $this->SendError('Update error', 'Something gone wrong', 401);
     }
 }
