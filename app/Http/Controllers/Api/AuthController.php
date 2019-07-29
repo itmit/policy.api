@@ -62,14 +62,14 @@ class AuthController extends ApiBaseController
         if($request->email && !$request->phone) // регистрация по email-адресу
         {
             $validator = Validator::make($request->all(), [ 
-                'name' => 'required', 
+                // 'name' => 'required', 
                 'email' => 'required|email', 
                 'password' => 'required|min:8', 
                 'c_password' => 'required|same:password', 
-                'city' => 'required', 
-                'field_of_activity' => 'required', 
-                'organization' => 'required', 
-                'position' => 'required', 
+                // 'city' => 'required', 
+                // 'field_of_activity' => 'required', 
+                // 'organization' => 'required', 
+                // 'position' => 'required', 
                 'birthday' => 'required', 
                 'uid' => 'required',
             ]);
@@ -78,14 +78,14 @@ class AuthController extends ApiBaseController
         if($request->phone && !$request->email) // регистрация по телефону
         {
             $validator = Validator::make($request->all(), [ 
-                'name' => 'required', 
+                // 'name' => 'required', 
                 'phone' => 'required', 
                 'password' => 'required|min:6', 
                 'c_password' => 'required|same:password', 
-                'city' => 'required', 
-                'field_of_activity' => 'required', 
-                'organization' => 'required', 
-                'position' => 'required', 
+                // 'city' => 'required', 
+                // 'field_of_activity' => 'required', 
+                // 'organization' => 'required', 
+                // 'position' => 'required', 
                 'birthday' => 'required', 
                 'uid' => 'required',
             ]);
@@ -94,15 +94,15 @@ class AuthController extends ApiBaseController
         if($request->email && $request->phone) // регистрация по обоям??
         {
             $validator = Validator::make($request->all(), [ 
-                'name' => 'required', 
+                // 'name' => 'required', 
                 'email' => 'required|email', 
                 'phone' => 'required', 
                 'password' => 'required|min:6', 
                 'c_password' => 'required|same:password', 
-                'city' => 'required', 
-                'field_of_activity' => 'required', 
-                'organization' => 'required', 
-                'position' => 'required', 
+                // 'city' => 'required', 
+                // 'field_of_activity' => 'required', 
+                // 'organization' => 'required', 
+                // 'position' => 'required', 
                 'birthday' => 'required', 
                 'uid' => 'required',
             ]);
@@ -118,11 +118,11 @@ class AuthController extends ApiBaseController
             'email' => $input['email'],
             'phone' => $input['phone'],
             'password' => bcrypt($input['password']),
-            'name' => $input['name'],
-            'city' => $input['city'],
-            'field_of_activity' => $input['field_of_activity'],
-            'organization' => $input['organization'],
-            'position' => $input['position'],
+            // 'name' => $input['name'],
+            // 'city' => $input['city'],
+            // 'field_of_activity' => $input['field_of_activity'],
+            // 'organization' => $input['organization'],
+            // 'position' => $input['position'],
             'birthday' => $input['birthday'],
             'uid' => $input['uid'],
         ]);
@@ -160,9 +160,8 @@ class AuthController extends ApiBaseController
     public function details() 
     { 
         $user = Auth::user(); 
-        return $this->sendResponse([
-            $user
-        ],
+        return $this->sendResponse(
+            $user->ToArray(),
             'Details returned');
     } 
 }
