@@ -68,7 +68,7 @@ class AuthController extends ApiBaseController
             // 'field_of_activity' => 'required', 
             // 'organization' => 'required', 
             // 'position' => 'required', 
-            // 'birthday' => 'required', 
+            'birthday' => 'required|date', 
             'uid' => 'required',
         ]);
         
@@ -85,8 +85,8 @@ class AuthController extends ApiBaseController
         $input = $request->all(); 
  
         $user = User::create([
-            'email' => $input['email'],
-            'phone' => $input['phone'],
+            'email' => $input['email'] ?? $input['email'],
+            'phone' => $input['phone'] ?? $input['phone'],
             'password' => bcrypt($input['password']),
             // 'name' => $input['name'],
             // 'city' => $input['city'],
