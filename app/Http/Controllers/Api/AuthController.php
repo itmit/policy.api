@@ -60,14 +60,8 @@ class AuthController extends ApiBaseController
     public function register(Request $request) 
     {
         $validator = Validator::make($request->all(), [ 
-            // 'name' => 'required', 
-            // 'email' => 'required|email', 
             'password' => 'required|min:8', 
             'c_password' => 'required|same:password', 
-            // 'city' => 'required', 
-            // 'field_of_activity' => 'required', 
-            // 'organization' => 'required', 
-            // 'position' => 'required', 
             'birthday' => 'required|date', 
             'uid' => 'required',
         ]);
@@ -82,11 +76,21 @@ class AuthController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
+        if (!request('email'))
+        {
+            $request->email = NULL;
+        }
+
+        if (!request('phone'))
+        {
+            $request->phone = NULL;
+        }
+
         $input = $request->all(); 
  
         $user = User::create([
-            'email' => $input['email'] ?? $input['email'],
-            'phone' => $input['phone'] ?? $input['phone'],
+            'email' => $input['email'],
+            'phone' => $input['phone'],
             'password' => bcrypt($input['password']),
             // 'name' => $input['name'],
             // 'city' => $input['city'],
