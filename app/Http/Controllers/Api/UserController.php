@@ -59,7 +59,7 @@ class UserController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        User::wherewhere('uid', '=', request('uid'))
+        User::where('uid', '=', request('uid'))
             ->update(['name' => $request->name, 'city' => $request->city, 'field_of_activity' => $request->field_of_activity,
             'organization' => $request->organization, 'position' => $request->position]);
     }
