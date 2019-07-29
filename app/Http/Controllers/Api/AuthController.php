@@ -58,55 +58,25 @@ class AuthController extends ApiBaseController
      * @return Response 
      */ 
     public function register(Request $request) 
-    { 
-        if($request->email && !$request->phone) // регистрация по email-адресу
-        {
-            $validator = Validator::make($request->all(), [ 
-                // 'name' => 'required', 
-                'email' => 'required|email', 
-                'password' => 'required|min:8', 
-                'c_password' => 'required|same:password', 
-                // 'city' => 'required', 
-                // 'field_of_activity' => 'required', 
-                // 'organization' => 'required', 
-                // 'position' => 'required', 
-                'birthday' => 'required', 
-                'uid' => 'required',
-            ]);
-        }
-
-        if($request->phone && !$request->email) // регистрация по телефону
-        {
-            $validator = Validator::make($request->all(), [ 
-                // 'name' => 'required', 
-                'phone' => 'required', 
-                'password' => 'required|min:6', 
-                'c_password' => 'required|same:password', 
-                // 'city' => 'required', 
-                // 'field_of_activity' => 'required', 
-                // 'organization' => 'required', 
-                // 'position' => 'required', 
-                'birthday' => 'required', 
-                'uid' => 'required',
-            ]);
-        }
-
-        if($request->email && $request->phone) // регистрация по обоям??
-        {
-            $validator = Validator::make($request->all(), [ 
-                // 'name' => 'required', 
-                'email' => 'required|email', 
-                'phone' => 'required', 
-                'password' => 'required|min:6', 
-                'c_password' => 'required|same:password', 
-                // 'city' => 'required', 
-                // 'field_of_activity' => 'required', 
-                // 'organization' => 'required', 
-                // 'position' => 'required', 
-                'birthday' => 'required', 
-                'uid' => 'required',
-            ]);
-        }
+    {
+        $validator = Validator::make($request->all(), [ 
+            // 'name' => 'required', 
+            // 'email' => 'required|email', 
+            'password' => 'required|min:8', 
+            'c_password' => 'required|same:password', 
+            // 'city' => 'required', 
+            // 'field_of_activity' => 'required', 
+            // 'organization' => 'required', 
+            // 'position' => 'required', 
+            // 'birthday' => 'required', 
+            'uid' => 'required',
+        ]);
+        
+        $validator->after(function ($validator) {
+            if (!$request->email && !$request->phone) {
+                $validator->errors()->add('field', 'Something is wrong with this field!');
+            }
+        });
 
         if ($validator->fails()) { 
             return response()->json(['error'=>$validator->errors()], 401);            
