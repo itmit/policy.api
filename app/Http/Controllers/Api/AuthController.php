@@ -73,7 +73,7 @@ class AuthController extends ApiBaseController
         ]);
         
         $validator->after(function ($validator) {
-            if (!$request->email && !$request->phone) {
+            if (!request('email') && !request('phone')) {
                 $validator->errors()->add('field', 'Something is wrong with this field!');
             }
         });
