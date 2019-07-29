@@ -92,11 +92,6 @@ class AuthController extends ApiBaseController
             'email' => $input['email'],
             'phone' => $input['phone'],
             'password' => bcrypt($input['password']),
-            // 'name' => $input['name'],
-            // 'city' => $input['city'],
-            // 'field_of_activity' => $input['field_of_activity'],
-            // 'organization' => $input['organization'],
-            // 'position' => $input['position'],
             'birthday' => $input['birthday'],
             'uid' => $input['uid'],
         ]);

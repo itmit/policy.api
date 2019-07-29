@@ -43,4 +43,24 @@ class UserController extends ApiBaseController
                 'User returned');
         }
     }
+
+    public function edit(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'uid' => 'required', 
+            'name' => 'required', 
+            'city' => 'required', 
+            'field_of_activity' => 'required',
+            'organization' => 'required',
+            'position' => 'required',
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+
+        User::wherewhere('uid', '=', request('uid'))
+            ->update(['name' => $request->name, 'city' => $request->city, 'field_of_activity' => $request->field_of_activity,
+            'organization' => $request->organization, 'position' => $request->position]);
+    }
 }
