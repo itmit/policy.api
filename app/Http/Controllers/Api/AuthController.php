@@ -76,17 +76,17 @@ class AuthController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
+        $input = $request->all(); 
+
         if (!request('email'))
         {
-            $request->email = NULL;
+            $input['email'] = NULL;
         }
 
         if (!request('phone'))
         {
-            $request->phone = NULL;
+            $input['phone'] = NULL;
         }
-
-        $input = $request->all(); 
  
         $user = User::create([
             'email' => $input['email'],
