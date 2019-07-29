@@ -41,6 +41,6 @@ class User extends Authenticatable
 
     public function rating()
     {
-        return $this->hasOne(Rating::class, 'user_id');
+        return $this->hasOne(Rating::class, 'user_id')->get()->first();
     }
 }
