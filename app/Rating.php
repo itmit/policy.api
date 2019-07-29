@@ -20,4 +20,9 @@ class Rating extends Model
      * @var string
      */
     protected $table = 'user_rating';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id')->get()->first();
+    }
 }
