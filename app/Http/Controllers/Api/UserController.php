@@ -72,4 +72,18 @@ class UserController extends ApiBaseController
         }
         return $this->SendError('Update error', 'Something gone wrong', 401);
     }
+
+    public function changePhoto(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'uid' => 'required', 
+            'contents' => 'required|image',
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+        
+        Storage::put($request->uid . '.jpg', $request->contents);
+    }
 }
