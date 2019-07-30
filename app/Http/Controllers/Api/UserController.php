@@ -72,4 +72,9 @@ class UserController extends ApiBaseController
         }
         return $this->SendError('Update error', 'Something gone wrong', 401);
     }
+
+    public function changePhoto()
+    {
+        Storage::put($uid . '.jpg', $contents);
+    }
 }
