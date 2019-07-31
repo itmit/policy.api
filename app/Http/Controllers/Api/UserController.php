@@ -93,7 +93,7 @@ class UserController extends ApiBaseController
             'public/avatars', $request->file('contents'), $request->uid . '.jpg'
         );
 
-        $user = User::where('id', '=', $request->uid)
+        $user = User::where('uid', '=', $request->uid)
             ->update(['photo' => $path]);
 
         if($user > 0)
