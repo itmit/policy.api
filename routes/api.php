@@ -28,3 +28,23 @@ Route::group(['middleware' => 'auth:api'], function() {
 Route::get('user/changePhoto/form', function () {
     return view('form');
 });
+
+Route::fallback(function () {
+    $code = 404;
+    $response = [
+        'success' => false,
+        'message' => 'Page not found',
+    ];
+
+    return response()->json($response, $code);
+});
+
+Route::any('{url?}/{sub_url?}', function(){
+    $code = 404;
+    $response = [
+        'success' => false,
+        'message' => 'Page not found',
+    ];
+
+    return response()->json($response, $code);
+});
