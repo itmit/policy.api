@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends ApiBaseController
 {
@@ -77,13 +78,31 @@ class UserController extends ApiBaseController
     {
         $validator = Validator::make($request->all(), [ 
             'uid' => 'required', 
-            'contents' => 'required|image',
+            'contents' => 'image|mimes:jpeg,jpg,png,gif|required|max:10000',
         ]);
 
         if ($validator->fails()) { 
             return response()->json(['error'=>$validator->errors()], 401);            
         }
         
-        Storage::put($request->uid . '.jpg', $request->contents);
+        // $path = $request->file('contents')->store('public/avatars');
+        // $url = Storage::url($path);
+        // Storage::put($request->uid . '.jpg', $request->contents);
+
+        $path = Storage::putFileAs(
+            'public/avatars', $request->file('contents'), $request->uid . '.jpg'
+        );
+
+        $user = User::where('id', '=', $request->uid)
+            ->update(['photo' => $path]);
+
+        if($user > 0)
+        {
+            return $this->sendResponse([
+                $user
+            ],
+                'Updated');
+        }
+        return $this->SendError('Update error', 'Something gone wrong', 401);
     }
 }
