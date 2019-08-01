@@ -30,7 +30,6 @@ class AuthController extends ApiBaseController
             $phone = request('login');
             $phoneIsValid = false;
             $firstLetter = $phone[0];
-            return $firstLetter;
             if($firstLetter == '+')
             {
                 $phone = preg_replace('~\D+~', '', $phone); 
@@ -59,8 +58,8 @@ class AuthController extends ApiBaseController
 
         }
 
-        $user = User::whereRaw('email = "' . request('login') . '" or phone = "' . request('login') . '"')
-        ->get()->first();
+        // $user = User::whereRaw('email = "' . request('login') . '" or phone = "' . request('login') . '"')
+        // ->get()->first();
 
         if ($user != null) {
             if (Hash::check(request('password'), $user->password))
