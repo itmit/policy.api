@@ -82,7 +82,7 @@ class AuthController extends ApiBaseController
 
         $input = $request->all(); 
 
-        if (!request('email'))
+        if (!request('email')) // пришел ТЕЛЕФОН
         {
             $firstLetter = $input['phone'][0];
             if($firstLetter == '+')
@@ -97,12 +97,30 @@ class AuthController extends ApiBaseController
             $input['email'] = NULL;
         }
 
-        if (!request('phone'))
+        if (!request('phone')) // пришел ЕМАИЛ
         {
             if (!filter_var(request('email'), FILTER_VALIDATE_EMAIL)) {
                 return $this->SendError('Authorization error', 'Email is not an Email', 401);
             }
             $input['phone'] = NULL;
+        }
+
+        if(request('phone') && request('email')) // если пришли оба
+        {
+            $firstLetter = $input['phone'][0];
+            if($firstLetter == '+')
+            {
+                $input['phone'] = preg_replace('~\D+~', '', $input['phone']); 
+                $input['phone'] = '+' . $input['phone'];
+            }
+            else
+            {
+                return $this->SendError('Authorization error', 'Phone number is not valid', 401);
+            }
+
+            if (!filter_var(request('email'), FILTER_VALIDATE_EMAIL)) {
+                return $this->SendError('Authorization error', 'Email is not an Email', 401);
+            }
         }
  
         $tryRegister = User::WhereRaw('email = "' . $input['email'] . '" or phone = "' . $input['phone'] . '" or uid = "' . $input['uid'] . '" and phone <> "' . $input['phone'] . '"')->first();
