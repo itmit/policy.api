@@ -84,7 +84,7 @@ class AuthController extends ApiBaseController
 
         if (!request('email'))
         {
-            $firstLetter = substr($input['phone'], 1);
+            $firstLetter = substr($input['phone'], 0);
             return $firstLetter;
             if($firstLetter == '+')
             {
