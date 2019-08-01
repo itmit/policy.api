@@ -92,10 +92,9 @@ class AuthController extends ApiBaseController
             $input['phone'] = NULL;
         }
  
-        $tryRegister = User::WhereRaw('email = ' . $input['email'] . ' or phone = ' . $input['phone'] . ' or uid = ' . $input['uid'])->toArray();
+        $tryRegister = User::WhereRaw('email = ' . $input['email'] . ' or phone = ' . $input['phone'] . ' or uid = ' . $input['uid']);
 
-        return $tryRegister;
-        if(!$tryRegister)
+        if($tryRegister)
         {
             return $this->SendError('Authorization error', 'User already exist', 401);
         }
