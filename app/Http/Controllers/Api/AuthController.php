@@ -89,7 +89,7 @@ class AuthController extends ApiBaseController
 
         if (!request('phone'))
         {
-            if (filter_var(request('email'), FILTER_VALIDATE_EMAIL)) {
+            if (!filter_var(request('email'), FILTER_VALIDATE_EMAIL)) {
                 return $this->SendError('Authorization error', 'Email is not an Email', 401);
             }
             $input['phone'] = NULL;
