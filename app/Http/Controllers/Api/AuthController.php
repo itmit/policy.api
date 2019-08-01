@@ -64,7 +64,7 @@ class AuthController extends ApiBaseController
     public function register(Request $request) 
     {
         $validator = Validator::make($request->all(), [ 
-            'password' => 'required|min:8', 
+            'password' => 'required|min:6', 
             'c_password' => 'required|same:password', 
             'birthday' => 'required|date_format:Y-m-d', 
             'uid' => 'required',
