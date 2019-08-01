@@ -55,7 +55,7 @@ class AuthController extends ApiBaseController
         }
         else // ЛОГИН ПОЧТА
         {
-
+            $user = User::whereRaw('email = "' . request('login') . '"')->get()->first();
         }
 
         // $user = User::whereRaw('email = "' . request('login') . '" or phone = "' . request('login') . '"')
