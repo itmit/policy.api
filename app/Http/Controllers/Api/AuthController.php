@@ -30,6 +30,7 @@ class AuthController extends ApiBaseController
             $phone = request('login');
             $phoneIsValid = false;
             $firstLetter = $phone[0];
+            return $firstLetter;
             if($firstLetter == '+')
             {
                 $phone = preg_replace('~\D+~', '', $phone); 
