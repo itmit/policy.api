@@ -84,6 +84,15 @@ class AuthController extends ApiBaseController
 
         if (!request('email'))
         {
+            $firstLetter = substr($input['phone'], 1);
+            if($firstLetter = '+')
+            {
+                return $firstLetter;
+            }
+            else
+            {
+                return 'not ' . $firstLetter;
+            }
             $input['phone'] = preg_replace('~\D+~', '', $input['phone']); 
             $input['email'] = NULL;
         }
