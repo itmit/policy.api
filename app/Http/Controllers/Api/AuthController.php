@@ -84,7 +84,7 @@ class AuthController extends ApiBaseController
 
         if (!request('email'))
         {
-            $input['phone'] = preg_replace("/&#?[a-z0-9]+;/i", "", $input['phone']); 
+            $input['phone'] = preg_replace('~\D+~', '', $input['phone']); 
             $input['email'] = NULL;
         }
 
