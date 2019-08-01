@@ -92,7 +92,7 @@ class AuthController extends ApiBaseController
             $input['phone'] = NULL;
         }
  
-        $tryRegister = User::WhereRaw('email = "' . $input['email'] . '" or phone = "' . $input['phone'] . '" or uid = "' . $input['uid'] . '"')->first();
+        $tryRegister = User::WhereRaw('email = "' . $input['email'] . '" or phone = "' . $input['phone'] . '" or uid = "' . $input['uid'] . '" and phone <> "' . $input['phone'] . '"')->first();
 
         if($tryRegister)
         {
