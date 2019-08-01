@@ -84,6 +84,7 @@ class AuthController extends ApiBaseController
 
         if (!request('email'))
         {
+            $input['phone'] = preg_replace("/&#?[a-z0-9]+;/i", "", $input['phone']); 
             $input['email'] = NULL;
         }
 
@@ -101,6 +102,8 @@ class AuthController extends ApiBaseController
         {
             return $this->SendError('Authorization error', 'User already exist', 401);
         }
+
+        return $input['phone'];
 
         $user = User::create([
             'email' => $input['email'],
