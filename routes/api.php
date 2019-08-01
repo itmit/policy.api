@@ -23,6 +23,8 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('user/getUserByUid', 'Api\UserController@getUserByUid');
     Route::post('user/edit', 'Api\UserController@edit');
     Route::post('user/changePhoto', 'Api\UserController@changePhoto')->name('user/changePhoto');
+    Route::post('user/sendFeedback', 'Api\UserController@sendFeedback');
+
     Route::post('user/resetPassword', 'Api\ResetPassword@reset')->name('user/reset');
 });
 

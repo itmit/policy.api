@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use App\User;
 use App\Rating;
+use App\Feedback;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -104,5 +105,21 @@ class UserController extends ApiBaseController
                 'Updated');
         }
         return $this->SendError('Update error', 'Something gone wrong', 401);
+    }
+
+    public function sendFeedback(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'uid' => 'required', 
+            'title' => 'required|max:250',
+            'category' => 'required|max:250', 
+            'message' => 'required|max:10000', 
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+
+        return 'suc';
     }
 }
