@@ -27,6 +27,7 @@ class AuthController extends ApiBaseController
         if (filter_var(request('login'), FILTER_VALIDATE_EMAIL)) // ЛОГИН ПОЧТА
         {
             $user = User::whereRaw('email = "' . request('login') . '"')->get()->first();
+            return 'suc';
         }
         if (!filter_var(request('login'), FILTER_VALIDATE_EMAIL)) // если ЛОГИН НЕ ПОЧТА
         {
