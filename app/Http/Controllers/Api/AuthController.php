@@ -130,8 +130,6 @@ class AuthController extends ApiBaseController
             return $this->SendError('Authorization error', 'User already exist', 401);
         }
 
-        return $input['phone'];
-
         $user = User::create([
             'email' => $input['email'],
             'phone' => $input['phone'],
