@@ -53,7 +53,7 @@ class AuthController extends ApiBaseController
                 return $this->SendError('Authorization error', 'Something wrong with phone number', 401);
             }
         }
-        else // ЛОГИН ПОЧТА
+        if (filter_var(request('login'), FILTER_VALIDATE_EMAIL)) // ЛОГИН ПОЧТА
         {
             $user = User::whereRaw('email = "' . request('login') . '"')->get()->first();
         }
