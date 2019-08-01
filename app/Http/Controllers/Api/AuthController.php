@@ -85,15 +85,15 @@ class AuthController extends ApiBaseController
         if (!request('email'))
         {
             $firstLetter = substr($input['phone'], 1);
-            if($firstLetter = '+')
+            if($firstLetter == '+')
             {
-                return $firstLetter;
+                $input['phone'] = preg_replace('~\D+~', '', $input['phone']); 
+                $input['phone'] = '+' . $input['phone'];
             }
             else
             {
-                return 'not ' . $firstLetter;
+                return $this->SendError('Authorization error', 'Phone number is not valid', 401);
             }
-            $input['phone'] = preg_replace('~\D+~', '', $input['phone']); 
             $input['email'] = NULL;
         }
 
