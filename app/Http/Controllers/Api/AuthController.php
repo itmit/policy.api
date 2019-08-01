@@ -26,8 +26,6 @@ class AuthController extends ApiBaseController
         $user = User::whereRaw('email = "' . request('login') . '" or phone = "' . request('login') . '"')
         ->get()->first();
 
-        return $user;
-
         if ($user != null) {
             if (Hash::check(request('password'), $user->password))
             {
