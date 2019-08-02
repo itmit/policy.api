@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use libphonenumber;
 
 class AuthController extends ApiBaseController
 {
@@ -118,17 +119,18 @@ class AuthController extends ApiBaseController
 
         if (!request('email')) // пришел ТЕЛЕФОН
         {
-            $firstLetter = $input['phone'][0];
-            if($firstLetter == '+')
-            {
-                $input['phone'] = preg_replace('~\D+~', '', $input['phone']); 
-                $input['phone'] = '+' . $input['phone'];
-            }
-            else
-            {
-                return $this->SendError('Authorization error', 'Phone number is not valid', 401);
-            }
-            $input['email'] = NULL;
+            // $firstLetter = $input['phone'][0];
+            // if($firstLetter == '+')
+            // {
+            //     $input['phone'] = preg_replace('~\D+~', '', $input['phone']); 
+            //     $input['phone'] = '+' . $input['phone'];
+            // }
+            // else
+            // {
+            //     return $this->SendError('Authorization error', 'Phone number is not valid', 401);
+            // }
+            // $input['email'] = NULL;
+            return formatInOriginalFormat($phone);
         }
 
         if (!request('phone')) // пришел ЕМАИЛ
