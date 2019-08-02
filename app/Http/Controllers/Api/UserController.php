@@ -120,10 +120,10 @@ class UserController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        $user = User::where('uid', '=', $request->uid)->select('id')->first();
+        // $user = User::where('uid', '=', $request->uid)->select('id')->first();
 
         $feedback = Feedback::create([
-            'user_id' => $user->id,
+            'user_id' => Auth::id(),
             'title' => $request->title,
             'category' => $request->category,
             'message' => $request->message,
