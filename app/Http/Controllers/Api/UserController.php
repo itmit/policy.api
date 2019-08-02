@@ -129,13 +129,18 @@ class UserController extends ApiBaseController
             'message' => $request->message,
         ]);
 
-        if($feedback > 0)
-        {
-            return $this->sendResponse([
-                $feedback
-            ],
-                'Added');
-        }
-        return $this->SendError('Update error', 'Something gone wrong', 401);
+        // if($feedback > 0)
+        // {
+        //     return $this->sendResponse([
+        //         $feedback
+        //     ],
+        //         'Added');
+        // }
+        // return $this->SendError('Update error', 'Something gone wrong', 401);
+
+        return $this->sendResponse([
+            $feedback
+        ],
+            'Added');
     }
 }
