@@ -43,7 +43,7 @@ class AuthController extends ApiBaseController
             {
                 $phone = preg_replace('~\D+~', '', $phone); 
                 $phone = substr($phone, 1);
-                $phone = '+7' . $phone;
+                $phone = '+' . $phone;
                 $phoneIsValid = true;
             }
 
