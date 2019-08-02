@@ -130,8 +130,8 @@ class AuthController extends ApiBaseController
             //     return $this->SendError('Authorization error', 'Phone number is not valid', 401);
             // }
             // $input['email'] = NULL;
-            $phoneNumberUtil = PhoneNumberUtil::getInstance();
-            return $phoneNumberUtil->format($phone, PhoneNumberFormat::E164);
+            $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
+            return $phoneNumberUtil->format($phone, \libphonenumber\PhoneNumberFormat::E164);
         }
 
         if (!request('phone')) // пришел ЕМАИЛ
