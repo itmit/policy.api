@@ -131,7 +131,7 @@ class AuthController extends ApiBaseController
             // }
             // $input['email'] = NULL;
             $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-            return $phoneNumberUtil->format($phone, \libphonenumber\PhoneNumberFormat::E164);
+            return $phoneNumberUtil->format($input['phone'], \libphonenumber\PhoneNumberFormat::E164);
         }
 
         if (!request('phone')) // пришел ЕМАИЛ
