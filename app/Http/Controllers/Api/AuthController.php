@@ -129,10 +129,10 @@ class AuthController extends ApiBaseController
             // {
             //     return $this->SendError('Authorization error', 'Phone number is not valid', 401);
             // }
-            // $input['email'] = NULL;
             $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
             $phoneNumberObject = $phoneNumberUtil->parse($input['phone'], 'RU');
-            return $phoneNumberUtil->format($phoneNumberObject, \libphonenumber\PhoneNumberFormat::E164);
+            $input['phone'] = $phoneNumberUtil->format($phoneNumberObject, \libphonenumber\PhoneNumberFormat::E164);
+            $input['email'] = NULL;
         }
 
         if (!request('phone')) // пришел ЕМАИЛ
@@ -145,17 +145,9 @@ class AuthController extends ApiBaseController
 
         if(request('phone') && request('email')) // если пришли оба
         {
-            $firstLetter = $input['phone'][0];
-            if($firstLetter == '+')
-            {
-                $input['phone'] = preg_replace('~\D+~', '', $input['phone']); 
-                $input['phone'] = '+' . $input['phone'];
-            }
-            else
-            {
-                return $this->SendError('Authorization error', 'Phone number is not valid', 401);
-            }
-
+            $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
+            $phoneNumberObject = $phoneNumberUtil->parse($input['phone'], 'RU');
+            $input['phone'] = $phoneNumberUtil->format($phoneNumberObject, \libphonenumber\PhoneNumberFormat::E164);
             if (!filter_var(request('email'), FILTER_VALIDATE_EMAIL)) {
                 return $this->SendError('Authorization error', 'Email is not an Email', 401);
             }
