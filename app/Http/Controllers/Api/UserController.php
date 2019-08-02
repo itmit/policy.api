@@ -122,6 +122,8 @@ class UserController extends ApiBaseController
 
         $user = User::where('uid', '=', $request->uid)->select('id')->first();
 
+        return $user . ' | ' . $user->id;
+
         $feedback = Feedback::create([
             'user_id' => $user,
             'title' => $request->title,
