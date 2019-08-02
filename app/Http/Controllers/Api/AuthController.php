@@ -146,8 +146,14 @@ class AuthController extends ApiBaseController
         if(request('phone') && request('email')) // если пришли оба
         {
             $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-            $phoneNumberObject = $phoneNumberUtil->parse($input['phone'], 'RU');
-            $input['phone'] = $phoneNumberUtil->format($phoneNumberObject, \libphonenumber\PhoneNumberFormat::E164);
+            return $phoneNumberUtil = $phoneNumberUtil->getRegionCodeForNumber(request('phone'));
+            // $phoneNumberObject = $phoneNumberUtil->getRegionCodeForNumber();
+            // $phoneNumberObject = $phoneNumberUtil->parse($input['phone'], 'RU');
+            // if(!$phoneNumberUtil->isValidNumber($phoneNumberObject))
+            // {
+            //     return $this->SendError('Authorization error', 'Phone number is not valid', 401);
+            // }
+            // $input['phone'] = $phoneNumberUtil->format($phoneNumberObject, \libphonenumber\PhoneNumberFormat::E164);
             if (!filter_var(request('email'), FILTER_VALIDATE_EMAIL)) {
                 return $this->SendError('Authorization error', 'Email is not an Email', 401);
             }
