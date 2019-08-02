@@ -134,7 +134,7 @@ class AuthController extends ApiBaseController
 
 
             $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-            return $phoneNumberUtil = $phoneNumberUtil->getRegionCodeForNumber(request('phone'));
+            return $phoneNumberUtil->getRegionCodeForNumber(request('phone'));
 
             // $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
             // $phoneNumberObject = $phoneNumberUtil->parse($input['phone'], 'RU');
