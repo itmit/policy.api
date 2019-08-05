@@ -32,30 +32,12 @@ class AuthController extends ApiBaseController
         if (!filter_var(request('login'), FILTER_VALIDATE_EMAIL)) // если ЛОГИН НЕ ПОЧТА
         {
             $phone = request('login');
-            $phoneIsValid = false;
-            $firstLetter = $phone[0];
-            if($firstLetter == '+')
-            {
-                $phone = preg_replace('~\D+~', '', $phone); 
-                $phone = '+' . $phone;
-                $phoneIsValid = true;
-            }
-            if($firstLetter == '8')
-            {
-                $phone = preg_replace('~\D+~', '', $phone); 
-                $phone = substr($phone, 1);
-                $phone = '+' . $phone;
-                $phoneIsValid = true;
-            }
 
-            if($phoneIsValid == true)
-            {
-                $user = User::whereRaw('phone = "' . $phone . '"')->get()->first();
-            }
-            else
-            {
-                return $this->SendError('Authorization error', 'Something wrong with phone number', 401);
-            }
+            $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
+            $phoneNumberObject = $phoneNumberUtil->parse($phone, 'RU');
+            $phone = $phoneNumberUtil->format($phoneNumberObject, \libphonenumber\PhoneNumberFormat::E164);
+
+            $user = User::whereRaw('phone = "' . $phone . '"')->get()->first();
         }
 
         // $user = User::whereRaw('email = "' . request('login') . '" or phone = "' . request('login') . '"')
