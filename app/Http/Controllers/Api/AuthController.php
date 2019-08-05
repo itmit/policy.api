@@ -119,6 +119,7 @@ class AuthController extends ApiBaseController
 
         if (!request('email')) // пришел ТЕЛЕФОН
         {
+
             // $firstLetter = $input['phone'][0];
             // if($firstLetter == '+')
             // {
@@ -133,13 +134,13 @@ class AuthController extends ApiBaseController
 
 
 
-            $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-            return $phoneNumberUtil->getRegionCodeForNumber(request('phone'));
-
             // $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-            // $phoneNumberObject = $phoneNumberUtil->parse($input['phone'], 'RU');
-            // $input['phone'] = $phoneNumberUtil->format($phoneNumberObject, \libphonenumber\PhoneNumberFormat::E164);
-            // $input['email'] = NULL;
+            // return $phoneNumberUtil->getRegionCodeForNumber(request('phone'));
+
+            $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
+            $phoneNumberObject = $phoneNumberUtil->parse($input['phone'], 'RU');
+            $input['phone'] = $phoneNumberUtil->format($phoneNumberObject, \libphonenumber\PhoneNumberFormat::E164);
+            $input['email'] = NULL;
         }
 
         if (!request('phone')) // пришел ЕМАИЛ
@@ -153,7 +154,8 @@ class AuthController extends ApiBaseController
         if(request('phone') && request('email')) // если пришли оба
         {
             $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-            return $phoneNumberUtil = $phoneNumberUtil->getRegionCodeForNumber(request('phone'));
+            $phoneNumberObject = $phoneNumberUtil->parse($input['phone'], 'RU');
+            $input['phone'] = $phoneNumberUtil->format($phoneNumberObject, \libphonenumber\PhoneNumberFormat::E164);
             // $phoneNumberObject = $phoneNumberUtil->getRegionCodeForNumber();
             // $phoneNumberObject = $phoneNumberUtil->parse($input['phone'], 'RU');
             // if(!$phoneNumberUtil->isValidNumber($phoneNumberObject))
