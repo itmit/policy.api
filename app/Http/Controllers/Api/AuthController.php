@@ -81,7 +81,7 @@ class AuthController extends ApiBaseController
             'password' => 'required|min:6', 
             'c_password' => 'required|same:password', 
             'birthday' => 'required|date_format:Y-m-d', 
-            'uid' => 'required',
+            'uid' => 'required|uuid',
         ]);
         
         $validator->after(function ($validator) {
