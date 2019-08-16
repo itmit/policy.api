@@ -86,7 +86,7 @@ class AuthController extends ApiBaseController
         
         $validator->after(function ($validator) {
             if (!request('email') && !request('phone')) {
-                $validator->errors()->add('field', 'Something is wrong with this field!');
+                $validator->errors()->add('field', 'Введите электронную почту или телефон');
             }
         });
 
@@ -98,28 +98,18 @@ class AuthController extends ApiBaseController
 
         if (!request('email')) // пришел ТЕЛЕФОН
         {
-
-            // $firstLetter = $input['phone'][0];
-            // if($firstLetter == '+')
-            // {
-            //     $input['phone'] = preg_replace('~\D+~', '', $input['phone']); 
-            //     $input['phone'] = '+' . $input['phone'];
-            // }
-            // else
-            // {
-            //     return $this->SendError('Authorization error', 'Phone number is not valid', 401);
-            // }
-
-
-
-
-            // $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-            // return $phoneNumberUtil->getRegionCodeForNumber(request('phone'));
-
             $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
             $phoneNumberObject = $phoneNumberUtil->parse($input['phone'], 'RU');
             $input['phone'] = $phoneNumberUtil->format($phoneNumberObject, \libphonenumber\PhoneNumberFormat::E164);
             $input['email'] = NULL;
+
+            $validator = Validator::make($request->all(), [ 
+                'phone' => 'required|min:11|unique:users', 
+            ]);
+    
+            if ($validator->fails()) { 
+                return response()->json(['error'=>$validator->errors()], 401);            
+            }
         }
 
         if (!request('phone')) // пришел ЕМАИЛ
@@ -135,13 +125,14 @@ class AuthController extends ApiBaseController
             $phoneNumberUtil = \libphonenumber\PhoneNumberUtil::getInstance();
             $phoneNumberObject = $phoneNumberUtil->parse($input['phone'], 'RU');
             $input['phone'] = $phoneNumberUtil->format($phoneNumberObject, \libphonenumber\PhoneNumberFormat::E164);
-            // $phoneNumberObject = $phoneNumberUtil->getRegionCodeForNumber();
-            // $phoneNumberObject = $phoneNumberUtil->parse($input['phone'], 'RU');
-            // if(!$phoneNumberUtil->isValidNumber($phoneNumberObject))
-            // {
-            //     return $this->SendError('Authorization error', 'Phone number is not valid', 401);
-            // }
-            // $input['phone'] = $phoneNumberUtil->format($phoneNumberObject, \libphonenumber\PhoneNumberFormat::E164);
+            $validator = Validator::make($request->all(), [ 
+                'phone' => 'required|min:11|unique:users', 
+            ]);
+    
+            if ($validator->fails()) { 
+                return response()->json(['error'=>$validator->errors()], 401);            
+            }
+            
             if (!filter_var(request('email'), FILTER_VALIDATE_EMAIL)) {
                 return $this->SendError('Authorization error', 'Email is not an Email', 401);
             }
