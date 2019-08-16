@@ -25,7 +25,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('user/changePhoto', 'Api\UserController@changePhoto')->name('user/changePhoto');
     Route::post('user/sendFeedback', 'Api\UserController@sendFeedback');
 
-    Route::post('user/resetPassword', 'Api\ResetPassword@reset')->name('user/reset');
+    Route::post('user/resetPassword', 'Api\ResetPassword@ResetPasswordsAPI')->name('user/reset');
 });
 
 Route::get('user/changePhoto/form', function () {
