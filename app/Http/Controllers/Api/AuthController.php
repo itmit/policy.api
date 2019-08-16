@@ -103,7 +103,7 @@ class AuthController extends ApiBaseController
             $input['phone'] = $phoneNumberUtil->format($phoneNumberObject, \libphonenumber\PhoneNumberFormat::E164);
             $input['email'] = NULL;
 
-            $validator = Validator::make($request->all(), [ 
+            $validator = Validator::make($input, [ 
                 'phone' => 'required|min:11|unique:users', 
             ]);
     
@@ -132,7 +132,7 @@ class AuthController extends ApiBaseController
             if ($validator->fails()) { 
                 return response()->json(['error'=>$validator->errors()], 401);            
             }
-            
+
             if (!filter_var(request('email'), FILTER_VALIDATE_EMAIL)) {
                 return $this->SendError('Authorization error', 'Email is not an Email', 401);
             }
