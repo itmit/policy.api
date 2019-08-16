@@ -11,5 +11,8 @@ use Illuminate\Auth\Events\PasswordReset;
 
 class ResetPasswords
 {
-    return 'a';
+    public function ResetPasswordAPI()
+    {
+        return 'a';
+    }
 }
