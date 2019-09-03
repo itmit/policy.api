@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SusliksCategory;
 use App\Suslik;
+use Illuminate\Support\Facades\Validator;
 
 class SuslikApiController extends ApiBaseController
 {
