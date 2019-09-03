@@ -31,4 +31,19 @@ class SuslikApiController extends ApiBaseController
 
         return $this->sendResponse($susliks, 'Список категорий');
     }
+
+    public function getSuslikByID(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'suslik_id' => 'required',
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+
+        $suslik = Suslik::where('id', '=' , $request->suslik_id)->first();
+
+        return $this->sendResponse($suslik, 'Суслик');
+    }
 }
