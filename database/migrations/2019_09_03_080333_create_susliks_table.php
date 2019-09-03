@@ -19,6 +19,11 @@ class CreateSusliksTable extends Migration
             $table->string('place_of_work');
             $table->string('position');
             $table->bigInteger('category');
+
+            $table->integer('like');
+            $table->integer('dislike');
+            $table->integer('neutral');
+
             $table->string('photo')->nullable();
             $table->timestamps();
 
