@@ -15,4 +15,19 @@ class SuslikApiController extends ApiBaseController
 
         return $this->sendResponse($categorys, 'Список категорий');
     }
+
+    public function getSusliksByCategory(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'category_id' => 'required',
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+
+        $susliks = Suslik::where('category', '=' , $request->category_id)->get();
+
+        return $this->sendResponse($susliks, 'Список категорий');
+    }
 }

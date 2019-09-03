@@ -18,9 +18,12 @@ class CreateSusliksTable extends Migration
             $table->string('name');
             $table->string('place_of_work');
             $table->string('position');
-            $table->integer('category');
+            $table->bigInteger('category');
             $table->string('photo')->nullable();
             $table->timestamps();
+
+            $table->foreign('category')->references('id')->on('susliks_categories')
+                ->onUpdate('cascade');
         });
     }
 

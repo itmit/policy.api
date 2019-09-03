@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('user/sendFeedback', 'Api\UserController@sendFeedback');
 
     Route::post('suslik/getCategoryList', 'Api\SuslikApiController@getCategoryList');
+    Route::post('suslik/getSusliksByCategory', 'Api\SuslikApiController@getSusliksByCategory');
 });
 
 Route::post('user/resetPassword', 'Api\ResetPasswords@ResetPasswordAPI')->name('user/reset');
