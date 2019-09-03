@@ -27,7 +27,7 @@ class SuslikApiController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        $susliks = Suslik::where('category', '=' , $request->category_id)->get();
+        $susliks = Suslik::where('category', '=' , $request->category_id)->get()->toArray();
 
         return $this->sendResponse($susliks, 'Список категорий');
     }
