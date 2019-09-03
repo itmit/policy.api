@@ -15,6 +15,7 @@ class CreateSusliksCategoriesTable extends Migration
     {
         Schema::create('susliks_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
             $table->timestamps();
         });
     }

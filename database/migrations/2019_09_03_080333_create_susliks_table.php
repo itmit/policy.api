@@ -15,6 +15,11 @@ class CreateSusliksTable extends Migration
     {
         Schema::create('susliks', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('place_of_work');
+            $table->string('position');
+            $table->integer('category');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }
