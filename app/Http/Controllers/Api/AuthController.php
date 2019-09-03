@@ -25,6 +25,15 @@ class AuthController extends ApiBaseController
      */ 
     public function login() { 
 
+        $validator = Validator::make($request->all(), [ 
+            'login' => 'required|min:6', 
+            'password' => 'required', 
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+
         if (filter_var(request('login'), FILTER_VALIDATE_EMAIL)) // ЛОГИН ПОЧТА
         {
             $user = User::whereRaw('email = "' . request('login') . '"')->get()->first();
