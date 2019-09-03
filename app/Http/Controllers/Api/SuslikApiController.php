@@ -11,7 +11,7 @@ class SuslikApiController extends ApiBaseController
 {
     public function getCategoryList()
     {
-        $categorys = SusliksCategory::select('id', 'name');
+        $categorys = SusliksCategory::all('id', 'name');
 
         return $this->sendResponse([$categorys], 'Список категорий');
     }
