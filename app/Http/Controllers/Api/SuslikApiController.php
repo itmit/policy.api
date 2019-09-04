@@ -20,14 +20,16 @@ class SuslikApiController extends ApiBaseController
     public function getSusliksByCategory(Request $request)
     {
         $validator = Validator::make($request->all(), [ 
-            'category_id' => 'required',
+            'category_uuid' => 'required',
         ]);
 
         if ($validator->fails()) { 
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        $susliks = Suslik::where('category', '=' , $request->category_id)->get()->toArray();
+        $cat = SusliksCategory::where('uuid', '=', $request->category_uuid)->first('id');
+
+        $susliks = Suslik::where('category', '=' , $cat->id)->get()->toArray();
 
         return $this->sendResponse($susliks, 'Список категорий');
     }
