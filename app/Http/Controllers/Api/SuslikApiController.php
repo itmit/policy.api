@@ -60,6 +60,8 @@ class SuslikApiController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
+        return auth('api')->user()->id;
+
         // $suslik = Suslik::where('uuid', '=' , $request->suslik_uuid)->first()->toArray();
 
         // return $this->sendResponse($suslik, 'Суслик');

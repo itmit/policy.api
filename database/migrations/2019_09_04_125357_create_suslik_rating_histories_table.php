@@ -20,11 +20,11 @@ class CreateSuslikRatingHistoriesTable extends Migration
             $table->enum('type', ['likes', 'dislikes', 'neutrals']);
             $table->timestamps();
 
-            $table->foreign('from_suslik')->references('id')->on('susliks')
-                ->onUpdate('cascade');
+            // $table->foreign('from_suslik')->references('id')->on('susliks')
+            //     ->onUpdate('cascade');
 
-            $table->foreign('whom_suslik')->references('id')->on('susliks')
-                ->onUpdate('cascade');
+            // $table->foreign('whom_suslik')->references('id')->on('susliks')
+            //     ->onUpdate('cascade');
         });
     }
 
