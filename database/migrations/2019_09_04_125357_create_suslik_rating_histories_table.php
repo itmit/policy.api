@@ -15,7 +15,16 @@ class CreateSuslikRatingHistoriesTable extends Migration
     {
         Schema::create('suslik_rating_histories', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('from_suslik');
+            $table->bigInteger('whom_suslik');
+            $table->enum('type', ['likes', 'dislikes', 'neutrals']);
             $table->timestamps();
+
+            $table->foreign('from_suslik')->references('id')->on('susliks')
+                ->onUpdate('cascade');
+
+            $table->foreign('whom_suslik')->references('id')->on('susliks')
+                ->onUpdate('cascade');
         });
     }
 
