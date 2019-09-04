@@ -37,14 +37,14 @@ class SuslikApiController extends ApiBaseController
     public function getSuslikByID(Request $request)
     {
         $validator = Validator::make($request->all(), [ 
-            'suslik_id' => 'required',
+            'suslik_uuid' => 'required',
         ]);
 
         if ($validator->fails()) { 
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        $suslik = Suslik::where('id', '=' , $request->suslik_id)->first()->toArray();
+        $suslik = Suslik::where('uuid', '=' , $request->suslik_uuid)->first()->toArray();
 
         return $this->sendResponse($suslik, 'Суслик');
     }

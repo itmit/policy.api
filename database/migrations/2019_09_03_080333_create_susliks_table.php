@@ -15,14 +15,15 @@ class CreateSusliksTable extends Migration
     {
         Schema::create('susliks', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->uuid('uuid');
             $table->string('name');
             $table->string('place_of_work');
             $table->string('position');
             $table->bigInteger('category');
 
-            $table->integer('like');
-            $table->integer('dislike');
-            $table->integer('neutral');
+            $table->integer('likes')->default(0);
+            $table->integer('dislikes')->default(0);
+            $table->integer('neutrals')->default(0);
 
             $table->string('photo')->nullable();
             $table->timestamps();
