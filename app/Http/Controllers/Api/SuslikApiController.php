@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\SusliksCategory;
 use App\Suslik;
 use App\SuslikRatingHistory;
+use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
@@ -62,10 +63,10 @@ class SuslikApiController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        $is_from = Suslik::where('id', '=', auth('api')->user()->id)->first();
-        $is_whom = Suslik::where('uuid', '=', $request->suslik_uuid)->first();
+        $is_from = User::where('id', '=', auth('api')->user()->id)->first('id');
+        $is_whom = Suslik::where('uuid', '=', $request->suslik_uuid)->first('id');
 
-        return $is_whom;
+        return $is_from;
 
         DB::beginTransaction();
             $record = new SuslikRatingHistory;
