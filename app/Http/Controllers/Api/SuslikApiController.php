@@ -32,7 +32,7 @@ class SuslikApiController extends ApiBaseController
 
         $cat = SusliksCategory::where('uuid', '=', $request->category_uuid)->first('id');
 
-        $susliks = Suslik::where('category', '=' , $cat->id)->get(['uuid', 'name', 'place_of_work', 'position'])->toArray();
+        $susliks = Suslik::where('category', '=' , $cat->id)->get(['uuid', 'name', 'place_of_work', 'position', 'photo'])->toArray();
 
         return $this->sendResponse($susliks, 'Список категорий');
     }
@@ -47,7 +47,8 @@ class SuslikApiController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        $suslik = Suslik::where('uuid', '=' , $request->suslik_uuid)->first()->toArray();
+        $suslik = Suslik::where('uuid', '=' , $request->suslik_uuid)->first(['uuid', 'name', 'place_of_work', 'position', 'likes', 
+        'dislikes', 'neutrals', 'photo'])->toArray();
 
         return $this->sendResponse($suslik, 'Суслик');
     }
