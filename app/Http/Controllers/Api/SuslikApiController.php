@@ -69,13 +69,13 @@ class SuslikApiController extends ApiBaseController
             return $this->sendError(0, 'Ошибка');
         }
 
-        $is_whom = Suslik::where('uuid', '=', $request->suslik_uuid)->first('id');
+        $is_whom = Suslik::where('uuid', '=', $request->suslik_uuid)->first();
         if($is_whom = null)
         {
             return $this->sendError(0, 'Ошибка');
         }
 
-        return $is_whom;
+        return $is_whom . ' ' . $request->suslik_uuid;
 
         DB::beginTransaction();
             $record = new SuslikRatingHistory;
