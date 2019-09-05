@@ -65,7 +65,7 @@ class SuslikApiController extends ApiBaseController
         $is_from = Suslik::where('id', '=', auth('api')->user()->id)->first();
         $is_whom = Suslik::where('uuid', '=', $request->suslik_uuid)->first();
 
-        return $is_from;
+        return $is_from->id;
 
         DB::beginTransaction();
             $record = new SuslikRatingHistory;
