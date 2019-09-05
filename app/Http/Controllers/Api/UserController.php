@@ -50,11 +50,11 @@ class UserController extends ApiBaseController
     {
         $validator = Validator::make($request->all(), [ 
             'uid' => 'required', 
-            'name' => 'required', 
-            'city' => 'required', 
-            'field_of_activity' => 'required',
-            'organization' => 'required',
-            'position' => 'required',
+            // 'name' => 'required', 
+            // 'city' => 'required', 
+            // 'field_of_activity' => 'required',
+            // 'organization' => 'required',
+            // 'position' => 'required',
         ]);
 
         if ($validator->fails()) { 

@@ -100,4 +100,23 @@ class SuslikApiController extends ApiBaseController
         // return $this->sendResponse($suslik, 'Суслик');
         return 'Suc';
     }
+
+    public function getSuslikRatingHistory(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'suslik_uuid' => 'required|uuid',
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+
+        $suslik_id = Suslik::where('uuid', '=', $request->suslik_uuid)->first('id');
+        if($suslik_id == null)
+        {
+            return $this->sendError(0, 'Ошибка');
+        }
+
+        
+    }
 }
