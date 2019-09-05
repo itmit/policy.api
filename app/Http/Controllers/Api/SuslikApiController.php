@@ -64,13 +64,13 @@ class SuslikApiController extends ApiBaseController
         }
 
         $is_from = User::where('id', '=', auth('api')->user()->id)->first('id');
-        if($is_from != null)
+        if($is_from = null)
         {
             return 'Error';
         }
 
         $is_whom = Suslik::where('uuid', '=', $request->suslik_uuid)->first('id');
-        if($is_whom != null)
+        if($is_whom = null)
         {
             return 'Error';
         }
