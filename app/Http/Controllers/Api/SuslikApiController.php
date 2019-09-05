@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SusliksCategory;
 use App\Suslik;
+use App\SuslikRatingHistory;
 use Illuminate\Support\Facades\Validator;
 
 class SuslikApiController extends ApiBaseController
@@ -60,10 +61,23 @@ class SuslikApiController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        return auth('api')->user()->id;
+        DB::beginTransaction();
+            $record = new SuslikRatingHistory;
+            $record->from_suslik = auth('api')->user()->id; // от кого
+            $record->whom_suslik = $request->input('suslik_uuid'); // кому
+            $record->type = $request->input('type');
+            $record->save();
+
+            $record = Suslik::where('uuid', '=', $request->suslik_uuid)->lockForUpdate()->first();
+            $record->increment($request->type);
+            $record->save();
+        DB::commit();
+
+        // return auth('api')->user()->id;
 
         // $suslik = Suslik::where('uuid', '=' , $request->suslik_uuid)->first()->toArray();
 
         // return $this->sendResponse($suslik, 'Суслик');
+        return 'Suc';
     }
 }
