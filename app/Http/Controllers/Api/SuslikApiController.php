@@ -64,7 +64,7 @@ class SuslikApiController extends ApiBaseController
         }
 
         $is_from = User::where('id', '=', auth('api')->user()->id)->first('id');
-        if(count($is_from) < 1)
+        if($is_from < 1)
         {
             return 'Error';
         }
