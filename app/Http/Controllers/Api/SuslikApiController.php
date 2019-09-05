@@ -50,6 +50,11 @@ class SuslikApiController extends ApiBaseController
         $suslik = Suslik::where('uuid', '=' , $request->suslik_uuid)->first(['uuid', 'name', 'place_of_work', 'position', 'likes', 
         'dislikes', 'neutrals', 'photo'])->toArray();
 
+        if($suslik == null)
+        {
+            return $this->sendError(0, 'Ошибка');
+        }
+
         return $this->sendResponse($suslik, 'Суслик');
     }
 
