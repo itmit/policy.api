@@ -76,8 +76,6 @@ class SuslikApiController extends ApiBaseController
             return $this->sendError(0, 'Ошибка');
         }
 
-        return $is_whom->id;
-
         DB::beginTransaction();
             $record = new SuslikRatingHistory;
             $record->from_suslik = auth('api')->user()->id; // от кого
