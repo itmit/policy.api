@@ -8,6 +8,7 @@ use App\SusliksCategory;
 use App\Suslik;
 use App\SuslikRatingHistory;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class SuslikApiController extends ApiBaseController
 {
