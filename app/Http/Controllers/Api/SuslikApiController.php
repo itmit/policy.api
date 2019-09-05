@@ -62,6 +62,11 @@ class SuslikApiController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
+        $is_from = Suslik::where('id', '=', auth('api')->user()->id)->first();
+        $is_whom = Suslik::where('uuid', '=', $request->suslik_uuid)->first();
+
+        return $is_from;
+
         DB::beginTransaction();
             $record = new SuslikRatingHistory;
             $record->from_suslik = auth('api')->user()->id; // от кого
