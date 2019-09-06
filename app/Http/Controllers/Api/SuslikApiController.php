@@ -82,17 +82,21 @@ class SuslikApiController extends ApiBaseController
         }
 
         DB::beginTransaction();
-            $record = new SuslikRatingHistory;
-            $record->from_suslik = auth('api')->user()->id; // от кого
-            $record->whom_suslik = $is_whom->id; // кому
-            $record->type = $request->input('type');
-            $record->save();
+            try {
+                $record = new SuslikRatingHistory;
+                $record->from_suslik = auth('api')->user()->id; // от кого
+                $record->whom_suslik = $is_whom->id; // кому
+                $record->type = $request->input('type');
+                $record->save();
 
-            $record = Suslik::where('uuid', '=', $request->suslik_uuid)->lockForUpdate()->first();
-            $record->increment($request->type);
-            $record->save();
-        DB::commit();
-
+                $record = Suslik::where('uuid', '=', $request->suslik_uuid)->lockForUpdate()->first();
+                $record->increment($request->type);
+                $record->save();
+                DB::commit();
+            } catch (\Exception $e) {
+                DB::rollback();
+                return $this->sendError(0, 'Ошибка');
+            }
         $newRating = Suslik::where('uuid', '=' , $request->suslik_uuid)->first($request->type)->toArray();
 
         return $this->sendResponse($newRating, 'Суслик');
