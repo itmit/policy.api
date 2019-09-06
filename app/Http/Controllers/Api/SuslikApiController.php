@@ -117,7 +117,7 @@ class SuslikApiController extends ApiBaseController
             return $this->sendError(0, 'Ошибка');
         }
 
-        $suslikRatingHistory = SuslikRatingHistory::where('whom_suslik', '=', $suslik_id)->get()->toArray();
+        $suslikRatingHistory = SuslikRatingHistory::where('whom_suslik', '=', $suslik_id->id)->get()->toArray();
 
         return $this->sendResponse($suslikRatingHistory, 'Суслик');
     }
