@@ -95,7 +95,7 @@ class SuslikApiController extends ApiBaseController
 
         $newRating = Suslik::where('uuid', '=' , $request->suslik_uuid)->first($request->type)->toArray();
 
-        return $this->sendResponse($suslik, 'Суслик');
+        return $this->sendResponse($newRating, 'Суслик');
     }
 
     public function getSuslikRatingHistory(Request $request)
