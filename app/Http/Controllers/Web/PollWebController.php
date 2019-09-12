@@ -14,7 +14,7 @@ class PollWebController extends Controller
      */
     public function index()
     {
-        //
+        return view('polls.polls'); 
     }
 
     /**
