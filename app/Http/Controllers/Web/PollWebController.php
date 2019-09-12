@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Poll;
 
 class PollWebController extends Controller
 {
@@ -14,7 +15,10 @@ class PollWebController extends Controller
      */
     public function index()
     {
-        return view('polls.polls'); 
+        return view('polls.polls', [
+        'polls' => Poll::select('*')
+            ->orderBy('created_at', 'desc')->get()
+    ]); 
     }
 
     /**

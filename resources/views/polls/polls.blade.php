@@ -13,13 +13,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                {{-- @foreach($clients as $client)
+                @foreach($polls as $poll)
                     <tr>
-                        <td><a href="client/{{ $client->id }}"> {{ $client->login }} </a></td>
-                        <td>{{ $client->role }}</td>
-                        <td>{{ $client->created_at->timezone('Europe/Moscow') }}</td>
+                        <td><a href="poll/{{ $poll->id }}"> {{ $poll->name }} </a></td>
+                        <td>{{ $poll->created_at->timezone('Europe/Moscow') }}</td>
                     </tr>
-                @endforeach --}}
+                @endforeach
                 </tbody>
             </table>
         </div>
