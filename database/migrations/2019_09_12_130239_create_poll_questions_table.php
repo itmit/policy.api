@@ -15,7 +15,11 @@ class CreatePollQuestionsTable extends Migration
     {
         Schema::create('poll_questions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('poll_id');
+            $table->text('question');
             $table->timestamps();
+
+            $table->foreign('poll_id')->references('id')->on('polls');
         });
     }
 

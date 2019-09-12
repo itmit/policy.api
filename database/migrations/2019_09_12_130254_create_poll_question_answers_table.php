@@ -15,7 +15,11 @@ class CreatePollQuestionAnswersTable extends Migration
     {
         Schema::create('poll_question_answers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('question_id');
+            $table->text('answer');
             $table->timestamps();
+
+            $table->foreign('question_id')->references('id')->on('poll_questions');
         });
     }
 
