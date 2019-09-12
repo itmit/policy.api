@@ -15,6 +15,7 @@ class CreatePollQuestionsTable extends Migration
     {
         Schema::create('poll_questions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->uuid('uuid');
             $table->bigInteger('poll_id')->unsigned();
             $table->text('question');
             $table->timestamps();

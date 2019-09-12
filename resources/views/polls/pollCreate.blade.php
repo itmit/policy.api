@@ -3,19 +3,19 @@
 @section('content')
     <h1>Создание опроса</h1>
     <div class="col-sm-12">
-        <form class="form-horizontal" method="POST" action="">
+        <form class="form-horizontal" method="POST" action="{{ route('auth.polls.store') }}">
             {{ csrf_field() }}
 
-            <div class="form-group{{ $errors->has('login') ? ' has-error' : '' }}">
-                <label for="login" class="col-md-4 control-label">Логин</label>
+            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                <label for="name" class="col-md-4 control-label">Наименование</label>
 
                 <div class="col-md-6">
-                    <input id="login" type="text" class="form-control" name="login" value="{{ old('login') }}" required
+                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required
                            autofocus>
 
                     @if ($errors->has('login'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('login') }}</strong>
+                            <strong>{{ $errors->first('name') }}</strong>
                         </span>
                     @endif
                 </div>
