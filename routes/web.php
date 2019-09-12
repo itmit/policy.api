@@ -23,6 +23,12 @@ Route::get('/', function () {
 //     return view('auth/login');
 // });
 
+Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
+    Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+
+    Route::resource('polls', 'Web\PollWebController');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
