@@ -18,7 +18,7 @@ class PollWebController extends Controller
         return view('polls.polls', [
         'polls' => Poll::select('*')
             ->orderBy('created_at', 'desc')->get()
-    ]); 
+        ]); 
     }
 
     /**
@@ -28,7 +28,7 @@ class PollWebController extends Controller
      */
     public function create()
     {
-        //
+        return view('polls.pollCreate'); 
     }
 
     /**
