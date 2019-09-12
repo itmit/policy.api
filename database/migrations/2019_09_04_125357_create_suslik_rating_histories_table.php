@@ -25,7 +25,7 @@ class CreateSuslikRatingHistoriesTable extends Migration
 
             // $table->foreign('whom_suslik')->references('id')->on('susliks')
             //     ->onUpdate('cascade');
-        });
+        // });
     }
 
     /**
