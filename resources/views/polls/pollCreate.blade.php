@@ -75,7 +75,7 @@
     <script>
     $(document).ready(function() {
         $(document).on('change', $('input:radio[name=time]'), function() {
-            console.log('a');
+            console.log($('input:radio[name=time]:checked').val());
         });
     })
     </script>
