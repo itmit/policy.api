@@ -13,7 +13,7 @@
                     <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required
                            autofocus>
 
-                    @if ($errors->has('login'))
+                    @if ($errors->has('name'))
                         <span class="help-block">
                             <strong>{{ $errors->first('name') }}</strong>
                         </span>
@@ -30,6 +30,37 @@
                     <label for="limited">с датой начала и завершения</label>
                 </div>
             </div>
+
+            <div class="form-group{{ $errors->has('start_at') ? ' has-error' : '' }}">
+                <label for="start_at" class="col-md-4 control-label">Дата начала</label>
+
+                <div class="col-md-6">
+                    <input id="start_at" type="date" class="form-control" name="start_at" value="{{ old('start_at') }}" required
+                           autofocus disabled>
+
+                    @if ($errors->has('start_at'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('start_at') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="form-group{{ $errors->has('end_at') ? ' has-error' : '' }}">
+                <label for="end_at" class="col-md-4 control-label">Дата завершения</label>
+
+                <div class="col-md-6">
+                    <input id="end_at" type="date" class="form-control" name="end_at" value="{{ old('end_at') }}" required
+                           autofocus disabled>
+
+                    @if ($errors->has('end_at'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('end_at') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
 
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
