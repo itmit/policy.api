@@ -64,16 +64,32 @@
             <hr>
             <h2>Создание вопросов</h2>
 
-            <div class="form-group{{ $errors->has('end_at') ? ' has-error' : '' }}">
-                <div class="col-md-4 offset-md-4">
-                    <input id="question" data-question="0" type="text" class="form-control" name="question" placeholder=" Введите вопрос">
+            <div class="list_of_questions">
+                <div class="form-group" name="questions" data-questions="0">
+                    <div class="col-md-4 offset-md-1">
+                        <input id="question" data-question="0" type="text" class="form-control" name="question" placeholder=" Введите вопрос">
+                    </div>
+                    <div class="col-md-5">
+                        <input id="answer" type="text" data-answer="0" class="form-control" name="answer" placeholder=" Введите ответ">    
+                        <input id="answer" type="text" data-answer="1" class="form-control" name="answer" placeholder=" Введите ответ">
+                        <span style="cursor: pointer">+</span>
+                    </div>
                 </div>
-                <div class="col-md-5">
-                    <input id="answer" type="text" data-answer="0" class="form-control" name="answer" placeholder=" Введите ответ">    
-                    <input id="answer" type="text" data-answer="0" class="form-control" name="answer" placeholder=" Введите ответ">
-                    <span>+</span>
+
+                <div class="form-group" name="questions" data-questions="1">
+                    <div class="col-md-4 offset-md-1">
+                        <input id="question" data-question="1" type="text" class="form-control" name="question" placeholder=" Введите вопрос">
+                    </div>
+                    <div class="col-md-5">
+                        <input id="answer" type="text" data-answer="0" class="form-control" name="answer" placeholder=" Введите ответ">    
+                        <input id="answer" type="text" data-answer="1" class="form-control" name="answer" placeholder=" Введите ответ">
+                        <span style="cursor: pointer">+</span>
+                    </div>
                 </div>
+
             </div>
+
+            <span style="cursor: pointer">Добавить вопрос</span>
 
 
             <div class="form-group">
