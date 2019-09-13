@@ -61,6 +61,20 @@
                 </div>
             </div>
 
+            <hr>
+            <h2>Создание вопросов</h2>
+
+            <div class="form-group{{ $errors->has('end_at') ? ' has-error' : '' }}">
+                <div class="col-md-4">
+                    <input id="question" data-question="0" type="text" class="form-control" name="question" placeholder=" Введите вопрос">
+                </div>
+                <div class="col-md-5">
+                    <input id="answer" type="text" data-answer="0" class="form-control" name="answer" placeholder=" Введите ответ">    
+                    <input id="answer" type="text" data-answer="0" class="form-control" name="answer" placeholder=" Введите ответ">
+                    <span>+</span>
+                </div>
+            </div>
+
 
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
