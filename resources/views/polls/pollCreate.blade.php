@@ -75,7 +75,17 @@
     <script>
     $(document).ready(function() {
         $(document).on('change', $('input:radio[name=time]'), function() {
-            console.log($('input:radio[name=time]:checked').val());
+            if($('input:radio[name=time]:checked').val() == 'limited')
+            {
+                $("#start_at").prop("disabled", false);
+                $("#end_at").prop("disabled", false);
+            }
+            if($('input:radio[name=time]:checked').val() == 'unlimited')
+            {
+                $("#start_at").prop("disabled", true);
+                $("#end_at").prop("disabled", true);
+            }
+
         });
     })
     </script>
