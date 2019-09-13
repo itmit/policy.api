@@ -22,11 +22,13 @@
             </div>
 
             <div class="form-group{{ $errors->has('radio') ? ' has-error' : '' }}">
-                <input type="radio" id="unlimited" name="time" value="unlimited">
-                <label for="unlimited">Бессрочно</label>
+                <div class="col-md-6">
+                    <input type="radio" id="unlimited" name="time" value="unlimited" checked>
+                    <label for="unlimited">Бессрочно</label>
 
-                <input type="radio" id="limited" name="time" value="limited">
-                <label for="limited">С датой начана и завершения</label>
+                    <input type="radio" id="limited" name="time" value="limited">
+                    <label for="limited">с датой начала и завершения</label>
+                </div>
             </div>
 
             <div class="form-group">
