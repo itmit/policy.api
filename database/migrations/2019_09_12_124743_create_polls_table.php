@@ -17,8 +17,8 @@ class CreatePollsTable extends Migration
             $table->bigIncrements('id');
             $table->uuid('uuid');
             $table->string('name');
-            $table->timestamp('start_at');
-            $table->timestamp('end_at');
+            $table->timestamp('start_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('end_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 
             $table->timestamps();
         });
