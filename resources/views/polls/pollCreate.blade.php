@@ -80,16 +80,16 @@
                 $("#start_at").prop("disabled", false);
                 $("#end_at").prop("disabled", false);
 
-                $("#start_at").prop("required", false);
-                $("#end_at").prop("required", false);
+                $("#start_at").prop("required", true);
+                $("#end_at").prop("required", true);
             }
             if($('input:radio[name=time]:checked').val() == 'unlimited')
             {
                 $("#start_at").prop("disabled", true);
                 $("#end_at").prop("disabled", true);
 
-                $("#start_at").prop("required", true);
-                $("#end_at").prop("required", true);
+                $("#start_at").prop("required", false);
+                $("#end_at").prop("required", false);
             }
 
         });
