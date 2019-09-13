@@ -35,7 +35,7 @@
                 <label for="start_at" class="col-md-4 control-label">Дата начала</label>
 
                 <div class="col-md-6">
-                    <input id="start_at" type="date" class="form-control" name="start_at" value="{{ old('start_at') }}" required
+                    <input id="start_at" type="date" class="form-control" name="start_at" value="{{ old('start_at') }}"
                            autofocus disabled>
 
                     @if ($errors->has('start_at'))
@@ -50,7 +50,7 @@
                 <label for="end_at" class="col-md-4 control-label">Дата завершения</label>
 
                 <div class="col-md-6">
-                    <input id="end_at" type="date" class="form-control" name="end_at" value="{{ old('end_at') }}" required
+                    <input id="end_at" type="date" class="form-control" name="end_at" value="{{ old('end_at') }}"
                            autofocus disabled>
 
                     @if ($errors->has('end_at'))
@@ -71,4 +71,13 @@
             </div>
         </form>
     </div>
+
+    <script>
+    $(document).ready(function() {
+        $(document).on('change', $('input:radio[name=time]');, function() {
+            console.log('a');
+        });
+    })
+    </script>
+    
 @endsection
