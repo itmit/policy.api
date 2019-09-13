@@ -15,7 +15,14 @@ class CreatePollQuestionAnswerUsersTable extends Migration
     {
         Schema::create('poll_question_answer_users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->uuid('uuid');
+            $table->bigInteger('answer_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->text('other')->nullable();
             $table->timestamps();
+
+            $table->foreign('answer_id')->references('id')->on('poll_question_answers');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
