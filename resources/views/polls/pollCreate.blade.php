@@ -74,7 +74,7 @@
                         <input id="answer" type="text" data-answer="1" class="form-control" name="answer" placeholder=" Введите ответ">
                         <input type="checkbox" name="other" id="other">
                         <label for="other">Включает вариант ответа "другой"</label>
-                        <div style="cursor: pointer">+</div>
+                        <button>Добавить вариант ответа</button>
                     </div>
                 </div>
 
@@ -87,13 +87,13 @@
                         <input id="answer" type="text" data-answer="1" class="form-control" name="answer" placeholder=" Введите ответ">
                         <input type="checkbox" name="other" id="other">
                         <label for="other">Включает вариант ответа "другой"</label>
-                        <div style="cursor: pointer">+</div>
+                        <button>Добавить вариант ответа</button>
                     </div>
                 </div>
 
             </div>
 
-            <span style="cursor: pointer">Добавить вопрос</span>
+            <button>Добавить вопрос</button>
 
 
             <div class="form-group">
