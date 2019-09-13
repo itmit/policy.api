@@ -65,7 +65,7 @@
             <h2>Создание вопросов</h2>
 
             <div class="form-group{{ $errors->has('end_at') ? ' has-error' : '' }}">
-                <div class="col-md-4">
+                <div class="col-md-4 offset-md-4">
                     <input id="question" data-question="0" type="text" class="form-control" name="question" placeholder=" Введите вопрос">
                 </div>
                 <div class="col-md-5">
