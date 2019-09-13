@@ -75,7 +75,7 @@
                         <input type="checkbox" name="other" id="other">
                         <label for="other">Включает вариант ответа "другой"</label>
                         <input type="button" value="Добавить вариант ответа">
-                        <input>Добавить вариант ответа</button>
+                        <button>Добавить вариант ответа</button>
                     </div>
                 </div>
 
