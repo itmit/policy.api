@@ -74,7 +74,7 @@
 
     <script>
     $(document).ready(function() {
-        $(document).on('change', $('input:radio[name=time]');, function() {
+        $(document).on('change', $('input:radio[name=time]'), function() {
             console.log('a');
         });
     })
