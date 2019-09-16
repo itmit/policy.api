@@ -18,6 +18,7 @@ class CreatePollQuestionsTable extends Migration
             $table->uuid('uuid');
             $table->bigInteger('poll_id')->unsigned();
             $table->text('question');
+            $table->boolean('multiple');
             $table->timestamps();
 
             $table->foreign('poll_id')->references('id')->on('polls');
