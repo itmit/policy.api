@@ -3,18 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Poll;
 use App\Http\Controllers\Controller;
 
-class PollApiController extends Controller
+class PollApiController extends ApiBaseController
 {
     /**
-     * Display a listing of the resource.
+     * Выводит список опросов
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getPollList()
     {
-        //
+        $polls = Poll::all()->toArray();
+        return $this->sendResponse($polls, 'Список опросов');
     }
 
     /**
