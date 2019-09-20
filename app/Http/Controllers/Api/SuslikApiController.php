@@ -173,6 +173,6 @@ class SuslikApiController extends ApiBaseController
             'suslik_id' => $suslik_id->id,
         ]);
 
-        return $this->sendResponse($favorite, 'Добавлено в избранное');
+        return $this->sendResponse([$favorite], 'Добавлено в избранное');
     }
 }
