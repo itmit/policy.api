@@ -169,8 +169,8 @@ class SuslikApiController extends ApiBaseController
         }
 
         $favorite = Favorite::create([
-            'user_id' => $suslik_id->id,
-            'suslik_id' => $user_id->id,
+            'user_id' => $user_id->id,
+            'suslik_id' => $suslik_id->id,
         ]);
 
         return $this->sendResponse($favorite, 'Добавлено в избранное');
