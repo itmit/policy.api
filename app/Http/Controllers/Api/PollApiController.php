@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Poll;
+use App\PollQuestions;
 use App\Http\Controllers\Controller;
 
 class PollApiController extends ApiBaseController
@@ -20,13 +21,23 @@ class PollApiController extends ApiBaseController
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Выводит список вопросов данного опроса
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getPollQuestionList()
     {
-        //
+        $validator = Validator::make($request->all(), [ 
+            'poll_uuid' => 'required|uuid',
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+
+        $poll = Poll::where('uuid', '=', $request->poll_uuid);
+
+        $questions = PollQuestions::where('');
     }
 
     /**

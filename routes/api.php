@@ -35,6 +35,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 });
 
 Route::post('poll/getPollList', 'Api\PollApiController@getPollList');
+Route::post('poll/getPollQuestionList', 'Api\PollApiController@getPollQuestionList');
 
 Route::post('user/resetPassword', 'Api\ResetPasswords@ResetPasswordAPI')->name('user/reset');
 
