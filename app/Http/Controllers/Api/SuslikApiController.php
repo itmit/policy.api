@@ -8,6 +8,7 @@ use App\SusliksCategory;
 use App\Suslik;
 use App\SuslikRatingHistory;
 use App\User;
+use App\Favorite;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
@@ -121,5 +122,47 @@ class SuslikApiController extends ApiBaseController
         $suslikRatingHistory = SuslikRatingHistory::where('whom_suslik', '=', $suslik_id->id)->get()->toArray();
 
         return $this->sendResponse($suslikRatingHistory, 'Суслик');
+    }
+
+    public function getFavsList(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'user_uuid' => 'required|uuid',
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+
+        $user = User::where('uid', '=', $request->user_uuid)->first('id');
+        if($user == null)
+        {
+            return $this->sendError(0, 'Ошибка');
+        }
+
+        $favsList = Favorite::where('user_id', '=', $user->id)->get()->toArray();
+
+        return $this->sendResponse($favsList, 'Список избранных');
+    }
+
+    public function addToFav(Request $request)
+    {
+        // $validator = Validator::make($request->all(), [ 
+        //     'suslik_uuid' => 'required|uuid',
+        // ]);
+
+        // if ($validator->fails()) { 
+        //     return response()->json(['error'=>$validator->errors()], 401);            
+        // }
+
+        // $suslik_id = Suslik::where('uuid', '=', $request->suslik_uuid)->first('id');
+        // if($suslik_id == null)
+        // {
+        //     return $this->sendError(0, 'Ошибка');
+        // }
+
+        // $suslikRatingHistory = SuslikRatingHistory::where('whom_suslik', '=', $suslik_id->id)->get()->toArray();
+
+        // return $this->sendResponse($suslikRatingHistory, 'Суслик');
     }
 }

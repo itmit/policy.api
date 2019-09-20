@@ -30,12 +30,14 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('suslik/getSuslikByID', 'Api\SuslikApiController@getSuslikByID');
     Route::post('suslik/rateSuslik', 'Api\SuslikApiController@rateSuslik');
     Route::post('suslik/getSuslikRatingHistory', 'Api\SuslikApiController@getSuslikRatingHistory');
-
     
 });
 
 Route::post('poll/getPollList', 'Api\PollApiController@getPollList');
 Route::post('poll/getPollQuestionList', 'Api\PollApiController@getPollQuestionList');
+
+Route::post('suslik/getFavsList', 'Api\SuslikApiController@getFavsList');
+Route::post('suslik/addToFav', 'Api\SuslikApiController@addToFav');
 
 Route::post('user/resetPassword', 'Api\ResetPasswords@ResetPasswordAPI')->name('user/reset');
 
