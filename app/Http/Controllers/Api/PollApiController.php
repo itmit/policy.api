@@ -7,6 +7,8 @@ use App\Poll;
 use App\PollQuestions;
 use App\PollQuestionAnswers;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class PollApiController extends ApiBaseController
 {
