@@ -38,14 +38,14 @@ class PollApiController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        $poll = Poll::where('uuid', '=', $request->poll_uuid)->get();
+        $poll = Poll::where('uuid', '=', $request->poll_uuid)->first();
 
         if($poll == null)
         {
             return $this->sendError(0, 'Такого опроса не существует');
         }
 
-        return $poll;
+        return $poll->id;
 
         $questions = PollQuestions::where('poll_id', '=', $poll->id)->get();
 
