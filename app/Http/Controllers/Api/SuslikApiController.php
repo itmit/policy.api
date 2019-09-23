@@ -51,7 +51,7 @@ class SuslikApiController extends ApiBaseController
         $suslik = Suslik::where('uuid', '=' , $request->suslik_uuid)->first(['uuid', 'name', 'place_of_work', 'position', 'likes', 
         'dislikes', 'neutrals', 'photo', 'category'])->toArray();
 
-        $suslik_cat = SusliksCategory::where('id', '=', $suslik['category'])->first(['name']);
+        $suslik_cat = SusliksCategory::where('id', '=', $suslik['category'])->first(['name', 'uuid'])->toArray();
 
         $suslik['category'] = $suslik_cat->name;
 
