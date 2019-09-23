@@ -142,7 +142,20 @@ class SuslikApiController extends ApiBaseController
 
         $favsList = Favorite::where('user_id', '=', $user->id)->get()->toArray();
 
-        return $this->sendResponse($favsList, 'Список избранных');
+        $result = [];
+
+        foreach($favsList as $favList)
+        {
+            // $user = User::where('id', '=', $favsList->user_uuid)->first(['uid', 'name']);
+            $suslik = Suslik::where('id', '=', $favsList->suslik_id)->first(['uuid', 'name']);
+            $response[] = 
+            [
+                'suslik_uuid' => $suslik->uuid,
+                'suslik_name' => $suslik->name
+            ];
+        }
+
+        return $this->sendResponse($response, 'Список избранных');
     }
 
     public function addToFav(Request $request)
