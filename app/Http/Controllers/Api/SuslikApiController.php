@@ -53,7 +53,7 @@ class SuslikApiController extends ApiBaseController
 
         $suslik_cat = SusliksCategory::where('id', '=', $suslik['category'])->first(['name']);
 
-        $suslik['$suslik'] = $suslik_cat->name;
+        $suslik['category'] = $suslik_cat->name;
 
         if($suslik == null)
         {
