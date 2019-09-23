@@ -38,6 +38,7 @@ Route::post('poll/getPollQuestionList', 'Api\PollApiController@getPollQuestionLi
 
 Route::post('suslik/getFavsList', 'Api\SuslikApiController@getFavsList');
 Route::post('suslik/addToFav', 'Api\SuslikApiController@addToFav');
+Route::post('suslik/removeFromFav', 'Api\SuslikApiController@removeFromFav');
 
 Route::post('user/resetPassword', 'Api\ResetPasswords@ResetPasswordAPI')->name('user/reset');
 

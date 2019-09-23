@@ -181,6 +181,46 @@ class SuslikApiController extends ApiBaseController
             return $this->sendError(0, 'Ошибка');
         }
 
+        $already_in_fav = Favorite::where('user_id', '=', $user_id->id)->where('suslik_id', '=', $suslik_id->id)->first();
+
+        if($already_in_fav != null)
+        {
+            return $this->sendError(0, 'Пользователь уже в избранном');
+        }
+
+        $favorite = Favorite::create([
+            'user_id' => $user_id->id,
+            'suslik_id' => $suslik_id->id,
+        ]);
+
+        return $this->sendResponse([$favorite], 'Добавлено в избранное');
+    }
+
+    public function removeFromFav(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'suslik_uuid' => 'required|uuid',
+            'user_uuid' => 'required|uuid',
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+
+        $suslik_id = Suslik::where('uuid', '=', $request->suslik_uuid)->first('id');
+        if($suslik_id == null)
+        {
+            return $this->sendError(0, 'Ошибка');
+        }
+
+        $user_id = User::where('uid', '=', $request->user_uuid)->first('id');
+        if($user_id == null)
+        {
+            return $this->sendError(0, 'Ошибка');
+        }
+
+
+
         $favorite = Favorite::create([
             'user_id' => $user_id->id,
             'suslik_id' => $suslik_id->id,
