@@ -28,7 +28,7 @@ class PollApiController extends ApiBaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function getPollQuestionList()
+    public function getPollQuestionList(Request $request)
     {
         $validator = Validator::make($request->all(), [ 
             'poll_uuid' => 'required|uuid',
