@@ -45,8 +45,6 @@ class PollApiController extends ApiBaseController
             return $this->sendError(0, 'Такого опроса не существует');
         }
 
-        return $poll->id;
-
         $questions = PollQuestions::where('poll_id', '=', $poll->id)->get();
 
         return $this->sendResponse([$questions], 'Список вопросов');
