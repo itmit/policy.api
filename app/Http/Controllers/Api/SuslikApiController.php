@@ -147,7 +147,7 @@ class SuslikApiController extends ApiBaseController
         foreach($favsList as $favList)
         {
             // $user = User::where('id', '=', $favsList->user_uuid)->first(['uid', 'name']);
-            $suslik = Suslik::where('id', '=', $favList->suslik_id)->first(['uuid', 'name']);
+            $suslik = Suslik::where('id', '=', $favList['suslik_id'])->first(['uuid', 'name']);
             $response[] = 
             [
                 'suslik_uuid' => $suslik->uuid,
