@@ -38,7 +38,7 @@ class PollApiController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        $poll = Poll::where('uuid', '=', $request->poll_uuid);
+        $poll = Poll::where('uuid', '=', $request->poll_uuid)->get();
 
         if($poll == null)
         {
