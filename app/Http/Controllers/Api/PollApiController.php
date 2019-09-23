@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Poll;
 use App\PollQuestions;
+use App\PollQuestionAnswers;
 use App\Http\Controllers\Controller;
 
 class PollApiController extends ApiBaseController
@@ -37,7 +38,14 @@ class PollApiController extends ApiBaseController
 
         $poll = Poll::where('uuid', '=', $request->poll_uuid);
 
-        $questions = PollQuestions::where('');
+        if($poll == null)
+        {
+            return $this->sendError(0, 'Такого опроса не существует');
+        }
+
+        $questions = PollQuestions::where('poll_id', '=', $poll->id)->get();
+
+        return $this->sendResponse([$questions], 'Список вопросов');
     }
 
     /**
