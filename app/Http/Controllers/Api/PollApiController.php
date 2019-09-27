@@ -63,6 +63,7 @@ class PollApiController extends ApiBaseController
             $response[] = [
                 'question_uuid' => $question->uuid,
                 'question' => $question->question,
+                'multiple' => $question->multiple,
                 'answers' => $response_answers
             ];
             // $response[] = [
