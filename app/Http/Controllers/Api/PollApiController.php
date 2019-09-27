@@ -51,10 +51,6 @@ class PollApiController extends ApiBaseController
 
         foreach($questions as $question)
         {
-            $response[] = [
-                'question_uuid' => $question->uuid,
-                'question' => $question->question,
-            ];
             $response_answers = [];
             $question_answers = PollQuestionAnswers::where('question_id', '=', $question->id)->get();
             foreach($question_answers as $question_answer)
@@ -63,11 +59,15 @@ class PollApiController extends ApiBaseController
                     'answer_uuid' => $question_answer->uuid,
                     'answers' => $question_answer->answer
                 ];
-                $response[] = [
-                    'answer' => $response_answers
-                ];
             }
-            
+            $response[] = [
+                'question_uuid' => $question->uuid,
+                'question' => $question->question,
+                'answer' => $response_answers
+            ];
+            // $response[] = [
+                
+            // ];
             
         }
 
