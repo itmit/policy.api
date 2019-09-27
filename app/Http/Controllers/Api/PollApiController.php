@@ -64,7 +64,7 @@ class PollApiController extends ApiBaseController
                     'answers' => $question_answer->answer
                 ];
             }
-            $response['answer'] = [
+            $response[] = [
                 'answer' => $response_answers
             ];
             
