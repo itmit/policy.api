@@ -59,18 +59,18 @@ class PollApiController extends ApiBaseController
             $question_answers = PollQuestionAnswers::where('question_id', '=', $question->id)->get();
             foreach($question_answers as $question_answer)
             {
-                $response_answers [] = [
+                $response_answers ['answer'] = [
                     'answer_uuid' => $question_answer->uuid,
                     'answers' => $question_answer->answer
                 ];
             }
-            $response[] = [
-                'answer' => $response_answers
-            ];
+            // $response[] = [
+            //     'answer' => $response_answers
+            // ];
             
         }
 
-        return $this->sendResponse([$response], 'Список вопросов');
+        return $this->sendResponse($response, 'Список вопросов');
     }
 
     /**
