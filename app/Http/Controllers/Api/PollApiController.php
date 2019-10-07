@@ -100,7 +100,7 @@ class PollApiController extends ApiBaseController
             // print_r($answer_uuids);
 
             foreach ($answer_uuids as $answer_uuid => $value) {
-                echo ' question: ' . $question_uuid . ' answer: ' . $key . ' text: ' . $value;
+                echo ' question: ' . $question_uuid . ' answer: ' . $answer_uuid . ' text: ' . $value;
                 
                 $answer_id = PollQuestionAnswers::where('uuid', '=', $answer_uuid)->first(['id', 'type']);
                 if($answer_id->type == 0) // обычный ответ, не другой
