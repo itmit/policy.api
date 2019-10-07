@@ -103,10 +103,11 @@ class PollApiController extends ApiBaseController
                 echo ' question: ' . $question_uuid . ' answer: ' . $answer_uuid . ' text: ' . $value;
                 
                 $answer_id = PollQuestionAnswers::where('uuid', '=', $answer_uuid)->first(['id', 'type']);
+                $uuid = Str::uuid();
                 if($answer_id->type == 0) // обычный ответ, не другой
                 {
                     PollQuestionAnswerUsers::create([
-                        'uuid' => (string) Str::uuid(),
+                        'uuid' => $uuid,
                         'answer_id' => $answer_id->id,
                         'user ' => auth('api')->user()->id,
                     ]);
@@ -114,7 +115,7 @@ class PollApiController extends ApiBaseController
                 else
                 {
                     PollQuestionAnswerUsers::create([
-                        'uuid' => (string) Str::uuid(),
+                        'uuid' => $uuid,
                         'answer_id' => $answer_id->id,
                         'user ' => auth('api')->user()->id,
                         'other ' => $value,
