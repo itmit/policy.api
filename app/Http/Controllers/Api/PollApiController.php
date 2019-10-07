@@ -109,7 +109,7 @@ class PollApiController extends ApiBaseController
                     PollQuestionAnswerUsers::create([
                         'uuid' => $uuid,
                         'answer_id' => $answer_id->id,
-                        'user ' => auth('api')->user()->id,
+                        'user_id ' => auth('api')->user()->id,
                     ]);
                 }
                 else
@@ -117,8 +117,8 @@ class PollApiController extends ApiBaseController
                     PollQuestionAnswerUsers::create([
                         'uuid' => $uuid,
                         'answer_id' => $answer_id->id,
-                        'user ' => auth('api')->user()->id,
-                        'other ' => $value,
+                        'user_id' => auth('api')->user()->id,
+                        'other' => $value,
                     ]);
                 }
             }
