@@ -97,7 +97,7 @@ class PollApiController extends ApiBaseController
 
         foreach ($request->user_answer as $question_uuids => $answer_uuids) {
 
-            print_r($question_uuids);
+            print_r($answer_uuids);
 
             // foreach ($question_uuids as $key => $value) {
 
