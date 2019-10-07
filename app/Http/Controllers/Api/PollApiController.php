@@ -95,8 +95,8 @@ class PollApiController extends ApiBaseController
 
         print_r($request->user_answer);
 
-        foreach ($request->user_answer as $question_uuid => $answer_uuids) {
-            foreach ($answer_uuids as $answer_uuid => $text) {
+        foreach ($request->user_answer as $question_uuids => $answer_uuids) {
+            foreach ($question_uuids as $answer_uuid => $text) {
                 $answer_id = PollQuestionAnswers::where('uuid', '=', $answer_uuid)->first(['id', 'type']);
                 if($answer_id->type == 0) // обычный ответ, не другой
                 {
@@ -119,7 +119,7 @@ class PollApiController extends ApiBaseController
         }
 
         $response = PollQuestionAnswerUsers::all();
-        dd($response);
+        print_r($response);
     }
 
     // PollQuestionAnswerUsers::create([
