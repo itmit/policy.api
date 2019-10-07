@@ -99,8 +99,8 @@ class PollApiController extends ApiBaseController
 
             print_r($answer_uuids);
 
-            foreach ($answer_uuids as $key => $valueы) {
-                foreach ($value as $key => $value) {
+            foreach ($answer_uuids as $key => $values) {
+                foreach ($values as $key => $value) {
                     echo $key . ' | ' . $value;
                 }
             }
