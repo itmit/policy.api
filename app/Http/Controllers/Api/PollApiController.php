@@ -102,6 +102,7 @@ class PollApiController extends ApiBaseController
                 // echo ' question: ' . $question_uuid . ' answer: ' . $answer_uuid . ' text: ' . $value;
                 
                 $answer_id = PollQuestionAnswers::where('uuid', '=', $answer_uuid)->first(['id', 'type']);
+                echo $answer_id['id'];
                 $uuid = Str::uuid();
                 // echo $answer_id['type'];
                 if($answer_id['type'] == 0) // обычный ответ, не другой
