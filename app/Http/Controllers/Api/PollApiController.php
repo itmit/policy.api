@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App\Poll;
 use App\PollQuestions;
 use App\PollQuestionAnswers;
+use App\PollQuestionAnswerUsers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PollApiController extends ApiBaseController
 {
@@ -24,7 +26,7 @@ class PollApiController extends ApiBaseController
     }
 
     /**
-     * Выводит список вопросов данного опроса
+     * Выводит список вопросов и ответов данного опроса
      *
      * @return \Illuminate\Http\Response
      */
@@ -74,6 +76,54 @@ class PollApiController extends ApiBaseController
 
         return $this->sendResponse($response, 'Список вопросов');
     }
+
+    /**
+     * Прохождение опроса пользователем
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function passPoll(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'user_answer' => 'required|array',
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+
+        foreach ($request->user_answer as $question_uuid => $answer_uuids) {
+            foreach ($answer_uuids as $answer_uuid => $text) {
+                $answer_id = PollQuestionAnswers::where('uuid', '=', $answer_uuid)->first(['id', 'type']);
+                if($answer_id->type == 0) // обычный ответ, не другой
+                {
+                    PollQuestionAnswerUsers::create([
+                        'uuid' => (string) Str::uuid(),
+                        'answer_id' => $answer_id->id,
+                        'user ' => auth('api')->user()->id,
+                    ]);
+                }
+                else
+                {
+                    PollQuestionAnswerUsers::create([
+                        'uuid' => (string) Str::uuid(),
+                        'answer_id' => $answer_id->id,
+                        'user ' => auth('api')->user()->id,
+                        'other ' => $text,
+                    ]);
+                }
+            }
+        }
+
+        $response = PollQuestionAnswerUsers::all();
+        dd($response);
+    }
+
+    // PollQuestionAnswerUsers::create([
+    //     'uuid' => (string) Str::uuid(),
+    //     'answer_id' => ,
+    //     'user ' => ,
+    // ]);
 
     /**
      * Store a newly created resource in storage.
