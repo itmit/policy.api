@@ -97,9 +97,6 @@ class PollApiController extends ApiBaseController
 
         foreach ($request->user_answer as $question_uuid => $answer_uuids)
         {
-
-            // print_r($answer_uuids);
-
             foreach ($answer_uuids as $answer_uuid => $value)
             {
                 // echo ' question: ' . $question_uuid . ' answer: ' . $answer_uuid . ' text: ' . $value;
@@ -123,8 +120,8 @@ class PollApiController extends ApiBaseController
                         'user ' => auth('api')->user()->id,
                         'other ' => $value,
                     ]);
+                }
             }
-
         }
 
         // $response = PollQuestionAnswerUsers::all();
