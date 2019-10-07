@@ -93,11 +93,15 @@ class PollApiController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        print_r($request->user_answer);
+        // print_r($request->user_answer);
 
         foreach ($request->user_answer as $question_uuids => $answer_uuids) {
 
-            echo $question_uuids . '</br>';
+            print_r($question_uuids);
+
+            foreach ($question_uuids as $key => $value) {
+
+            }
 
             // foreach ($question_uuids as $answer_uuid => $text) {
             //     $answer_id = PollQuestionAnswers::where('uuid', '=', $answer_uuid)->first(['id', 'type']);
