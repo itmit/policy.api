@@ -93,7 +93,7 @@ class PollApiController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        dd($request->user_answer);
+        print_r($request->user_answer);
 
         foreach ($request->user_answer as $question_uuid => $answer_uuids) {
             foreach ($answer_uuids as $answer_uuid => $text) {
