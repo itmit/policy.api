@@ -95,11 +95,13 @@ class PollApiController extends ApiBaseController
 
         // print_r($request->user_answer);
 
-        foreach ($request->user_answer as $question_uuid => $answer_uuids) {
+        foreach ($request->user_answer as $question_uuid => $answer_uuids)
+        {
 
             // print_r($answer_uuids);
 
-            foreach ($answer_uuids as $answer_uuid => $value) {
+            foreach ($answer_uuids as $answer_uuid => $value)
+            {
                 // echo ' question: ' . $question_uuid . ' answer: ' . $answer_uuid . ' text: ' . $value;
                 
                 $answer_id = PollQuestionAnswers::where('uuid', '=', $answer_uuid)->first(['id', 'type']);
@@ -121,32 +123,7 @@ class PollApiController extends ApiBaseController
                 //         'user ' => auth('api')->user()->id,
                 //         'other ' => $value,
                 //     ]);
-                }
-
             }
-
-            
-
-            // foreach ($question_uuids as $answer_uuid => $text) {
-            //     $answer_id = PollQuestionAnswers::where('uuid', '=', $answer_uuid)->first(['id', 'type']);
-            //     if($answer_id->type == 0) // обычный ответ, не другой
-            //     {
-            //         PollQuestionAnswerUsers::create([
-            //             'uuid' => (string) Str::uuid(),
-            //             'answer_id' => $answer_id->id,
-            //             'user ' => auth('api')->user()->id,
-            //         ]);
-            //     }
-            //     else
-            //     {
-            //         PollQuestionAnswerUsers::create([
-            //             'uuid' => (string) Str::uuid(),
-            //             'answer_id' => $answer_id->id,
-            //             'user ' => auth('api')->user()->id,
-            //             'other ' => $text,
-            //         ]);
-            //     }
-            // }
 
         }
 
