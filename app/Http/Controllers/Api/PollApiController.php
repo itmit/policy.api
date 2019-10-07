@@ -105,22 +105,22 @@ class PollApiController extends ApiBaseController
                 $answer_id = PollQuestionAnswers::where('uuid', '=', $answer_uuid)->first(['id', 'type']);
                 $uuid = Str::uuid();
                 echo $answer_id->type;
-                if($answer_id->type == 0) // обычный ответ, не другой
-                {
-                    PollQuestionAnswerUsers::create([
-                        'uuid' => $uuid,
-                        'answer_id' => $answer_id->id,
-                        'user ' => auth('api')->user()->id,
-                    ]);
-                }
-                else
-                {
-                    PollQuestionAnswerUsers::create([
-                        'uuid' => $uuid,
-                        'answer_id' => $answer_id->id,
-                        'user ' => auth('api')->user()->id,
-                        'other ' => $value,
-                    ]);
+                // if($answer_id->type == 0) // обычный ответ, не другой
+                // {
+                //     PollQuestionAnswerUsers::create([
+                //         'uuid' => $uuid,
+                //         'answer_id' => $answer_id->id,
+                //         'user ' => auth('api')->user()->id,
+                //     ]);
+                // }
+                // else
+                // {
+                //     PollQuestionAnswerUsers::create([
+                //         'uuid' => $uuid,
+                //         'answer_id' => $answer_id->id,
+                //         'user ' => auth('api')->user()->id,
+                //         'other ' => $value,
+                //     ]);
                 }
 
             }
