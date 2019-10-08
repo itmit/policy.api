@@ -86,7 +86,7 @@ class SuslikApiController extends ApiBaseController
 
         $canRate = SuslikRatingHistory::where('from_suslik', '=', auth('api')->user()->id)
                             ->where('whom_suslik', '=', $is_whom->id)
-                            ->latest()->first('created_at');
+                            ->first('created_at');
 
         $date = date_create();
         $current_date_unix = strtotime(date_format($date, 'Y-m-d H:i:s'));
