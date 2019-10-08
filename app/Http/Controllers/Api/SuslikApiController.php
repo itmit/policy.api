@@ -110,7 +110,7 @@ class SuslikApiController extends ApiBaseController
                 DB::commit();
             } catch (\Exception $e) {
                 DB::rollback();
-                return $this->sendError(0, 'Ошибка');
+                return $this->sendError(0, 'Transaction error');
             }
             $newRating = Suslik::where('uuid', '=' , $request->suslik_uuid)->first($request->type)->toArray();
 
