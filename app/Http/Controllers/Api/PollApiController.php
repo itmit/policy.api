@@ -121,7 +121,7 @@ class PollApiController extends ApiBaseController
                         'uuid' => $uuid,
                         'answer_id' => $answer_id['id'],
                         'user_id' => auth('api')->user()->id,
-                        'other' => $value['text'],
+                        'other' => $value,
                     ]);
                 }
             }
