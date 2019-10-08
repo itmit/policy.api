@@ -94,6 +94,8 @@ class SuslikApiController extends ApiBaseController
         $lastRateDate = $canRate['created_at'];
         $lastRateDate = strtotime($lastRateDate);
 
+        return 'cur: ' . $current_date_unix . ' last rate: ' . $lastRateDate;
+
         if($current_date_unix > $lastRateDate)
         {
             DB::beginTransaction();
