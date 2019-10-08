@@ -101,29 +101,29 @@ class PollApiController extends ApiBaseController
             {
                 // print_r($value);
 
-                echo ' question: ' . $question_uuid . ' answer: ' . $answer_uuid . ' text: ' . $value['text'];
+                // echo ' question: ' . $question_uuid . ' answer: ' . $answer_uuid . ' text: ' . $value['text'];
                 
-                // $answer_id = PollQuestionAnswers::where('uuid', '=', $answer_uuid)->first(['id', 'type']);
-                // echo $answer_id['id'];
-                // $uuid = Str::uuid();
-                // // echo $answer_id['type'];
-                // if($answer_id['type'] == 0) // обычный ответ, не другой
-                // {
-                //     PollQuestionAnswerUsers::create([
-                //         'uuid' => $uuid,
-                //         'answer_id' => $answer_id['id'],
-                //         'user_id' => auth('api')->user()->id,
-                //     ]);
-                // }
-                // else
-                // {
-                //     PollQuestionAnswerUsers::create([
-                //         'uuid' => $uuid,
-                //         'answer_id' => $answer_id['id'],
-                //         'user_id' => auth('api')->user()->id,
-                //         'other' => $value,
-                //     ]);
-                // }
+                $answer_id = PollQuestionAnswers::where('uuid', '=', $answer_uuid)->first(['id', 'type']);
+                echo $answer_id['id'];
+                $uuid = Str::uuid();
+                // echo $answer_id['type'];
+                if($answer_id['type'] == 0) // обычный ответ, не другой
+                {
+                    PollQuestionAnswerUsers::create([
+                        'uuid' => $uuid,
+                        'answer_id' => $answer_id['id'],
+                        'user_id' => auth('api')->user()->id,
+                    ]);
+                }
+                else
+                {
+                    PollQuestionAnswerUsers::create([
+                        'uuid' => $uuid,
+                        'answer_id' => $answer_id['id'],
+                        'user_id' => auth('api')->user()->id,
+                        'other' => $value['text'],
+                    ]);
+                }
             }
         }
 
