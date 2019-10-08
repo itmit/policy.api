@@ -89,10 +89,10 @@ class SuslikApiController extends ApiBaseController
                             ->first('created_at');
 
         $date = date_create();
-        $current_date_unix = strtotime(date_format($date, 'Y-m-d H:i:s'));
+        $current_date_unix = date_format($date, 'Y-m-d H:i:s');
 
         $lastRateDate = $canRate['created_at'];
-        $lastRateDate = strtotime($lastRateDate);
+        // $lastRateDate = strtotime($lastRateDate);
 
         return 'cur: ' . $current_date_unix . ' last rate: ' . $lastRateDate;
 
