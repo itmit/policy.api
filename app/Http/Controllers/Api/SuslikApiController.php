@@ -120,9 +120,9 @@ class SuslikApiController extends ApiBaseController
         }
         else
         {
-            return 'no';
+            return $this->sendError(0, 'Нельзя голосовать чаще одного раза в сутки');
         }
-        return 'error';
+        return $this->sendError(0, 'Неизвестная ошибка');
 
         
     }
