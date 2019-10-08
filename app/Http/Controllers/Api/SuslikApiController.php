@@ -96,15 +96,7 @@ class SuslikApiController extends ApiBaseController
 
         if($current_date_unix > $lastRateDate)
         {
-            return 'yes';
-        }
-        else
-        {
-            return 'no';
-        }
-        return 'error';
-
-        DB::beginTransaction();
+            DB::beginTransaction();
             try {
                 $record = new SuslikRatingHistory;
                 $record->from_suslik = auth('api')->user()->id; // от кого
@@ -120,9 +112,17 @@ class SuslikApiController extends ApiBaseController
                 DB::rollback();
                 return $this->sendError(0, 'Ошибка');
             }
-        $newRating = Suslik::where('uuid', '=' , $request->suslik_uuid)->first($request->type)->toArray();
+            $newRating = Suslik::where('uuid', '=' , $request->suslik_uuid)->first($request->type)->toArray();
 
-        return $this->sendResponse($newRating, 'Суслик');
+            return $this->sendResponse($newRating, 'Суслик');
+        }
+        else
+        {
+            return 'no';
+        }
+        return 'error';
+
+        
     }
 
     public function getSuslikRatingHistory(Request $request)
