@@ -40,6 +40,8 @@ Route::post('poll/getPollList', 'Api\PollApiController@getPollList');
 Route::post('poll/getPollQuestionList', 'Api\PollApiController@getPollQuestionList');
 Route::post('poll/passPoll', 'Api\PollApiController@passPoll');
 
+Route::post('suslik/search', 'Api\SuslikApiController@search');
+
 Route::post('user/resetPassword', 'Api\ResetPasswords@ResetPasswordAPI')->name('user/reset');
 
 Route::get('user/changePhoto/form', function () {

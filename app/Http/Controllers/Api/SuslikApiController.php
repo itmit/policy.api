@@ -84,6 +84,26 @@ class SuslikApiController extends ApiBaseController
             return $this->sendError(0, 'Ошибка');
         }
 
+        $canRate = SuslikRatingHistory::where('from_suslik', '=', auth('api')->user()->id)
+                            ->where('whom_suslik', '=', $is_whom->id)
+                            ->latest()->first('created_at');
+
+        $date = date_create();
+        $current_date_unix = strtotime(date_format($date, 'Y-m-d H:i:s'));
+
+        $lastRateDate = $canRate['created_at'];
+        $lastRateDate = strtotime($lastRateDate);
+
+        if($current_date_unix > $lastRateDate)
+        {
+            return 'yes';
+        }
+        else
+        {
+            return 'no';
+        }
+        return 'error';
+
         DB::beginTransaction();
             try {
                 $record = new SuslikRatingHistory;
@@ -231,5 +251,18 @@ class SuslikApiController extends ApiBaseController
         $favorite = Favorite::where('user_id', '=', $user_id->id)->where('suslik_id', '=', $suslik_id->id)->delete();
 
         return $this->sendResponse([$favorite], 'Добавлено в избранное');
+    }
+
+    public function search(Request $request)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'ratingOrderBy' => 'required',
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+
+        
     }
 }
