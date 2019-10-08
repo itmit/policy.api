@@ -101,7 +101,7 @@ class PollApiController extends ApiBaseController
             {
                 // print_r($value);
 
-                echo ' question: ' . $question_uuid . ' answer: ' . $answer_uuid . ' text: ' . $value[1];
+                echo ' question: ' . $question_uuid . ' answer: ' . $answer_uuid . ' text: ' . $value['text'];
                 
                 // $answer_id = PollQuestionAnswers::where('uuid', '=', $answer_uuid)->first(['id', 'type']);
                 // echo $answer_id['id'];
