@@ -273,9 +273,11 @@ class SuslikApiController extends ApiBaseController
             {
                 $susliks = self::searchBySuslikCategory($request->category, $request->name);
                 $searchResponse[] = $susliks;
+                return 'only cat';
             }
             else
             {
+                return 'cat + name';
                 $susliks = self::searchBySuslikCategory($request->category);
                 $searchResponse[] = $susliks;
             }
