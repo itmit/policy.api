@@ -265,6 +265,50 @@ class SuslikApiController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        
+        $searchResponse = [];
+
+        if($request->category != NULL)
+        {
+            self::searchBySuslikCategory($request->category);
+            $searchResponse[] = $susliks;
+        }
+
+        return $searchResponse;
+
+        if($request->name != NULL)
+        {
+            self::searchBySuslikName($request->category);
+            $searchResponse[] = $susliks;
+        }
+
+        self::suslikRatingOrderBy($request->category);
+        $searchResponse[] = $susliks;
+    }
+
+    public function searchBySuslikCategory(string $category)
+    {
+        $validator = Validator::make($request->all(), [ 
+            'category' => 'required|uuid',
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+
+        $cat = SusliksCategory::where('uuid', '=', $request->category)->first('id');
+
+        $susliks = Suslik::where('category', '=' , $cat->id)->get(['uuid', 'name', 'place_of_work', 'position', 'photo'])->toArray();
+
+        return $susliks;
+    }
+
+    public function searchBySuslikName(string $name)
+    {
+
+    }
+
+    public function suslikRatingOrderBy($ratingOrderBy)
+    {
+
     }
 }
