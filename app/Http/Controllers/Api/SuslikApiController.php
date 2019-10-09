@@ -271,15 +271,16 @@ class SuslikApiController extends ApiBaseController
         {
             if($request->name != NULL)
             {
-                $susliks = self::searchBySuslikCategory($request->category, $request->name);
-                $searchResponse[] = $susliks;
-                return 'only cat';
-            }
-            else
-            {
                 return 'cat + name';
                 $susliks = self::searchBySuslikCategory($request->category);
                 $searchResponse[] = $susliks;
+            }
+            else
+            {   
+                return 'cat + name';
+                $susliks = self::searchBySuslikCategory($request->category);
+                $searchResponse[] = $susliks;
+                
             }
         }
 
