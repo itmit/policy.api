@@ -276,7 +276,6 @@ class SuslikApiController extends ApiBaseController
             }
             else
             {   
-
                 $susliks = self::searchBySuslikCategory($request->category);
                 $searchResponse[] = $susliks; 
             }
@@ -294,7 +293,7 @@ class SuslikApiController extends ApiBaseController
         $searchResponse[] = $susliks;
     }
 
-    public function searchBySuslikCategory(string $category, bool $getName = NULL)
+    public function searchBySuslikCategory(string $category, string $getName = NULL)
     {
         $cat = SusliksCategory::where('uuid', '=', $category)->first('id');
         $susliks = Suslik::where('category', '=' , $cat->id)->get(['uuid', 'name', 'place_of_work', 'position', 'photo'])->toArray();
