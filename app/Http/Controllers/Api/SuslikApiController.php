@@ -287,7 +287,7 @@ class SuslikApiController extends ApiBaseController
 
     public function searchBySuslikCategory(string $category)
     {
-        $validator = Validator::make($category->all(), [ 
+        $validator = Validator::make($category, [ 
             'category' => 'required|uuid',
         ]);
 
