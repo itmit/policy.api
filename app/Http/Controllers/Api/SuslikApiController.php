@@ -269,15 +269,23 @@ class SuslikApiController extends ApiBaseController
 
         if($request->category != NULL)
         {
-            $susliks = self::searchBySuslikCategory($request->category);
-            $searchResponse[] = $susliks;
+            if($request->name != NULL)
+            {
+                $susliks = self::searchBySuslikCategory($request->category, $request->name);
+                $searchResponse[] = $susliks;
+            }
+            else
+            {
+                $susliks = self::searchBySuslikCategory($request->category);
+                $searchResponse[] = $susliks;
+            }
         }
 
         return $searchResponse;
 
         if($request->name != NULL)
         {
-            $susliks = self::searchBySuslikName($request->category);
+            $susliks = self::searchBySuslikName($request->name);
             $searchResponse[] = $susliks;
         }
 
@@ -285,16 +293,21 @@ class SuslikApiController extends ApiBaseController
         $searchResponse[] = $susliks;
     }
 
-    public function searchBySuslikCategory(string $category)
+    public function searchBySuslikCategory(string $category, bool $getName = NULL)
     {
         $cat = SusliksCategory::where('uuid', '=', $category)->first('id');
-
         $susliks = Suslik::where('category', '=' , $cat->id)->get(['uuid', 'name', 'place_of_work', 'position', 'photo'])->toArray();
-
+        
+        if($getName != NULL)
+        {
+            $susliks = Suslik::where('category', '=' , $cat->id)
+                ->where('name', 'LIKE', "%$getName%")
+                ->get(['uuid', 'name', 'place_of_work', 'position', 'photo'])->toArray();
+        }
         return $susliks;
     }
 
-    public function searchBySuslikName(string $name)
+    public function searchBySuslikName(string $name, bool $getCategory = NULL)
     {
 
     }
