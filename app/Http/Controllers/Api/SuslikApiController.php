@@ -287,14 +287,6 @@ class SuslikApiController extends ApiBaseController
 
     public function searchBySuslikCategory(string $category)
     {
-        $validator = Validator::make($category, [ 
-            'category' => 'required|uuid',
-        ]);
-
-        if ($validator->fails()) { 
-            return response()->json(['error'=>$validator->errors()], 401);            
-        }
-
         $cat = SusliksCategory::where('uuid', '=', $category)->first('id');
 
         $susliks = Suslik::where('category', '=' , $cat->id)->get(['uuid', 'name', 'place_of_work', 'position', 'photo'])->toArray();
