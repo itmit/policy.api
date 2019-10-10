@@ -277,7 +277,7 @@ class SuslikApiController extends ApiBaseController
                 return $susliks = self::searchBySuslikCategory($request->category, $request->name); // ЕСТЬ КАТЕГОРИЯ И ЕСТЬ ИМЯ
                 $searchResponse = $susliks;
                 $isName = true;
-                // return $this->sendResponse($searchResponse, 'name + cat');
+                return $this->sendResponse($searchResponse, 'name + cat');
             }
             else
             {   
@@ -302,8 +302,6 @@ class SuslikApiController extends ApiBaseController
 
         $searchResponse = self::suslikRatingOrderBy($request->ratingOrderBy, $searchResponse);
 
-        // return $searchResponse;
-
         return $this->sendResponse($searchResponse, 'Список сусликов, удовлетворяющий поисковый запрос');
     }
 
@@ -317,9 +315,9 @@ class SuslikApiController extends ApiBaseController
         }
         if($getName != NULL)
         {
-            return 'name: ' . $getName . ' category id: ' . $cat->id;
+            // return 'name: ' . $getName . ' category id: ' . $cat->id;
             $susliks = Suslik::where('category', '=' , $cat->id)
-                ->where('name', 'LIKE', "%$getName%")
+                // ->where('name', 'LIKE', "%$getName%")
                 ->get(['uuid', 'name', 'place_of_work', 'position', 'photo', 'likes'])->toArray();
         }
         return $susliks;
