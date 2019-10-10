@@ -281,39 +281,48 @@ class SuslikApiController extends ApiBaseController
             }
         }
 
-        return $searchResponse;
-
         if($request->name != NULL)
         {
             $susliks = self::searchBySuslikName($request->name);
             $searchResponse[] = $susliks;
         }
 
-        self::suslikRatingOrderBy($request->category);
+        $susliks = self::suslikRatingOrderBy($request->ratingOrderBy, $searchResponse);
         $searchResponse[] = $susliks;
+
+        return $searchResponse;
     }
 
     public function searchBySuslikCategory(string $category, string $getName = NULL)
     {
         $cat = SusliksCategory::where('uuid', '=', $category)->first('id');
-        $susliks = Suslik::where('category', '=' , $cat->id)->get(['uuid', 'name', 'place_of_work', 'position', 'photo'])->toArray();
+        $susliks = Suslik::where('category', '=' , $cat->id)->get(['uuid', 'name', 'place_of_work', 'position', 'photo', 'likes'])->toArray();
         
         if($getName != NULL)
         {
             $susliks = Suslik::where('category', '=' , $cat->id)
                 ->where('name', 'LIKE', "%$getName%")
-                ->get(['uuid', 'name', 'place_of_work', 'position', 'photo'])->toArray();
+                ->get(['uuid', 'name', 'place_of_work', 'position', 'photo', 'likes'])->toArray();
         }
         return $susliks;
     }
 
-    public function searchBySuslikName(string $name, bool $getCategory = NULL)
+    public function searchBySuslikName(string $name)
     {
-
+        $susliks = Suslik::where('name', 'LIKE', "%$name%")
+            ->get(['uuid', 'name', 'place_of_work', 'position', 'photo', 'likes'])->toArray();
     }
 
-    public function suslikRatingOrderBy($ratingOrderBy)
+    public function suslikRatingOrderBy(string $ratingOrderBy, $susliks)
     {
-
+        if($ratingOrderBy == 'asc')
+        {
+            return $susliks->sortBy('likes');
+        }
+        if($ratingOrderBy == 'desc')
+        {
+            return $susliks->sortByDesc('likes');
+        }
+        return 'error';
     }
 }
