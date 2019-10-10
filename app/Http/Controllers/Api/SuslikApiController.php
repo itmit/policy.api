@@ -88,17 +88,45 @@ class SuslikApiController extends ApiBaseController
                             ->where('whom_suslik', '=', $is_whom->id)
                             ->latest()->first('created_at');
 
-        return $canRate;
-
-        $date = date_create();
-        $current_date_unix = date_format($date, 'Y-m-d');
-
-        $lastRateDate = $canRate['created_at'];
-        $lastRateDate = date_format($lastRateDate, 'Y-m-d');
-
-        // return 'cur: ' . $current_date_unix . ' last rate: ' . $lastRateDate;
-
-        if($current_date_unix > $lastRateDate)
+        if($canRate != NULL)
+        {
+            $date = date_create();
+            $current_date_unix = date_format($date, 'Y-m-d');
+    
+            $lastRateDate = $canRate['created_at'];
+            $lastRateDate = date_format($lastRateDate, 'Y-m-d');
+    
+            // return 'cur: ' . $current_date_unix . ' last rate: ' . $lastRateDate;
+    
+            if($current_date_unix > $lastRateDate)
+            {
+                DB::beginTransaction();
+                try {
+                    $record = new SuslikRatingHistory;
+                    $record->from_suslik = auth('api')->user()->id; // от кого
+                    $record->whom_suslik = $is_whom->id; // кому
+                    $record->type = $request->input('type');
+                    $record->save();
+    
+                    $record = Suslik::where('uuid', '=', $request->suslik_uuid)->lockForUpdate()->first();
+                    $record->increment($request->type);
+                    $record->save();
+                    DB::commit();
+                } catch (\Exception $e) {
+                    DB::rollback();
+                    return $this->sendError(0, 'Transaction error');
+                }
+                $newRating = Suslik::where('uuid', '=' , $request->suslik_uuid)->first($request->type)->toArray();
+    
+                return $this->sendResponse($newRating, 'Суслик');
+            }
+            else
+            {
+                return $this->sendError(0, 'Нельзя голосовать чаще одного раза в сутки');
+            }
+            return $this->sendError(0, 'Неизвестная ошибка');
+        }
+        else
         {
             DB::beginTransaction();
             try {
@@ -120,11 +148,8 @@ class SuslikApiController extends ApiBaseController
 
             return $this->sendResponse($newRating, 'Суслик');
         }
-        else
-        {
-            return $this->sendError(0, 'Нельзя голосовать чаще одного раза в сутки');
-        }
-        return $this->sendError(0, 'Неизвестная ошибка');
+
+        
 
         
     }
