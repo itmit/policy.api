@@ -296,7 +296,8 @@ class SuslikApiController extends ApiBaseController
             $susliks = Suslik::all('uuid', 'name', 'place_of_work', 'position', 'photo', 'likes')->toArray();
         }
 
-        return $all;
+        if($all) return '+'
+        else return '-';
 
         $susliks = self::suslikRatingOrderBy($request->ratingOrderBy, $searchResponse);
         $searchResponse[] = $susliks;
