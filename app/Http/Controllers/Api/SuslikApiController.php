@@ -296,7 +296,7 @@ class SuslikApiController extends ApiBaseController
 
         if($all == true)
         {
-            $susliks = Suslik::all('uuid', 'name', 'place_of_work', 'position', 'photo', 'likes');
+            return $susliks = Suslik::all('uuid', 'name', 'place_of_work', 'position', 'photo', 'likes')->toArray();
             $searchResponse = $susliks;
         }
 
