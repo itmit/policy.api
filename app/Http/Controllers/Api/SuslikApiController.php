@@ -339,7 +339,7 @@ class SuslikApiController extends ApiBaseController
             $susliksSortedBySort = collect($susliks)->sortBy('likes')->toArray(); //
             foreach($susliksSortedBySort as $key => $value)
             {
-                $susliksSorted[$key] = [$value];
+                $susliksSorted[] = [$value];
             }
             return $susliksSorted;
         }
@@ -348,7 +348,7 @@ class SuslikApiController extends ApiBaseController
             $susliksSortedBySort = collect($susliks)->sortBy('likes')->reverse()->toArray(); //
             foreach($susliksSortedBySort as $key => $value)
             {
-                $susliksSorted[$key] = [$value];
+                $susliksSorted[] = [$value];
             }
             return $susliksSorted;
         }
