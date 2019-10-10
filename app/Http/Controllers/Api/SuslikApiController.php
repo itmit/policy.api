@@ -297,8 +297,8 @@ class SuslikApiController extends ApiBaseController
             $searchResponse[] = $susliks;
         }
 
-        $susliks = self::suslikRatingOrderBy($request->ratingOrderBy, $searchResponse);
-        $searchResponse[] = $susliks;
+        $searchResponse = self::suslikRatingOrderBy($request->ratingOrderBy, $searchResponse);
+        // $searchResponse[] = $susliks;
 
         return $searchResponse;
     }
