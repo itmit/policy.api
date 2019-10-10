@@ -286,7 +286,7 @@ class SuslikApiController extends ApiBaseController
 
         if($request->name != NULL)
         {
-            return $susliks = self::searchBySuslikName($request->name);
+            $susliks = self::searchBySuslikName($request->name);
             $searchResponse = $susliks;
             $all = false;
         }
@@ -318,7 +318,6 @@ class SuslikApiController extends ApiBaseController
 
     public function searchBySuslikName(string $name)
     {
-        return $name;
         $susliks = Suslik::where('name', 'LIKE', "%$name%")
             ->get(['uuid', 'name', 'place_of_work', 'position', 'photo', 'likes'])->toArray();
     }
