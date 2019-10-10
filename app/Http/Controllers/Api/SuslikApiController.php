@@ -302,9 +302,9 @@ class SuslikApiController extends ApiBaseController
 
         $searchResponse = self::suslikRatingOrderBy($request->ratingOrderBy, $searchResponse);
 
-        return $searchResponse;
+        // return $searchResponse;
 
-        return $this->sendResponse($searchResponse->toArray(), 'Список сусликов, удовлетворяющий поисковый запрос');
+        return $this->sendResponse($searchResponse, 'Список сусликов, удовлетворяющий поисковый запрос');
     }
 
     public function searchBySuslikCategory(string $category, string $getName = NULL)
@@ -335,12 +335,12 @@ class SuslikApiController extends ApiBaseController
     {
         if($ratingOrderBy == 'asc')
         {
-            $susliksSorted = collect($susliks)->sortBy('likes')->toJson();
+            $susliksSorted = collect($susliks)->sortBy('likes')->toArray();
             return $susliksSorted;
         }
         if($ratingOrderBy == 'desc')
         {
-            $susliksSorted = collect($susliks)->sortBy('likes')->reverse()->toJson();
+            $susliksSorted = collect($susliks)->sortBy('likes')->reverse()->toArray();
             return $susliksSorted;
         }
         return 'error';
