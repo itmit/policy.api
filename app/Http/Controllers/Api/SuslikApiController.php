@@ -277,11 +277,13 @@ class SuslikApiController extends ApiBaseController
                 $susliks = self::searchBySuslikCategory($request->category, $request->name); // ЕСТЬ КАТЕГОРИЯ И ЕСТЬ ИМЯ
                 $searchResponse = $susliks;
                 $isName = true;
+                return 'cat + name';
             }
             else
             {   
                 $susliks = self::searchBySuslikCategory($request->category); // ЕСТЬ КАТЕГОРИЯ НО НЕТ ИМЕНИ
                 $searchResponse = $susliks; 
+                return 'only cat';
             }
             $all = false;
         }
@@ -291,12 +293,14 @@ class SuslikApiController extends ApiBaseController
             $susliks = self::searchBySuslikName($request->name);
             $searchResponse = $susliks;
             $all = false;
+            return 'only name';
         }
 
         if($all == true)
         {
             $susliks = Suslik::all('uuid', 'name', 'place_of_work', 'position', 'photo', 'likes')->toArray();
             $searchResponse = $susliks;
+            return 'nothing';
         }
 
         $searchResponse = self::suslikRatingOrderBy($request->ratingOrderBy, $searchResponse);
