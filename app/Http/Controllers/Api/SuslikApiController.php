@@ -320,7 +320,7 @@ class SuslikApiController extends ApiBaseController
 
     public function searchBySuslikName(string $name)
     {
-        $susliks = Suslik::where('name', 'LIKE', "%$name%")
+        return $susliks = Suslik::where('name', 'LIKE', "%$name%")
             ->get(['uuid', 'name', 'place_of_work', 'position', 'photo', 'likes'])->toArray();
     }
 
