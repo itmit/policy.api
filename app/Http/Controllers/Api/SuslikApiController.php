@@ -296,8 +296,6 @@ class SuslikApiController extends ApiBaseController
             $susliks = Suslik::all('uuid', 'name', 'place_of_work', 'position', 'photo', 'likes')->toArray();
         }
 
-        return $susliks;
-
         $susliks = self::suslikRatingOrderBy($request->ratingOrderBy, $searchResponse);
         $searchResponse[] = $susliks;
 
@@ -328,11 +326,13 @@ class SuslikApiController extends ApiBaseController
     {
         if($ratingOrderBy == 'asc')
         {
+            return 'asc';
             $susliks = collect($susliks)->sortBy('likes')->toArray();
             return $susliks;
         }
         if($ratingOrderBy == 'desc')
         {
+            return 'desc';
             $susliks = collect($susliks)->sortByDesc('likes')->toArray();
             return $susliks;
         }
