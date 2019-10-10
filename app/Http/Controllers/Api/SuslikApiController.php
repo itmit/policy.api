@@ -277,6 +277,7 @@ class SuslikApiController extends ApiBaseController
                 $susliks = self::searchBySuslikCategory($request->category, $request->name); // ЕСТЬ КАТЕГОРИЯ И ЕСТЬ ИМЯ
                 $searchResponse = $susliks;
                 $isName = true;
+                return $this->sendResponse($searchResponse, 'Список сусликов, удовлетворяющий поисковый запрос');
             }
             else
             {   
