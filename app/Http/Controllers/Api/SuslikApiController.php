@@ -289,7 +289,7 @@ class SuslikApiController extends ApiBaseController
 
         if($request->name == NULL && $request->category == NULL)
         {
-            $susliks = Suslik::get(['uuid', 'name', 'place_of_work', 'position', 'photo', 'likes'])->toArray();
+            $susliks = Suslik::select(['uuid', 'name', 'place_of_work', 'position', 'photo', 'likes'])->toArray();
         }
 
         $susliks = self::suslikRatingOrderBy($request->ratingOrderBy, $searchResponse);
