@@ -88,6 +88,8 @@ class SuslikApiController extends ApiBaseController
                             ->where('whom_suslik', '=', $is_whom->id)
                             ->latest()->first('created_at');
 
+        return $canRate;
+
         $date = date_create();
         $current_date_unix = date_format($date, 'Y-m-d');
 
