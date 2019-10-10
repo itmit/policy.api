@@ -302,7 +302,7 @@ class SuslikApiController extends ApiBaseController
 
         $searchResponse = self::suslikRatingOrderBy($request->ratingOrderBy, $searchResponse);
 
-        return $this->sendResponse($searchResponse, 'Список сусликов, удовлетворяющий поисковый запрос');
+        return $this->sendResponse([$searchResponse], 'Список сусликов, удовлетворяющий поисковый запрос');
     }
 
     public function searchBySuslikCategory(string $category, string $getName = NULL)
