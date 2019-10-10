@@ -268,23 +268,25 @@ class SuslikApiController extends ApiBaseController
         $searchResponse;
 
         $all = true;
+        $isName = false;
 
         if($request->category != NULL)
         {
             if($request->name != NULL)
             {
-                $susliks = self::searchBySuslikCategory($request->category, $request->name);
+                $susliks = self::searchBySuslikCategory($request->category, $request->name); // ЕСТЬ КАТЕГОРИЯ И ЕСТЬ ИМЯ
                 $searchResponse = $susliks;
+                $isName = true;
             }
             else
             {   
-                $susliks = self::searchBySuslikCategory($request->category);
+                $susliks = self::searchBySuslikCategory($request->category); // ЕСТЬ КАТЕГОРИЯ НО НЕТ ИМЕНИ
                 $searchResponse = $susliks; 
             }
             $all = false;
         }
 
-        if($request->name != NULL)
+        if($request->name != NULL && $isName == false)
         {
             $susliks = self::searchBySuslikName($request->name);
             $searchResponse = $susliks;
