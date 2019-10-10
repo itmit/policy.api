@@ -334,6 +334,7 @@ class SuslikApiController extends ApiBaseController
     public function suslikRatingOrderBy(string $ratingOrderBy, $susliks)
     {
         $susliksSorted = [];
+        $i = 0;
         if($ratingOrderBy == 'asc')
         {
             $susliksSortedBySort = collect($susliks)->sortBy('likes'); //
