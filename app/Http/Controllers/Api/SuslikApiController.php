@@ -316,8 +316,8 @@ class SuslikApiController extends ApiBaseController
         if($getName != NULL)
         {
             // return 'name: ' . $getName . ' category id: ' . $cat->id;
-            $susliks = Suslik::where('name', 'LIKE', "%$getName%")
-                // ->where('name', 'LIKE', "%$getName%") // 'category', '=' , $cat->id
+            $susliks = Suslik::where('category', '=' , $cat->id)
+                ->where('name', 'LIKE', "%$getName%") // 
                 ->get(['uuid', 'name', 'place_of_work', 'position', 'photo', 'likes'])->toArray();
         }
         return $susliks;
