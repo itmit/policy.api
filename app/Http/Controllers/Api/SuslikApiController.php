@@ -326,12 +326,13 @@ class SuslikApiController extends ApiBaseController
     {
         if($ratingOrderBy == 'asc')
         {
-            
+            return $susliks;
             $susliksSorted = collect($susliks)->sortBy('likes','ASC')->toArray();
             return $susliksSorted;
         }
         if($ratingOrderBy == 'desc')
         {
+            return $susliks;
             $susliksSorted = collect($susliks)->sortBy('likes','DESC')->toArray();
             return $susliksSorted;
         }
