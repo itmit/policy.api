@@ -265,7 +265,7 @@ class SuslikApiController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        $searchResponse = [];
+        $searchResponse;
 
         $all = true;
 
@@ -274,12 +274,12 @@ class SuslikApiController extends ApiBaseController
             if($request->name != NULL)
             {
                 $susliks = self::searchBySuslikCategory($request->category, $request->name);
-                $searchResponse[] = $susliks;
+                $searchResponse = $susliks;
             }
             else
             {   
                 $susliks = self::searchBySuslikCategory($request->category);
-                $searchResponse[] = $susliks; 
+                $searchResponse = $susliks; 
             }
             $all = false;
         }
@@ -287,14 +287,14 @@ class SuslikApiController extends ApiBaseController
         if($request->name != NULL)
         {
             $susliks = self::searchBySuslikName($request->name);
-            $searchResponse[] = $susliks;
+            $searchResponse = $susliks;
             $all = false;
         }
 
         if($all == true)
         {
             $susliks = Suslik::all('uuid', 'name', 'place_of_work', 'position', 'photo', 'likes')->toArray();
-            $searchResponse[] = $susliks;
+            $searchResponse = $susliks;
         }
 
         $searchResponse = self::suslikRatingOrderBy($request->ratingOrderBy, $searchResponse);
