@@ -307,8 +307,11 @@ class SuslikApiController extends ApiBaseController
     public function searchBySuslikCategory(string $category, string $getName = NULL)
     {
         $cat = SusliksCategory::where('uuid', '=', $category)->first('id');
-        $susliks = Suslik::where('category', '=' , $cat->id)->get(['uuid', 'name', 'place_of_work', 'position', 'photo', 'likes'])->toArray();
-        
+
+        if($getName == NULL)
+        {
+            $susliks = Suslik::where('category', '=' , $cat->id)->get(['uuid', 'name', 'place_of_work', 'position', 'photo', 'likes'])->toArray();
+        }
         if($getName != NULL)
         {
             $susliks = Suslik::where('category', '=' , $cat->id)
