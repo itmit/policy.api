@@ -267,6 +267,8 @@ class SuslikApiController extends ApiBaseController
 
         $searchResponse = [];
 
+        $all = true;
+
         if($request->category != NULL)
         {
             if($request->name != NULL)
@@ -279,18 +281,22 @@ class SuslikApiController extends ApiBaseController
                 $susliks = self::searchBySuslikCategory($request->category);
                 $searchResponse[] = $susliks; 
             }
+            $all = false;
         }
 
         if($request->name != NULL)
         {
             $susliks = self::searchBySuslikName($request->name);
             $searchResponse[] = $susliks;
+            $all = false;
         }
 
-        if($request->name == NULL && $request->category == NULL)
+        if($all == true)
         {
             $susliks = Suslik::all('uuid', 'name', 'place_of_work', 'position', 'photo', 'likes')->toArray();
         }
+
+        return $all;
 
         $susliks = self::suslikRatingOrderBy($request->ratingOrderBy, $searchResponse);
         $searchResponse[] = $susliks;
