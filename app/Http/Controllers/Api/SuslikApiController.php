@@ -296,7 +296,7 @@ class SuslikApiController extends ApiBaseController
 
         if($all == true)
         {
-            $susliks = Suslik::all('uuid', 'name', 'place_of_work', 'position', 'photo', 'likes');
+            $susliks = Suslik::all('uuid', 'name', 'place_of_work', 'position', 'photo', 'likes')->toArray();
             $searchResponse = $susliks;
         }
 
@@ -340,9 +340,9 @@ class SuslikApiController extends ApiBaseController
 
             foreach($susliksSortedBySort as $key => $value)
             {
-                $susliksSorted[] = [$value];
+                $susliksSorted[] = $value;
             }
-
+            
             return $susliksSorted;
         }
 
