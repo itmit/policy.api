@@ -30,7 +30,10 @@ class SuslikWebController extends Controller
      */
     public function create()
     {
-        return view('susliks.suslikCreate'); 
+        return view('susliks.suslikCreate', [
+            'categories' => SusliksCategory::select('*')
+            ->orderBy('created_at', 'desc')->get()
+        ]); 
     }
 
     /**
