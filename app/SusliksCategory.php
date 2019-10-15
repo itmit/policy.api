@@ -11,9 +11,7 @@ class SusliksCategory extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name'
-    ];
+    protected $guarded = ['id'];
 
     /**
      * @var string

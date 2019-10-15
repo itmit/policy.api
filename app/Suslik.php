@@ -11,9 +11,7 @@ class Suslik extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'place_of_work', 'position', 'category', 'photo', 'like', 'dislike', 'neutral'
-    ];
+    protected $guarded = ['id'];
 
     /**
      * @var string

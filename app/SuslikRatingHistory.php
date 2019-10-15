@@ -11,9 +11,7 @@ class SuslikRatingHistory extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'from_suslik', 'whom_suslik', 'type'
-    ];
+    protected $guarded = ['id'];
 
     /**
      * @var string
