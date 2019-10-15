@@ -8,6 +8,7 @@ use App\SusliksCategory;
 use App\Suslik;
 use App\SuslikRatingHistory;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class SuslikWebController extends Controller
 {
