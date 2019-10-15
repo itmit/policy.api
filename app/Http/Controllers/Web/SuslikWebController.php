@@ -72,6 +72,49 @@ class SuslikWebController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createCategory()
+    {
+        return view('susliks.createCategory'); 
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeCategory(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3|max:191',
+            'place_of_work' => 'required|min:3|max:191',
+            'position' => 'required|min:3|max:191',
+            'category' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('auth.susliks.create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        Suslik::create([
+            'uuid' => (string) Str::uuid(),
+            'name' => $request->name,
+            'place_of_work' => $request->place_of_work,
+            'position' => $request->position,
+            'category' => $request->category
+        ]);
+
+        return redirect()->route('auth.susliks.index');
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
