@@ -16,7 +16,7 @@
                 <tbody>
                 @foreach($susliks as $suslik)
                     <tr>
-                        <td><a href="poll/{{ $suslik->id }}"> {{ $suslik->name }} </a></td>
+                        <td><a href="suslik/{{ $suslik->id }}"> {{ $suslik->name }} </a></td>
                         <td>{{ $suslik->created_at->timezone('Europe/Moscow') }}</td>
                     </tr>
                 @endforeach

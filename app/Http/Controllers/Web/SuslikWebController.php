@@ -30,7 +30,7 @@ class SuslikWebController extends Controller
      */
     public function create()
     {
-        return view('polls.pollCreate'); 
+        return view('susliks.suslikCreate'); 
     }
 
     /**
