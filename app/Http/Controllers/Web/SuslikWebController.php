@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\SusliksCategory;
 use App\Suslik;
 use App\SuslikRatingHistory;
+use Illuminate\Support\Str;
 
 class SuslikWebController extends Controller
 {
@@ -44,7 +45,26 @@ class SuslikWebController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3|max:191',
+            'place_of_work' => 'required|min:3|max:191',
+            'position' => 'required|min:3|max:191',
+            'category' => 'required|min:3|max:191',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendError($validator->errors(), "Validation error", 401);
+        }
+
+        Suslik::create([
+            'uuid' => Str::uuid(),
+            'name' => $request->name,
+            'place_of_work' => $request->place_of_work,
+            'position' => $request->position,
+            'category' => $request->category
+        ]);
+
+        return redirect()->route('auth.susliks.index');
     }
 
     /**
