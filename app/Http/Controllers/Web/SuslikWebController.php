@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Poll;
+use App\SusliksCategory;
+use App\Suslik;
+use App\SuslikRatingHistory;
 
-class PollWebController extends Controller
+class SuslikWebController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,6 @@ class PollWebController extends Controller
      */
     public function index()
     {
-        return Poll::select('*')->orderBy('created_at', 'desc')->get();
         return view('polls.polls', [
         'polls' => Poll::select('*')
             ->orderBy('created_at', 'desc')->get()

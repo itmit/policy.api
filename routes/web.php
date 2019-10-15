@@ -27,6 +27,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
     Route::resource('polls', 'Web\PollWebController');
+    Route::resource('susliks', 'Web\SuslikWebController');
 });
 
 Auth::routes();

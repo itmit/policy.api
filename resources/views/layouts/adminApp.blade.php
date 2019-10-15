@@ -78,6 +78,9 @@
                 <ul class="list-group">
                     <li class="list-group-item"><a href="{{ route('auth.polls.index') }}">Опросы</a></li>
                 </ul>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="{{ route('auth.polls.index') }}">Суслики</a></li>
+                </ul>
             </div>
             <div class="col-sm-9 tabs-content">
                 @yield('content')
