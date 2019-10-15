@@ -78,6 +78,7 @@ class SuslikWebController extends Controller
      */
     public function createCategory()
     {
+        return 'a';
         return view('susliks.createCategory'); 
     }
 
