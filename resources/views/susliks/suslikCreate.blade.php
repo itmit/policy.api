@@ -52,9 +52,9 @@
             <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
                 <label for="position" class="col-md-4 control-label">Категория</label>
                 <div class="col-md-6">
-                    <select name="" id="">
+                    <select name="category" id="category" class="form-control">
                         @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
 
