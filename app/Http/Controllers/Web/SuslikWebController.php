@@ -54,7 +54,10 @@ class SuslikWebController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return $this->sendError($validator->errors(), "Validation error", 401);
+            return redirect()
+                ->route('auth.susliks.create')
+                ->withErrors($validator)
+                ->withInput();
         }
 
         Suslik::create([
