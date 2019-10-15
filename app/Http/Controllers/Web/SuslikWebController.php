@@ -61,7 +61,7 @@ class SuslikWebController extends Controller
         }
 
         Suslik::create([
-            'uuid' => Str::uuid(),
+            'uuid' => (string) Str::uuid(),
             'name' => $request->name,
             'place_of_work' => $request->place_of_work,
             'position' => $request->position,
