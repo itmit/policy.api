@@ -77,7 +77,7 @@
             <div class="col-sm-3 left-menu">
                 <ul class="list-group">
                     <li class="list-group-item"><a href="{{ route('auth.polls.index') }}">Опросы</a></li>
-                    <li class="list-group-item"><a href="{{ route('auth.polls.index') }}">Суслики</a></li>
+                    <li class="list-group-item"><a href="{{ route('auth.susliks.index') }}">Суслики</a></li>
                 </ul>
             </div>
             <div class="col-sm-9 tabs-content">
