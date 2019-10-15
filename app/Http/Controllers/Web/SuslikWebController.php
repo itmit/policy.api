@@ -10,7 +10,7 @@ use App\SuslikRatingHistory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
-class SuslikWebController extends ApiBaseController
+class SuslikWebController extends Controller
 {
     /**
      * Display a listing of the resource.
