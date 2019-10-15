@@ -15,7 +15,6 @@ class PollWebController extends Controller
      */
     public function index()
     {
-        return Poll::select('*')->orderBy('created_at', 'desc')->get();
         return view('polls.polls', [
         'polls' => Poll::select('*')
             ->orderBy('created_at', 'desc')->get()
