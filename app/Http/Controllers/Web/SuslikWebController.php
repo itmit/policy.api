@@ -50,7 +50,7 @@ class SuslikWebController extends Controller
             'name' => 'required|min:3|max:191',
             'place_of_work' => 'required|min:3|max:191',
             'position' => 'required|min:3|max:191',
-            'category' => 'required|min:3|max:191',
+            'category' => 'required',
         ]);
 
         if ($validator->fails()) {
