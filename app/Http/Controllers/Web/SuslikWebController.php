@@ -78,7 +78,6 @@ class SuslikWebController extends Controller
      */
     public function createCategory()
     {
-        return 'a';
         return view('susliks.createCategory'); 
     }
 
@@ -90,7 +89,6 @@ class SuslikWebController extends Controller
      */
     public function storeCategory(Request $request)
     {
-        return 'a';
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3|max:191',
             'place_of_work' => 'required|min:3|max:191',
