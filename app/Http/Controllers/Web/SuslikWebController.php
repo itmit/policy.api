@@ -78,7 +78,10 @@ class SuslikWebController extends Controller
      */
     public function createCategory()
     {
-        return view('susliks.createCategory'); 
+        return view('susliks.createCategory', [
+            'categories' => SusliksCategory::select('*')
+            ->orderBy('created_at', 'desc')->get()
+        ]); 
     }
 
     /**
