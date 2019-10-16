@@ -91,24 +91,18 @@ class SuslikWebController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:3|max:191',
-            'place_of_work' => 'required|min:3|max:191',
-            'position' => 'required|min:3|max:191',
-            'category' => 'required',
         ]);
 
         if ($validator->fails()) {
             return redirect()
-                ->route('auth.susliks.create')
+                ->route('auth.auth.createCategory')
                 ->withErrors($validator)
                 ->withInput();
         }
 
-        Suslik::create([
+        SusliksCategory::create([
             'uuid' => (string) Str::uuid(),
             'name' => $request->name,
-            'place_of_work' => $request->place_of_work,
-            'position' => $request->position,
-            'category' => $request->category
         ]);
 
         return redirect()->route('auth.susliks.index');
