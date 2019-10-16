@@ -3,7 +3,7 @@
 @section('content')
     <h1>Создание категории</h1>
     <div class="col-sm-12">
-        <textarea name="listOfCategories" cols="30" rows="10" disabled>
+        <textarea name="listOfCategories" cols="15" rows="10" disabled style="resize: none;">
             @foreach ($categories as $category)
                 {{ $category->name }}
             @endforeach
