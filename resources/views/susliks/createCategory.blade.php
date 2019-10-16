@@ -4,7 +4,9 @@
     <h1>Создание категории</h1>
     <div class="col-sm-12">
         <textarea name="listOfCategories" cols="30" rows="10" disabled>
-
+            @foreach ($categories as $category)
+                {{ $category->name }}
+            @endforeach
         </textarea>
         <form class="form-horizontal" method="POST" action="{{ route('auth.storeCategory') }}">
             {{ csrf_field() }}
