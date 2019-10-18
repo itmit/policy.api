@@ -18,7 +18,7 @@ class Poll extends Model
 
     public function category()
     {
-        return $this->belongsTo(PollCategories::class, 'category');
+        return $this->belongsTo(PollCategories::class, 'category')->get()->first();
     }
 
     // public function client() 
