@@ -139,7 +139,7 @@
 
             </div>
 
-            <button>Добавить вопрос</button>
+            <input type="button" value="Добавить вариант ответа">
 
 
             <div class="form-group">
