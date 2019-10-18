@@ -53,6 +53,20 @@
                 </div>
             </div>
 
+            <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
+                <label for="link" class="col-md-4 control-label">Ссылка на опрос</label>
+
+                <div class="col-md-6">
+                    <input type="text" name="link" id="link" class="form-control" value="{{ old('link') }}">
+
+                    @if ($errors->has('link'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('link') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
             <div class="form-group{{ $errors->has('radio') ? ' has-error' : '' }}">
                 <div class="col-md-6">
                     <input type="radio" id="unlimited" name="time" value="unlimited" checked>
