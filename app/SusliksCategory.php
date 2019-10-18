@@ -17,4 +17,10 @@ class SusliksCategory extends Model
      * @var string
      */
     protected $table = 'susliks_categories';
+
+    // public function client()
+    // {
+    //     // dd($this->belongsTo(Client::class, 'client')->get()->first());
+    //     return $this->belongsTo(Client::class, 'client')->get()->first();
+    // }
 }

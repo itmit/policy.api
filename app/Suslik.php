@@ -17,4 +17,10 @@ class Suslik extends Model
      * @var string
      */
     protected $table = 'susliks';
+
+    public function category()
+    {
+        // dd($this->belongsTo(Client::class, 'client')->get()->first());
+        return $this->hasOne(SusliksCategory::class)->get()->first();
+    }
 }
