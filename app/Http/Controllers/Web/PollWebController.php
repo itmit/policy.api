@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Poll;
+use App\PollCategories;
 
 class PollWebController extends Controller
 {
@@ -90,7 +91,7 @@ class PollWebController extends Controller
     public function createCategory()
     {
         return view('polls.createPollCategory', [
-            'categories' => SusliksCategory::select('*')
+            'categories' => PollCategories::select('*')
             ->orderBy('created_at', 'desc')->get()
         ]); 
     }
