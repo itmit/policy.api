@@ -18,7 +18,7 @@
                 @foreach($susliks as $suslik)
                     <tr>
                         <td><a href="suslik/{{ $suslik->id }}"> {{ $suslik->name }} </a></td>
-                        <td>{{ $suslik->category()->id }}</td>
+                        <td>{{ $suslik->category()->name }}</td>
                         <td>{{ $suslik->created_at->timezone('Europe/Moscow') }}</td>
                     </tr>
                 @endforeach
