@@ -95,4 +95,31 @@ class PollWebController extends Controller
             ->orderBy('created_at', 'desc')->get()
         ]); 
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeCategory(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:3|max:191',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('auth.createPollCategory')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        PollCategories::create([
+            'uuid' => (string) Str::uuid(),
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('auth.susliks.index');
+    }
 }
