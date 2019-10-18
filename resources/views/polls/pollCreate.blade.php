@@ -21,6 +21,38 @@
                 </div>
             </div>
 
+            <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                <label for="description" class="col-md-4 control-label">Описание</label>
+
+                <div class="col-md-6">
+                    <textarea name="description" id="description" cols="30" rows="10" style="resize: none"></textarea>
+
+                    @if ($errors->has('description'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('description') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
+            <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
+                <label for="category" class="col-md-4 control-label">Категория опроса</label>
+
+                <div class="col-md-6">
+                    <select name="category" id="category">
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id}}">{{ $category->name}}</option>
+                        @endforeach
+                    </select>
+
+                    @if ($errors->has('category'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('category') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
             <div class="form-group{{ $errors->has('radio') ? ' has-error' : '' }}">
                 <div class="col-md-6">
                     <input type="radio" id="unlimited" name="time" value="unlimited" checked>

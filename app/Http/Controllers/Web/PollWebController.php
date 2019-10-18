@@ -31,7 +31,10 @@ class PollWebController extends Controller
      */
     public function create()
     {
-        return view('polls.pollCreate'); 
+        return view('polls.pollCreate', [
+            'categories' => PollCategories::select('*')
+            ->orderBy('created_at', 'desc')->get()
+        ]); 
     }
 
     /**
