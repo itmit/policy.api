@@ -86,4 +86,12 @@ class PollWebController extends Controller
     {
         //
     }
+
+    public function createCategory()
+    {
+        return view('polls.createPollCategory', [
+            'categories' => SusliksCategory::select('*')
+            ->orderBy('created_at', 'desc')->get()
+        ]); 
+    }
 }
