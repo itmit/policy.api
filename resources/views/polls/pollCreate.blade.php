@@ -25,7 +25,7 @@
                 <label for="description" class="col-md-4 control-label">Описание</label>
 
                 <div class="col-md-6">
-                    <textarea name="description" id="description" cols="30" rows="10" style="resize: none"></textarea>
+                    <textarea name="description" id="description" cols="30" rows="10" style="resize: none" class="form-control"></textarea>
 
                     @if ($errors->has('description'))
                         <span class="help-block">
@@ -39,7 +39,7 @@
                 <label for="category" class="col-md-4 control-label">Категория опроса</label>
 
                 <div class="col-md-6">
-                    <select name="category" id="category">
+                    <select name="category" id="category" class="form-control">
                         @foreach ($categories as $category)
                             <option value="{{ $category->id}}">{{ $category->name}}</option>
                         @endforeach
