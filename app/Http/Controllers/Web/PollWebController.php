@@ -122,6 +122,6 @@ class PollWebController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('auth.susliks.index');
+        return redirect()->route('auth.polls.index');
     }
 }

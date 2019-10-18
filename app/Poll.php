@@ -16,10 +16,10 @@ class Poll extends Model
      */
     protected $table = 'polls';
 
-    // public function shipmentGoods()
-    // {
-    //     return $this->hasMany(ShipmentGoods::class);
-    // }
+    public function category()
+    {
+        return $this->belongsTo(PollCategories::class, 'category');
+    }
 
     // public function client() 
     // {

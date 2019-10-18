@@ -10,6 +10,7 @@
                 <thead>
                 <tr>
                     <th>Наименование</th>
+                    <th>Категория</th>
                     <th>Дата создания</th>
                 </tr>
                 </thead>
@@ -17,6 +18,7 @@
                 @foreach($polls as $poll)
                     <tr>
                         <td><a href="poll/{{ $poll->id }}"> {{ $poll->name }} </a></td>
+                        <td>{{ $poll->category()->name }}</td>
                         <td>{{ $poll->created_at->timezone('Europe/Moscow') }}</td>
                     </tr>
                 @endforeach
