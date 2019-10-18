@@ -121,7 +121,6 @@
                         <input type="checkbox" name="other" id="other">
                         <label for="other">Включает вариант ответа "другой"</label>
                         <input type="button" value="Добавить вариант ответа">
-                        <button>Добавить вариант ответа</button>
                     </div>
                 </div>
 
@@ -134,7 +133,7 @@
                         <input id="answer" type="text" data-answer="1" class="form-control" name="answer" placeholder=" Введите ответ">
                         <input type="checkbox" name="other" id="other">
                         <label for="other">Включает вариант ответа "другой"</label>
-                        <button>Добавить вариант ответа</button>
+                        <input type="button" value="Добавить вариант ответа">
                     </div>
                 </div>
 
