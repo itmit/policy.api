@@ -25,7 +25,7 @@
                 <label for="description" class="col-md-4 control-label">Описание</label>
 
                 <div class="col-md-6">
-                    <textarea name="description" id="description" cols="30" rows="10" style="resize: none" class="form-control"></textarea>
+                    <textarea name="description" id="description" cols="30" rows="10" style="resize: none" class="form-control" placeholder=" Необязательно"></textarea>
 
                     @if ($errors->has('description'))
                         <span class="help-block">
@@ -57,7 +57,7 @@
                 <label for="link" class="col-md-4 control-label">Ссылка на опрос</label>
 
                 <div class="col-md-6">
-                    <input type="text" name="link" id="link" class="form-control" value="{{ old('link') }}">
+                    <input type="text" name="link" id="link" class="form-control" value="{{ old('link') }}" placeholder=" Необязательно">
 
                     @if ($errors->has('link'))
                         <span class="help-block">

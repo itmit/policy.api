@@ -17,7 +17,9 @@ class CreatePollsTable extends Migration
             $table->bigIncrements('id');
             $table->uuid('uuid');
             $table->string('name');
-            $table->bigInteger('category_id')->unsigned();
+            $table->text('description')->nullable();
+            $table->bigInteger('category')->unsigned();
+            $table->string('link')->nullable();
             $table->timestamp('start_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('end_at')->default(DB::raw('CURRENT_TIMESTAMP'));
 
