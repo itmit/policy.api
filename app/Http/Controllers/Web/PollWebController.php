@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Poll;
 use App\PollCategories;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class PollWebController extends Controller
 {
