@@ -21,6 +21,6 @@ class Suslik extends Model
     public function category()
     {
         // dd($this->belongsTo(Client::class, 'client')->get()->first());
-        return $this->hasOne(SusliksCategory::class)->get()->first();
+        return $this->belongsTo(SusliksCategory::class, 'category')->get()->first();
     }
 }
