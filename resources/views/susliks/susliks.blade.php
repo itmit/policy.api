@@ -10,10 +10,10 @@
                 {{ csrf_field() }}
                 <div class="col-sm-12">
                     <div class="row form-group{{ $errors->has('file') ? ' has-error' : '' }}">
-                        <label for="file" class="col-md-4 control-label text-tc">.xlsx файл для импорта</label>
+                        <label for="file" class="col-md-4 control-label text-tc">.zip файл для импорта</label>
             
                         <div class="col-md-6">
-                            <input type="file" name="file" id="file" accept=".csv">
+                            <input type="file" name="file" id="file" accept=".zip">
                         </div>
             
                         @if ($errors->has('file'))
@@ -25,7 +25,7 @@
             
                     <div class="form-group">
                         <button type="submit" class="btn btn-tc-ct">
-                                Загрузить сусликов из csv-файла
+                                Загрузить сусликов из zip-файла
                         </button>
                     </div>
                 </div>
