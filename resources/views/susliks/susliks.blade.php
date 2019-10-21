@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </form>
-            <a href="{{ route('') }}" class="btn btn-primary"></a>
+            
             <table class="table table-bordered">
                 <thead>
                 <tr>
