@@ -118,7 +118,7 @@ class SuslikWebController extends Controller
      */
     public function uploadSusliks($file)
     {
-        // return
+        dd($file);
     }
 
     /**
