@@ -118,6 +118,13 @@ class SuslikWebController extends Controller
      */
     public function uploadSusliks(Request $file)
     {
+        return $file->basename;
+        $zip = new ZipArchive;
+        $res = $zip->open('file.zip');
+        if ($res === TRUE) {
+            $zip->extractTo('/myzips/extract_path/');
+            $zip->close();
+        }
         dd($file);
     }
 
