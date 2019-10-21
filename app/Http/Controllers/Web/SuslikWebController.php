@@ -112,6 +112,16 @@ class SuslikWebController extends Controller
     }
 
     /**
+     * Загружает сусликов из csv-файла.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function uploadSusliks($id)
+    {
+        //
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
