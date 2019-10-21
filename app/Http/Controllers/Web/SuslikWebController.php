@@ -116,7 +116,7 @@ class SuslikWebController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function uploadSusliks($file)
+    public function uploadSusliks(Request $file)
     {
         dd($file);
     }
