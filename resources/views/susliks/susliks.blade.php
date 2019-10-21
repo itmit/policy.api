@@ -6,6 +6,7 @@
         <div class="col-md-8">
             <a href="{{ route('auth.susliks.create') }}" class="btn btn-primary">Создать суслика</a>
             <a href="{{ route('auth.createCategory') }}" class="btn btn-primary">Создать категорию</a>
+            <a href="{{ route('auth.uploadSusliks') }}" class="btn btn-primary">Загрузить сусликов из csv-файла</a>
             <table class="table table-bordered">
                 <thead>
                 <tr>
