@@ -156,7 +156,7 @@ class SuslikWebController extends Controller
                     if ($header) {
                         $header = false;
                     } else {
-                        $categoryID = SuslikCategory::where('name', '=', $csvLine[3])->first('id');
+                        $categoryID = SusliksCategory::where('name', '=', $csvLine[3])->first('id');
                         return $categoryID;
                         Suslik::create([
                             'uuid' => (string) Str::uuid(),
