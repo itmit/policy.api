@@ -172,8 +172,8 @@ class SuslikWebController extends Controller
                             $imageName = new SplFileInfo($suslikImage);
                             if($imageName->getFilename() == $csvLine[4])
                             {
-                                $urlImage = storage_path() . '/app/susliks_upload/' . $imageName;
                                 $imageExtension = $urlImage->getExtension();
+                                $urlImage = storage_path() . '/app/susliks_upload/' . $imageName;
                                 $photo = $newSuslik->id;
                                 rename($urlImage, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
                                 // copy($url, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
