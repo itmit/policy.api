@@ -36,14 +36,24 @@
                 <tr>
                     <th>Имя</th>
                     <th>Категория</th>
+                    <th>Место работы</th>
+                    <th>Должность</th>
+                    <th>Лайки</th>
+                    <th>Дизлайки</th>
+                    <th>Нейтралы</th>
                     <th>Дата создания</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($susliks as $suslik)
                     <tr>
-                        <td><a href="suslik/{{ $suslik->id }}"> {{ $suslik->name }} </a></td>
+                        <td>{{ $suslik->name }}</td>
                         <td>{{ $suslik->category()->name }}</td>
+                        <td>{{ $suslik->place_of_work }}</td>
+                        <td>{{ $suslik->position }}</td>
+                        <td>{{ $suslik->likes }}</td>
+                        <td>{{ $suslik->dislikes }}</td>
+                        <td>{{ $suslik->neutrals }}</td>
                         <td>{{ $suslik->created_at->timezone('Europe/Moscow') }}</td>
                     </tr>
                 @endforeach
