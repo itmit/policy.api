@@ -9,6 +9,8 @@
             <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ route('auth.uploadSusliks') }}">
                 {{ csrf_field() }}
 
+                <br>
+
                 <div class="row form-group{{ $errors->has('file') ? ' has-error' : '' }}">
 
                     <label for="file" class="col-md-4 control-label text-tc">.zip файл для импорта</label>
