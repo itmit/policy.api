@@ -176,7 +176,10 @@ class SuslikWebController extends Controller
                                 $urlImage = storage_path() . '/app/susliks_upload/' . $imageName;
                                 $photo = $newSuslik->id;
                                 rename($urlImage, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
-                                // copy($url, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
+                                
+                                Suslik::where('id', '=', $photo)->update([
+                                    'photo' => $photo . '.' . $imageExtension
+                                ]);
                             }
                         }
                     }
