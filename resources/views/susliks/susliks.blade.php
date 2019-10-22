@@ -8,26 +8,26 @@
             <a href="{{ route('auth.createCategory') }}" class="btn btn-primary">Создать категорию</a>
             <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ route('auth.uploadSusliks') }}">
                 {{ csrf_field() }}
-                <div class="col-sm-12">
-                    <div class="row form-group{{ $errors->has('file') ? ' has-error' : '' }}">
-                        <label for="file" class="col-md-4 control-label text-tc">.zip файл для импорта</label>
-            
-                        <div class="col-md-6">
-                            <input type="file" name="file" id="file" accept=".zip">
-                        </div>
-            
-                        @if ($errors->has('file'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('file') }}</strong>
-                            </span>
-                        @endif
+
+                <div class="row form-group{{ $errors->has('file') ? ' has-error' : '' }}">
+
+                    <label for="file" class="col-md-4 control-label text-tc">.zip файл для импорта</label>
+        
+                    <div class="col-md-6">
+                        <input type="file" name="file" id="file" accept=".zip">
                     </div>
-            
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-tc-ct">
-                                Загрузить сусликов из zip-файла
-                        </button>
-                    </div>
+        
+                    @if ($errors->has('file'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('file') }}</strong>
+                        </span>
+                    @endif
+                </div>
+        
+                <div class="form-group">
+                    <button type="submit" class="btn btn-tc-ct">
+                            Загрузить сусликов из zip-файла
+                    </button>
                 </div>
             </form>
             
