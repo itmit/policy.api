@@ -152,7 +152,7 @@ class SuslikWebController extends Controller
                 $handle = fopen($url, "r");
                 $header = true;
 
-                while ($csvLine = fgetcsv($handle, 10000, ";")) {
+                while ($csvLine = fgetcsv($handle, 10000, ",")) {
 
                     if ($header) {
                         $header = false;
