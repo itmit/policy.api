@@ -147,7 +147,25 @@ class SuslikWebController extends Controller
             $fileType = new SplFileInfo($file);
             if($fileType->getExtension() == "csv")
             {
-                return $file;
+                $url = storage_path() . '/app/susliks_upload/' . $file;
+                $handle = fopen($url, "r");
+                $header = true;
+
+                while ($csvLine = fgetcsv($handle, 10000, ";")) {
+
+                    if ($header) {
+                        $header = false;
+                    } else {
+                        Suslik::create([
+                            'uuid' => (string) Str::uuid(),
+                            'name' => $csvLine[0],
+                            'place_of_work' => $csvLine[1],
+                            'position' => $csvLine[2],
+                            'category' => $csvLine[3],
+                            'photo' => $csvLine[4],
+                        ]);
+                    }
+                }
             }
         }
     }
