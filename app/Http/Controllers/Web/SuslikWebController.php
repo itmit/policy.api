@@ -122,12 +122,15 @@ class SuslikWebController extends Controller
     public function uploadSusliks(Request $data)
     {
         $filename = $_FILES['file']['name'];
-        return $_FILES['file'];
+        $file = $request->file('file');
+        $path = storage_path() . '/app/' . $file->store('temp');
+
+        return $path;
         $path = Storage::disk('local');
         $zip = new ZipArchive;
         $res = $zip->open($filename);
         if ($res === TRUE) {
-            $zip->extractTo(storage_path() . '/susliks');
+            $zip->extractTo(storage_path() . '/app/susliks');
             $zip->close();
             return 'suc';
         }
