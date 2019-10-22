@@ -128,8 +128,9 @@ class SuslikWebController extends Controller
         if ($res === TRUE) {
             $zip->extractTo(storage_path() . '/susliks');
             $zip->close();
+            return 'suc';
         }
-        return 's';
+        else return 'bad';
         // dd($file);
     }
 
