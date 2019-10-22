@@ -140,7 +140,7 @@ class SuslikWebController extends Controller
      */
     public function storeSusliksFromZip()
     {
-        $files = storage_path() . '/app/susliks_upload';
+        $files = scandir(storage_path() . '/app/susliks_upload');
         foreach($files as $file)
         {
             $fileType = new SplFileInfo($file);
