@@ -122,7 +122,7 @@ class SuslikWebController extends Controller
     public function uploadSusliks(Request $data)
     {
         $filename = $_FILES['file']['name'];
-        $file = $request->file('file');
+        $file = $data->file('file');
         $path = storage_path() . '/app/' . $file->store('temp');
 
         return $path;
