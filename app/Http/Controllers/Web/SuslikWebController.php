@@ -175,6 +175,7 @@ class SuslikWebController extends Controller
                                 $imageExtension = $imageName->getExtension();
                                 $photo = $newSuslik->id;
                                 rename($url, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
+                                copy($url, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
                             }
                         }
                     }
