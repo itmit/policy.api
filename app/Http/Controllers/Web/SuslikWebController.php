@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Webpatser\Uuid\Uuid;
+use ZipArchive;
 
 class SuslikWebController extends Controller
 {
