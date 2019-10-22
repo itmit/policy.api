@@ -118,6 +118,7 @@ class SuslikWebController extends Controller
      */
     public function uploadSusliks(Request $data)
     {
+        return storage_path();
         $filename = $_FILES['file']['name'];
         $path = Storage::disk('local');
         $zip = new ZipArchive;
