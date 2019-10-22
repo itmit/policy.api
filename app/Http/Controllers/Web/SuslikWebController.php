@@ -115,24 +115,33 @@ class SuslikWebController extends Controller
     }
 
     /**
-     * Загружает сусликов из csv-файла.
+     * Загружает сусликов из zip-папки.
      *
      * @return \Illuminate\Http\Response
      */
     public function uploadSusliks(Request $data)
     {
-        $filename = $_FILES['file']['name'];
         $file = $data->file('file');
         $path = storage_path() . '/app/' . $file->store('temp');
         $zip = new ZipArchive;
         $res = $zip->open($path);
         if ($res === TRUE) {
-            $zip->extractTo(storage_path() . '/app/susliks');
+            $zip->extractTo(storage_path() . '/app/susliks_upload');
             $zip->close();
-            return 'suc';
+            return self::storeSusliksFromZip();
         }
         else return 'bad';
-        // dd($file);
+    }
+
+    /**
+     * Добавляет сусликов в БД и чистит папку.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function storeSusliksFromZip()
+    {
+        $dir = storage_path() . '/app/susliks_upload';
+        return scandir($dir);
     }
 
     /**
