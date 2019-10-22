@@ -168,14 +168,14 @@ class SuslikWebController extends Controller
                         ]);
 
                         foreach($files as $suslikImage)
-                        {
-                            $imageName = new SplFileInfo($suslikImage);
+                        { 
                             if($imageName->getFilename() == $csvLine[4])
                             {
+                                $imageName = new SplFileInfo($suslikImage);
                                 $imageExtension = $imageName->getExtension();
                                 $photo = $newSuslik->id;
                                 rename($url, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
-                                copy($url, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
+                                // copy($url, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
                             }
                         }
                     }
