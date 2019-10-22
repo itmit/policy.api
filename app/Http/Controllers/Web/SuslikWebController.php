@@ -9,6 +9,8 @@ use App\Suslik;
 use App\SuslikRatingHistory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Webpatser\Uuid\Uuid;
 
 class SuslikWebController extends Controller
 {
