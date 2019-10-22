@@ -124,11 +124,8 @@ class SuslikWebController extends Controller
         $filename = $_FILES['file']['name'];
         $file = $data->file('file');
         $path = storage_path() . '/app/' . $file->store('temp');
-
-        return $path;
-        $path = Storage::disk('local');
         $zip = new ZipArchive;
-        $res = $zip->open($filename);
+        $res = $zip->open($path);
         if ($res === TRUE) {
             $zip->extractTo(storage_path() . '/app/susliks');
             $zip->close();
