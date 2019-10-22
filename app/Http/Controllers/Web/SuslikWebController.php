@@ -129,9 +129,10 @@ class SuslikWebController extends Controller
         if ($res === TRUE) {
             $zip->extractTo(storage_path() . '/app/susliks_upload');
             $zip->close();
-            return self::storeSusliksFromZip();
+            self::storeSusliksFromZip();
         }
         else return 'bad';
+        return redirect()->route('auth.susliks.index');
     }
 
     /**
@@ -157,7 +158,7 @@ class SuslikWebController extends Controller
                         $header = false;
                     } else {
                         $categoryID = SusliksCategory::where('name', '=', $csvLine[3])->first('id');
-                        Suslik::create([
+                        $newSuslik = Suslik::create([
                             'uuid' => (string) Str::uuid(),
                             'name' => $csvLine[0],
                             'place_of_work' => $csvLine[1],
@@ -165,6 +166,17 @@ class SuslikWebController extends Controller
                             'category' => $categoryID->id,
                             'photo' => $csvLine[4],
                         ]);
+
+                        foreach($files as $suslikImage)
+                        {
+                            $imageName = new SplFileInfo($suslikImage);
+                            if($imageName->getFilename() == $csvLine[4])
+                            {
+                                $imageExtension = $imageName->getExtension();
+                                $photo = $newSuslik->id;
+                                rename($url, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
+                            }
+                        }
                     }
                 }
             }
