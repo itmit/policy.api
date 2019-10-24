@@ -131,7 +131,7 @@ class SuslikWebController extends Controller
         if ($res === TRUE) {
             $zip->extractTo(storage_path() . '/app/susliks_upload');
             $zip->close();
-            self::storeSusliksFromZip();
+            return self::storeSusliksFromZip();
         }
         else return 'bad';
         return redirect()->route('auth.susliks.index');
