@@ -159,7 +159,7 @@ class SuslikWebController extends Controller
             // $reader->setReadDataOnly(true);
             
             // Если вы хотите установить строки и столбцы, которые необходимо читать, создайте класс ReadFilter
-            $reader->setReadFilter( new MyReadFilter(11, 1000, range('B', 'O')) );
+            // $reader->setReadFilter( new MyReadFilter(11, 1000, range('B', 'O')) );
             if($fileType->getExtension() == "xlsx")
             {
                 $url = storage_path() . '/app/susliks_upload/' . $file;
@@ -171,7 +171,7 @@ class SuslikWebController extends Controller
                         
                 // Далее перебираем все заполненные строки (столбцы B - O)
                 for ($row = 10; $row <= $cells->getHighestRow(); $row++){
-                    for ($col = 'B'; $col <= 'O'; $col++) {
+                    for ($col = 'A'; $col <= 'E'; $col++) {
                         // Так можно получить значение конкретной ячейки
                         return $cells->get($col.$row)->getValue();
 
