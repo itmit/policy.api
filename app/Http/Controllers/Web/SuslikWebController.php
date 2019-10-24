@@ -146,7 +146,7 @@ class SuslikWebController extends Controller
         foreach($files as $file)
         {
             $fileType = new SplFileInfo($file);
-            if($fileType->getExtension() == "csv")
+            if($fileType->getExtension() == "csv" || $fileType->getExtension() == "xlsx")
             {
                 $url = storage_path() . '/app/susliks_upload/' . $file;
                 $handle = fopen($url, "r");
