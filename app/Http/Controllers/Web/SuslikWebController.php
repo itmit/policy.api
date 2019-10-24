@@ -170,7 +170,7 @@ class SuslikWebController extends Controller
                 $cells = $spreadsheet->getActiveSheet()->getCellCollection();
                         
                 // Далее перебираем все заполненные строки (столбцы B - O)
-                for ($row = 10; $row <= $cells->getHighestRow(); $row++){
+                for ($row = 0; $row <= $cells->getHighestRow(); $row++){
                     for ($col = 'A'; $col <= 'E'; $col++) {
                         // Так можно получить значение конкретной ячейки
                         return $cells->get($col.$row)->getValue();
@@ -178,7 +178,9 @@ class SuslikWebController extends Controller
                         // а также здесь можно поместить ваш функциональный код
                     }
                 }            
-            }            
+            }      
+            
+            return 'false';
 
             if($fileType->getExtension() == "csv" || $fileType->getExtension() == "xlsx")
             {
