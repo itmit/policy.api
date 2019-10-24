@@ -145,7 +145,6 @@ class SuslikWebController extends Controller
     public function storeSusliksFromZip()
     {
         $files = scandir(storage_path() . '/app/susliks_upload');
-        return 's';
         // dd($files);
         foreach($files as $file)
         {
