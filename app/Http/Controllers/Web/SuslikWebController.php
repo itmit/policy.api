@@ -169,10 +169,10 @@ class SuslikWebController extends Controller
                 // Так можно достать объект Cells, имеющий доступ к содержимому ячеек
                 $cells = $spreadsheet->getActiveSheet()->getCellCollection();
 
-                return $cells->getHighestRow();
+                // return $cells->getHighestRow();
                         
                 // Далее перебираем все заполненные строки (столбцы B - O)
-                for ($row = 0; $row <= $cells->getHighestRow(); $row++){
+                for ($row = 1; $row <= $cells->getHighestRow(); $row++){
                     for ($col = 'A'; $col <= 'E'; $col++) {
                         // Так можно получить значение конкретной ячейки
                         return $cells->get($col.$row)->getValue();
