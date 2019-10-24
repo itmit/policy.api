@@ -161,8 +161,9 @@ class SuslikWebController extends Controller
             // $reader->setReadFilter( new MyReadFilter(11, 1000, range('B', 'O')) );
             if($fileType->getExtension() == "xlsx")
             {
+                $url = storage_path() . '/app/susliks_upload/' . $file;
                 // Читаем файл и записываем информацию в переменную
-                $spreadsheet = $reader->load($file);
+                $spreadsheet = $reader->load($url);
                             
                 // Так можно достать объект Cells, имеющий доступ к содержимому ячеек
                 $cells = $spreadsheet->getActiveSheet()->getCellCollection();
