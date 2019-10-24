@@ -158,6 +158,10 @@ class SuslikWebController extends Controller
                         $header = false;
                     } else {
                         $categoryID = SusliksCategory::where('name', '=', $csvLine[3])->first('id');
+                        if($categoryID == NULL)
+                        {
+                            continue;
+                        }
                         $newSuslik = Suslik::create([
                             'uuid' => (string) Str::uuid(),
                             'name' => $csvLine[0],
@@ -174,7 +178,7 @@ class SuslikWebController extends Controller
                             {
                                 $imageExtension = $imageName->getExtension();
                                 $urlImage = storage_path() . '/app/susliks_upload/' . $imageName;
-                                $photo = $newSuslik->id;
+                                $photo = $newSuslik->uuid;
                                 rename($urlImage, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
                                 
                                 Suslik::where('id', '=', $photo)->update([
