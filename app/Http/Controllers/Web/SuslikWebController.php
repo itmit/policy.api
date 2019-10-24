@@ -180,7 +180,7 @@ class SuslikWebController extends Controller
                 return 'true';
             }
 
-            return 'false';
+            echo $fileType->getExtension() . ' ';
             
 
             if($fileType->getExtension() == "csv" || $fileType->getExtension() == "xlsx")
