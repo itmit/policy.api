@@ -156,7 +156,7 @@ class SuslikWebController extends Controller
             $reader = new Xlsx();
             // Если вы не знаете, какой будет формат файла, можно сделать ридер универсальным:
             // $reader = IOFactory::createReaderForFile($file);
-            // $reader->setReadDataOnly(true);
+            $reader->setReadDataOnly(true);
             
             // Если вы хотите установить строки и столбцы, которые необходимо читать, создайте класс ReadFilter
             // $reader->setReadFilter( new MyReadFilter(11, 1000, range('B', 'O')) );
@@ -168,6 +168,8 @@ class SuslikWebController extends Controller
                             
                 // Так можно достать объект Cells, имеющий доступ к содержимому ячеек
                 $cells = $spreadsheet->getActiveSheet()->getCellCollection();
+
+                return $cells->getHighestRow();
                         
                 // Далее перебираем все заполненные строки (столбцы B - O)
                 for ($row = 0; $row <= $cells->getHighestRow(); $row++){
