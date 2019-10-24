@@ -15,7 +15,7 @@ use ZipArchive;
 use SplFileInfo;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use PhpOffice\PhpSpreadsheet\MyReadFilter;
+// use PhpOffice\PhpSpreadsheet\MyReadFilter;
 
 class SuslikWebController extends Controller
 {
