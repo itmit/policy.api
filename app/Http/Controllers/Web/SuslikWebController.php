@@ -177,7 +177,7 @@ class SuslikWebController extends Controller
                 for ($row = 2; $row <= $cells->getHighestRow(); $row++){
                     for ($col = 'A'; $col <= 'E'; $col++) {
                         // Так можно получить значение конкретной ячейки
-                        $result = $cells->get($col.$row)->getValue();
+                        $result[] = $cells->get($col.$row)->getValue();
                         // return $cells->get($col.$row)->getValue();
 
                         // а также здесь можно поместить ваш функциональный код
