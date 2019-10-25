@@ -178,7 +178,7 @@ class SuslikWebController extends Controller
                     // $result[] = $result[$row];
                     for ($col = 'A'; $col <= 'E'; $col++) {
                         // Так можно получить значение конкретной ячейки
-                        $result[$row] = $col[$cells->get($col.$row)->getValue()];
+                        $result[$row] = [$col = $cells->get($col.$row)->getValue()];
                         // $categoryID = SusliksCategory::where('name', '=', $csvLine[3])->first('id');
                         // if($categoryID == NULL)
                         // {
