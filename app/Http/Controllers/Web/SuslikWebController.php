@@ -175,9 +175,12 @@ class SuslikWebController extends Controller
 
                 // Далее перебираем все заполненные строки (столбцы A - E)
                 for ($row = 2; $row <= $cells->getHighestRow(); $row++){
+                    $result[$row];
                     for ($col = 'A'; $col <= 'E'; $col++) {
                         // Так можно получить значение конкретной ячейки
-                        $result[$col] = $cells->get($col.$row)->getValue();
+                        $result[] = [
+                            $cells->get($col.$row)->getValue()
+                        ];
                         // $categoryID = SusliksCategory::where('name', '=', $csvLine[3])->first('id');
                         // if($categoryID == NULL)
                         // {
