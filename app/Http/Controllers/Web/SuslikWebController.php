@@ -180,41 +180,51 @@ class SuslikWebController extends Controller
                     for ($col = 'A'; $col <= 'E'; $col++) {
                         // Так можно получить значение конкретной ячейки
                         $suslik[$col] = $cells->get($col.$row)->getValue();
-                        // $categoryID = SusliksCategory::where('name', '=', $csvLine[3])->first('id');
-                        // if($categoryID == NULL)
-                        // {
-                        //     continue;
-                        // }
-
-                        // $newSuslik = Suslik::create([
-                        //     'uuid' => (string) Str::uuid(),
-                        //     'name' => $csvLine[0],
-                        //     'place_of_work' => $csvLine[1],
-                        //     'position' => $csvLine[2],
-                        //     'category' => $categoryID->id,
-                        //     'photo' => $csvLine[4],
-                        // ]);
-
-                        // foreach($files as $suslikImage)
-                        // { 
-                        //     $imageName = new SplFileInfo($suslikImage);
-                        //     if($imageName->getFilename() == $csvLine[4])
-                        //     {
-                        //         $imageExtension = $imageName->getExtension();
-                        //         $urlImage = storage_path() . '/app/susliks_upload/' . $imageName;
-                        //         $photo = $newSuslik->uuid;
-                        //         rename($urlImage, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
-                                
-                        //         Suslik::where('id', '=', $photo)->update([
-                        //             'photo' => $photo . '.' . $imageExtension
-                        //         ]);
-                        //     }
-                        // }
                     }
                     $result[$row] = $suslik;
                     $suslik = [];
                 }   
-                return $result;        
+                return $result;  
+                
+                foreach($result as $item)
+                {
+                    return $item;
+                    foreach ($items as $col => $value) {
+                        
+                    }
+                }
+                
+                // $categoryID = SusliksCategory::where('name', '=', $csvLine[3])->first('id');
+                // if($categoryID == NULL)
+                // {
+                //     continue;
+                // }
+
+                // $newSuslik = Suslik::create([
+                //     'uuid' => (string) Str::uuid(),
+                //     'name' => $csvLine[0],
+                //     'place_of_work' => $csvLine[1],
+                //     'position' => $csvLine[2],
+                //     'category' => $categoryID->id,
+                //     'photo' => $csvLine[4],
+                // ]);
+
+                // foreach($files as $suslikImage)
+                // { 
+                //     $imageName = new SplFileInfo($suslikImage);
+                //     if($imageName->getFilename() == $csvLine[4])
+                //     {
+                //         $imageExtension = $imageName->getExtension();
+                //         $urlImage = storage_path() . '/app/susliks_upload/' . $imageName;
+                //         $photo = $newSuslik->uuid;
+                //         rename($urlImage, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
+                        
+                //         Suslik::where('id', '=', $photo)->update([
+                //             'photo' => $photo . '.' . $imageExtension
+                //         ]);
+                //     }
+                // }
+
             }      
 
             // if($fileType->getExtension() == "csv" || $fileType->getExtension() == "xlsx")
@@ -263,12 +273,12 @@ class SuslikWebController extends Controller
             // }
         }
 
-        // $path = storage_path() . '/app/temp';
-        // if (file_exists($path)) {
-        //     foreach (glob($path.'/*') as $file) {
-        //         unlink($file);
-        //     }
-        // }
+        $path = storage_path() . '/app/temp';
+        if (file_exists($path)) {
+            foreach (glob($path.'/*') as $file) {
+                unlink($file);
+            }
+        }
     }
 
     /**
