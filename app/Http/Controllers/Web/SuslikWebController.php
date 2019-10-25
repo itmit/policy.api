@@ -184,7 +184,7 @@ class SuslikWebController extends Controller
                     $result[$row] = $suslik;
                     $suslik = [];
                 }   
-                return $result;  
+                // return $result;  
                 
                 foreach($result as $item)
                 {
