@@ -132,7 +132,7 @@ class SuslikWebController extends Controller
         if ($res === TRUE) {
             $zip->extractTo(storage_path() . '/app/susliks_upload');
             $zip->close();
-            return self::storeSusliksFromZip();
+            $import = self::storeSusliksFromZip();
         }
         else return 'bad';
         return redirect()->route('auth.susliks.index');
@@ -188,43 +188,38 @@ class SuslikWebController extends Controller
                 
                 foreach($result as $item)
                 {
-                    return $item;
-                    foreach ($items as $col => $value) {
-                        
+                    $categoryID = SusliksCategory::where('name', '=', $item['D'])->first('id');
+                    if($categoryID == NULL)
+                    {
+                        continue;
                     }
+
+                    $newSuslik = Suslik::create([
+                        'uuid' => (string) Str::uuid(),
+                        'name' => $item['A'],
+                        'place_of_work' => $item['B'],
+                        'position' => $item['C'],
+                        'category' => $categoryID->id,
+                        'photo' => $item['E'],
+                    ]);
+
+                    foreach($files as $suslikImage)
+                    { 
+                        $imageName = new SplFileInfo($suslikImage);
+                        if($imageName->getFilename() == $item['E'])
+                        {
+                            $imageExtension = $imageName->getExtension();
+                            $urlImage = storage_path() . '/app/susliks_upload/' . $imageName;
+                            $photo = $newSuslik->uuid;
+                            rename($urlImage, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
+                            
+                            Suslik::where('id', '=', $photo)->update([
+                                'photo' => $photo . '.' . $imageExtension
+                            ]);
+                        }
+                    }
+
                 }
-                
-                // $categoryID = SusliksCategory::where('name', '=', $csvLine[3])->first('id');
-                // if($categoryID == NULL)
-                // {
-                //     continue;
-                // }
-
-                // $newSuslik = Suslik::create([
-                //     'uuid' => (string) Str::uuid(),
-                //     'name' => $csvLine[0],
-                //     'place_of_work' => $csvLine[1],
-                //     'position' => $csvLine[2],
-                //     'category' => $categoryID->id,
-                //     'photo' => $csvLine[4],
-                // ]);
-
-                // foreach($files as $suslikImage)
-                // { 
-                //     $imageName = new SplFileInfo($suslikImage);
-                //     if($imageName->getFilename() == $csvLine[4])
-                //     {
-                //         $imageExtension = $imageName->getExtension();
-                //         $urlImage = storage_path() . '/app/susliks_upload/' . $imageName;
-                //         $photo = $newSuslik->uuid;
-                //         rename($urlImage, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
-                        
-                //         Suslik::where('id', '=', $photo)->update([
-                //             'photo' => $photo . '.' . $imageExtension
-                //         ]);
-                //     }
-                // }
-
             }      
 
             // if($fileType->getExtension() == "csv" || $fileType->getExtension() == "xlsx")
@@ -279,6 +274,7 @@ class SuslikWebController extends Controller
                 unlink($file);
             }
         }
+        return true;
     }
 
     /**
