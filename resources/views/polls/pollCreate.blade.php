@@ -113,18 +113,17 @@
             <div class="list_of_questions">
                 
                 <div class="question">
-                    <div class="question_name">
-                        <input type="text" name="" id="">
+                    <div class="question_name col-md-4">
+                        <input type="text" name="question_name">
                     </div>
-                    <div class="answer">
-                        <input type="text" name="" id="">
+                    <div class="answer col-md-5 offset-md-1">
+                        <input type="text" name="answer">
                     </div>
-                    <div class="answer">
-                        <input type="text" name="" id="">
+                    <div class="answer col-md-5 offset-md-1">
+                        <input type="text" name="answer">
                     </div>
                 </div>
 
-                <div class="new_question"></div>
             </div>
 
             <input type="button" value="Добавить вопрос" class="add_new_question">
@@ -162,7 +161,7 @@
         });
 
         $(".add_new_question").on("click", function() {
-            $('.list_of_questions').append('<p>***</p>');
+            $('.list_of_questions').append('<div class="question"><div class="question_name col-md-4"><input type="text" name="question_name"></div><div class="answer col-md-5 offset-md-1"><input type="text" name="answer"></div><div class="answer col-md-5 offset-md-1"><input type="text" name="answer"></div></div>');
         });
 
     })
