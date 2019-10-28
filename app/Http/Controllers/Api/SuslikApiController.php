@@ -199,6 +199,10 @@ class SuslikApiController extends ApiBaseController
         {
             // $user = User::where('id', '=', $favsList->user_uuid)->first(['uid', 'name']);
             $suslik = Suslik::where('id', '=', $favList['suslik_id'])->first(['uuid', 'name']);
+            if(!$suslik)
+            {
+                continue;
+            }
             $response[] = 
             [
                 'uuid' => $suslik->uuid,
