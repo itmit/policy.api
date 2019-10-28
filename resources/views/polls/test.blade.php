@@ -111,23 +111,39 @@
             <h2>Создание вопросов</h2>
 
             <div class="list_of_questions">
-                
-                <div class="question">
-                    <div class="question_name">
-                        <input type="text" name="" id="">
+                <div class="form-group" name="questions" data-questions="0">
+                    <div class="col-md-4">
+                        <input id="question" data-question="0" type="text" class="form-control" name="question" placeholder=" Введите вопрос">
                     </div>
-                    <div class="answer">
-                        <input type="text" name="" id="">
-                    </div>
-                    <div class="answer">
-                        <input type="text" name="" id="">
+                    <div class="col-md-5 offset-md-1">
+                        <div>
+                            <input id="answer" type="text" data-answer="0" class="form-control" name="answer" placeholder=" Введите ответ">    
+                            <input id="answer" type="text" data-answer="1" class="form-control" name="answer" placeholder=" Введите ответ">
+                        </div>
+                        
+                        <input type="checkbox" name="other" id="other">
+                        <label for="other">Включает вариант ответа "другой"</label>
+                        <input type="button" value="Добавить вариант ответа">
                     </div>
                 </div>
 
-                <div class="new_question"></div>
+                <div class="form-group" name="questions" data-questions="1">
+                    <div class="col-md-4">
+                        <input id="question" data-question="1" type="text" class="form-control" name="question" placeholder=" Введите вопрос">
+                    </div>
+                    <div class="col-md-5 offset-md-1">
+                        <input id="answer" type="text" data-answer="0" class="form-control" name="answer" placeholder=" Введите ответ">    
+                        <input id="answer" type="text" data-answer="1" class="form-control" name="answer" placeholder=" Введите ответ">
+                        <input type="checkbox" name="other" id="other">
+                        <label for="other">Включает вариант ответа "другой"</label>
+                        <input type="button" value="Добавить вариант ответа">
+                    </div>
+                </div>
+
             </div>
 
-            <input type="button" value="Добавить вопрос" class="add_new_question">
+            <input type="button" value="Добавить вариант ответа">
+
 
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
@@ -160,11 +176,6 @@
             }
 
         });
-
-        $(".add_new_question").on("click", function() {
-            $('.list_of_questions').append('<p>***</p>');
-        });
-
     })
     </script>
     

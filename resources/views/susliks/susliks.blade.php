@@ -33,7 +33,7 @@
                 </div>
             </form>
 
-            <button type="button" class="btn btn-tc-manager js-destroy-button">Удалить отмеченных сусликов</button>
+            <button type="button" class="btn btn-tc-danger js-destroy-button">Удалить отмеченных сусликов</button>
             
             <table class="table table-bordered">
                 <thead>
