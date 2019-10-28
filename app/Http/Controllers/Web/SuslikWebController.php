@@ -136,6 +136,20 @@ class SuslikWebController extends Controller
                 ->withInput();
         }
 
+        $path = storage_path() . '/app/temp';
+        if (file_exists($path)) {
+            foreach (glob($path.'/*') as $file) {
+                unlink($file);
+            }
+        }
+
+        $path = storage_path() . '/app/susliks_upload';
+        if (file_exists($path)) {
+            foreach (glob($path.'/*') as $file) {
+                unlink($file);
+            }
+        }
+
         $file = $data->file('file');
         $path = storage_path() . '/app/' . $file->store('temp');
         $zip = new ZipArchive;
