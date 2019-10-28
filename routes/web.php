@@ -28,6 +28,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
 
     Route::resource('polls', 'Web\PollWebController');
     Route::resource('susliks', 'Web\SuslikWebController');
+    Route::delete('susliks/delete', 'Web\SuslikWebController@destroy');
     Route::get('createCategory', 'Web\SuslikWebController@createCategory')->name('createCategory');
     Route::post('storeCategory', 'Web\SuslikWebController@storeCategory')->name('storeCategory');
     Route::post('uploadSusliks', 'Web\SuslikWebController@uploadSusliks')->name('uploadSusliks');

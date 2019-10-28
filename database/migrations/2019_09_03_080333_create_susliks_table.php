@@ -27,6 +27,7 @@ class CreateSusliksTable extends Migration
 
             $table->string('photo')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('category')->references('id')->on('susliks_categories')
                 ->onUpdate('cascade');

@@ -32,6 +32,10 @@
                     </button>
                 </div>
             </form>
+
+            <div class="col-sm-12">
+                <button type="button" class="btn btn-tc-manager js-destroy-button">Удалить отмеченных сусликов</button>
+            </div>
             
             <table class="table table-bordered">
                 <thead>
@@ -79,6 +83,31 @@ $(document).ready(function() {
                 $(".js-destroy").prop("checked", "");
             }
         });
+    });
+
+    $(document).on('click', '.js-destroy-button', function() {
+        let ids = [];
+
+        $(".js-destroy:checked").each(function(){
+            ids.push($(this).data('suslikId'));
+        });
+
+        $.ajax({
+            headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            dataType: "json",
+            data    : { ids: ids },
+            url     : 'susliks/delete',
+            method    : 'delete',
+            success: function (response) {
+                console.log(response);
+                $(".js-destroy:checked").closest('tr').remove();
+                $(".js-destroy").prop("checked", "");
+            },
+            error: function (xhr, err) { 
+                console.log("Error: " + xhr + " " + err);
+            }
+        });
+
     });
 })
 </script>
