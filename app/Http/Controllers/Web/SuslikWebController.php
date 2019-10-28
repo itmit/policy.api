@@ -157,7 +157,6 @@ class SuslikWebController extends Controller
     public function storeSusliksFromZip()
     {
         $files = scandir(storage_path() . '/app/susliks_upload');
-        // dd($files);
         foreach($files as $file)
         {
             $fileType = new SplFileInfo($file);
@@ -168,9 +167,7 @@ class SuslikWebController extends Controller
             // Если вы не знаете, какой будет формат файла, можно сделать ридер универсальным:
             // $reader = IOFactory::createReaderForFile($file);
             $reader->setReadDataOnly(true);
-            
-            // Если вы хотите установить строки и столбцы, которые необходимо читать, создайте класс ReadFilter
-            // $reader->setReadFilter( new MyReadFilter(11, 1000, range('B', 'O')) );
+           
             if($fileType->getExtension() == "xlsx")
             {
                 $url = storage_path() . '/app/susliks_upload/' . $file;
@@ -223,7 +220,7 @@ class SuslikWebController extends Controller
                             $photo = $newSuslik->uuid;
                             rename($urlImage, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
                             
-                            Suslik::where('id', '=', $photo)->update([
+                            Suslik::where('id', '=', $newSuslik->id)->update([
                                 'photo' => $photo . '.' . $imageExtension
                             ]);
                         }
