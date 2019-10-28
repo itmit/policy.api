@@ -227,20 +227,20 @@ class SuslikApiController extends ApiBaseController
         $suslik_id = Suslik::where('uuid', '=', $request->suslik_uuid)->first('id');
         if($suslik_id == null)
         {
-            return $this->sendError([0], 'Ошибка');
+            return $this->sendError('Error', 'Ошибка');
         }
 
         $user_id = User::where('uid', '=', $request->user_uuid)->first('id');
         if($user_id == null)
         {
-            return $this->sendError([0], 'Ошибка');
+            return $this->sendError('Error', 'Ошибка');
         }
 
         $already_in_fav = Favorite::where('user_id', '=', $user_id->id)->where('suslik_id', '=', $suslik_id->id)->first();
 
         if($already_in_fav != null)
         {
-            return $this->sendError([0], 'Пользователь уже в избранном');
+            return $this->sendResponse([0], 'Пользователь уже в избранном');
         }
 
         $favorite = Favorite::create([
