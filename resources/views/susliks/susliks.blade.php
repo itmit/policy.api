@@ -36,6 +36,7 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
+                    <th><input type="checkbox" name="destroy-all-susliks" class="js-destroy-all"/></th>
                     <th>Имя</th>
                     <th>Категория</th>
                     <th>Место работы</th>
@@ -49,6 +50,7 @@
                 <tbody>
                 @foreach($susliks as $suslik)
                     <tr>
+                        <td><input type="checkbox" data-suslik-id="{{ $suslik->id }}" name="destoy-suslik-{{ $suslik->id }}" class="js-destroy"/></td>
                         <td>{{ $suslik->name }}</td>
                         <td>{{ $suslik->category()->name }}</td>
                         <td>{{ $suslik->place_of_work }}</td>
@@ -64,4 +66,23 @@
         </div>
     </div>
 </div>
+
+<script>
+$(document).ready(function() {
+    $(function(){
+        $(".js-destroy-all").on("click", function() {
+
+            if($(".js-destroy-all").prop("checked")){
+                $(".js-destroy").prop("checked", "checked");
+            }
+            else{
+                $(".js-destroy").prop("checked", "");
+            }
+        });
+    });
+})
+</script>
+
+
+
 @endsection
