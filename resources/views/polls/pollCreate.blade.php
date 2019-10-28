@@ -165,7 +165,8 @@
         });
 
         $(".delete_question").on("click", function() {
-            $(".delete_question").parent(".question").remove();
+            console.log('del');
+            console.log($(".delete_question").parent(".question"));
         });
 
     })
