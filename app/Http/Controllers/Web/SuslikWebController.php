@@ -125,7 +125,7 @@ class SuslikWebController extends Controller
      */
     public function uploadSusliks(Request $data)
     {
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make($data->all(), [
             'file' => 'required',
         ]);
 
