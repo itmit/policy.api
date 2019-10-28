@@ -114,13 +114,13 @@
                 
                 <div class="question">
                     <div class="question_name col-md-4">
-                        <input type="text" name="question_name">
+                        <input type="text" name="question_name" placeholder=" Вопрос">
                     </div>
-                    <div class="answer col-md-5 offset-md-1">
+                    <div class="answer col-md-5 offset-md-1" placeholder=" Ответ">
                         <input type="text" name="answer">
                     </div>
                     <div class="answer col-md-5 offset-md-1">
-                        <input type="text" name="answer">
+                        <input type="text" name="answer" placeholder=" Ответ">
                     </div>
                 </div>
 
@@ -161,10 +161,16 @@
         });
 
         $(".add_new_question").on("click", function() {
-            $('.list_of_questions').append('<div class="question"><div class="question_name col-md-4"><input type="text" name="question_name"></div><div class="answer col-md-5 offset-md-1"><input type="text" name="answer"></div><div class="answer col-md-5 offset-md-1"><input type="text" name="answer"></div></div>');
+            $('.list_of_questions').append('<div class="question"><div class="question_name col-md-4"><input type="text" name="question_name" placeholder=" Вопрос"></div><div class="answer col-md-5 offset-md-1"><input type="text" name="answer" placeholder=" Ответ"></div><div class="answer col-md-5 offset-md-1"><input type="text" name="answer" placeholder=" Ответ"></div></div>');
         });
 
     })
     </script>
+
+    <style>
+        .question {
+            margin: 10px;
+        }
+    </style>
     
 @endsection
