@@ -166,7 +166,7 @@
 
         $(".list_of_questions").on("click", ".delete_question", function(e) {
         // $(".delete_question").on("click", function() {
-            $(".delete_question").closest(".question").remove();
+            $(this).closest(".question").remove();
         });
 
     })
