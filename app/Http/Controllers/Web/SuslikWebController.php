@@ -243,7 +243,6 @@ class SuslikWebController extends Controller
                             }                          
                         }
                     }
-
                 }
             }      
 
