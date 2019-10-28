@@ -164,7 +164,8 @@
             $('.list_of_questions').append('<div class="question"><div class="question_name col-md-4"><input type="text" name="question_name" placeholder=" Вопрос"></div><div class="answer col-md-5 offset-md-1"><input type="text" name="answer" placeholder=" Ответ"></div><div class="answer col-md-5 offset-md-1"><input type="text" name="answer" placeholder=" Ответ"></div><div><input type="button" value="Удалить вопрос" class="col-md-4 delete_question"></div></div>');
         });
 
-        $(".delete_question").on("click", function() {
+        $(".list_of_questions").on("click", ".delete_question", function(e) {
+        // $(".delete_question").on("click", function() {
             console.log('del');
             console.log($(".delete_question").parent(".question"));
         });
