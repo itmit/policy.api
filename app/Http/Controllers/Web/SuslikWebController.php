@@ -316,8 +316,10 @@ class SuslikWebController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        return 'destroy';
+        Suslik::destroy($request->input('ids'));
+
+        return response()->json(['Places destroyed']);
     }
 }
