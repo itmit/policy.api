@@ -221,7 +221,7 @@ class SuslikWebController extends Controller
                         'place_of_work' => $item['B'],
                         'position' => $item['C'],
                         'category' => $categoryID->id,
-                        'photo' => $item['E'],
+                        // 'photo' => $item['E'],
                     ]);
 
                     foreach($files as $suslikImage)
@@ -231,12 +231,16 @@ class SuslikWebController extends Controller
                         {
                             $imageExtension = $imageName->getExtension();
                             $urlImage = storage_path() . '/app/susliks_upload/' . $imageName;
-                            $photo = $newSuslik->uuid;
-                            rename($urlImage, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
-                            
-                            Suslik::where('id', '=', $newSuslik->id)->update([
-                                'photo' => $photo . '.' . $imageExtension
-                            ]);
+
+                            if (file_exists($urlImage))
+                            {
+                                $photo = $newSuslik->uuid;
+                                rename($urlImage, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
+                                
+                                Suslik::where('id', '=', $newSuslik->id)->update([
+                                    'photo' => $photo . '.' . $imageExtension
+                                ]);  
+                            }                          
                         }
                     }
 
