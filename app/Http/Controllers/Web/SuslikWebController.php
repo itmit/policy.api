@@ -273,6 +273,13 @@ class SuslikWebController extends Controller
                 unlink($file);
             }
         }
+
+        $path = storage_path() . '/app/susliks_upload';
+        if (file_exists($path)) {
+            foreach (glob($path.'/*') as $file) {
+                unlink($file);
+            }
+        }
         return true;
     }
 

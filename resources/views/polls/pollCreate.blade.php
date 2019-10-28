@@ -116,8 +116,8 @@
                     <div class="question_name col-md-4">
                         <input type="text" name="question_name" placeholder=" Вопрос">
                     </div>
-                    <div class="answer col-md-5 offset-md-1" placeholder=" Ответ">
-                        <input type="text" name="answer">
+                    <div class="answer col-md-5 offset-md-1">
+                        <input type="text" name="answer" placeholder=" Ответ">
                     </div>
                     <div class="answer col-md-5 offset-md-1">
                         <input type="text" name="answer" placeholder=" Ответ">
@@ -169,7 +169,7 @@
 
     <style>
         .question {
-            margin: 10px;
+            margin-bottom: 10px;
         }
     </style>
     
