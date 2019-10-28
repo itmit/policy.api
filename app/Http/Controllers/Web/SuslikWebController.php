@@ -125,6 +125,17 @@ class SuslikWebController extends Controller
      */
     public function uploadSusliks(Request $data)
     {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('auth.susliks.index')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $file = $data->file('file');
         $path = storage_path() . '/app/' . $file->store('temp');
         $zip = new ZipArchive;
