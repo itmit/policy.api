@@ -223,8 +223,10 @@
             }
 
             $( ".question" ).each(function( index ) {
-                // console.log($(this).html());
                 console.log($(this).find("input[name='question_name']").val());
+                $(this).find('.answer').each(function( index ) {
+                    console.log('ans');
+                });
             });
 
             // for (let pair of data.entries()) {
