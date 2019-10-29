@@ -107,7 +107,7 @@
                 </div>
             </div>
 
-            <hr class="hr-large">
+            <hr>
             <h2>Создание вопросов</h2>
 
             <div class="list_of_questions">
@@ -205,9 +205,6 @@
         }
         input {
             margin-bottom: 10px;
-        }
-        .hr-large {
-            height: 5px;
         }
     </style>
 
