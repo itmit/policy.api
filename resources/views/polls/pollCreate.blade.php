@@ -224,10 +224,10 @@
                 <div class="question_name col-md-4">
                     <input type="text" name="question_name" placeholder=" Вопрос" class="form-control" required>
                 </div>
-                <div class="question_option_multiple col-md-4">
+                <div class="question_option_multiple col-md-3">
                     <input type="checkbox" name="multiple"> Множественный
                 </div>
-                <div class="question_option_other col-md-4">
+                <div class="question_option_other col-md-5">
                     <input type="checkbox" name="other"> Включает вариант ответа "другой"
                 </div>
             </div>
