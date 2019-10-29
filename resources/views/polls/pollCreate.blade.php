@@ -230,8 +230,6 @@
 
             for (let pair of data.entries()) {
                 // pair - это массив [key, values]
-                console.log(pair[0]); // ключ
-                console.log(pair[1]); // значение
                 console.log(`Ключ = ${pair[0]}, значение = ${pair[1]}`);
             }
 
