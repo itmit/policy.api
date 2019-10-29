@@ -207,7 +207,7 @@
             let data = new Map([
             ['name', $("input[name='name']").val()],
             ['description', $("[name='description']").val()],
-            ['category', $("input[name='category']").val()],
+            ['category', $("[name='category']").val()],
             ['link', $("input[name='link']").val()]
             ]);  
 
