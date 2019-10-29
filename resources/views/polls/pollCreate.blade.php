@@ -112,17 +112,27 @@
 
             <div class="list_of_questions">
                 
-                <div class="question">
-                    <div class="question_name col-md-4">
-                        <input type="text" name="question_name" placeholder=" Вопрос" class="form-control">
+                    <div class="question">
+                        <div class="question_name col-md-4">
+                            <input type="text" name="question_name" placeholder=" Вопрос" class="form-control" required>
+                        </div>
+                        <div class="answers_container">
+                            <div class="answers">
+                                <div class="answer col-md-5 offset-md-1">
+                                    <input type="text" name="answer" placeholder=" Ответ" class="form-control" required>
+                                </div>
+                                <div class="answer col-md-5 offset-md-1">
+                                    <input type="text" name="answer" placeholder=" Ответ" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="add-answer col-md-5 offset-md-1">
+                                <input type="button" value="Добавить ответ" class="add_answer">
+                            </div>
+                        </div>
+                        <div>
+                            <input type="button" value="Удалить вопрос" class="col-md-4 delete_question">
+                        </div>
                     </div>
-                    <div class="answer col-md-5 offset-md-1">
-                        <input type="text" name="answer" placeholder=" Ответ" class="form-control">
-                    </div>
-                    <div class="answer col-md-5 offset-md-1">
-                        <input type="text" name="answer" placeholder=" Ответ" class="form-control">
-                    </div>
-                </div>
 
             </div>
 
@@ -162,8 +172,6 @@
 
         $(".add_new_question").on("click", function() {
             let elem = document.createElement('div');
-
-            // Клонируем содержимое шаблона для того, чтобы переиспользовать его несколько раз
             elem.append(sergay.content.cloneNode(true));
 
             // document.body.append(elem);
