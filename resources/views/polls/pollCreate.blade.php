@@ -203,7 +203,54 @@
         });
 
         $(document).on("click", ".test", function(e) {
-            console.log('test');
+  
+            let data = new Map([
+            ['name', $("input[name='name']").val()],
+            ['description', $("input[name='description']").val()],
+            ['category', $("input[name='category']").val()],
+            ['link', $("input[name='link']").val()]
+            ]);  
+
+            // let data = [];
+
+            // data.push($("input[name='name']").val());
+            // data.push($("input[name='description']").val());
+            // data.push($("input[name='category']").val());
+            // data.push($("input[name='link']").val());
+            if($('input:radio[name=time]:checked').val() == 'limited')
+            {
+                data.set('start_at', $("input[name='start_at']").val());
+                data.set('end_at', $("input[name='end_at']").val());
+            }
+            if($('input:radio[name=time]:checked').val() == 'unlimited')
+            {
+                data.set('start_at', null);
+                data.set('end_at', null);
+            }
+
+            for (let pair of data.entries()) {
+                // pair - это массив [key, values]
+                console.log(pair[0]); // ключ
+                console.log(pair[1]); // значение
+                console.log(`Ключ = ${pair[0]}, значение = ${pair[1]}`);
+            }
+
+            // $.ajax({
+            //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            //     dataType: "json",
+            //     data    : { ids: ids },
+            //     url     : 'susliks/delete',
+            //     method    : 'delete',
+            //     success: function (response) {
+            //         console.log(response);
+            //         $(".js-destroy:checked").closest('tr').remove();
+            //         $(".js-destroy").prop("checked", "");
+            //     },
+            //     error: function (xhr, err) { 
+            //         console.log("Error: " + xhr + " " + err);
+            //     }
+            // });
+            // console.log('test');
         });
 
     })
