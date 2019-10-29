@@ -194,6 +194,9 @@
         .question {
             margin-bottom: 10px;
         }
+        .material-icons {
+            cursor: pointer;
+        }
     </style>
 
     <template id="sergay">
