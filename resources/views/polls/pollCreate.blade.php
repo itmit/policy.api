@@ -228,6 +228,7 @@
                 console.log($(this).find("input[name='question_name']").val());
 
                 console.log($(this).find("input[name='multiple']").prop('checked'));
+                console.log($(this).find("input[name='other']").prop('checked'));
 
                 $(this).find('.answer').each(function( index ) {
                     console.log($(this).find("input[name='answer']").val());
