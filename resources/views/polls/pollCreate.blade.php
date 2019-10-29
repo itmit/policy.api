@@ -211,12 +211,6 @@
             ['link', $("input[name='link']").val()]
             ]);  
 
-            // let data = [];
-
-            // data.push($("input[name='name']").val());
-            // data.push($("input[name='description']").val());
-            // data.push($("input[name='category']").val());
-            // data.push($("input[name='link']").val());
             if($('input:radio[name=time]:checked').val() == 'limited')
             {
                 data.set('start_at', $("input[name='start_at']").val());
@@ -228,10 +222,14 @@
                 data.set('end_at', null);
             }
 
-            for (let pair of data.entries()) {
-                // pair - это массив [key, values]
-                console.log(`Ключ = ${pair[0]}, значение = ${pair[1]}`);
-            }
+            $( ".question" ).each(function( index ) {
+                console.log('a');
+            });
+
+            // for (let pair of data.entries()) {
+            //     // pair - это массив [key, values]
+            //     console.log(`Ключ = ${pair[0]}, значение = ${pair[1]}`);
+            // }
 
             // $.ajax({
             //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
