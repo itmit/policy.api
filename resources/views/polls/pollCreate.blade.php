@@ -197,6 +197,9 @@
         .material-icons {
             cursor: pointer;
         }
+        input {
+            margin-bottom: 10px;
+        }
     </style>
 
     <template id="sergay">
