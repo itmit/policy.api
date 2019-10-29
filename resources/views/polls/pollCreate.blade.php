@@ -168,11 +168,11 @@
         });
 
         $(".add_new_question").on("click", function() {
-            let elem = document.createElement('div');
-            elem.append(sergay.content.cloneNode(true));
+            // let elem = document.createElement('div');
+            // elem.append(sergay.content.cloneNode(true));
 
             // document.body.append(elem);
-            $('.list_of_questions').append(elem);
+            $('.list_of_questions').append(sergay.content.cloneNode(true));
             // $('.list_of_questions').append('<div class="question"><div class="question_name col-md-4"><input type="text" name="question_name" placeholder=" Вопрос" class="form-control"></div><div class="answer col-md-5 offset-md-1"><input type="text" name="answer" placeholder=" Ответ" class="form-control"></div><div class="answer col-md-5 offset-md-1"><input type="text" name="answer" placeholder=" Ответ" class="form-control"></div><div class="add-answer col-md-5 offset-md-1"><input type="button" value="Добавить ответ" class="add_answer"></div><div><input type="button" value="Удалить вопрос" class="col-md-4 delete_question"></div></div>');
         });
 
