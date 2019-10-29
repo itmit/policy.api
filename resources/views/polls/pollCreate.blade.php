@@ -176,7 +176,10 @@
         });
 
         $(".list_of_questions").on("click", ".add_answer", function(e) {
-            $(this).closest(".answers_container").find('.answers').append('new');
+            let elem = document.createElement('div');
+            elem.append(radik.content.cloneNode(true));
+            $(this).closest(".answers_container").find('.answers').append(elem);
+            // $(this).closest(".answers_container").find('.answers').append('new');
         });
 
     })
@@ -191,15 +194,15 @@
     <template id="sergay">
         <div class="question">
             <div class="question_name col-md-4">
-                <input type="text" name="question_name" placeholder=" Вопрос" class="form-control">
+                <input type="text" name="question_name" placeholder=" Вопрос" class="form-control" required>
             </div>
             <div class="answers_container">
                 <div class="answers">
                     <div class="answer col-md-5 offset-md-1">
-                        <input type="text" name="answer" placeholder=" Ответ" class="form-control">
+                        <input type="text" name="answer" placeholder=" Ответ" class="form-control" required>
                     </div>
                     <div class="answer col-md-5 offset-md-1">
-                        <input type="text" name="answer" placeholder=" Ответ" class="form-control">
+                        <input type="text" name="answer" placeholder=" Ответ" class="form-control" required>
                     </div>
                 </div>
                 <div class="add-answer col-md-5 offset-md-1">
@@ -209,6 +212,12 @@
             <div>
                 <input type="button" value="Удалить вопрос" class="col-md-4 delete_question">
             </div>
+        </div>
+    </template>
+
+    <template id="radik">
+        <div class="answer col-md-5 offset-md-1">
+            <input type="text" name="answer" placeholder=" Ответ" class="form-control" required>
         </div>
     </template>
     
