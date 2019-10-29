@@ -176,7 +176,7 @@
         });
 
         $(".list_of_questions").on("click", ".add_answer", function(e) {
-            $(this).closest(".answers_container").$('.answers').append('new');
+            $(this).closest(".answers_container").find('.answers').append('new');
         });
 
     })
