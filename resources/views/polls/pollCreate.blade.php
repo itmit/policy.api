@@ -222,23 +222,28 @@
                 data.set('end_at', null);
             }
 
-            data.set('questions', null);
-
             $( ".question" ).each(function( index ) {
-                console.log($(this).find("input[name='question_name']").val());
+                let question_data = new Map();  
 
-                console.log($(this).find("input[name='multiple']").prop('checked'));
-                console.log($(this).find("input[name='other']").prop('checked'));
+                question_data.set('question_name', $(this).find("input[name='question_name']").val());
+                question_data.set('multiple', $(this).find("input[name='multiple']").prop('checked'));
+                question_data.set('other', $(this).find("input[name='other']").prop('checked'));
 
-                $(this).find('.answer').each(function( index ) {
-                    console.log($(this).find("input[name='answer']").val());
-                });
+                // console.log($(this).find("input[name='question_name']").val());
+                // console.log($(this).find("input[name='multiple']").prop('checked'));
+                // console.log($(this).find("input[name='other']").prop('checked'));
+
+                // $(this).find('.answer').each(function( index ) {
+                //     console.log($(this).find("input[name='answer']").val());
+                // });
+
+                data.set('questions', question_data);
             });
 
-            // for (let pair of data.entries()) {
-            //     // pair - это массив [key, values]
-            //     console.log(`Ключ = ${pair[0]}, значение = ${pair[1]}`);
-            // }
+            for (let pair of data.entries()) {
+                // pair - это массив [key, values]
+                console.log(`Ключ = ${pair[0]}, значение = ${pair[1]}`);
+            }
 
             // $.ajax({
             //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
