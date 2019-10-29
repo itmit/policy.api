@@ -202,7 +202,7 @@
             $(this).closest(".row").remove();
         });
 
-        $(".list_of_questions").on("click", ".test", function(e) {
+        document.on("click", ".test", function(e) {
             console.log('test');
         });
 
