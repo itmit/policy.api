@@ -181,9 +181,9 @@
         });
 
         $(".list_of_questions").on("click", ".add_answer", function(e) {
-            let elem = document.createElement('div');
-            elem.append(radik.content.cloneNode(true));
-            $(this).closest(".answers_container").find('.answers').append(elem);
+            // let elem = document.createElement('div');
+            // elem.append(radik.content.cloneNode(true));
+            $(this).closest(".answers_container").find('.answers').append(radik.content.cloneNode(true));
             // $(this).closest(".answers_container").find('.answers').append('new');
         });
 
