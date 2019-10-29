@@ -223,7 +223,7 @@
             }
 
             $( ".question" ).each(function( index ) {
-                console.log('a');
+                console.log((this).children($('input:[name=question_name]').val()));
             });
 
             // for (let pair of data.entries()) {
