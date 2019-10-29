@@ -237,8 +237,8 @@
             <div class="answer col-md-5 offset-md-1">
                 <input type="text" name="answer" placeholder=" Ответ" class="form-control" required>
             </div>
-            <div class="answer col-md-1">
-                <span><i class="material-icons">delete</i></span>
+            <div class="answer-delete col-md-1">
+                <i class="material-icons">delete</i>
             </div>
         </div>
     </template>
