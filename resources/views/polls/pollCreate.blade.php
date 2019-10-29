@@ -229,7 +229,7 @@
 
     <template id="radik">
         <div class="answer col-md-5 offset-md-1">
-            <input type="text" name="answer" placeholder=" Ответ" class="form-control" required><i class="material-icons">delete</i>
+            <input type="text" name="answer" placeholder=" Ответ" class="form-control" required><span><i class="material-icons">delete</i></span>
         </div>
     </template>
     
