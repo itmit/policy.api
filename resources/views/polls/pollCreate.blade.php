@@ -117,10 +117,10 @@
                             <div class="question_name col-md-4">
                                 <input type="text" name="question_name" placeholder=" Вопрос" class="form-control" required>
                             </div>
-                            <div class="question_option_multiple col-md-1">
+                            <div class="question_option_multiple col-md-4">
                                 <input type="checkbox" name="multiple"> Множественный
                             </div>
-                            <div class="question_option_other col-md-1">
+                            <div class="question_option_other col-md-4">
                                 <input type="checkbox" name="other"> Включает вариант ответа "другой"
                             </div>
                         </div>
@@ -220,8 +220,16 @@
     <template id="sergay">
         <div class="question">
             <hr>
-            <div class="question_name col-md-4">
-                <input type="text" name="question_name" placeholder=" Вопрос" class="form-control" required>
+            <div class="row">
+                <div class="question_name col-md-4">
+                    <input type="text" name="question_name" placeholder=" Вопрос" class="form-control" required>
+                </div>
+                <div class="question_option_multiple col-md-4">
+                    <input type="checkbox" name="multiple"> Множественный
+                </div>
+                <div class="question_option_other col-md-4">
+                    <input type="checkbox" name="other"> Включает вариант ответа "другой"
+                </div>
             </div>
             <div class="answers_container">
                 <div class="answers">
