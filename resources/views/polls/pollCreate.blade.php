@@ -207,7 +207,7 @@
             margin-bottom: 10px;
         }
         .hr-large {
-            width: 5px;
+            height: 5px;
         }
     </style>
 
