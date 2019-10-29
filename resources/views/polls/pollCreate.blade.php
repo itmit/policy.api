@@ -222,8 +222,13 @@
                 data.set('end_at', null);
             }
 
+            data.set('questions', null);
+
             $( ".question" ).each(function( index ) {
                 console.log($(this).find("input[name='question_name']").val());
+
+                console.log($(this).find("input[name='multiple']").prop('checked'));
+
                 $(this).find('.answer').each(function( index ) {
                     console.log('ans');
                 });
