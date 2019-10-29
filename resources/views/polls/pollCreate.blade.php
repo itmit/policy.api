@@ -224,8 +224,7 @@
 
             $( ".question" ).each(function( index ) {
                 // console.log($(this).html());
-                // console.log($(this).children($("input[name='question_name']")).val());
-                console.log($("input[name='question_name']").val());
+                console.log($(this).find($("input[name='question_name']").val()));
             });
 
             // for (let pair of data.entries()) {
