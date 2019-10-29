@@ -209,8 +209,8 @@
     </style>
 
     <template id="sergay">
-        <hr>
         <div class="question">
+            <hr>
             <div class="question_name col-md-4">
                 <input type="text" name="question_name" placeholder=" Вопрос" class="form-control" required>
             </div>
