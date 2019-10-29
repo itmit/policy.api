@@ -176,8 +176,7 @@
         });
 
         $(".list_of_questions").on("click", ".add_answer", function(e) {
-            console.log('add');
-            console.log($(this).closest(".answers").html());
+            $(this).closest(".answers_container").$('.answers').append('new');
         });
 
     })
@@ -194,12 +193,14 @@
             <div class="question_name col-md-4">
                 <input type="text" name="question_name" placeholder=" Вопрос" class="form-control">
             </div>
-            <div class="answers">
-                <div class="answer col-md-5 offset-md-1">
-                    <input type="text" name="answer" placeholder=" Ответ" class="form-control">
-                </div>
-                <div class="answer col-md-5 offset-md-1">
-                    <input type="text" name="answer" placeholder=" Ответ" class="form-control">
+            <div class="answers_container">
+                <div class="answers">
+                    <div class="answer col-md-5 offset-md-1">
+                        <input type="text" name="answer" placeholder=" Ответ" class="form-control">
+                    </div>
+                    <div class="answer col-md-5 offset-md-1">
+                        <input type="text" name="answer" placeholder=" Ответ" class="form-control">
+                    </div>
                 </div>
                 <div class="add-answer col-md-5 offset-md-1">
                     <input type="button" value="Добавить ответ" class="add_answer">
