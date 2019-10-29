@@ -202,7 +202,7 @@
             $(this).closest(".row").remove();
         });
 
-        document.on("click", ".test", function(e) {
+        $(document).on("click", ".test", function(e) {
             console.log('test');
         });
 
