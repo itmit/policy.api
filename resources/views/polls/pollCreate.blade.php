@@ -118,11 +118,16 @@
                         </div>
                         <div class="answers_container">
                             <div class="answers">
-                                <div class="answer col-md-5 offset-md-1">
-                                    <input type="text" name="answer" placeholder=" Ответ" class="form-control" required>
+                                <div class="row">
+                                    <div class="answer col-md-5 offset-md-1">
+                                        <input type="text" name="answer" placeholder=" Ответ" class="form-control" required>
+                                    </div>
                                 </div>
-                                <div class="answer col-md-5 offset-md-1">
-                                    <input type="text" name="answer" placeholder=" Ответ" class="form-control" required>
+                
+                                <div class="row">
+                                    <div class="answer col-md-5 offset-md-1">
+                                        <input type="text" name="answer" placeholder=" Ответ" class="form-control" required>
+                                    </div>
                                 </div>
                             </div>
                             <div class="add-answer col-md-5 offset-md-1">
@@ -196,6 +201,7 @@
         }
         .material-icons {
             cursor: pointer;
+            padding-top: 7px;
         }
         input {
             margin-bottom: 10px;
