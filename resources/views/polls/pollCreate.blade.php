@@ -176,6 +176,7 @@
         });
 
         $(".list_of_questions").on("click", ".add_answer", function(e) {
+            console.log('add');
             $(this).closest(".answers").append('new answer');
         });
 
