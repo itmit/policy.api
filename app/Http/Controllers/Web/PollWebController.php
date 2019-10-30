@@ -45,7 +45,7 @@ class PollWebController extends Controller
      */
     public function store(Request $request)
     {
-        return 'a';
+        return json_encode('a');
     }
 
     /**
