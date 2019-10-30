@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <a href="{{ route('auth.susliks.create') }}" class="btn btn-primary">Создать суслика</a>
             <a href="{{ route('auth.createCategory') }}" class="btn btn-primary">Создать категорию</a>
             <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ route('auth.uploadSusliks') }}">

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <a href="{{ route('auth.polls.create') }}" class="btn btn-primary">Создать опрос</a>
             <a href="{{ route('auth.createPollCategory') }}" class="btn btn-primary">Создать категорию</a>
             <table class="table table-bordered">
