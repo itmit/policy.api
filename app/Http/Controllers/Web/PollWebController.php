@@ -118,7 +118,7 @@ class PollWebController extends Controller
         };
 
 
-        return $result;
+        // return $result;
         // dd($request->all_data["questions"]);
 
     }
