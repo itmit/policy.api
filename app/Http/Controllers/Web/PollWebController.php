@@ -45,7 +45,8 @@ class PollWebController extends Controller
      */
     public function store(Request $request)
     {
-       dd($request->data);
+        return 'otvet';
+        dd($request->data);
     }
 
     /**
