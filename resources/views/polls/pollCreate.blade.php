@@ -255,6 +255,7 @@
                 url     : '../polls',
                 method    : 'post',
                 success: function (response) {
+                    console.log('asasasas');
                     console.log(response);
                 },
                 error: function (xhr, err) { 
