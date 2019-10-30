@@ -246,7 +246,8 @@
             });
 
             all_data.set('questions', all_questions);
-            all_data_array = JSON.stringify(all_data);
+            // all_data_array = JSON.stringify(all_data);
+            const all_data_array = Object.fromEntries(all_data);
 
             $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
