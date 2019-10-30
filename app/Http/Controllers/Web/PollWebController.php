@@ -72,6 +72,8 @@ class PollWebController extends Controller
         foreach($request->all_data["questions"] as $questions)
         {
             // return $questions['question_name'];
+            if($questions['multiple'] == true) $questions['multiple'] = 1;
+            if($questions['multiple'] == false) $questions['multiple'] = 0;
             $pollQuestion = PollQuestions::create([
                 'uuid' => (string) Str::uuid(),
                 'poll_id' => $poll->id,
