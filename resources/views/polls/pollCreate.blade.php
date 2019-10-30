@@ -202,8 +202,6 @@
 
         $(document).on("click", ".test", function(e) {
         // $("form").submit(function(e) {
-  
-            console.log('button');
 
             let data = new Map([
             ['name', $("input[name='name']").val()],
@@ -250,20 +248,20 @@
             data.set('questions', all_questions);
             // console.log(data);
 
-            // $.ajax({
-            //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            //     dataType: "html",
-            //     data    : { data: data },
-            //     url     : '../polls',
-            //     method    : 'post',
-            //     success: function (response) {
-            //         console.log('asasasas');
-            //         console.log(response);
-            //     },
-            //     error: function (xhr, err) { 
-            //         console.log("Error: " + xhr + " " + err);
-            //     }
-            // });
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "html",
+                data    : { data: data },
+                url     : '../polls',
+                method    : 'post',
+                success: function (response) {
+                    console.log('asasasas');
+                    console.log(response);
+                },
+                error: function (xhr, err) { 
+                    console.log("Error: " + xhr + " " + err);
+                }
+            });
         });
 
     })
