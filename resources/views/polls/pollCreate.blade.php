@@ -239,7 +239,8 @@
                 });
 
                 question_data.set('answers', answer_data);
-                data.set('question'+question_number, question_data);
+                data.set('questions', 'question'+question_number);
+                'question'+question_number.set('question', 'question_data);
                 question_number++;
             });
 
