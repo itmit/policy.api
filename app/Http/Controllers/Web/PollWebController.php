@@ -48,15 +48,15 @@ class PollWebController extends Controller
     public function store(Request $request)
     {
         // return $request->all_data["name"];
-        // Poll::create([
-        //     'uuid' => (string) Str::uuid(),
-        //     'name' => $request->all_data["name"],
-        //     'description' => $request->all_data["description"],
-        //     'category' => $request->all_data["category"],
-        //     'link' => $request->all_data["link"],
-        //     'start_at' => $request->all_data["start_at"],
-        //     'end_at' => $request->all_data["end_at"],
-        // ]);
+        $poll = Poll::create([
+            'uuid' => (string) Str::uuid(),
+            'name' => $request->all_data["name"],
+            'description' => $request->all_data["description"],
+            'category' => $request->all_data["category"],
+            'link' => $request->all_data["link"],
+            'start_at' => $request->all_data["start_at"],
+            'end_at' => $request->all_data["end_at"],
+        ]);
 
         // foreach($request->all_data["questions"] as $key => $value)
         // {
@@ -72,10 +72,24 @@ class PollWebController extends Controller
 
         foreach($request->all_data["questions"] as $questions)
         {
-            foreach($questions as $key => $value)
-            {
-                $result .= ' key: ' . $key;
-            };
+            return $questions['question_name'];
+            // foreach($questions as $key => $value)
+            // {
+            //     // $result .= ' key: ' . $key;
+            //     PollQuestions::create([
+            //         'uuid' => (string) Str::uuid(),
+            //         'poll_id' => $poll->id,
+            //         'question' => $request->all_data["description"],
+            //         'multiple' => $request->all_data["category"],
+            //     ]);
+            //     if($key == 'answers')
+            //     {
+            //         foreach($key as $key2 => $value2)
+            //         {
+                        
+            //         };
+            //     }
+            // };
         };
 
 
