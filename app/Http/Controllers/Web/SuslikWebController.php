@@ -201,7 +201,7 @@ class SuslikWebController extends Controller
                 // Далее перебираем все заполненные строки (столбцы A - E)
                 for ($row = 2; $row <= $cells->getHighestRow(); $row++){
                     // $result[] = $result[$row];
-                    for ($col = 'A'; $col <= 'E'; $col++) {
+                    for ($col = 'A'; $col <= 'F'; $col++) {
                         // Так можно получить значение конкретной ячейки
                         $suslik[$col] = $cells->get($col.$row)->getValue();
                     }
