@@ -47,16 +47,15 @@ class PollWebController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->all_data["name"];
-        // $poll = Poll::create([
-        //     'uuid' => (string) Str::uuid(),
-        //     'name' => $request->all_data["name"],
-        //     'description' => $request->all_data["description"],
-        //     'category' => $request->all_data["category"],
-        //     'link' => $request->all_data["link"],
-        //     'start_at' => $request->all_data["start_at"],
-        //     'end_at' => $request->all_data["end_at"],
-        // ]);
+        $poll = Poll::create([
+            'uuid' => (string) Str::uuid(),
+            'name' => $request->all_data["name"],
+            'description' => $request->all_data["description"],
+            'category' => $request->all_data["category"],
+            'link' => $request->all_data["link"],
+            'start_at' => $request->all_data["start_at"],
+            'end_at' => $request->all_data["end_at"],
+        ]);
 
         // foreach($request->all_data["questions"] as $key => $value)
         // {
@@ -73,9 +72,15 @@ class PollWebController extends Controller
         foreach($request->all_data["questions"] as $questions)
         {
             // return $questions['question_name'];
-            foreach ($questions['answers'] as $key => $value) {
-                return $value;
-            }
+            $pollQuestion = PollQuestions::create([
+                'uuid' => (string) Str::uuid(),
+                'poll_id' => $poll->id,
+                'question' => $questions['question_name'],
+                'multiple' => $questions['multiple'],
+            ]);
+            // foreach ($questions['answers'] as $key => $value) {
+            //     return $value;
+            // }
             // foreach($questions as $key => $value)
             // {
             //     // $result .= ' key: ' . $key;
