@@ -250,7 +250,7 @@
 
             $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                dataType: "html",
+                dataType: "json",
                 data    : { data: data },
                 url     : '../polls',
                 method    : 'post',
