@@ -254,7 +254,7 @@
                 dataType: "json",
                 data    : { data: data },
                 url     : 'store',
-                method    : 'post',
+                method    : 'get',
                 success: function (response) {
                     console.log(response);
                 },
