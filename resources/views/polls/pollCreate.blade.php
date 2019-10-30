@@ -203,6 +203,8 @@
         $(document).on("click", ".test", function(e) {
         // $("form").submit(function(e) {
   
+            console.log('button');
+
             let data = new Map([
             ['name', $("input[name='name']").val()],
             ['description', $("[name='description']").val()],
