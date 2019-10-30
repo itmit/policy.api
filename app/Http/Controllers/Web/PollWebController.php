@@ -68,14 +68,18 @@ class PollWebController extends Controller
         //     ]);
         // };
 
+        $result = '';
+
         foreach($request->all_data["questions"] as $questions)
         {
             foreach($questions as $key => $value)
             {
-                return $value;
+                $result .= 'key: ' . $key . ' value: ' . $value;
             };
         };
 
+
+        return $result;
         // dd($request->all_data["questions"]);
 
     }
