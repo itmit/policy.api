@@ -203,7 +203,7 @@
         $(document).on("click", ".test", function(e) {
         // $("form").submit(function(e) {
 
-            let data = new Map([
+            let all_data = new Map([
             ['name', $("input[name='name']").val()],
             ['description', $("[name='description']").val()],
             ['category', $("[name='category']").val()],
@@ -212,13 +212,13 @@
 
             if($('input:radio[name=time]:checked').val() == 'limited')
             {
-                data.set('start_at', $("input[name='start_at']").val());
-                data.set('end_at', $("input[name='end_at']").val());
+                all_data.set('start_at', $("input[name='start_at']").val());
+                all_data.set('end_at', $("input[name='end_at']").val());
             }
             if($('input:radio[name=time]:checked').val() == 'unlimited')
             {
-                data.set('start_at', null);
-                data.set('end_at', null);
+                all_data.set('start_at', null);
+                all_data.set('end_at', null);
             }
 
             let question_number = 0;
@@ -245,13 +245,13 @@
                 question_number++;
             });
 
-            data.set('questions', all_questions);
+            all_data.set('questions', all_questions);
             // console.log(data);
 
             $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 dataType: "html",
-                data    : {data},
+                data    : all_data,
                 url     : '../polls',
                 method    : 'post',
                 success: function (response) {
