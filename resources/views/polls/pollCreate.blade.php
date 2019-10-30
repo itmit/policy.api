@@ -222,10 +222,10 @@
                 data.set('end_at', null);
             }
 
+            let question_number = 0;
             $( ".question" ).each(function( index ) {
                 let question_data = new Map(); 
                 let answer_data = new Map();  
-                let question_number = 0;
 
                 question_data.set('question_name', $(this).find("input[name='question_name']").val());
                 question_data.set('multiple', $(this).find("input[name='multiple']").prop('checked'));
@@ -239,7 +239,7 @@
                 });
 
                 question_data.set('answers', answer_data);
-                data.set('questions'+question_number, question_data);
+                data.set('question'+question_number, question_data);
                 question_number++;
             });
 
