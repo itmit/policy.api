@@ -200,8 +200,8 @@
             $(this).closest(".row").remove();
         });
 
-        $(document).on("click", ".test", function(e) {
-        // $("form").submit(function(e) {
+        // $(document).on("click", ".test", function(e) {
+        $("form").submit(function(e) {
 
             let all_data = new Map([
             ['name', $("input[name='name']").val()],
@@ -266,6 +266,7 @@
                     console.log("Error: " + xhr + " " + err);
                 }
             });
+            return false;
         });
 
     })
