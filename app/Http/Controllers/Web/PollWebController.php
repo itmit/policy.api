@@ -74,7 +74,7 @@ class PollWebController extends Controller
         {
             foreach($questions as $key => $value)
             {
-                $result .= 'key: ' . $key . ' value: ' . $value;
+                $result .= 'key: ' . $key;
             };
         };
 
