@@ -80,9 +80,24 @@ class PollWebController extends Controller
                 'question' => $questions['question_name'],
                 'multiple' => $questions['multiple'],
             ]);
-            // foreach ($questions['answers'] as $key => $value) {
-            //     return $value;
-            // }
+            foreach ($questions['answers'] as $key => $value) {
+                if($questions['other'] == true){
+                    $pollQuestionAnswer = PollQuestionAnswers::create([
+                        'uuid' => (string) Str::uuid(),
+                        'question_id' => $pollQuestion->id,
+                        'answer' => 'Другой',
+                        'type' => 1,
+                    ]);
+                }
+                if($questions['other'] == false){
+                    $pollQuestionAnswer = PollQuestionAnswers::create([
+                        'uuid' => (string) Str::uuid(),
+                        'question_id' => $pollQuestion->id,
+                        'answer' => $value,
+                        'type' => 0,
+                    ]);
+                }
+            }
             // foreach($questions as $key => $value)
             // {
             //     // $result .= ' key: ' . $key;
