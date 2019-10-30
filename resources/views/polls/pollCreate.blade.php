@@ -151,7 +151,7 @@
 
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
-                    <<input type="button" value="Создать опрос" class="test">
+                    <input type="button" value="Создать опрос" class="test">
                 </div>
             </div>
         </form>
@@ -252,7 +252,7 @@
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 dataType: "html",
                 data    : { data: data },
-                url     : '',
+                url     : '../polls',
                 method    : 'post',
                 success: function (response) {
                     console.log(response);
