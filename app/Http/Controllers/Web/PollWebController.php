@@ -69,6 +69,8 @@ class PollWebController extends Controller
 
         $result = '';
 
+        dd($request->all_data["questions"]);
+
         foreach($request->all_data["questions"] as $questions)
         {
             // return $questions['question_name'];
