@@ -246,22 +246,22 @@
             });
 
             all_data.set('questions', all_questions);
-            // console.log(data);
+            console.log(Array.from(all_data));
 
-            $.ajax({
-                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                dataType: "html",
-                data    : {"all_data" : all_data, 'asd' : 'asd'},
-                url     : '../polls',
-                method    : 'post',
-                success: function (response) {
-                    // console.log(data);
-                    console.log(response);
-                },
-                error: function (xhr, err) { 
-                    console.log("Error: " + xhr + " " + err);
-                }
-            });
+            // $.ajax({
+            //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            //     dataType: "html",
+            //     data    : {all_data : all_data, 'asd' : 'asd'},
+            //     url     : '../polls',
+            //     method    : 'post',
+            //     success: function (response) {
+            //         // console.log(data);
+            //         console.log(response);
+            //     },
+            //     error: function (xhr, err) { 
+            //         console.log("Error: " + xhr + " " + err);
+            //     }
+            // });
         });
 
     })
