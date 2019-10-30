@@ -72,7 +72,10 @@ class PollWebController extends Controller
 
         foreach($request->all_data["questions"] as $questions)
         {
-            return $questions['question_name'];
+            // return $questions['question_name'];
+            foreach ($questions['answers'] as $key => $value) {
+                return $value;
+            }
             // foreach($questions as $key => $value)
             // {
             //     // $result .= ' key: ' . $key;
