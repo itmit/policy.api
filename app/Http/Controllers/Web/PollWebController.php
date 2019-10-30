@@ -45,7 +45,7 @@ class PollWebController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all_data['name'];
+        return $request->all_data->name;
         // Poll::create([
         //     'uuid' => ,
         //     'name' => ,
