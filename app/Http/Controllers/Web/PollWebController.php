@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Poll;
 use App\PollCategories;
+use App\PollQuestions;
+use App\PollQuestionAnswers;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
@@ -46,16 +48,28 @@ class PollWebController extends Controller
     public function store(Request $request)
     {
         // return $request->all_data["name"];
-        Poll::create([
-            'uuid' => (string) Str::uuid(),
-            'name' => $request->all_data["name"],
-            'description' => $request->all_data["description"],
-            'category' => $request->all_data["category"],
-            'link' => $request->all_data["link"],
-            'start_at' => $request->all_data["start_at"],
-            'end_at' => $request->all_data["end_at"],
-        ]);
-        // return 'otvet';
+        // Poll::create([
+        //     'uuid' => (string) Str::uuid(),
+        //     'name' => $request->all_data["name"],
+        //     'description' => $request->all_data["description"],
+        //     'category' => $request->all_data["category"],
+        //     'link' => $request->all_data["link"],
+        //     'start_at' => $request->all_data["start_at"],
+        //     'end_at' => $request->all_data["end_at"],
+        // ]);
+
+        // foreach($request->all_data["questions"] as $key => $value)
+        // {
+        //     PollQuestions::create([
+        //         'uuid' => (string) Str::uuid(),
+        //         'poll_id' => $request->all_data["name"],
+        //         'question' => $request->all_data["description"],
+        //         'multiple' => $request->all_data["category"],
+        //     ]);
+        // };
+
+        dd($request->all_data["questions"]);
+
     }
 
     /**
