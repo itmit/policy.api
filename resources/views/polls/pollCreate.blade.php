@@ -251,11 +251,11 @@
             $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 dataType: "html",
-                data    : all_data,
+                data    : 'asd',
                 url     : '../polls',
                 method    : 'post',
                 success: function (response) {
-                    console.log(data);
+                    // console.log(data);
                     console.log(response);
                 },
                 error: function (xhr, err) { 
