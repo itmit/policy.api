@@ -237,7 +237,7 @@
                 $(this).find('.answer').each(function( index ) {
                     answer_data.set(i, $(this).find("input[name='answer']").val());
                     i++;
-                    console.log($(this).find("input[name='answer']").val());
+                    // console.log($(this).find("input[name='answer']").val());
                 });
 
                 question_data.set('answers', answer_data);
@@ -247,29 +247,21 @@
             });
 
             data.set('questions', all_questions);
-            console.log(data);
+            // console.log(data);
 
-            // for (let pair of data.entries()) {
-            //     // pair - это массив [key, values]
-            //     console.log(`Ключ = ${pair[0]}, значение = ${pair[1]}`);
-            // }
-
-            // $.ajax({
-            //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            //     dataType: "json",
-            //     data    : { ids: ids },
-            //     url     : 'susliks/delete',
-            //     method    : 'delete',
-            //     success: function (response) {
-            //         console.log(response);
-            //         $(".js-destroy:checked").closest('tr').remove();
-            //         $(".js-destroy").prop("checked", "");
-            //     },
-            //     error: function (xhr, err) { 
-            //         console.log("Error: " + xhr + " " + err);
-            //     }
-            // });
-            // console.log('test');
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data    : { data: data },
+                url     : 'polls/store',
+                method    : 'post',
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (xhr, err) { 
+                    console.log("Error: " + xhr + " " + err);
+                }
+            });
         });
 
     })
