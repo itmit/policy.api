@@ -238,6 +238,7 @@
                     i++;
                 });
 
+                answer_data = Object.fromEntries(answer_data)
                 question_data.set('answers', answer_data);
                 question_data = Object.fromEntries(question_data)
                 // data.set('question'+question_number, question_data);
