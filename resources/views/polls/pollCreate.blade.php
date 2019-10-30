@@ -251,7 +251,7 @@
             $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 dataType: "html",
-                data    : {all_data : all_data, 'asd' : 'asd'},
+                data    : {"all_data" : all_data, 'asd' : 'asd'},
                 url     : '../polls',
                 method    : 'post',
                 success: function (response) {
