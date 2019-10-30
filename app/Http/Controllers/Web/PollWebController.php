@@ -96,14 +96,7 @@ class PollWebController extends Controller
                     'type' => 1,
                 ]);
             }
-            if($questions['other'] == 'false'){
-                $pollQuestionAnswer = PollQuestionAnswers::create([
-                    'uuid' => (string) Str::uuid(),
-                    'question_id' => $pollQuestion->id,
-                    'answer' => $value,
-                    'type' => 0,
-                ]);
-            }
+            
             // foreach($questions as $key => $value)
             // {
             //     // $result .= ' key: ' . $key;
