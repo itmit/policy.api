@@ -151,7 +151,8 @@
 
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
-                    <input type="button" value="Создать опрос" class="test">
+                    {{-- <input type="button" value="Создать опрос" class="test"> --}}
+                    <button type="submit" class="test">Создать опрос</button>
                 </div>
             </div>
         </form>
