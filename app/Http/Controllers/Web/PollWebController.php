@@ -45,6 +45,16 @@ class PollWebController extends Controller
      */
     public function store(Request $request)
     {
+        return $request->all_data['name'];
+        // Poll::create([
+        //     'uuid' => ,
+        //     'name' => ,
+        //     'description' => ,
+        //     'category' => ,
+        //     'link' => ,
+        //     'start_at' => ,
+        //     'end_at' => ,
+        // ]);
         // return 'otvet';
         // $data = $request.getParameterValues("json");
         dd($request);
