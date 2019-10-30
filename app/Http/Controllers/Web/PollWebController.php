@@ -46,7 +46,7 @@ class PollWebController extends Controller
     public function store(Request $request)
     {
         // return 'otvet';
-        $data = $request.getParameterValues("json");
+        // $data = $request.getParameterValues("json");
         dd($request);
     }
 
