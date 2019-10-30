@@ -223,7 +223,7 @@ class SuslikWebController extends Controller
                         'place_of_work' => $item['B'],
                         'position' => $item['C'],
                         'category' => $categoryID->id,
-                        // 'photo' => $item['E'],
+                        'link' => $item['F'],
                     ]);
 
                     foreach($files as $suslikImage)
