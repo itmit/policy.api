@@ -203,6 +203,7 @@
         });
 
         $(document).on("click", ".test", function(e) {
+        // $("form").submit(function(e) {
   
             let data = new Map([
             ['name', $("input[name='name']").val()],
@@ -251,9 +252,9 @@
 
             $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                dataType: "json",
+                dataType: "html",
                 data    : { data: data },
-                url     : 'storePoll',
+                url     : 'store',
                 method    : 'post',
                 success: function (response) {
                     console.log(response);
