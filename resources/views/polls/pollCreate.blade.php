@@ -239,9 +239,9 @@
                     // console.log($(this).find("input[name='answer']").val());
                 });
 
-                question_data.set('answers', answer_data);
+                question_data.set('answers', Object.fromEntries(answer_data));
                 // data.set('question'+question_number, question_data);
-                all_questions.set('question'+question_number, question_data);
+                all_questions.set('question'+question_number, Object.fromEntries(question_data));
                 question_number++;
             });
 
