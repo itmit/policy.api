@@ -151,13 +151,11 @@
 
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
-                    <button type="submit" class="btn btn-primary">
-                        Создать опрос
-                    </button>
+                    <<input type="button" value="Создать опрос" class="test">
                 </div>
             </div>
         </form>
-        <input type="button" value="Собрать данные" class="test">
+        
     </div>
 
     <script>
@@ -254,7 +252,7 @@
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 dataType: "html",
                 data    : { data: data },
-                url     : 'store',
+                url     : '',
                 method    : 'post',
                 success: function (response) {
                     console.log(response);
