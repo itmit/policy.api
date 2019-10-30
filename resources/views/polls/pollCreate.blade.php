@@ -243,10 +243,11 @@
                 question_data = Object.fromEntries(question_data)
                 // data.set('question'+question_number, question_data);
                 all_questions.set('question'+question_number, question_data);
-                all_questions = Object.fromEntries(all_questions)
+                
                 question_number++;
             });
 
+            all_questions = Object.fromEntries(all_questions)
             all_data.set('questions', all_questions);
             // all_data_array = JSON.stringify(all_data);
             const all_data_array = Object.fromEntries(all_data);
