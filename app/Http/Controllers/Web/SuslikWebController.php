@@ -58,6 +58,7 @@ class SuslikWebController extends Controller
             'place_of_work' => 'required|min:3|max:191',
             'position' => 'required|min:3|max:191',
             'category' => 'required',
+            'link' => 'required|min:3|max:191',
         ]);
 
         if ($validator->fails()) {
@@ -72,7 +73,8 @@ class SuslikWebController extends Controller
             'name' => $request->name,
             'place_of_work' => $request->place_of_work,
             'position' => $request->position,
-            'category' => $request->category
+            'category' => $request->category,
+            'link' => $request->link
         ]);
 
         return redirect()->route('auth.susliks.index');

@@ -25,6 +25,8 @@ class CreateSusliksTable extends Migration
             $table->integer('dislikes')->default(0);
             $table->integer('neutrals')->default(0);
 
+            $table->string('link')->nullable();
+
             $table->string('photo')->nullable();
             $table->timestamps();
             $table->softDeletes();

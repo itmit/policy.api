@@ -46,6 +46,7 @@
                     <th>Лайки</th>
                     <th>Дизлайки</th>
                     <th>Нейтралы</th>
+                    <th>Ссылка</th>
                     <th>Дата создания</th>
                 </tr>
                 </thead>
@@ -60,6 +61,7 @@
                         <td>{{ $suslik->likes }}</td>
                         <td>{{ $suslik->dislikes }}</td>
                         <td>{{ $suslik->neutrals }}</td>
+                        <td>{{ $suslik->link }}</td>
                         <td>{{ $suslik->created_at->timezone('Europe/Moscow') }}</td>
                     </tr>
                 @endforeach

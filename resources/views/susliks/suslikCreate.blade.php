@@ -66,6 +66,19 @@
                 </div>
             </div>
 
+            <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
+                <label for="position" class="col-md-4 control-label">Ссылка</label>
+                <div class="col-md-6">
+                    <input id="link" type="text" class="form-control" name="link" value="{{ old('link') }}" required>
+
+                    @if ($errors->has('link'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('link') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                     <button type="submit" class="btn btn-primary">
