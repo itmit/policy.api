@@ -225,14 +225,11 @@
             $( ".question" ).each(function( index ) {
                 let question_data = new Map(); 
                 let answer_data = new Map();  
+                let question_number = 0;
 
                 question_data.set('question_name', $(this).find("input[name='question_name']").val());
                 question_data.set('multiple', $(this).find("input[name='multiple']").prop('checked'));
                 question_data.set('other', $(this).find("input[name='other']").prop('checked'));
-
-                // console.log($(this).find("input[name='question_name']").val());
-                // console.log($(this).find("input[name='multiple']").prop('checked'));
-                // console.log($(this).find("input[name='other']").prop('checked'));
 
                 let i = 0;
                 $(this).find('.answer').each(function( index ) {
@@ -241,8 +238,8 @@
                     console.log($(this).find("input[name='answer']").val());
                 });
 
-                question_data.set('answers', answer_data);
-                data.set('questions', question_data);
+                question_data.set.add('answers', answer_data);
+                data.set.add('questions', question_data);
             });
 
             console.log(data);
