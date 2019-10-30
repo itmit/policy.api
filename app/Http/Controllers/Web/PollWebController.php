@@ -43,7 +43,7 @@ class PollWebController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storePoll(Request $request)
     {
         return json_encode('a');
     }

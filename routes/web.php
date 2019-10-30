@@ -35,7 +35,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
 
     Route::get('createPollCategory', 'Web\PollWebController@createCategory')->name('createPollCategory');
     Route::post('storePollCategory', 'Web\PollWebController@storeCategory')->name('storePollCategory');
-    // Route::post('poll/store', 'Web\PollWebController@store');
+    Route::post('poll/storePoll', 'Web\PollWebController@storePoll');
 });
 
 Auth::routes();

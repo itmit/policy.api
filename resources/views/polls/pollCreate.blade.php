@@ -253,8 +253,8 @@
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 dataType: "json",
                 data    : { data: data },
-                url     : 'store',
-                method    : 'get',
+                url     : 'storePoll',
+                method    : 'post',
                 success: function (response) {
                     console.log(response);
                 },
