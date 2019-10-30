@@ -238,8 +238,9 @@
                     console.log($(this).find("input[name='answer']").val());
                 });
 
-                question_data.set.add('answers', answer_data);
-                data.set.add('questions', question_data);
+                question_data.set('answers', answer_data);
+                data.set('questions'+question_number, question_data);
+                question_number++;
             });
 
             console.log(data);
