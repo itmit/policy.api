@@ -74,8 +74,8 @@ class PollWebController extends Controller
         foreach($request->all_data["questions"] as $questions)
         {
             // return $questions['question_name'];
-            if($questions['multiple'] == true) $questions['multiple'] = 1;
-            if($questions['multiple'] == false) $questions['multiple'] = 0;
+            if($questions['multiple'] == 'true') $questions['multiple'] = 1;
+            if($questions['multiple'] == 'false') $questions['multiple'] = 0;
             $pollQuestion = PollQuestions::create([
                 'uuid' => (string) Str::uuid(),
                 'poll_id' => $poll->id,
@@ -83,7 +83,7 @@ class PollWebController extends Controller
                 'multiple' => $questions['multiple'],
             ]);
             foreach ($questions['answers'] as $key => $value) {
-                if($questions['other'] == true){
+                if($questions['other'] == 'true'){
                     $pollQuestionAnswer = PollQuestionAnswers::create([
                         'uuid' => (string) Str::uuid(),
                         'question_id' => $pollQuestion->id,
@@ -91,7 +91,7 @@ class PollWebController extends Controller
                         'type' => 1,
                     ]);
                 }
-                if($questions['other'] == false){
+                if($questions['other'] == 'false'){
                     $pollQuestionAnswer = PollQuestionAnswers::create([
                         'uuid' => (string) Str::uuid(),
                         'question_id' => $pollQuestion->id,
