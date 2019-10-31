@@ -33,22 +33,31 @@ class PollApiController extends ApiBaseController
      */
     public function getPollList(Request $request)
     {
-        $validator = Validator::make($request->all(), [ 
-            'category_uuid' => 'required|uuid',
-        ]);
+        // $validator = Validator::make($request->all(), [ 
+        //     'category_uuid' => 'required|uuid',
+        // ]);
 
-        if ($validator->fails()) { 
-            return response()->json(['error'=>$validator->errors()], 401);            
-        }
+        // if ($validator->fails()) { 
+        //     return response()->json(['error'=>$validator->errors()], 401);            
+        // }
 
-        $category = PollCategories::where('uuid', '=', $request->category_uuid)->first('id');
-
-        if(!$category)
+        if($request->category_uuid)
         {
-            return $this->sendError('Error', 'Такой категории не существует');
+            $category = PollCategories::where('uuid', '=', $request->category_uuid)->first('id');
+
+            if(!$category)
+            {
+                return $this->sendError('Error', 'Такой категории не существует');
+            }
+    
+            $polls = Poll::where('category', '=', $category->id)->get()->toArray();
+        }
+        else
+        {
+            $polls = Poll::all()->toArray();
         }
 
-        $polls = Poll::where('category', '=', $category->id)->get()->toArray();
+        
         return $this->sendResponse($polls, 'Список опросов');
     }
 
