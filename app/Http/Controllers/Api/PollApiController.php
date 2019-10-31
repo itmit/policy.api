@@ -48,7 +48,7 @@ class PollApiController extends ApiBaseController
             return $this->sendError('Error', 'Такой категории не существует');
         }
 
-        $polls = Poll::where('category', '=', $category->id)->toArray();
+        $polls = Poll::where('category', '=', $category->id)->get()->toArray();
         return $this->sendResponse($polls, 'Список опросов');
     }
 
