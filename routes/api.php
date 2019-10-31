@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('suslik/removeFromFav', 'Api\SuslikApiController@removeFromFav');
 });
 
+Route::post('poll/getPollCategoryList', 'Api\PollApiController@getPollCategoryList');
 Route::post('poll/getPollList', 'Api\PollApiController@getPollList');
 Route::post('poll/getPollQuestionList', 'Api\PollApiController@getPollQuestionList');
 Route::post('poll/passPoll', 'Api\PollApiController@passPoll');

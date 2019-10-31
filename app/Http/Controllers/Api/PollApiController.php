@@ -7,6 +7,7 @@ use App\Poll;
 use App\PollQuestions;
 use App\PollQuestionAnswers;
 use App\PollQuestionAnswerUsers;
+use App\PollCategories;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -15,13 +16,39 @@ use Illuminate\Support\Str;
 class PollApiController extends ApiBaseController
 {
     /**
+     * Выводит список категорий опросов
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getPollCategoryList()
+    {
+        $categories = PollCategories::all()->toArray();
+        return $this->sendResponse($categories, 'Список категорий');
+    }
+
+    /**
      * Выводит список опросов
      *
      * @return \Illuminate\Http\Response
      */
-    public function getPollList()
+    public function getPollList(Request $request)
     {
-        $polls = Poll::all()->toArray();
+        $validator = Validator::make($request->all(), [ 
+            'category_uuid' => 'required|uuid',
+        ]);
+
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
+        }
+
+        $category = PollCategories::where('uuid', '=', $request->category_uuid)->first('id');
+
+        if(!$category)
+        {
+            return $this->sendError('Error', 'Такой категории не существует');
+        }
+
+        $polls = Poll::where('category', '=', $category->id)->toArray();
         return $this->sendResponse($polls, 'Список опросов');
     }
 
