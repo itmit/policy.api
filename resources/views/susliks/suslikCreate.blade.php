@@ -1,58 +1,48 @@
 @extends('layouts.adminApp')
 
 @section('content')
-    <h1>Создание суслика</h1>
-    <div class="col-sm-12">
-        <form class="form-horizontal" method="POST" action="{{ route('auth.susliks.store') }}">
-            {{ csrf_field() }}
+<div class="col-sm-9 tabs-content">
+   <h1>Создание суслика</h1>
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-horizontal" method="POST" action="{{ route('auth.susliks.store') }}">
+                {{ csrf_field() }}
 
-            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                <label for="name" class="col-md-4 control-label">Имя</label>
-
-                <div class="col-md-6">
-                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required
-                           autofocus>
-
-                    @if ($errors->has('name'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                    @endif
+                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                    <label for="name" class="control-label">Имя:</label>
+                        <input id="name" type="text" class="form-control input-create-poll" name="name" value="{{ old('name') }}" required
+                               autofocus>
+                        @if ($errors->has('name'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                        @endif
                 </div>
-            </div>
 
-            <div class="form-group{{ $errors->has('place_of_work') ? ' has-error' : '' }}">
-                <label for="place_of_work" class="col-md-4 control-label">Место работы</label>
-
-                <div class="col-md-6">
-                    <input id="place_of_work" type="text" class="form-control" name="place_of_work" value="{{ old('place_of_work') }}" required>
-
-                    @if ($errors->has('place_of_work'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('place_of_work') }}</strong>
-                        </span>
-                    @endif
+                <div class="form-group{{ $errors->has('place_of_work') ? ' has-error' : '' }}">
+                    <label for="place_of_work" class="control-label">Место работы:</label>
+                        <input id="place_of_work" type="text" class="form-control input-create-poll" name="place_of_work" value="{{ old('place_of_work') }}" required>
+                        @if ($errors->has('place_of_work'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('place_of_work') }}</strong>
+                            </span>
+                        @endif
                 </div>
-            </div>
 
-            <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
-                <label for="position" class="col-md-4 control-label">Должность</label>
+                <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">
+                    <label for="position" class="control-label">Должность:</label>
+                        <input id="position" type="text" class="form-control input-create-poll" name="position" value="{{ old('position') }}" required>
 
-                <div class="col-md-6">
-                    <input id="position" type="text" class="form-control" name="position" value="{{ old('position') }}" required>
-
-                    @if ($errors->has('position'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('position') }}</strong>
-                        </span>
-                    @endif
+                        @if ($errors->has('position'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('position') }}</strong>
+                            </span>
+                        @endif
                 </div>
-            </div>
 
-            <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
-                <label for="position" class="col-md-4 control-label">Категория</label>
-                <div class="col-md-6">
-                    <select name="category" id="category" class="form-control">
+                <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
+                    <label for="position" class="control-label">Категория:</label>
+                    <select name="category" id="category" class="form-control selectpoll">
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
@@ -64,28 +54,25 @@
                         </span>
                     @endif
                 </div>
-            </div>
 
-            <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
-                <label for="position" class="col-md-4 control-label">Ссылка</label>
-                <div class="col-md-6">
-                    <input id="link" type="text" class="form-control" name="link" value="{{ old('link') }}" required>
-
+                <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
+                    <label for="position" class="control-label">Ссылка:</label>
+                    <input id="link" type="text" class="form-control input-create-poll" name="link" value="{{ old('link') }}" required>
                     @if ($errors->has('link'))
                         <span class="help-block">
                             <strong>{{ $errors->first('link') }}</strong>
                         </span>
                     @endif
                 </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-6 col-md-offset-4">
-                    <button type="submit" class="btn btn-primary">
-                        Создать суслика
-                    </button>
+                <div class="form-group">
+                    <div class="col-md-offset-4">
+                        <button type="submit" class="btn-card">
+                            Создать суслика
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </form>
-    </div>    
+            </form>
+        </div>
+    </div> 
+</div>   
 @endsection

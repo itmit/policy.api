@@ -1,11 +1,11 @@
 @extends('layouts.adminApp')
 
 @section('content')
-<div class="container">
+<div class="col-sm-9 tabs-content">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header ">Внимание</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Добро пожаловать!
                 </div>
             </div>
         </div>

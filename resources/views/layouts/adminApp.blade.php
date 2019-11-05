@@ -25,7 +25,7 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+                Простая статистика - Админпанель
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
@@ -42,11 +42,11 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">Войти</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">Регистрация</a>
                             </li>
                         @endif
                     @else
@@ -55,11 +55,11 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-right numb" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Выйти') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -77,13 +77,11 @@
         <div class="row">
             <div class="col-sm-3 left-menu">
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="{{ route('auth.polls.index') }}">Опросы</a></li>
-                    <li class="list-group-item"><a href="{{ route('auth.susliks.index') }}">Суслики</a></li>
+                    <a class="btn-card" href="{{ route('auth.polls.index') }}">Опросы</a>
+                    <a class="btn-card" href="{{ route('auth.susliks.index') }}">Суслики</a>
                 </ul>
             </div>
-            <div class="col-sm-9 tabs-content">
-                @yield('content')
-            </div>
+            @yield('content')
         </div>
     </div>
 </div>

@@ -1,23 +1,25 @@
 @extends('layouts.adminApp')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+ <div class="col-sm-9 tabs-content">
+    <div class="row justify-content-center cont-m">
         <div class="col-md-12">
-            <a href="{{ route('auth.polls.create') }}" class="btn btn-primary">Создать опрос</a>
-            <a href="{{ route('auth.createPollCategory') }}" class="btn btn-primary">Создать категорию</a>
-            <table class="table table-bordered">
+           <div class="group-btn-card">
+                <a href="{{ route('auth.polls.create') }}" class="btn-card">Создать опрос</a>
+                <a href="{{ route('auth.createPollCategory') }}" class="btn-card">Создать категорию</a>
+            </div>
+            <table class="table policy-table">
                 <thead>
                 <tr>
-                    <th>Наименование</th>
-                    <th>Категория</th>
-                    <th>Дата создания</th>
+                    <th scope="col">Наименование</th>
+                    <th scope="col">Категория</th>
+                    <th scope="col">Дата создания</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($polls as $poll)
                     <tr>
-                        <td><a href="poll/{{ $poll->id }}"> {{ $poll->name }} </a></td>
+                        <td scope="row"><a href="poll/{{ $poll->id }}"> {{ $poll->name }} </a></td>
                         <td>{{ $poll->category()->name }}</td>
                         <td>{{ $poll->created_at->timezone('Europe/Moscow') }}</td>
                     </tr>

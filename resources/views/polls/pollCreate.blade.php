@@ -1,164 +1,137 @@
 @extends('layouts.adminApp')
 
 @section('content')
+<div class="col-sm-9 tabs-content">
     <h1>Создание опроса</h1>
+<div class="row">
     <div class="col-sm-12">
         <form class="form-horizontal" method="POST" action="{{ route('auth.polls.store') }}">
             {{ csrf_field() }}
 
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                <label for="name" class="col-md-4 control-label">Наименование</label>
+                <label for="name" class="control-label">Наименование:</label>
+                <input id="name" type="text" class="form-control input-create-poll" name="name" value="{{ old('name') }}" required
+                       autofocus>
 
-                <div class="col-md-6">
-                    <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required
-                           autofocus>
-
-                    @if ($errors->has('name'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                    @endif
-                </div>
+                @if ($errors->has('name'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('name') }}</strong>
+                    </span>
+                @endif
             </div>
 
             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-                <label for="description" class="col-md-4 control-label">Описание</label>
+                <label for="description" class="control-label">Описание:</label>
+                <textarea name="description" id="description" cols="30" rows="10" style="resize: none" class="form-control textareapoll" placeholder=" Необязательно"></textarea>
 
-                <div class="col-md-6">
-                    <textarea name="description" id="description" cols="30" rows="10" style="resize: none" class="form-control" placeholder=" Необязательно"></textarea>
-
-                    @if ($errors->has('description'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('description') }}</strong>
-                        </span>
-                    @endif
-                </div>
+                @if ($errors->has('description'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('description') }}</strong>
+                    </span>
+                @endif
             </div>
 
             <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
-                <label for="category" class="col-md-4 control-label">Категория опроса</label>
+                <label for="category" class="control-label">Категория опроса:</label>
+                <select name="category" id="category" class="form-control selectpoll" required>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id}}">{{ $category->name}}</option>
+                    @endforeach
+                </select>
 
-                <div class="col-md-6">
-                    <select name="category" id="category" class="form-control" required>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id}}">{{ $category->name}}</option>
-                        @endforeach
-                    </select>
-
-                    @if ($errors->has('category'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('category') }}</strong>
-                        </span>
-                    @endif
-                </div>
+                @if ($errors->has('category'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('category') }}</strong>
+                    </span>
+                @endif
             </div>
 
             <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
-                <label for="link" class="col-md-4 control-label">Ссылка на опрос</label>
+                <label for="link" class="control-label">Ссылка на опрос:</label>
+                <input type="text" name="link" id="link" class="form-control input-create-poll" value="{{ old('link') }}" placeholder=" Необязательно">
 
-                <div class="col-md-6">
-                    <input type="text" name="link" id="link" class="form-control" value="{{ old('link') }}" placeholder=" Необязательно">
-
-                    @if ($errors->has('link'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('link') }}</strong>
-                        </span>
-                    @endif
-                </div>
+                @if ($errors->has('link'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('link') }}</strong>
+                    </span>
+                @endif
             </div>
 
             <div class="form-group{{ $errors->has('radio') ? ' has-error' : '' }}">
-                <div class="col-md-6">
-                    <input type="radio" id="unlimited" name="time" value="unlimited" checked>
+                    <input type="radio" id="unlimited input-create-poll" name="time" value="unlimited" checked>
                     <label for="unlimited">Бессрочно</label>
 
-                    <input type="radio" id="limited" name="time" value="limited">
+                    <input type="radio" id="limited input-create-poll" name="time" value="limited">
                     <label for="limited">с датой начала и завершения</label>
-                </div>
             </div>
 
             <div class="form-group{{ $errors->has('start_at') ? ' has-error' : '' }}">
-                <label for="start_at" class="col-md-4 control-label">Дата начала</label>
+                <label for="start_at" class="control-label">Дата начала:</label>
+                <input id="start_at" type="date" class="form-control input-create-poll" name="start_at" value="{{ old('start_at') }}"
+                       autofocus disabled>
 
-                <div class="col-md-6">
-                    <input id="start_at" type="date" class="form-control" name="start_at" value="{{ old('start_at') }}"
-                           autofocus disabled>
-
-                    @if ($errors->has('start_at'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('start_at') }}</strong>
-                        </span>
-                    @endif
-                </div>
+                @if ($errors->has('start_at'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('start_at') }}</strong>
+                    </span>
+                @endif
             </div>
 
             <div class="form-group{{ $errors->has('end_at') ? ' has-error' : '' }}">
-                <label for="end_at" class="col-md-4 control-label">Дата завершения</label>
+                <label for="end_at" class="control-label">Дата завершения:</label>
+                <input id="end_at" type="date" class="form-control input-create-poll" name="end_at" value="{{ old('end_at') }}"
+                       autofocus disabled>
 
-                <div class="col-md-6">
-                    <input id="end_at" type="date" class="form-control" name="end_at" value="{{ old('end_at') }}"
-                           autofocus disabled>
-
-                    @if ($errors->has('end_at'))
-                        <span class="help-block">
-                            <strong>{{ $errors->first('end_at') }}</strong>
-                        </span>
-                    @endif
-                </div>
+                @if ($errors->has('end_at'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('end_at') }}</strong>
+                    </span>
+                @endif
             </div>
 
             <hr>
             <h2>Создание вопросов</h2>
 
             <div class="list_of_questions">
-                
-                    <div class="question">
-                        <div class="row">
-                            <div class="question_name col-md-4">
-                                <input type="text" name="question_name" placeholder=" Вопрос" class="form-control" required>
-                            </div>
-                            <div class="question_option_multiple col-md-3">
-                                <input type="checkbox" name="multiple"> Множественный
-                            </div>
-                            <div class="question_option_other col-md-5">
-                                <input type="checkbox" name="other"> Включает вариант ответа "другой"
-                            </div>
+                <div class="question">
+                    <div class="block-var">
+                        <div class="question_name">
+                            <input type="text" name="question_name" placeholder=" Вопрос" class="form-control input-create-poll-1" required>
                         </div>
-                        
-                        <div class="answers_container">
-                            <div class="answers">
-                                <div class="row">
-                                    <div class="answer col-md-5 offset-md-1">
-                                        <input type="text" name="answer" placeholder=" Ответ" class="form-control" required>
-                                    </div>
-                                </div>
-                
-                                <div class="row">
-                                    <div class="answer col-md-5 offset-md-1">
-                                        <input type="text" name="answer" placeholder=" Ответ" class="form-control" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="add-answer col-md-5 offset-md-1">
-                                <input type="button" value="Добавить ответ" class="add_answer">
-                            </div>
+                        <div class="question_option_multiple">
+                            <input type="checkbox" name="multiple"> Множественный
+                        </div>
+                        <div class="question_option_other">
+                            <input type="checkbox" name="other"> Включает вариант ответа "другой"
                         </div>
                     </div>
-
+                    <div class="answers_container">
+                        <div class="answers">
+                            <div class="answer offset-md-1">
+                                <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required>
+                            </div>
+                            <div class="answer offset-md-1">
+                                <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required>
+                            </div>
+                        </div>
+                        <div class="add-answer offset-md-1">
+                            <input type="button" value="Добавить ответ" class="add_answer btn-apply">
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <input type="button" value="Добавить вопрос" class="add_new_question">
-
+            <p>
+                <input type="button" value="Добавить вопрос" class="add_new_question btn-apply">
+            </p>
             <div class="form-group">
-                <div class="col-md-6 col-md-offset-4">
-                    {{-- <input type="button" value="Создать опрос" class="test"> --}}
-                    <button type="submit" class="test">Создать опрос</button>
+                <div class="col-md-offset-4">
+                    {{-- <input type="button" value="Создать опрос" class="test btn-card"> --}}
+                    <button type="submit" class="test btn-card">Создать опрос</button>
                 </div>
             </div>
         </form>
-        
     </div>
-
+</div>
     <script>
     $(document).ready(function() {
         $(document).on('change', $('input:radio[name=time]'), function() {
@@ -183,7 +156,6 @@
 
         $(".add_new_question").on("click", function() {
             $('.list_of_questions').append(sergay.content.cloneNode(true));
-            // $('.list_of_questions').append('<div class="question"><div class="question_name col-md-4"><input type="text" name="question_name" placeholder=" Вопрос" class="form-control"></div><div class="answer col-md-5 offset-md-1"><input type="text" name="answer" placeholder=" Ответ" class="form-control"></div><div class="answer col-md-5 offset-md-1"><input type="text" name="answer" placeholder=" Ответ" class="form-control"></div><div class="add-answer col-md-5 offset-md-1"><input type="button" value="Добавить ответ" class="add_answer"></div><div><input type="button" value="Удалить вопрос" class="col-md-4 delete_question"></div></div>');
         });
 
         $(".list_of_questions").on("click", ".delete_question", function(e) {
@@ -290,50 +262,45 @@
     <template id="sergay">
         <div class="question">
             <hr>
-            <div class="row">
-                <div class="question_name col-md-4">
-                    <input type="text" name="question_name" placeholder=" Вопрос" class="form-control" required>
+            <div class="block-var">
+                <div class="question_name">
+                    <input type="text" name="question_name" placeholder=" Вопрос" class="form-control input-create-poll-1" required>
                 </div>
-                <div class="question_option_multiple col-md-3">
+                <div class="question_option_multiple">
                     <input type="checkbox" name="multiple"> Множественный
                 </div>
-                <div class="question_option_other col-md-5">
+                <div class="question_option_other">
                     <input type="checkbox" name="other"> Включает вариант ответа "другой"
                 </div>
             </div>
             <div class="answers_container">
                 <div class="answers">
-                    <div class="row">
-                        <div class="answer col-md-5 offset-md-1">
-                            <input type="text" name="answer" placeholder=" Ответ" class="form-control" required>
-                        </div>
+                    <div class="answer offset-md-1">
+                        <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required>
                     </div>
-    
-                    <div class="row">
-                        <div class="answer col-md-5 offset-md-1">
-                            <input type="text" name="answer" placeholder=" Ответ" class="form-control" required>
-                        </div>
+                    <div class="answer offset-md-1">
+                        <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required>
                     </div>
                 </div>
-                <div class="add-answer col-md-5 offset-md-1">
-                    <input type="button" value="Добавить ответ" class="add_answer">
+                <div class="add-answer offset-md-1">
+                    <input type="button" value="Добавить ответ" class="add_answer btn-apply">
                 </div>
             </div>
             <div>
-                <input type="button" value="Удалить вопрос" class="col-md-4 delete_question">
+                <input type="button" value="Удалить вопрос" class="col-md-4 delete_question btn-apply">
             </div>
         </div>
     </template>
 
     <template id="radik">
         <div class="row">
-            <div class="answer col-md-5 offset-md-1">
-                <input type="text" name="answer" placeholder=" Ответ" class="form-control" required>
+            <div class="answer col-md-4 offset-md-1">
+                <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required>
             </div>
-            <div class="answer-delete col-md-1">
+            <div class="answer-delete col-md-2">
                 <i class="material-icons delete-answer">delete</i>
             </div>
         </div>
     </template>
-    
+</div>
 @endsection

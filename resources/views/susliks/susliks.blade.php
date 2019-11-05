@@ -1,11 +1,13 @@
 @extends('layouts.adminApp')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="col-sm-9 tabs-content">
+    <div class="row justify-content-center cont-m">
         <div class="col-md-12">
-            <a href="{{ route('auth.susliks.create') }}" class="btn btn-primary">Создать суслика</a>
-            <a href="{{ route('auth.createCategory') }}" class="btn btn-primary">Создать категорию</a>
+           <div class="group-btn-card">
+                <a href="{{ route('auth.susliks.create') }}" class="btn-card">Создать суслика</a>
+                <a href="{{ route('auth.createCategory') }}" class="btn-card">Создать категорию</a>
+            </div>
             <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ route('auth.uploadSusliks') }}">
                 {{ csrf_field() }}
 
@@ -27,50 +29,52 @@
                 </div>
         
                 <div class="form-group">
-                    <button type="submit" class="btn btn-tc-ct">
+                    <button type="submit" class="btn-card btn-tc-ct">
                             Загрузить сусликов из zip-файла
                     </button>
                 </div>
             </form>
 
-            <button type="button" class="btn btn-tc-danger js-destroy-button">Удалить отмеченных сусликов</button>
-            
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th><input type="checkbox" name="destroy-all-susliks" class="js-destroy-all"/></th>
-                    <th>Имя</th>
-                    <th>Категория</th>
-                    <th>Место работы</th>
-                    <th>Должность</th>
-                    <th>Лайки</th>
-                    <th>Дизлайки</th>
-                    <th>Нейтралы</th>
-                    <th>Ссылка</th>
-                    <th>Дата создания</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($susliks as $suslik)
-                    <tr>
-                        <td><input type="checkbox" data-suslik-id="{{ $suslik->id }}" name="destoy-suslik-{{ $suslik->id }}" class="js-destroy"/></td>
-                        <td>{{ $suslik->name }}</td>
-                        <td>{{ $suslik->category()->name }}</td>
-                        <td>{{ $suslik->place_of_work }}</td>
-                        <td>{{ $suslik->position }}</td>
-                        <td>{{ $suslik->likes }}</td>
-                        <td>{{ $suslik->dislikes }}</td>
-                        <td>{{ $suslik->neutrals }}</td>
-                        <td>{{ $suslik->link }}</td>
-                        <td>{{ $suslik->created_at->timezone('Europe/Moscow') }}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
+            <button type="button" class="btn-card btn-tc-danger js-destroy-button">Удалить отмеченных сусликов</button>
         </div>
     </div>
 </div>
-
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table policy-table">
+                    <thead>
+                    <tr>
+                        <th><input type="checkbox" name="destroy-all-susliks" class="js-destroy-all"/></th>
+                        <th>Имя</th>
+                        <th>Категория</th>
+                        <th>Место работы</th>
+                        <th>Должность</th>
+                        <th>Лайки</th>
+                        <th>Дизлайки</th>
+                        <th>Нейтралы</th>
+                        <th>Ссылка</th>
+                        <th>Дата создания</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($susliks as $suslik)
+                        <tr>
+                            <td><input type="checkbox" data-suslik-id="{{ $suslik->id }}" name="destoy-suslik-{{ $suslik->id }}" class="js-destroy"/></td>
+                            <td>{{ $suslik->name }}</td>
+                            <td>{{ $suslik->category()->name }}</td>
+                            <td>{{ $suslik->place_of_work }}</td>
+                            <td>{{ $suslik->position }}</td>
+                            <td>{{ $suslik->likes }}</td>
+                            <td>{{ $suslik->dislikes }}</td>
+                            <td>{{ $suslik->neutrals }}</td>
+                            <td>{{ $suslik->link }}</td>
+                            <td>{{ $suslik->created_at->timezone('Europe/Moscow') }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+    </div>
+</div>
 <script>
 $(document).ready(function() {
     $(function(){
