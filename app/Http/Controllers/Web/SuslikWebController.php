@@ -148,7 +148,14 @@ class SuslikWebController extends Controller
         $path = storage_path() . '/app/susliks_upload';
         if (file_exists($path)) {
             foreach (glob($path.'/*') as $file) {
-                unlink($file);
+                if(is_dir($file))
+                {
+                    rmdir($file);
+                }
+                else
+                {
+                    unlink($file);
+                }
             }
         }
 
