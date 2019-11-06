@@ -11,6 +11,7 @@
             <table class="table policy-table">
                 <thead>
                 <tr>
+                    <th scope="col"><input type="checkbox" name="destroy-all-polls" class="js-destroy-all"/></th>
                     <th scope="col">Наименование</th>
                     <th scope="col">Категория</th>
                     <th scope="col">Дата создания</th>
@@ -19,7 +20,8 @@
                 <tbody>
                 @foreach($polls as $poll)
                     <tr>
-                        <td scope="row"><a href="poll/{{ $poll->id }}"> {{ $poll->name }} </a></td>
+                        <td scope="row"><input type="checkbox" data-poll-id="{{ $poll->id }}" name="destoy-poll-{{ $poll->id }}" class="js-destroy"/></td>
+                        <td><a href="poll/{{ $poll->id }}"> {{ $poll->name }} </a></td>
                         <td>{{ $poll->category()->name }}</td>
                         <td>{{ $poll->created_at->timezone('Europe/Moscow') }}</td>
                     </tr>
