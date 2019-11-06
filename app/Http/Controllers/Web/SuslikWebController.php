@@ -210,6 +210,10 @@ class SuslikWebController extends Controller
                     // $result[] = $result[$row];
                     for ($col = 'A'; $col <= 'F'; $col++) {
                         // Так можно получить значение конкретной ячейки
+                        if($suslik[$col] = $cells->get($col.$row) == NULL)
+                        {
+                            continue 2;
+                        }
                         $suslik[$col] = $cells->get($col.$row)->getValue();
                     }
                     $result[$row] = $suslik;
