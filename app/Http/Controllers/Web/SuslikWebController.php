@@ -212,7 +212,7 @@ class SuslikWebController extends Controller
                         // Так можно получить значение конкретной ячейки
                         if($suslik[$col] = $cells->get($col.$row) == NULL)
                         {
-                            continue 2;
+                            continue;
                         }
                         $suslik[$col] = $cells->get($col.$row)->getValue();
                     }
