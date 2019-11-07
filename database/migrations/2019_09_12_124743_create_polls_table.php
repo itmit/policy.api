@@ -24,6 +24,7 @@ class CreatePollsTable extends Migration
             $table->timestamp('end_at')->nullable()->default(NULL);
 
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('category_id')->references('id')->on('poll_categories');
         });

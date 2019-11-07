@@ -18,6 +18,7 @@ class CreatePollCategoriesTable extends Migration
             $table->uuid('uuid');
             $table->string('name');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
