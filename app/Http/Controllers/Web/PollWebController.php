@@ -166,7 +166,7 @@ class PollWebController extends Controller
     public function destroyCategory(Request $request)
     {
         $isCategoryDeleted = PollCategories::where('id', $request->input('id'))->first(['name', 'id']);
-        return $isCategoryDeleted;
+        return $isCategoryDeleted['id'];
         if($isCategoryDeleted == 'deleted')
         {
             return response()->json(['Произошла ошибка']);
