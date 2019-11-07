@@ -9,7 +9,7 @@
             <div class="textareaPoll" name="listOfCategories" cols="20" rows="10" disabled style="resize: none;">
                 @foreach ($categories as $category)
                 <div class="category-item">
-                {{ $category->name }} <i class="material-icons delete-answer">delete</i>
+                {{ $category->name }} <i class="material-icons delete-category" style="cursor: pointer">delete</i>
                 </div>
                 @endforeach
             </div>
@@ -34,4 +34,13 @@
         </div>   
     </div> 
 </div>
+
+<script>
+$(document).ready(function() {
+    $(".textareaPoll").on("click", ".delete-category", function(e) {
+        $(this).closest(".category-item").remove();
+    });
+})
+</script>
+
 @endsection
