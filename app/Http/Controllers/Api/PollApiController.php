@@ -54,7 +54,8 @@ class PollApiController extends ApiBaseController
         }
         else
         {
-            $polls = Poll::all()->toArray();
+            $deleted = PollCategories::withTrashed()->where('name', '=', 'deleted')->first();
+            $polls = Poll::where('category', '<>', $deleted['id'])->get()->toArray();
         }
 
         
