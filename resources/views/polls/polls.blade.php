@@ -19,6 +19,9 @@
                 </thead>
                 <tbody>
                 @foreach($polls as $poll)
+                @if(!$poll)
+                @continue
+                @endif
                     <tr>
                         <td scope="row"><input type="checkbox" data-poll-id="{{ $poll->id }}" name="destoy-poll-{{ $poll->id }}" class="js-destroy"/></td>
                         <td><a href="poll/{{ $poll->id }}"> {{ $poll->name }} </a></td>
