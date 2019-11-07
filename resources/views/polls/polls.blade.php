@@ -7,6 +7,7 @@
            <div class="group-btn-card">
                 <a href="{{ route('auth.polls.create') }}" class="btn-card">Создать опрос</a>
                 <a href="{{ route('auth.createPollCategory') }}" class="btn-card">Создать категорию</a>
+                <button type="button" class="btn-card btn-tc-danger js-destroy-button">Удалить отмеченных сусликов</button>
             </div>
             <table class="table policy-table">
                 <thead>
@@ -34,4 +35,32 @@
         </div>
     </div>
 </div>
+<script>
+
+$(document).on('click', '.js-destroy-button', function() {
+    let ids = [];
+
+    $(".js-destroy:checked").each(function(){
+        ids.push($(this).data('PollId'));
+    });
+
+    $.ajax({
+        headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        dataType: "json",
+        data    : { ids: ids },
+        url     : 'polls/delete',
+        method    : 'delete',
+        success: function (response) {
+            // console.log(response);
+            $(".js-destroy:checked").closest('tr').remove();
+            $(".js-destroy").prop("checked", "");
+        },
+        error: function (xhr, err) { 
+            console.log("Error: " + xhr + " " + err);
+        }
+    });
+
+});
+
+</script>
 @endsection
