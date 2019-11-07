@@ -44,6 +44,8 @@ $(document).on('click', '.js-destroy-button', function() {
         ids.push($(this).data('PollId'));
     });
 
+    console.log(ids);
+
     $.ajax({
         headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
         dataType: "json",
@@ -51,7 +53,7 @@ $(document).on('click', '.js-destroy-button', function() {
         url     : 'polls/delete',
         method    : 'delete',
         success: function (response) {
-            // console.log(response);
+            console.log(response);
             $(".js-destroy:checked").closest('tr').remove();
             $(".js-destroy").prop("checked", "");
         },

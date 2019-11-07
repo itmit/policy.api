@@ -198,7 +198,7 @@ class PollWebController extends Controller
     {
         Poll::destroy($request->input('ids'));
 
-        return response()->json(['Places destroyed']);
+        return response()->json(['Polls destroyed']);
     }
 
     public function createCategory()
