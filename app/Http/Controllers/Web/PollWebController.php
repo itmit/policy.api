@@ -185,7 +185,7 @@ class PollWebController extends Controller
 
     public function showDeleted()
     {
-        return response()->json([PollCategories::onlyTrashed()->get()]);
+        return response()->json([PollCategories::onlyTrashed()->where('name', '<>', 'deleted')->get()]);
     }
 
     /**

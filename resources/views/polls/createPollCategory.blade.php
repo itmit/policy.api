@@ -84,8 +84,12 @@ $(document).ready(function() {
             url     : 'pollCategory/showDeleted',
             method    : 'delete',
             success: function (response) {
+                result = '';
+                for(var i = 0; i < response.length; i++) {
+                    result += '<p>' + response[i]['name'] + '</p>';
+                }
                 console.log(response);
-                // $('.deleted-categories').append();
+                $('.deleted-categories').html(result);
             },
             error: function (xhr, err) { 
                 console.log("Error: " + xhr + " " + err);
