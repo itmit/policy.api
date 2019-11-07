@@ -68,7 +68,7 @@ class PollWebController extends Controller
         //     ]);
         // };
 
-        dd($request->all_data["questions"]);
+        // dd($request->all_data["questions"]);
 
         foreach($request->all_data["questions"] as $questions)
         {

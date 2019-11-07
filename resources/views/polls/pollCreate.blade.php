@@ -239,8 +239,8 @@
                     console.log("Error: " + xhr + " " + err);
                 }
             });
-            // window.location.replace("http://policy.itmit-studio.ru/polls");
-            // return false;
+            window.location.replace("http://policy.itmit-studio.ru/polls");
+            return false;
         });
 
     })
