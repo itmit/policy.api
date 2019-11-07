@@ -45,7 +45,7 @@ $(document).ready(function() {
 
         if(isDelete)
         {
-            let id = $(this).data('categoryId').val();
+            let id = $(this).data('categoryId');
             console.log(id);
             // $.ajax({
             //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
