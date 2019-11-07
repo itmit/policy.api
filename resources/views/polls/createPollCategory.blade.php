@@ -9,7 +9,7 @@
             <div class="textareaPoll" name="listOfCategories" cols="20" rows="10" disabled style="resize: none;">
                 @foreach ($categories as $category)
                 <div class="category-item">
-                {{ $category->name }} <i class="material-icons delete-category" style="cursor: pointer" data-caterogy-id="{{ $category->id }}">delete</i>
+                {{ $category->name }} <i class="material-icons delete-category" style="cursor: pointer; align-items:center" data-caterogy-id="{{ $category->id }}">delete</i>
                 </div>
                 @endforeach
             </div>
