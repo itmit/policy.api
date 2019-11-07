@@ -11,7 +11,7 @@ class Poll extends Model
     /**
      * @var array
      */
-    protected $guarded = ['id'];
+    protected $hidden = ['id'];
 
     /**
      * @var string
