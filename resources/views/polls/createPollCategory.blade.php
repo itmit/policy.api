@@ -46,20 +46,20 @@ $(document).ready(function() {
         if(isDelete)
         {
             let id = $(this).data('category');
-            console.log(id);
-            // $.ajax({
-            //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            //     dataType: "json",
-            //     data    : { id: id },
-            //     url     : 'pollCategory/delete',
-            //     method    : 'delete',
-            //     success: function (response) {
-            //         $(this).closest(".category-item").remove();
-            //     },
-            //     error: function (xhr, err) { 
-            //         console.log("Error: " + xhr + " " + err);
-            //     }
-            // });
+            
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data    : { id: id },
+                url     : 'pollCategory/delete',
+                method    : 'delete',
+                success: function (response) {
+                    $(this).closest(".category-item").remove();
+                },
+                error: function (xhr, err) { 
+                    console.log("Error: " + xhr + " " + err);
+                }
+            });
         }
     });
 })
