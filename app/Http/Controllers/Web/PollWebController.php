@@ -172,9 +172,9 @@ class PollWebController extends Controller
             return response()->json(['Произошла ошибка']);
         }
 
-        Poll::where('category', $request->input('id'))->update([
-            'category' => 
-        ]);
+        // Poll::where('category', $request->input('id'))->update([
+        //     'category' => 
+        // ]);
 
         PollCategories::destroy($request->input('id'));
 
