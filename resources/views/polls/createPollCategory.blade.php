@@ -17,7 +17,7 @@
             <br>
             <br>
             <div class="title-poll">Создать категорию:</div>
-            <form class="form-horizontal" method="POST" action="{{ route('auth.storePollCategory') }}">
+            <form class="form-horizontal" method="POST" action="{{ route('auth.storePollCategory') }}" id="category-creating">
                 {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <input id="name" type="text" class="form-control input-create-poll" name="name" value="{{ old('name') }}" required
@@ -39,6 +39,13 @@
 </div>
 
 <script>
+$('#category-creating').submit(function() {
+    if($("input[name='name']").val() == 'deleted')
+    {
+        alert('Имя категории не может быть "deleted!"');
+        return false;
+    }
+});
 $(document).ready(function() {
     $(".textareaPoll").on("click", ".delete-category", function(e) {
         let isDelete = confirm("Удалить категорию?");

@@ -10,6 +10,7 @@ use App\PollQuestions;
 use App\PollQuestionAnswers;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class PollWebController extends Controller
 {
@@ -199,7 +200,10 @@ class PollWebController extends Controller
     public function storeCategory(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|min:3|max:191',
+            'name' => [
+                'required|min:3|max:191',
+                Rule::notIn(['deleted']),
+            ],
         ]);
 
         if ($validator->fails()) {
