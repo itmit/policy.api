@@ -37,6 +37,7 @@
                     </button>
                 </div>
             </form>
+            <input type="button" value="Показать удаленные категории">
         </div>   
     </div> 
 </div>
@@ -51,7 +52,7 @@ $('#category-creating').submit(function() {
 });
 $(document).ready(function() {
     $(".textareaPoll").on("click", ".delete-category", function(e) {
-        let isDelete = confirm("Удалить категорию?");
+        let isDelete = confirm("Удалить категорию? Все опросы, прикрепленные к данной категории, будут удалены без возможности восстановления");
 
         if(isDelete)
         {
