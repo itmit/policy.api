@@ -8,12 +8,13 @@
             <p class="title-poll">Уже созданные категории:</p>
             <div class="textareaPoll" name="listOfCategories" cols="20" rows="10" disabled style="resize: none;">
                 @foreach ($categories as $category)
-                <div class="category-item">
+                <div class="category-item" style="display: flex;
+                float: left;">
                 {{ $category->name }} <i class="material-icons delete-category" style="cursor: pointer; align-items:center" data-caterogy-id="{{ $category->id }}">delete</i>
                 </div>
                 @endforeach
             </div>
-            <div class="title-poll">Создать категорию:</div>
+            <p class="title-poll">Создать категорию:</p>
             <form class="form-horizontal" method="POST" action="{{ route('auth.storePollCategory') }}">
                 {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
