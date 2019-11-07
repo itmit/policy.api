@@ -6,8 +6,8 @@
         <div class="col-md-12">
            <div class="group-btn-card">
                 <a href="{{ route('auth.polls.create') }}" class="btn-card">Создать опрос</a>
-                <a href="{{ route('auth.createPollCategory') }}" class="btn-card">Создать категорию</a>
-                <button type="button" class="btn-card btn-tc-danger js-destroy-button">Удалить отмеченных сусликов</button>
+                <a href="{{ route('auth.createPollCategory') }}" class="btn-card">Создать/удалить категорию</a>
+                <button type="button" class="btn-card btn-tc-danger js-destroy-button">Удалить отмеченные опросы</button>
             </div>
             <table class="table policy-table">
                 <thead>
@@ -41,7 +41,7 @@ $(document).on('click', '.js-destroy-button', function() {
     let ids = [];
 
     $(".js-destroy:checked").each(function(){
-        ids.push($(this).data('PollId'));
+        ids.push($(this).data('pollId'));
     });
 
     console.log(ids);
