@@ -43,6 +43,9 @@ $(document).ready(function() {
     $(".textareaPoll").on("click", ".delete-category", function(e) {
         let isDelete = confirm("Удалить категорию?");
 
+        let id = $(this).data('categoryId');
+        console.log(id);
+
         if(isDelete)
         {
             let id = $(this).data('categoryId');
