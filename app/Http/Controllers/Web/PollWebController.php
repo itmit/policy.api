@@ -172,9 +172,9 @@ class PollWebController extends Controller
             return response()->json(['Произошла ошибка']);
         }
 
-        $deleted = PollCategories::where('name', '=' ,'deleted')->get();
+        $deleted = PollCategories::where('name', '=', 'deleted')->first();
 
-        return $deleted;
+        return $deleted['id'];
 
         Poll::where('category', $request->input('id'))->update([
             'category' => $deleted['id']
