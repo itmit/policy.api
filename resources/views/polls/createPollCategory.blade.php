@@ -37,7 +37,10 @@
                     </button>
                 </div>
             </form>
-            <input type="button" value="Показать удаленные категории">
+            <input type="button" value="Показать удаленные категории" class="show-deleted-categories">
+            <div class="deleted-categories">
+
+            </div>
         </div>   
     </div> 
 </div>
@@ -73,7 +76,22 @@ $(document).ready(function() {
             });
         }
     });
+
+    $(document).on("click", ".show-deleted-categories", function(e) {
+        $.ajax({
+            headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            dataType: "json",
+            url     : 'pollCategory/showDeleted',
+            method    : 'delete',
+            success: function (response) {
+                console.log(response);
+                // $('.deleted-categories').append();
+            },
+            error: function (xhr, err) { 
+                console.log("Error: " + xhr + " " + err);
+            }
+        });
+    });
 })
 </script>
-
 @endsection

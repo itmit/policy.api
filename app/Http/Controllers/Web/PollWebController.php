@@ -183,6 +183,11 @@ class PollWebController extends Controller
         return response()->json(['Категория удалена']);
     }
 
+    public function showDeleted()
+    {
+        return response()->json([PollCategories::onlyTrashed()->get()]);
+    }
+
     /**
      * Remove the specified resource from storage.
      *

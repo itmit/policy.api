@@ -36,6 +36,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     Route::get('createPollCategory', 'Web\PollWebController@createCategory')->name('createPollCategory');
     Route::post('storePollCategory', 'Web\PollWebController@storeCategory')->name('storePollCategory');
     Route::delete('pollCategory/delete', 'Web\PollWebController@destroyCategory'); // удалить категорию опросов
+    Route::delete('pollCategory/showDeleted', 'Web\PollWebController@showDeleted'); // показать удаленные категории опросов
 });
 
 Auth::routes();
