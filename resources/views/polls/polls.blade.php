@@ -38,30 +38,31 @@
 <script>
 
 $(document).on('click', '.js-destroy-button', function() {
-    let ids = [];
+    let isDelete = confirm("Удалить отмеченные опросы? Все результаты прохождений опросов будут утеряны. Данное действие нельзя отменить");
 
-    $(".js-destroy:checked").each(function(){
-        ids.push($(this).data('pollId'));
-    });
+    if(isDelete)
+    {
+        let ids = [];
 
-    console.log(ids);
+        $(".js-destroy:checked").each(function(){
+            ids.push($(this).data('pollId'));
+        });
 
-    $.ajax({
-        headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-        dataType: "json",
-        data    : { ids: ids },
-        url     : 'polls/delete',
-        method    : 'delete',
-        success: function (response) {
-            console.log(response);
-            $(".js-destroy:checked").closest('tr').remove();
-            $(".js-destroy").prop("checked", "");
-        },
-        error: function (xhr, err) { 
-            console.log("Error: " + xhr + " " + err);
-        }
-    });
-
+        $.ajax({
+            headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            dataType: "json",
+            data    : { ids: ids },
+            url     : 'polls/delete',
+            method    : 'delete',
+            success: function (response) {
+                $(".js-destroy:checked").closest('tr').remove();
+                $(".js-destroy").prop("checked", "");
+            },
+            error: function (xhr, err) { 
+                console.log("Error: " + xhr + " " + err);
+            }
+        });
+    }
 });
 
 </script>
