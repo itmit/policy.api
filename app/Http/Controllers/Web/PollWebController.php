@@ -174,6 +174,8 @@ class PollWebController extends Controller
 
         $deleted = PollCategories::where('name', 'deleted')->first(['id']);
 
+        return $deleted;
+
         Poll::where('category', $request->input('id'))->update([
             'category' => $deleted['id']
         ]);
