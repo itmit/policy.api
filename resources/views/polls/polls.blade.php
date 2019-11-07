@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                 @foreach($polls as $poll)
-                @if(!$poll)
+                @if(!$poll->category())
                 @continue
                 @endif
                     <tr>
