@@ -162,9 +162,24 @@ class PollWebController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroyCategory($id)
     {
-        //
+        PollCategories::destroy($request->input('id'));
+
+        return response()->json(['Категория удалена']);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyPoll($ids)
+    {
+        // Suslik::destroy($request->input('ids'));
+
+        // return response()->json(['Places destroyed']);
     }
 
     public function createCategory()

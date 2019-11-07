@@ -9,7 +9,7 @@
             <div class="textareaPoll" name="listOfCategories" cols="20" rows="10" disabled style="resize: none;">
                 @foreach ($categories as $category)
                 <div class="category-item">
-                {{ $category->name }} <i class="material-icons delete-category" style="cursor: pointer">delete</i>
+                {{ $category->name }} <i class="material-icons delete-category" style="cursor: pointer" data-caterogy-id="{{ $category->id }}">delete</i>
                 </div>
                 @endforeach
             </div>
@@ -42,7 +42,21 @@ $(document).ready(function() {
 
         if(isDelete)
         {
-            $(this).closest(".category-item").remove();
+            let id = $(this).data('category-id');
+            console.log(id);
+            // $.ajax({
+            //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            //     dataType: "json",
+            //     data    : { id: id },
+            //     url     : 'pollCategory/delete',
+            //     method    : 'delete',
+            //     success: function (response) {
+            //         $(this).closest(".category-item").remove();
+            //     },
+            //     error: function (xhr, err) { 
+            //         console.log("Error: " + xhr + " " + err);
+            //     }
+            // });
         }
     });
 })
