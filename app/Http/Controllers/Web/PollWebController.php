@@ -214,7 +214,9 @@ class PollWebController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => [
-                'required|min:3|max:191',
+                'required',
+                'min:3',
+                'max:191',
                 Rule::notIn(['deleted']),
             ],
         ]);
