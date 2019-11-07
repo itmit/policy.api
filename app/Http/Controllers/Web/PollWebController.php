@@ -176,9 +176,9 @@ class PollWebController extends Controller
 
         return $deleted;
 
-        Poll::where('category', $request->input('id'))->update([
-            'category' => 
-        ]);
+        // Poll::where('category', $request->input('id'))->update([
+        //     'category' => 
+        // ]);
 
         PollCategories::destroy($request->input('id'));
 
