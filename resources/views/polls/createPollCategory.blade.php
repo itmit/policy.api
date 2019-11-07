@@ -38,7 +38,12 @@
 <script>
 $(document).ready(function() {
     $(".textareaPoll").on("click", ".delete-category", function(e) {
-        $(this).closest(".category-item").remove();
+        let isDelete = confirm("Удалить категорию?");
+
+        if(isDelete)
+        {
+            $(this).closest(".category-item").remove();
+        }
     });
 })
 </script>
