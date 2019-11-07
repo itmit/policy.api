@@ -162,7 +162,7 @@ class PollWebController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroyCategory($id)
+    public function destroyCategory(Request $request)
     {
         PollCategories::destroy($request->input('id'));
 
