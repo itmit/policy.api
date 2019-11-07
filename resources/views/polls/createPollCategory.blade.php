@@ -14,7 +14,8 @@
                 </div>
                 @endforeach
             </div>
-            <p class="title-poll">Создать категорию:</p>
+            <br>
+            <div class="title-poll">Создать категорию:</div>
             <form class="form-horizontal" method="POST" action="{{ route('auth.storePollCategory') }}">
                 {{ csrf_field() }}
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
