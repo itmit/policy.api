@@ -8,6 +8,9 @@
             <p class="title-poll">Уже созданные категории:</p>
             <div class="textareaPoll" name="listOfCategories" cols="20" rows="10" disabled style="resize: none;">
                 @foreach ($categories as $category)
+                @if($category->name == 'deleted')
+                    @continue
+                @endif
                 <div class="category-item" style="display: flex;
                 float: left;">
                 {{ $category->name }} <i class="material-icons delete-category" style="cursor: pointer; align-items:center" data-category="{{ $category->id }}">delete</i>
