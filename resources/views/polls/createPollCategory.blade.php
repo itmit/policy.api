@@ -10,7 +10,7 @@
                 @foreach ($categories as $category)
                 <div class="category-item" style="display: flex;
                 float: left;">
-                {{ $category->name }} <i class="material-icons delete-category" style="cursor: pointer; align-items:center" data-caterogy-id="{{ $category->id }}">delete</i>
+                {{ $category->name }} <i class="material-icons delete-category" style="cursor: pointer; align-items:center" data-category="{{ $category->id }}">delete</i>
                 </div>
                 @endforeach
             </div>
@@ -43,12 +43,9 @@ $(document).ready(function() {
     $(".textareaPoll").on("click", ".delete-category", function(e) {
         let isDelete = confirm("Удалить категорию?");
 
-        let id = $(this).data('categoryId');
-        console.log(id);
-
         if(isDelete)
         {
-            let id = $(this).data('categoryId');
+            let id = $(this).data('category');
             console.log(id);
             // $.ajax({
             //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
