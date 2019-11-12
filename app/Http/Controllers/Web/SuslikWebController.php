@@ -237,7 +237,7 @@ class SuslikWebController extends Controller
                     $newSuslik = Suslik::create([
                         'uuid' => (string) Str::uuid(),
                         'name' => $item['B'],
-                        'name' => $item['A'],
+                        'number' => $item['A'],
                         'place_of_work' => $item['C'],
                         'position' => $item['D'],
                         'category' => $categoryID->id,
