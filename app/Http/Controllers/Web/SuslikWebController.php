@@ -229,7 +229,7 @@ class SuslikWebController extends Controller
                     }
 
                     $isSuslikExists = Suslik::where('number', '=', $item['A']);
-                    if(!$isSuslikExists)
+                    if($isSuslikExists != NULL)
                     {
                         continue;
                     }
