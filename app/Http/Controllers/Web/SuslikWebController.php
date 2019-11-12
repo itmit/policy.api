@@ -208,7 +208,7 @@ class SuslikWebController extends Controller
                 // Далее перебираем все заполненные строки (столбцы A - E)
                 for ($row = 2; $row <= $cells->getHighestRow(); $row++){
                     // $result[] = $result[$row];
-                    for ($col = 'A'; $col <= 'F'; $col++) {
+                    for ($col = 'A'; $col <= 'G'; $col++) {
                         // Так можно получить значение конкретной ячейки
                         if($suslik[$col] = $cells->get($col.$row) == NULL)
                         {
@@ -222,25 +222,31 @@ class SuslikWebController extends Controller
                 
                 foreach($result as $item)
                 {
-                    $categoryID = SusliksCategory::where('name', '=', $item['D'])->first('id');
+                    $categoryID = SusliksCategory::where('name', '=', $item['E'])->first('id');
                     if($categoryID == NULL)
+                    {
+                        continue;
+                    }
+
+                    $isSuslikExists = Suslik::where('number', '=', $item['A']);
+                    if(!$isSuslikExists)
                     {
                         continue;
                     }
 
                     $newSuslik = Suslik::create([
                         'uuid' => (string) Str::uuid(),
-                        'name' => $item['A'],
-                        'place_of_work' => $item['B'],
-                        'position' => $item['C'],
+                        'name' => $item['B'],
+                        'place_of_work' => $item['C'],
+                        'position' => $item['D'],
                         'category' => $categoryID->id,
-                        'link' => $item['F'],
+                        'link' => $item['G'],
                     ]);
 
                     foreach($files as $suslikImage)
                     { 
                         $imageName = new SplFileInfo($suslikImage);
-                        if($imageName->getFilename() == $item['E'])
+                        if($imageName->getFilename() == $item['F'])
                         {
                             $imageExtension = $imageName->getExtension();
                             $urlImage = storage_path() . '/app/susliks_upload/' . $imageName;
@@ -258,51 +264,6 @@ class SuslikWebController extends Controller
                     }
                 }
             }      
-
-            // if($fileType->getExtension() == "csv" || $fileType->getExtension() == "xlsx")
-            // {
-            //     $url = storage_path() . '/app/susliks_upload/' . $file;
-            //     $handle = fopen($url, "r");
-            //     $header = true;
-
-            //     while ($csvLine = fgetcsv($handle, 10000, ";")) {
-
-            //         if ($header) {
-            //             $header = false;
-            //         } else {
-            //             $categoryID = SusliksCategory::where('name', '=', $csvLine[3])->first('id');
-            //             if($categoryID == NULL)
-            //             {
-            //                 continue;
-            //             }
-            //             $newSuslik = Suslik::create([
-            //                 'uuid' => (string) Str::uuid(),
-            //                 'name' => $csvLine[0],
-            //                 'place_of_work' => $csvLine[1],
-            //                 'position' => $csvLine[2],
-            //                 'category' => $categoryID->id,
-            //                 'photo' => $csvLine[4],
-            //             ]);
-
-            //             foreach($files as $suslikImage)
-            //             { 
-            //                 $imageName = new SplFileInfo($suslikImage);
-            //                 if($imageName->getFilename() == $csvLine[4])
-            //                 {
-            //                     $imageExtension = $imageName->getExtension();
-            //                     $urlImage = storage_path() . '/app/susliks_upload/' . $imageName;
-            //                     $photo = $newSuslik->uuid;
-            //                     rename($urlImage, storage_path() . '/app/public/susliks/' . $photo . '.' . $imageExtension);
-                                
-            //                     Suslik::where('id', '=', $photo)->update([
-            //                         'photo' => $photo . '.' . $imageExtension
-            //                     ]);
-            //                 }
-            //             }
-            //         }
-            //     }
-            //     unlink($url);
-            // }
         }
 
         $path = storage_path() . '/app/temp';

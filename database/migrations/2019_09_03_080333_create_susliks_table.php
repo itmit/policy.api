@@ -17,6 +17,7 @@ class CreateSusliksTable extends Migration
             $table->bigIncrements('id');
             $table->uuid('uuid');
             $table->string('name');
+            $table->integer('number')->unique();
             $table->string('place_of_work');
             $table->string('position');
             $table->bigInteger('category');
