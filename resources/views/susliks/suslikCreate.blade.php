@@ -65,12 +65,12 @@
                     @endif
                 </div>
 
-                <div class="form-group{{ $errors->has('nubmer') ? ' has-error' : '' }}">
-                    <label for="nubmer" class="control-label">Уникальный номер:</label>
-                    <input id="nubmer" type="text" class="form-control input-create-poll" name="nubmer" value="{{ old('nubmer') }}" required>
-                    @if ($errors->has('nubmer'))
+                <div class="form-group{{ $errors->has('number') ? ' has-error' : '' }}">
+                    <label for="number" class="control-label">Уникальный номер:</label>
+                    <input id="number" type="text" class="form-control input-create-poll" name="number" value="{{ old('number') }}" required>
+                    @if ($errors->has('number'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('nubmer') }}</strong>
+                            <strong>{{ $errors->first('number') }}</strong>
                         </span>
                     @endif
                 </div>
