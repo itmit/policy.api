@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
-                    <label for="position" class="control-label">Ссылка:</label>
+                    <label for="link" class="control-label">Ссылка:</label>
                     <input id="link" type="text" class="form-control input-create-poll" name="link" value="{{ old('link') }}" required>
                     @if ($errors->has('link'))
                         <span class="help-block">
@@ -64,6 +64,17 @@
                         </span>
                     @endif
                 </div>
+
+                <div class="form-group{{ $errors->has('nubmer') ? ' has-error' : '' }}">
+                    <label for="nubmer" class="control-label">Уникальный номер:</label>
+                    <input id="nubmer" type="text" class="form-control input-create-poll" name="nubmer" value="{{ old('nubmer') }}" required>
+                    @if ($errors->has('nubmer'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('nubmer') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
                 <div class="form-group">
                     <div class="col-md-offset-4">
                         <button type="submit" class="btn-card">

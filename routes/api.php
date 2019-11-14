@@ -40,6 +40,7 @@ Route::post('poll/getPollCategoryList', 'Api\PollApiController@getPollCategoryLi
 Route::post('poll/getPollList', 'Api\PollApiController@getPollList');
 Route::post('poll/getPollQuestionList', 'Api\PollApiController@getPollQuestionList');
 Route::post('poll/passPoll', 'Api\PollApiController@passPoll');
+Route::post('statistic/{uuid}', 'Api\SuslikApiController@statistic');
 
 Route::post('suslik/search', 'Api\SuslikApiController@search');
 
