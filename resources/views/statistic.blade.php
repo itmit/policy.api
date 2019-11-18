@@ -141,7 +141,7 @@
                     </li>
                     <li class="Daytime">
                         <span>
-                            2
+                            {{ date("d.m", strtotime($lastSevenDays[1]->created_at)) }}
                         </span>
                     </li>
                 </ul>
@@ -160,7 +160,7 @@
                     </li>
                     <li class="Daytime">
                         <span>
-                            3
+                            {{ date("d.m", strtotime($lastSevenDays[2]->created_at)) }}
                         </span>
                     </li>
                 </ul>
@@ -179,7 +179,7 @@
                     </li>
                     <li class="Daytime">
                         <span>
-                            4
+                            {{ date("d.m", strtotime($lastSevenDays[3]->created_at)) }}
                         </span>
                     </li>
                 </ul>
@@ -198,7 +198,7 @@
                     </li>
                     <li class="Daytime">
                         <span>
-                            5
+                            {{ date("d.m", strtotime($lastSevenDays[4]->created_at)) }}
                         </span>
                     </li>
                 </ul>
@@ -217,7 +217,7 @@
                     </li>
                     <li class="Daytime">
                         <span>
-                            6
+                            {{ date("d.m", strtotime($lastSevenDays[5]->created_at)) }}
                         </span>
                     </li>
                 </ul>
@@ -236,7 +236,7 @@
                     </li>
                     <li class="Daytime">
                         <span>
-                            7
+                            {{ date("d.m", strtotime($lastSevenDays[6]->created_at)) }}
                         </span>
                     </li>
                 </ul>
