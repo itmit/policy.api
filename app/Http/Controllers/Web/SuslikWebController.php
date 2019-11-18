@@ -350,6 +350,7 @@ class SuslikWebController extends Controller
         // $lastSevenDays = SuslikRatingHistory::where('whom_suslik', '=', $id)->whereBetween('created_at', [$inSevenDays, $today])->get(); // все голоса за последние 7 дней
         
         $i = 1;
+        $max = 0;
         $votes = [];
         while ($i <= 7) {
             $key = date("d.m", strtotime($day));
@@ -386,6 +387,11 @@ class SuslikWebController extends Controller
             $voteDetail['dislikes'] = $dislikes;
             $voteDetail['count'] = $count;
             $votes[$key] = $voteDetail;
+            $max = $voteDetail['count'];
+            if($max < $voteDetail['count'])
+            {
+                $max = $voteDetail['count']
+            }
             if($i == 1)
             {
                 $day = date("d.m.Y", strtotime('-'.$i.' day'));
@@ -400,15 +406,6 @@ class SuslikWebController extends Controller
         }
 
         $votes = array_reverse($votes);
-        $max = 0;
-        foreach($votes as $vote)
-        {
-            $max = $voteDetail['count'];
-            if($max >= $voteDetail['count'])
-            {
-                continue;
-            }
-        }
 
         return view('statistic', [
             'votes' => $votes,
