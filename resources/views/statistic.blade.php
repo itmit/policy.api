@@ -250,25 +250,25 @@
     </div>
 </body>
 <script type="text/javascript">
-    let arr = [10, 5, 5];
+    // let arr = [10, 5, 5];
 
-    let summ = arr[0] + arr[1] + arr[2];
+    // let summ = arr[0] + arr[1] + arr[2];
 
-    let percentage = summ / ((summ + 5 + 5 + 6 + 1 + 1 + 2) * 1 / 100);
+    // let percentage = summ / ((summ + 5 + 5 + 6 + 1 + 1 + 2) * 1 / 100);
 
-    document.getElementById('columnOne').style.height = percentage + "%";
+    // document.getElementById('columnOne').style.height = percentage + "%";
 
-    let like = arr[0] / (summ * 1 / 100);
-    let neit = arr[1] / (summ * 1 / 100);
-    let dis = arr[2] / (summ * 1 / 100);
+    // let like = arr[0] / (summ * 1 / 100);
+    // let neit = arr[1] / (summ * 1 / 100);
+    // let dis = arr[2] / (summ * 1 / 100);
 
-    document.getElementById('quantity').innerHTML = summ;
-    document.getElementById('like').innerHTML = like + '%';
-    document.getElementById('like').parentNode.style.height = like + '%';
-    document.getElementById('neit').innerHTML = neit + '%';
-    document.getElementById('neit').parentNode.style.height = neit + '%';
-    document.getElementById('dis').innerHTML = dis + '%';
-    document.getElementById('dis').parentNode.style.height = dis + '%';
+    // document.getElementById('quantity').innerHTML = summ;
+    // document.getElementById('like').innerHTML = like + '%';
+    // document.getElementById('like').parentNode.style.height = like + '%';
+    // document.getElementById('neit').innerHTML = neit + '%';
+    // document.getElementById('neit').parentNode.style.height = neit + '%';
+    // document.getElementById('dis').innerHTML = dis + '%';
+    // document.getElementById('dis').parentNode.style.height = dis + '%';
 
 </script>
 
