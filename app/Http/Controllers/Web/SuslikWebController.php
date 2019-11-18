@@ -346,8 +346,8 @@ class SuslikWebController extends Controller
     {
         $today = date("Y-m-d H:i:s");
         $inSevenDays =  date('Y-m-d H:i:s', strtotime('+1 week'));
-        return "today: " . $today . " in 7 days: " . $inSevenDays;
         $lastSevenDays = SuslikRatingHistory::where('whom_suslik', '=', $id)->whereBetween('created_at', [$today, $inSevenDays])->get()->get();
+        dd($lastSevenDays);
         return view('statistic', [
             'suslik' => Suslik::where('id', '=', $id)->first(),
             'history' => SuslikRatingHistory::where('whom_suslik', '=', $id)->get()
