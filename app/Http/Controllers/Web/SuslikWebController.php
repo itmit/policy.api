@@ -345,7 +345,7 @@ class SuslikWebController extends Controller
     public function showStatistic($id)
     {
         $today = date("Y-m-d H:i:s");
-        $inSevenDays =  date('Y-m-d H:i:s', strtotime('+1 week'));
+        $inSevenDays =  date('Y-m-d H:i:s', strtotime('-1 week'));
         $lastSevenDays = SuslikRatingHistory::where('whom_suslik', '=', $id)->whereBetween('created_at', [$today, $inSevenDays])->get();
         // dd($lastSevenDays);
         return view('statistic', [
