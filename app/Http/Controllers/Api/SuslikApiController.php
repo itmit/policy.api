@@ -393,15 +393,71 @@ class SuslikApiController extends ApiBaseController
      */
     public function showStatistic($uuid)
     {
-        $today = date("Y-m-d H:i:s");
-        $inSevenDays =  date('Y-m-d H:i:s', strtotime('-1 week'));
-
         $suslik = Suslik::where('uuid', '=', $uuid)->first();
 
-        $lastSevenDays = SuslikRatingHistory::where('whom_suslik', '=', $suslik->id)->whereBetween('created_at', [$inSevenDays, $today])->get();
+        $today = date("Y-m-d");
+        $day = date("Y-m-d H:i:s");
+        
+        $i = 1;
+        $max = 0;
+        $votes = [];
+        while ($i <= 7) {
+            $key = date("d.m", strtotime($day));
+            $voteDetail = [];
+            $likes = 0;
+            $neutrals = 0;
+            $dislikes = 0;
+            $count = 0;
+            $voteInDay = SuslikRatingHistory::where('whom_suslik', '=', $suslik->id)->whereBetween('created_at', [$today . " 00:00:00", $today . " 23:59:59"])->get();
+            foreach($voteInDay as $item)
+            {
+                $count++;
+                switch ($item->type) {
+                    case 'likes':
+                        $likes++;
+                        break;
+                    case 'neutrals':
+                        $neutrals++;
+                        break;
+                    case 'dislikes':
+                        $dislikes++;
+                        break;
+                }
+            }
+            if($count > 0)
+            {
+                $likes = $likes / $count * 100;
+                $neutrals = $neutrals / $count * 100;
+                $dislikes = $dislikes / $count * 100;
+            }
+            
+            $voteDetail['likes'] = $likes;
+            $voteDetail['neutrals'] = $neutrals;
+            $voteDetail['dislikes'] = $dislikes;
+            $voteDetail['count'] = $count;
+            $votes[$key] = $voteDetail;
+            if($max < $voteDetail['count'])
+            {
+                $max = $voteDetail['count'];
+            }
+            if($i == 1)
+            {
+                $day = date("d.m.Y", strtotime('-'.$i.' day'));
+                $today = date("Y-m-d", strtotime('-'.$i.' day'));
+            }
+            else
+            {
+                $day = date("d.m.Y", strtotime('-'.$i.' days'));
+                $today = date("Y-m-d", strtotime('-'.$i.' day'));
+            }
+            $i++;
+        }
+
+        $votes = array_reverse($votes);
 
         return view('statistic', [
-            'lastSevenDays' => $lastSevenDays
+            'votes' => $votes,
+            'max' => $max,
         ]); 
     }
 }
