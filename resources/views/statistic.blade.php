@@ -14,7 +14,7 @@
         margin: 0px 15px;
         padding: 0;
         position: relative;
-        min-height: 20%;
+        /* min-height: 20%; */
         box-shadow: 5px 0px 9px 0px #777777;
     }
 
@@ -108,7 +108,7 @@
         <div class="chart">
             <div class="horizontal-columns-section">
                 @foreach ($votes as $date => $vote)
-            <ul class="column" id='column' @if(count($vote) == $max) style="height: 100%" @else <?php $percent = count($vote)/$max * 100 ?> style="height:{{$percent}}%" @endif>
+                    <ul class="column" id='column' @if(count($vote) == $max) style="height: 100%" @else <?php $percent = count($vote)/$max * 100 ?> style="height:{{$percent}}%" @endif>
                         <li class="Quantity">
                             <span id="quantity">{{ count($vote) }}</span>
                         </li>
