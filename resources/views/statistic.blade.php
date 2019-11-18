@@ -114,17 +114,17 @@
                         </li>
                         @if($vote['likes'] != 0)
                         <li class="cl-green" style="height:{{ $vote['likes'] }}%">
-                            <span id="like" style="height:{{ $vote['likes'] }}%">{{ $vote['likes'] }}</span>
+                            <span id="like">{{ round($vote['likes'], 2) }}%</span>
                         </li>
                         @endif
                         @if($vote['neutrals'] != 0)
                         <li class="cl-gray " style="height:{{ $vote['neutrals'] }}%">  
-                            <span id="neit" style="height:{{ $vote['neutrals'] }}%">{{ $vote['neutrals'] }}</span> 
+                            <span id="neit">{{ round($vote['neutrals'], 2) }}%</span> 
                         </li>
                         @endif
                         @if($vote['dislikes'] != 0)
                         <li class="cl-red" style="height:{{ $vote['dislikes'] }}%">
-                            <span id="dis" style="height:{{ $vote['dislikes'] }}%">{{ $vote['dislikes'] }}</span>
+                            <span id="dis">{{ round($vote['dislikes'], 2) }}%</span>
                         </li>
                         @endif
                         <li class="Daytime">
