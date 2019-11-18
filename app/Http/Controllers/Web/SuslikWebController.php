@@ -349,9 +349,9 @@ class SuslikWebController extends Controller
         // $inSevenDays =  date('Y-m-d H:i:s', strtotime('-1 week'));
         // $lastSevenDays = SuslikRatingHistory::where('whom_suslik', '=', $id)->whereBetween('created_at', [$inSevenDays, $today])->get(); // все голоса за последние 7 дней
         
-        $i = 7;
+        $i = 1;
         $votes = [];
-        while ($i >= 1) {
+        while ($i <= 7) {
             $key = date("d.m", strtotime($day));
             $votes[$key] = SuslikRatingHistory::where('whom_suslik', '=', $id)->whereBetween('created_at', [$today . " 00:00:00", $today . " 23:59:59"])->get();
             if($i == 1)
@@ -364,8 +364,10 @@ class SuslikWebController extends Controller
                 $day = date("d.m.Y", strtotime('-'.$i.' days'));
                 $today = date("Y-m-d", strtotime('-'.$i.' day'));
             }
-            $i--;
+            $i++;
         }
+
+        $votes = array_reverse($votes);
 
         return view('statistic', [
             'votes' => $votes,
