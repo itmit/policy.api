@@ -108,17 +108,17 @@
         <div class="chart">
             <div class="horizontal-columns-section">
                 @foreach ($votes as $date => $vote)
-                    <ul class="column" id='column' @if($vote['count'] == $max) style="height: 100%" @else <?php $percent = $vote['count'] /$max * 100 ?> style="height:{{$percent}}%" @endif>
+                    <ul class="column" id='column' @if($vote['count'] == $max) style="height: 100%" @else <?php $percent = $vote['count'] / $max * 100 ?> style="height:{{$percent}}%" @endif>
                         <li class="Quantity">
                             <span id="quantity">{{ $vote['count'] }}</span>
                         </li>
-                        <li class="cl-green">
+                        <li class="cl-green" @if($vote['likes'] == 0) style="height: 0%; displey: none" @else <?php $percent = $vote['likes'] / $vote['count'] * 100 ?> style="height:{{$percent}}%" @endif>
                             <span id="like">{{ $vote['likes'] }}</span>
                         </li>
-                        <li class="cl-gray">
+                        <li class="cl-gray "@if($vote['neutrals'] == 0) style="height: 0%; displey: none" @else <?php $percent = $vote['neutrals'] / $vote['count'] * 100 ?> style="height:{{$percent}}%" @endif>
                             <span id="neit">{{ $vote['neutrals'] }}</span>
                         </li>
-                        <li class="cl-red">
+                        <li class="cl-red" @if($vote['dislikes'] == 0) style="height: 0%; displey: none" @else <?php $percent = $vote['dislikes'] / $vote['count'] * 100 ?> style="height:{{$percent}}%" @endif>
                             <span id="dis">{{ $vote['dislikes'] }}</span>
                         </li>
                         <li class="Daytime">
