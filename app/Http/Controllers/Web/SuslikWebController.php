@@ -403,8 +403,8 @@ class SuslikWebController extends Controller
         $max = 0;
         foreach($votes as $vote)
         {
-            $max = count($vote);
-            if($max >= count($vote))
+            $max = $voteDetail['count'];
+            if($max >= $voteDetail['count'])
             {
                 continue;
             }
