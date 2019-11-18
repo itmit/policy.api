@@ -14,7 +14,7 @@
         margin: 0px 15px;
         padding: 0;
         position: relative;
-        min-height: 20%;
+        /* min-height: 20%; */
         box-shadow: 5px 0px 9px 0px #777777;
     }
 
