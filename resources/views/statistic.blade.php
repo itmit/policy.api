@@ -107,27 +107,139 @@
     <div id="wrapper">
         <div class="chart">
             <div class="horizontal-columns-section">
-                @foreach ($lastSevenDays as $item)
-                    <ul class="column" id='column'>
-                        <li class="Quantity">
-                            <span id="quantity">{{ $item->countOfVoted }}</span>
-                        </li>
-                        <li class="cl-green">
-                            <span id="like">20%</span>
-                        </li>
-                        <li class="cl-gray">
-                            <span id="neit">50%</span>
-                        </li>
-                        <li class="cl-red">
-                            <span id="dis">30%</span>
-                        </li>
-                        <li class="Daytime">
-                            <span>
-                                {{ date("d.m", strtotime($item->created_at)) }}
-                            </span>
-                        </li>
-                    </ul>
-                @endforeach
+                <ul class="column" id='columnOne'>
+                    <li class="Quantity">
+                        <span id="quantity">{{  }}</span>
+                    </li>
+                    <li class="cl-green">
+                        <span id="like">20%</span>
+                    </li>
+                    <li class="cl-gray">
+                        <span id="neit">50%</span>
+                    </li>
+                    <li class="cl-red">
+                        <span id="dis">30%</span>
+                    </li>
+                    <li class="Daytime">
+                        <span>
+                            {{ date("d.m", strtotime($lastSevenDays[0]->created_at)) }}
+                        </span>
+                    </li>
+                </ul>
+                <ul class="column">
+                    <li class="Quantity">
+                        <span>20</span>
+                    </li>
+                    <li class="cl-green">
+                        <span>20%</span>
+                    </li>
+                    <li class="cl-gray">
+                        <span>50%</span>
+                    </li>
+                    <li class="cl-red">
+                        <span>30%</span>
+                    </li>
+                    <li class="Daytime">
+                        <span>
+                            {{ date("d.m", strtotime($lastSevenDays[1]->created_at)) }}
+                        </span>
+                    </li>
+                </ul>
+                <ul class="column">
+                    <li class="Quantity">
+                        <span>10</span>
+                    </li>
+                    <li class="cl-green">
+                        <span>20%</span>
+                    </li>
+                    <li class="cl-gray">
+                        <span>50%</span>
+                    </li>
+                    <li class="cl-red">
+                        <span>30%</span>
+                    </li>
+                    <li class="Daytime">
+                        <span>
+                            {{ date("d.m", strtotime($lastSevenDays[2]->created_at)) }}
+                        </span>
+                    </li>
+                </ul>
+                <ul class="column">
+                    <li class="Quantity">
+                        <span>10</span>
+                    </li>
+                    <li class="cl-green">
+                        <span>20%</span>
+                    </li>
+                    <li class="cl-gray">
+                        <span>50%</span>
+                    </li>
+                    <li class="cl-red">
+                        <span>30%</span>
+                    </li>
+                    <li class="Daytime">
+                        <span>
+                            {{ date("d.m", strtotime($lastSevenDays[3]->created_at)) }}
+                        </span>
+                    </li>
+                </ul>
+                <ul class="column">
+                    <li class="Quantity">
+                        <span>10</span>
+                    </li>
+                    <li class="cl-green">
+                        <span>20%</span>
+                    </li>
+                    <li class="cl-gray">
+                        <span>50%</span>
+                    </li>
+                    <li class="cl-red">
+                        <span>30%</span>
+                    </li>
+                    <li class="Daytime">
+                        <span>
+                            {{ date("d.m", strtotime($lastSevenDays[4]->created_at)) }}
+                        </span>
+                    </li>
+                </ul>
+                <ul class="column">
+                    <li class="Quantity">
+                        <span>10</span>
+                    </li>
+                    <li class="cl-green">
+                        <span>20%</span>
+                    </li>
+                    <li class="cl-gray">
+                        <span>50%</span>
+                    </li>
+                    <li class="cl-red">
+                        <span>30%</span>
+                    </li>
+                    <li class="Daytime">
+                        <span>
+                            {{ date("d.m", strtotime($lastSevenDays[5]->created_at)) }}
+                        </span>
+                    </li>
+                </ul>
+                <ul class="column">
+                    <li class="Quantity">
+                        <span>10</span>
+                    </li>
+                    <li class="cl-green">
+                        <span>20%</span>
+                    </li>
+                    <li class="cl-gray">
+                        <span>50%</span>
+                    </li>
+                    <li class="cl-red">
+                        <span>30%</span>
+                    </li>
+                    <li class="Daytime">
+                        <span>
+                            {{ date("d.m", strtotime($lastSevenDays[6]->created_at)) }}
+                        </span>
+                    </li>
+                </ul>
             </div>
         </div>
         <ul class="legend">
