@@ -113,17 +113,17 @@
                             <span id="quantity">{{ $vote['count'] }}</span>
                         </li>
                         @if($vote['likes'] != 0)
-                        <li class="cl-green">
+                        <li class="cl-green" style="height:{{ $vote['likes'] }}%">
                             <span id="like" style="height:{{ $vote['likes'] }}%">{{ $vote['likes'] }}</span>
                         </li>
                         @endif
                         @if($vote['neutrals'] != 0)
-                        <li class="cl-gray ">  
+                        <li class="cl-gray " style="height:{{ $vote['neutrals'] }}%">  
                             <span id="neit" style="height:{{ $vote['neutrals'] }}%">{{ $vote['neutrals'] }}</span> 
                         </li>
                         @endif
                         @if($vote['dislikes'] != 0)
-                        <li class="cl-red">
+                        <li class="cl-red" style="height:{{ $vote['dislikes'] }}%">
                             <span id="dis" style="height:{{ $vote['dislikes'] }}%">{{ $vote['dislikes'] }}</span>
                         </li>
                         @endif
