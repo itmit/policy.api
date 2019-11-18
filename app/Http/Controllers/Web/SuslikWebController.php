@@ -409,9 +409,6 @@ class SuslikWebController extends Controller
                 continue;
             }
         }
-        dd($votes);
-
-        
 
         return view('statistic', [
             'votes' => $votes,
