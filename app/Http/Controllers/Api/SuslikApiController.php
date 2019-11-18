@@ -387,4 +387,21 @@ class SuslikApiController extends ApiBaseController
         }
         return 'error';
     }
+
+    /**
+     * Вывод стастистики суслика
+     */
+    public function showStatistic($uuid)
+    {
+        $today = date("Y-m-d H:i:s");
+        $inSevenDays =  date('Y-m-d H:i:s', strtotime('-1 week'));
+
+        $suslik = Suslik::where('uuid', '=', $uuid)->first();
+
+        $lastSevenDays = SuslikRatingHistory::where('whom_suslik', '=', $suslik->id)->whereBetween('created_at', [$inSevenDays, $today])->get();
+
+        return view('statistic', [
+            'lastSevenDays' => $lastSevenDays
+        ]); 
+    }
 }
