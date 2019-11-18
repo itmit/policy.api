@@ -110,7 +110,7 @@
                 @foreach ($votes as $date => $vote)
                     <ul class="column" id='column'>
                         <li class="Quantity">
-                            <span id="quantity">{{  }}</span>
+                            <span id="quantity">{{ count($vote) }}</span>
                         </li>
                         <li class="cl-green">
                             <span id="like">20%</span>
