@@ -122,7 +122,7 @@
                     </li>
                     <li class="Daytime">
                         <span>
-                            1
+                            {{ $lastSevenDays[0]->created_at }}
                         </span>
                     </li>
                 </ul>
