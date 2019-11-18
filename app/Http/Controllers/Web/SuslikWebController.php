@@ -390,7 +390,7 @@ class SuslikWebController extends Controller
             $max = $voteDetail['count'];
             if($max < $voteDetail['count'])
             {
-                $max = $voteDetail['count']
+                $max = $voteDetail['count'];
             }
             if($i == 1)
             {
