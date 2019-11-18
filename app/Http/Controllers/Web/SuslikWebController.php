@@ -359,7 +359,7 @@ class SuslikWebController extends Controller
 
         $lastSevenDays['countOfVoted'] = $countOfVoted;
 
-        dd($lastSevenDays);
+        // dd($lastSevenDays);
 
         return view('statistic', [
             'history' => SuslikRatingHistory::where('whom_suslik', '=', $id)->get(),
