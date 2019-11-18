@@ -395,6 +395,11 @@ class SuslikApiController extends ApiBaseController
     {
         $suslik = Suslik::where('uuid', '=', $uuid)->first();
 
+        if($suslik == NULL)
+        {
+            return 'erer';
+        }
+
         $today = date("Y-m-d");
         $day = date("Y-m-d H:i:s");
         
