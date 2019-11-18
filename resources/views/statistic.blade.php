@@ -112,15 +112,21 @@
                         <li class="Quantity">
                             <span id="quantity">{{ $vote['count'] }}</span>
                         </li>
+                        @if($vote['likes'] != 0)
                         <li class="cl-green">
-                            <span id="like" @if($vote['likes'] == 0) style="height: 0%; display: none" @else <?php $percent = $vote['likes'] / $vote['count'] * 100 ?> style="height:{{$percent}}%" @endif>{{ $vote['likes'] }}</span>
+                            <span id="like" style="height:{{ $vote['likes'] }}%">{{ $vote['likes'] }}</span>
                         </li>
-                        <li class="cl-gray ">
-                            <span id="neit" @if($vote['likes'] == 0) style="height: 0%; display: none" @else <?php $percent = $vote['likes'] / $vote['count'] * 100 ?> style="height:{{$percent}}%" @endif>{{ $vote['neutrals'] }}</span>
+                        @endif
+                        @if($vote['neutrals'] != 0)
+                        <li class="cl-gray ">  
+                            <span id="neit" style="height:{{ $vote['neutrals'] }}%">{{ $vote['neutrals'] }}</span> 
                         </li>
+                        @endif
+                        @if($vote['dislikes'] != 0)
                         <li class="cl-red">
-                            <span id="dis" @if($vote['likes'] == 0) style="height: 0%; display: none" @else <?php $percent = $vote['likes'] / $vote['count'] * 100 ?> style="height:{{$percent}}%" @endif>{{ $vote['dislikes'] }}</span>
+                            <span id="dis" style="height:{{ $vote['dislikes'] }}%">{{ $vote['dislikes'] }}</span>
                         </li>
+                        @endif
                         <li class="Daytime">
                             <span>
                                 {{ $date }}
