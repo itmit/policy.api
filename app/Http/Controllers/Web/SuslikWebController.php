@@ -346,12 +346,21 @@ class SuslikWebController extends Controller
     {
         $today = date("Y-m-d H:i:s");
         $inSevenDays =  date('Y-m-d H:i:s', strtotime('-1 week'));
-        $lastSevenDays = SuslikRatingHistory::where('whom_suslik', '=', $id)->whereBetween('created_at', [$inSevenDays, $today])->get();
-        // dd($lastSevenDays);
+        $lastSevenDays = SuslikRatingHistory::where('whom_suslik', '=', $id)->whereBetween('created_at', [$inSevenDays, $today])->get(); // все голоса за последние 7 дней
+
+        $countOfVoted = [];// количество проголосовавших
+
+        foreach($lastSevenDays as $item)
+        {
+            $voteDate = date("d.m.Y", strtotime($item->created_at));
+            $countOfVoted[$voteDate] = 1;
+        }
+
+        dd($countOfVoted);
+
         return view('statistic', [
-            'suslik' => Suslik::where('id', '=', $id)->first(),
             'history' => SuslikRatingHistory::where('whom_suslik', '=', $id)->get(),
-            'lastSevenDays' => $lastSevenDays
+            'countOfVoted' => $countOfVoted
         ]); 
     }
     
