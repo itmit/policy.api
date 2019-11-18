@@ -346,20 +346,23 @@ class SuslikWebController extends Controller
     {
         $today = date("Y-m-d H:i:s");
         $day = date("Y-m-d H:i:s");
-        $inSevenDays =  date('Y-m-d H:i:s', strtotime('-1 week'));
-        $lastSevenDays = SuslikRatingHistory::where('whom_suslik', '=', $id)->whereBetween('created_at', [$inSevenDays, $today])->get(); // все голоса за последние 7 дней
+        // $inSevenDays =  date('Y-m-d H:i:s', strtotime('-1 week'));
+        // $lastSevenDays = SuslikRatingHistory::where('whom_suslik', '=', $id)->whereBetween('created_at', [$inSevenDays, $today])->get(); // все голоса за последние 7 дней
+        
         $i = 1;
         $votes = [];
         while ($i <= 7) {
             $key = date("d.m.Y", strtotime($day));
-            $votes[$key] = SuslikRatingHistory::where('whom_suslik', '=', $id)->where('created_at', '=', $day)->get();
+            $votes[$key] = SuslikRatingHistory::where('whom_suslik', '=', $id)->where('created_at', '=', $today)->get();
             if($i == 1)
             {
                 $day = date("d.m.Y", strtotime('-'.$i.' day'));
+                $today = date("Y-m-d H:i:s", strtotime('-'.$i.' day'));
             }
             else
             {
                 $day = date("d.m.Y", strtotime('-'.$i.' days'));
+                $today = date("Y-m-d H:i:s", strtotime('-'.$i.' day'));
             }
             $i++;
         }
