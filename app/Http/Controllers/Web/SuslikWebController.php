@@ -361,6 +361,7 @@ class SuslikWebController extends Controller
             $voteInDay = SuslikRatingHistory::where('whom_suslik', '=', $id)->whereBetween('created_at', [$today . " 00:00:00", $today . " 23:59:59"])->get();
             foreach($voteInDay as $item)
             {
+                $count++;
                 switch ($item->type) {
                     case 'likes':
                         $likes++;
@@ -372,11 +373,14 @@ class SuslikWebController extends Controller
                         $dislikes++;
                         break;
                 }
-                $count++;
             }
-            $likes = $likes / $count * 100;
-            $neutrals = $neutrals / $count * 100;
-            $dislikes = $dislikes / $count * 100;
+            if($count > 0)
+            {
+                $likes = $likes / $count * 100;
+                $neutrals = $neutrals / $count * 100;
+                $dislikes = $dislikes / $count * 100;
+            }
+            
             $voteDetail['likes'] = $likes;
             $voteDetail['neutrals'] = $neutrals;
             $voteDetail['dislikes'] = $dislikes;
