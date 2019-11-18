@@ -338,4 +338,16 @@ class SuslikWebController extends Controller
 
         return response()->json(['Places destroyed']);
     }
+
+    /**
+     * Тест
+     */
+    public function showStatistic($id)
+    {
+        return view('statistic', [
+            'suslik' => Suslik::where('id', '=', $id)->first(),
+            'history' => SuslikRatingHistory::where('whom_suslik', '=', $id)->get()
+        ]); 
+    }
+    
 }
