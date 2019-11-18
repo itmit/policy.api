@@ -353,16 +353,16 @@ class SuslikWebController extends Controller
         $votes = [];
         while ($i <= 7) {
             $key = date("d.m.Y", strtotime($day));
-            $votes[$key] = SuslikRatingHistory::where('whom_suslik', '=', $id)->where('created_at', '=', $today)->get();
+            $votes[$key] = SuslikRatingHistory::where('whom_suslik', '=', $id)->whereBetween('created_at', [$today . " 00:00:00", $today . " 23:59:59"])->get();
             if($i == 1)
             {
                 $day = date("d.m.Y", strtotime('-'.$i.' day'));
-                $today = date("Y-m-d H:i:s", strtotime('-'.$i.' day'));
+                $today = date("Y-m-d", strtotime('-'.$i.' day'));
             }
             else
             {
                 $day = date("d.m.Y", strtotime('-'.$i.' days'));
-                $today = date("Y-m-d H:i:s", strtotime('-'.$i.' day'));
+                $today = date("Y-m-d", strtotime('-'.$i.' day'));
             }
             $i++;
         }
