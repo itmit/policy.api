@@ -353,7 +353,29 @@ class SuslikWebController extends Controller
         $votes = [];
         while ($i <= 7) {
             $key = date("d.m", strtotime($day));
-            $votes[$key] = SuslikRatingHistory::where('whom_suslik', '=', $id)->whereBetween('created_at', [$today . " 00:00:00", $today . " 23:59:59"])->get();
+            $voteDetail = [];
+            $likes = 0;
+            $neutrals = 0;
+            $dislikes = 0;
+            $voteInDay = SuslikRatingHistory::where('whom_suslik', '=', $id)->whereBetween('created_at', [$today . " 00:00:00", $today . " 23:59:59"])->get();
+            foreach($voteInDay as $item)
+            {
+                switch ($item->type) {
+                    case 'likes':
+                        $likes++;
+                        break;
+                    case 'neutrals':
+                        $neutrals++;
+                        break;
+                    case 'dislikes':
+                        $dislikes++;
+                        break;
+                }
+            }
+            $voteDetail['likes'] = $likes;
+            $voteDetail['neutrals'] = $neutrals;
+            $voteDetail['dislikes'] = $dislikes;
+            $votes[$key] = $voteDetail;
             if($i == 1)
             {
                 $day = date("d.m.Y", strtotime('-'.$i.' day'));
@@ -377,6 +399,7 @@ class SuslikWebController extends Controller
                 continue;
             }
         }
+        dd($votes);
 
         
 
