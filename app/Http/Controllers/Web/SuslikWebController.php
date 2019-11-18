@@ -348,9 +348,9 @@ class SuslikWebController extends Controller
         $day = date("Y-m-d H:i:s");
         $inSevenDays =  date('Y-m-d H:i:s', strtotime('-1 week'));
         $lastSevenDays = SuslikRatingHistory::where('whom_suslik', '=', $id)->whereBetween('created_at', [$inSevenDays, $today])->get(); // все голоса за последние 7 дней
-        $i = 0;
+        $i = 6;
         $votes = [];
-        while ($i <= 6) {
+        while ($i <= 0) {
             $votes[date("d.m.Y", strtotime($day))] = SuslikRatingHistory::where('whom_suslik', '=', $id)->where('created_at', '=', $day)->get();
             $day = date($day, strtotime('-1 day'));
             $i--;
