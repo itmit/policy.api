@@ -108,7 +108,7 @@
         <div class="chart">
             <div class="horizontal-columns-section">
                 @foreach ($votes as $date => $vote)
-                    <ul class="column" id='column'>
+                    <ul class="column" id='column' @if(count($vote) == $max) style="height: 100%" @else style="height: 10%" @endif>
                         <li class="Quantity">
                             <span id="quantity">{{ count($vote) }}</span>
                         </li>

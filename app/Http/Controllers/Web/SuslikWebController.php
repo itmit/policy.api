@@ -368,9 +368,21 @@ class SuslikWebController extends Controller
         }
 
         $votes = array_reverse($votes);
+        $max = 0;
+        foreach($votes as $vote)
+        {
+            $max = count($vote);
+            if($max >= count($vote))
+            {
+                continue;
+            }
+        }
+
+        
 
         return view('statistic', [
             'votes' => $votes,
+            'max' => $max,
         ]); 
     }
     
