@@ -104,7 +104,6 @@
 </style>
 
 <body>
-    {{$max}}
     <div id="wrapper">
         <div class="chart">
             <div class="horizontal-columns-section">
