@@ -123,6 +123,9 @@
         <div class="chart">
             <div class="horizontal-columns-section">
                 @foreach ($votes as $date => $vote)
+                @if($max == 0)
+                    @continue
+                @endif
                 <ul class="column" id='column' @if($vote['count']) style="height: 100%" @else <?php $percent = $vote['count'] / $max * 100 ?> @endif>
                     <li class="Quantity">
                         <span id="quantity">{{ $vote['count'] }}</span>
