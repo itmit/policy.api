@@ -58,6 +58,9 @@
                     </thead>
                     <tbody>
                     @foreach($susliks as $suslik)
+                    @if($suslik->category() == NULL)
+                    @continue
+                    @endif
                         <tr>
                             <td><input type="checkbox" data-suslik-id="{{ $suslik->id }}" name="destoy-suslik-{{ $suslik->id }}" class="js-destroy"/></td>
                             <td>{{ $suslik->name }}</td>
