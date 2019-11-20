@@ -9,7 +9,6 @@
     ul.column {
         list-style: none;
         width: 50px;
-        height: 100%;
         text-align: center;
         padding: 0px 15px;
         margin: 0;
@@ -124,19 +123,30 @@
         <div class="chart">
             <div class="horizontal-columns-section">
                 @foreach ($votes as $date => $vote)
-                <ul class="column" id='column' @if($vote['count']==$max) style="height: 100%" @else <?php $percent = $vote['count'] / $max * 100 ?> @endif>
+                <ul class="column" id='column' @if($vote['count']) style="height: 100%" @else <?php $percent = $vote['count'] / $max * 100 ?> @endif>
                     <li class="Quantity">
                         <span id="quantity">{{ $vote['count'] }}</span>
                     </li>
-                    <li class="cl-green">
+                    @if($vote['likes'] != 0)
+                    <li class="cl-green" 
+                       @if($vote['likes'] && $vote['neutrals'] && $vote['dislikes']) style="height: 28.3%" @elseif($vote['likes'] && $vote['neutrals'] || $vote['dislikes']) style="height: 42.65%" @elseif($vote['likes'] && !$vote['neutrals'] && !$vote['dislikes']) style="height: 85.3%" @endif>
                         <span id="like">{{ round($vote['likes']) }}</span>
                     </li>
-                    <li class="cl-gray ">
+                    @endif
+                    @if($vote['neutrals'] != 0)
+                    <li class="cl-gray "
+                       @if($vote['likes'] && $vote['neutrals'] && $vote['dislikes']) style="height: 28.3%" @elseif($vote['neutrals'] && $vote['likes'] || $vote['dislikes']) style="height: 42.65%" @elseif($vote['neutrals'] && !$vote['likes'] && !$vote['dislikes']) style="height: 85.3%" @endif
+                       >
                         <span id="neit">{{ round($vote['neutrals']) }}</span>
                     </li>
-                    <li class="cl-red">
+                    @endif
+                    @if($vote['dislikes'] != 0)
+                    <li class="cl-red"
+                       @if($vote['likes'] && $vote['neutrals'] && $vote['dislikes']) style="height: 28.3%" @elseif($vote['dislikes'] && $vote['likes'] || $vote['neutrals']) style="height: 42.65%" @elseif($vote['dislikes'] && !$vote['likes'] && !$vote['neutrals']) style="height: 85.3%" @endif
+                       >
                         <span id="dis">{{ round($vote['dislikes']) }}</span>
                     </li>
+                    @endif
                     <li class="Daytime">
                         <span>
                             {{ $date }}
@@ -156,27 +166,5 @@
         </div>
     </div>
 </body>
-<script type="text/javascript">
-    // let arr = [10, 5, 5];
-
-    // let summ = arr[0] + arr[1] + arr[2];
-
-    // let percentage = summ / ((summ + 5 + 5 + 6 + 1 + 1 + 2) * 1 / 100);
-
-    // document.getElementById('columnOne').style.height = percentage + "%";
-
-    // let like = arr[0] / (summ * 1 / 100);
-    // let neit = arr[1] / (summ * 1 / 100);
-    // let dis = arr[2] / (summ * 1 / 100);
-
-    // document.getElementById('quantity').innerHTML = summ;
-    // document.getElementById('like').innerHTML = like + '%';
-    // document.getElementById('like').parentNode.style.height = like + '%';
-    // document.getElementById('neit').innerHTML = neit + '%';
-    // document.getElementById('neit').parentNode.style.height = neit + '%';
-    // document.getElementById('dis').innerHTML = dis + '%';
-    // document.getElementById('dis').parentNode.style.height = dis + '%';
-
-</script>
 
 </html>
