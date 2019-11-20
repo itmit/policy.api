@@ -11,40 +11,39 @@
         width: 50px;
         height: 100%;
         text-align: center;
-        margin: 0px 15px;
-        padding: 0;
+        padding: 0px 15px;
+        margin: 0;
         position: relative;
         /* min-height: 20%; */
-        box-shadow: 5px 0px 9px 0px #777777;
     }
 
     li.Quantity {
-        position: absolute;
-        top: -20px;
         font-size: 18px;
-        width: 100%;
     }
 
     li.cl-green {
         background: #6fc372;
         color: white;
-        height: 20%;
+        height: 28.3%;
         transition-duration: 1s;
+        box-shadow: 0px 0px 9px 0px #777777;
         /*border-radius: 10px 10px 0px 0px;*/
     }
 
     li.cl-gray {
         background: #8c8c8c;
         color: white;
-        height: 50%;
+        height: 28.3%;
         transition-duration: 1s;
+        box-shadow: 0px 0px 9px 0px #777777;
     }
 
     li.cl-red {
         background: #ff2525;
         color: white;
-        height: 30%;
+        height: 28.3%;
         transition-duration: 1s;
+        box-shadow: 0px 0px 9px 0px #777777;
     }
 
     ul.column span {
@@ -56,27 +55,35 @@
 
     .horizontal-columns-section {
         display: flex;
-        border-bottom: 1px solid black;
-        margin: 40px 0px 0 10px;
+        padding: 40px 10px 0 10px;
         height: 300px;
         align-items: flex-end;
+        overflow: auto;
+    }
+
+    .line-black {
+        height: 1px;
+        width: 100%;
+        background: black;
+        position: absolute;
+        bottom: 23px;
     }
 
     .legend {
         background: #f0f0f0;
         border-radius: 4px;
-        width: 500px;
+        width: 160px;
         list-style: none;
-        display: flex;
         justify-content: center;
         align-items: center;
         margin: 30px 20px;
+        padding: 0;
     }
 
     .legend li {
         display: block;
         margin: 0;
-        padding: 20px 30px;
+        padding: 15px 20px;
     }
 
     .legend span.icon {
@@ -101,6 +108,15 @@
         background: #ff2525;
     }
 
+    .chart {
+        position: relative;
+    }
+
+    .block-legend {
+        display: flex;
+        justify-content: center;
+    }
+
 </style>
 
 <body>
@@ -108,39 +124,36 @@
         <div class="chart">
             <div class="horizontal-columns-section">
                 @foreach ($votes as $date => $vote)
-                    <ul class="column" id='column' @if($vote['count'] == $max) style="height: 100%" @else <?php $percent = $vote['count'] / $max * 100 ?> style="height:{{$percent}}%" @endif>
-                        <li class="Quantity">
-                            <span id="quantity">{{ $vote['count'] }}</span>
-                        </li>
-                        @if($vote['likes'] != 0)
-                        <li class="cl-green" style="height:{{ $vote['likes'] }}%">
-                            <span id="like">{{ round($vote['likes'], 2) }}%</span>
-                        </li>
-                        @endif
-                        @if($vote['neutrals'] != 0)
-                        <li class="cl-gray " style="height:{{ $vote['neutrals'] }}%">  
-                            <span id="neit">{{ round($vote['neutrals'], 2) }}%</span> 
-                        </li>
-                        @endif
-                        @if($vote['dislikes'] != 0)
-                        <li class="cl-red" style="height:{{ $vote['dislikes'] }}%">
-                            <span id="dis">{{ round($vote['dislikes'], 2) }}%</span>
-                        </li>
-                        @endif
-                        <li class="Daytime">
-                            <span>
-                                {{ $date }}
-                            </span>
-                        </li>
-                    </ul>
+                <ul class="column" id='column' @if($vote['count']==$max) style="height: 100%" @else <?php $percent = $vote['count'] / $max * 100 ?> @endif>
+                    <li class="Quantity">
+                        <span id="quantity">{{ $vote['count'] }}</span>
+                    </li>
+                    <li class="cl-green">
+                        <span id="like">{{ round($vote['likes']) }}</span>
+                    </li>
+                    <li class="cl-gray ">
+                        <span id="neit">{{ round($vote['neutrals']) }}</span>
+                    </li>
+                    <li class="cl-red">
+                        <span id="dis">{{ round($vote['dislikes']) }}</span>
+                    </li>
+                    <li class="Daytime">
+                        <span>
+                            {{ $date }}
+                        </span>
+                    </li>
+                </ul>
                 @endforeach
             </div>
+            <div class="line-black"></div>
         </div>
-        <ul class="legend">
-            <li><span class="icon fig0"></span>Лайки</li>
-            <li><span class="icon fig1"></span>Нейтралные</li>
-            <li><span class="icon fig2"></span>Дизлайки</li>
-        </ul>
+        <div class="block-legend">
+            <ul class="legend">
+                <li><span class="icon fig0"></span>Лайки</li>
+                <li><span class="icon fig1"></span>Нейтралные</li>
+                <li><span class="icon fig2"></span>Дизлайки</li>
+            </ul>
+        </div>
     </div>
 </body>
 <script type="text/javascript">
