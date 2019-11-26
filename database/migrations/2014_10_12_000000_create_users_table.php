@@ -27,6 +27,12 @@ class CreateUsersTable extends Migration
             $table->string('position'); // должность
             $table->string('link'); // ссылка
             $table->date('birthday'); // дата рождения
+
+            $table->enum('sex', ['мужской', 'женский']); // пол
+            $table->enum('education', ['высшее или неполное высшее', 'среднее (профессиональное)', 'среднее (полное)', 'среднее (общее) или ниже']); // образование
+            $table->string('region'); // регион
+            $table->string('city_type'); // тип нас. пункта
+
             $table->string('uid')->unique(); // id пользователя из приложения
             $table->rememberToken();
             $table->timestamps();

@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use libphonenumber;
+use Illuminate\Validation\Rule;
 
 class AuthController extends ApiBaseController
 {
@@ -91,6 +92,16 @@ class AuthController extends ApiBaseController
             'c_password' => 'required|same:password', 
             'birthday' => 'required|date_format:Y-m-d', 
             'uid' => 'required|uuid',
+            'sex' => [
+                'required',
+                Rule::in(['мужской', 'женский']),
+            ],
+            'education' => [
+                'required',
+                Rule::in(['высшее или неполное высшее', 'среднее (профессиональное)', 'среднее (полное)', 'среднее (общее) или ниже']),
+            ],
+            'region' => 'required',
+            'city_type' => 'required',
         ]);
         
         $validator->after(function ($validator) {
@@ -161,6 +172,10 @@ class AuthController extends ApiBaseController
             'password' => bcrypt($input['password']),
             'birthday' => $input['birthday'],
             'uid' => $input['uid'],
+            'sex' => $input['sex'],
+            'education' => $input['education'],
+            'region' => $input['region'],
+            'city_type' => $input['city_type'],
         ]);
 
         Auth::login($user);     
