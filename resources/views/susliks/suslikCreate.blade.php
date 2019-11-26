@@ -67,7 +67,10 @@
 
                 <div class="form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
                     <label for="sex" class="control-label">Пол:</label>
-                    <input id="sex" type="text" class="form-control input-create-poll" name="sex" value="{{ old('sex') }}" required>
+                    <select class="form-control" name="sex">
+                        <option value="мужской">мужской</option>
+                        <option value="женский">женский</option>
+                    </select>
                     @if ($errors->has('sex'))
                         <span class="help-block">
                             <strong>{{ $errors->first('sex') }}</strong>
@@ -77,7 +80,12 @@
 
                 <div class="form-group{{ $errors->has('education') ? ' has-error' : '' }}">
                     <label for="education" class="control-label">Образование:</label>
-                    <input id="education" type="text" class="form-control" name="education" value="{{ old('education') }}" required>
+                    <select class="form-control" name="education">
+                        <option value="высшее или неполное высшее">высшее или неполное высшее</option>
+                        <option value="среднее (профессиональное)">среднее (профессиональное)</option>
+                        <option value="среднее (полное)">среднее (полное)</option>
+                        <option value="среднее (общее) или ниже">среднее (общее) или ниже</option>
+                    </select>
                     @if ($errors->has('education'))
                         <span class="help-block">
                             <strong>{{ $errors->first('education') }}</strong>
