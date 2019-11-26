@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Poll;
 use App\PollCategories;
 use App\PollQuestions;
-use App\PollQuestionAnswers;
+use App\PollQuestionAnswerUsers;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -134,6 +134,7 @@ class PollWebController extends Controller
         $questions = PollQuestions::where('poll_id', '=', $id)->get();
 
         $response = [];
+        $userAnswers = [];
 
         foreach($questions as $question)
         {
@@ -146,6 +147,8 @@ class PollWebController extends Controller
                     'answer' => $question_answer->answer,
                     'type' => $question_answer->type
                 ];
+                // $data = [];
+                // $userAnswers[] = PollQuestionAnswerUsers::where('answer_id', '=', $question_answer->id)
             }
             $response[] = [
                 'question_uuid' => $question->uuid,
