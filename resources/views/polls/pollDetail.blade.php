@@ -48,7 +48,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Имя/ник</th>
                         <?php $i=1;?>
-                        @foreach ($questions as $question)
+                        @foreach ($response as $key => $value)
                             <th scope="col">V{{$i}}</th>
                             <?php $i++;?>
                         @endforeach

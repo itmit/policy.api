@@ -131,9 +131,34 @@ class PollWebController extends Controller
      */
     public function show($id)
     {
+        $questions = PollQuestions::where('poll_id', '=', $id)->get();
+
+        $response = [];
+
+        foreach($questions as $question)
+        {
+            $response_answers = [];
+            $question_answers = PollQuestionAnswers::where('question_id', '=', $question->id)->get();
+            foreach($question_answers as $question_answer)
+            {
+                $response_answers [] = [
+                    'answer_uuid' => $question_answer->uuid,
+                    'answer' => $question_answer->answer,
+                    'type' => $question_answer->type
+                ];
+            }
+            $response[] = [
+                'question_uuid' => $question->uuid,
+                'question' => $question->question,
+                'multiple' => $question->multiple,
+                'answers' => $response_answers
+            ];
+        }
+
         return view('polls.pollDetail', [
             'poll' => Poll::where('id', '=', $id)->first(),
-            'questions' => PollQuestions::where('poll_id', '=', $id)->get()
+            'questions' => PollQuestions::where('poll_id', '=', $id)->get(),
+            'response' => $response
         ]); 
     }
 
