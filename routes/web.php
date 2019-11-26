@@ -41,6 +41,8 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     // Route::delete('poll/showDeleted', 'Web\PollWebController@showDeleted'); // показать удаленные категории опросов
 
     Route::get('statistic/{id}', 'Web\SuslikWebController@showStatistic')->name('showStatistic');
+    Route::get('uploadRegions', 'Web\SuslikWebController@uploadRegions');
+    
 });
 
 Auth::routes();

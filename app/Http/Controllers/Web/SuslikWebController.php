@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\SusliksCategory;
 use App\Suslik;
 use App\SuslikRatingHistory;
+use App\Region;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -417,5 +418,80 @@ class SuslikWebController extends Controller
             'max' => $max,
         ]); 
     }
-    
+
+    public function uploadRegions()
+    {
+        $files = scandir(storage_path() . '/app/regions');
+        foreach($files as $file)
+        {
+            $fileType = new SplFileInfo($file);
+
+            // ...
+            // Создаём ридер 
+            $reader = new Xlsx();
+            // Если вы не знаете, какой будет формат файла, можно сделать ридер универсальным:
+            // $reader = IOFactory::createReaderForFile($file);
+            $reader->setReadDataOnly(true);
+           
+            if($fileType->getExtension() == "xlsx")
+            {
+                $url = storage_path() . '/app/regions/' . $file;
+                // Читаем файл и записываем информацию в переменную
+                $spreadsheet = $reader->load($url);
+                            
+                // Так можно достать объект Cells, имеющий доступ к содержимому ячеек
+                $cells = $spreadsheet->getActiveSheet()->getCellCollection();
+
+                // return $cells->getHighestRow();
+                        
+                $result = [];
+                $region = [];
+
+                // Далее перебираем все заполненные строки (столбцы A - E)
+                for ($row = 2; $row <= $cells->getHighestRow(); $row++){
+                    // $result[] = $result[$row];
+                    for ($col = 'A'; $col <= 'B'; $col++) {
+                        // Так можно получить значение конкретной ячейки
+                        if($region[$col] = $cells->get($col.$row) == NULL)
+                        {
+                            continue;
+                        }
+                        $region[$col] = $cells->get($col.$row)->getValue();
+                    }
+                    $result[$row] = $region;
+                    $region = [];
+                }   
+                
+                foreach($result as $item)
+                {
+                    $isSuslikExists = Suslik::where('number', '=', $item['A'])->first();
+                    if($isSuslikExists != NULL)
+                    {
+                        continue;
+                    }
+
+                    $newSuslik = Region::create([
+                        'uuid' => (string) Str::uuid(),
+                        'name' => $item['B'],
+                        'number' => $item['A'],
+                    ]);
+                }
+            }      
+        }
+
+        // $path = storage_path() . '/app/regions';
+        // if (file_exists($path)) {
+        //     foreach (glob($path.'/*') as $file) {
+        //         if(is_dir($file))
+        //         {
+        //             rmdir($file);
+        //         }
+        //         else
+        //         {
+        //             unlink($file);
+        //         }
+        //     }
+        // }
+        return true;
+    }
 }
