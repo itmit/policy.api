@@ -9,6 +9,10 @@
             <label for="description" class="control-label">Описание: </label>
             <div id="description">{{ $poll->description }}</div>
         </div>
+        <div class="form-group">
+            <label for="description" class="control-label">Категория: </label>
+            <div id="description">{{ $poll->category()->name }}</div>
+        </div>
 
     </div>
 </div>
