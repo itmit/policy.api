@@ -65,6 +65,52 @@
                     @endif
                 </div>
 
+                <div class="form-group{{ $errors->has('sex') ? ' has-error' : '' }}">
+                    <label for="sex" class="control-label">Пол:</label>
+                    <input id="sex" type="text" class="form-control input-create-poll" name="sex" value="{{ old('sex') }}" required>
+                    @if ($errors->has('sex'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('sex') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
+                <div class="form-group{{ $errors->has('education') ? ' has-error' : '' }}">
+                    <label for="education" class="control-label">Образование:</label>
+                    <input id="education" type="text" class="form-control" name="education" value="{{ old('education') }}" required>
+                    @if ($errors->has('education'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('education') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
+                <div class="form-group{{ $errors->has('region') ? ' has-error' : '' }}">
+                    <label for="region" class="control-label">Субъект РФ:</label>
+                    <select class="form-control" name="region">
+                        @for ($i = 1; $i < 96; $i++)
+                            <option value="{{$i}}"">
+                                {{$i}}
+                            </option>
+                        @endfor
+                    </select>
+                    @if ($errors->has('region'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('region') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
+                <div class="form-group{{ $errors->has('birthdaty') ? ' has-error' : '' }}">
+                    <label for="birthdaty" class="control-label">Дата рождения</label>
+                    <input id="birthdaty" type="date" class="form-control input-create-poll" name="birthdaty" value="{{ old('birthdaty') }}" required>
+                    @if ($errors->has('birthdaty'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('birthdaty') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
                 <div class="form-group{{ $errors->has('number') ? ' has-error' : '' }}">
                     <label for="number" class="control-label">Уникальный номер:</label>
                     <input id="number" type="text" class="form-control input-create-poll" name="number" value="{{ old('number') }}" required>
