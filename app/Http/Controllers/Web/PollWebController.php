@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Poll;
 use App\PollCategories;
 use App\PollQuestions;
+use App\PollQuestionAnswers;
 use App\PollQuestionAnswerUsers;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
