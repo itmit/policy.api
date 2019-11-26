@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use App\User;
 use App\Rating;
+use App\Region;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -214,5 +215,13 @@ class AuthController extends ApiBaseController
         return $this->sendResponse(
             $user->ToArray(),
             'Details returned');
+    } 
+
+    public function getRegions() 
+    { 
+        $regions = Region::select('*')->orderBy('number', 'desc')->get();
+        return $this->sendResponse(
+            $regions->ToArray(),
+            'Regions returned');
     } 
 }

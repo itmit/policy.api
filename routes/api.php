@@ -58,6 +58,8 @@ Route::get('user/changePhoto/form', function () {
     return view('form');
 });
 
+Route::get('getRegions', 'Api\AuthController@getRegions')->name('getRegions');
+
 Route::fallback(function () {
     $code = 404;
     $response = [
