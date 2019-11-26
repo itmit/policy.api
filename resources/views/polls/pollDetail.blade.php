@@ -31,26 +31,30 @@
             <label for="category_name" class="control-label">Категория: </label>
             <div id="category_name">{{ $poll->category()->name }}</div>
         </div>
-        <table class="table policy-table">
-            <thead>
-                <tr>
-                    <th scope="col">№</th>
-                    <th scope="col">пол (1-м, 2-ж)</th>
-                    <th scope="col">Год рождения</th>
-                    <th scope="col">Образование (1-высшее, 2-ср.специальное, 3-среднее полное, 4-неполное среднее или ниже)</th>
-                    <th scope="col">Субъект РФ</th>
-                    <th scope="col">ID</th>
-                    <th scope="col">Имя/ник</th>
-                    <?php $i=1;?>
-                    @foreach ($questions as $question)
-                        <th scope="col">V{{$i}}</th>
-                        <?php $i++;?>
-                    @endforeach
-                </tr>
-            </thead>
-        </table>
     </div>
 </div>
 
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table policy-table">
+                <thead>
+                    <tr>
+                        <th scope="col">№</th>
+                        <th scope="col">пол (1-м, 2-ж)</th>
+                        <th scope="col">Год рождения</th>
+                        <th scope="col">Образование (1-высшее, 2-ср.специальное, 3-среднее полное, 4-неполное среднее или ниже)</th>
+                        <th scope="col">Субъект РФ</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Имя/ник</th>
+                        <?php $i=1;?>
+                        @foreach ($questions as $question)
+                            <th scope="col">V{{$i}}</th>
+                            <?php $i++;?>
+                        @endforeach
+                    </tr>
+                </thead>
+        </table>
+    </div>
 </div>
 @endsection
