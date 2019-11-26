@@ -47,9 +47,12 @@
                         <th scope="col">Субъект РФ</th>
                         <th scope="col">ID</th>
                         <th scope="col">Имя/ник</th>
-                        <?php $i=1;?>
+                        <?php $i=1;$y=1?>
                         @foreach ($response as $key => $value)
-                            <th scope="col">V{{$i}}</th>
+                            @foreach ($key as $item)
+                            <th scope="col">V{{$i}}_{{$y}}</th>
+                                <?php $y++;?>
+                            @endforeach
                             <?php $i++;?>
                         @endforeach
                     </tr>
