@@ -49,7 +49,7 @@
                         <th scope="col">Имя/ник</th>
                         <?php $i=1;$y=1?>
                         @foreach ($response as $key => $value)
-                            @foreach ($key['answers'] as $item)
+                            @foreach ($value['answers'] as $item)
                             <th scope="col">V{{$i}}_{{$y}}</th>
                                 <?php $y++;?>
                             @endforeach
