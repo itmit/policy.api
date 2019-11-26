@@ -21,6 +21,12 @@ class CreateSusliksTable extends Migration
             $table->string('place_of_work');
             $table->string('position');
             $table->bigInteger('category');
+            
+            $table->date('birthday'); // дата рождения
+
+            $table->enum('sex', ['мужской', 'женский']); // пол
+            $table->enum('education', ['высшее или неполное высшее', 'среднее (профессиональное)', 'среднее (полное)', 'среднее (общее) или ниже']); // образование
+            $table->string('region'); // регион
 
             $table->integer('likes')->default(0);
             $table->integer('dislikes')->default(0);

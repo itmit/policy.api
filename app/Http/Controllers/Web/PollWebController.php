@@ -132,8 +132,8 @@ class PollWebController extends Controller
     public function show($id)
     {
         return view('polls.pollDetail', [
-            'poll' => Poll::where('id', '=', $id)
-            ->first()
+            'poll' => Poll::where('id', '=', $id)->first(),
+            'questions' => PollQuestions::where('poll_id', '=', $id)->get()
         ]); 
     }
 
