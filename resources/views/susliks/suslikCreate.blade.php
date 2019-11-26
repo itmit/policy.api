@@ -100,7 +100,7 @@
                             <option value="{{$region->number}}"">
                                 {{$region->name}}
                             </option>
-                        @endfor
+                        @endforeach
                     </select>
                     @if ($errors->has('region'))
                         <span class="help-block">
