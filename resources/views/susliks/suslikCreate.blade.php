@@ -96,9 +96,9 @@
                 <div class="form-group{{ $errors->has('region') ? ' has-error' : '' }}">
                     <label for="region" class="control-label">Субъект РФ:</label>
                     <select class="form-control" name="region">
-                        @for ($i = 1; $i < 96; $i++)
-                            <option value="{{$i}}"">
-                                {{$i}}
+                        @foreach($regions as $region)
+                            <option value="{{$region->number}}"">
+                                {{$region->name}}
                             </option>
                         @endfor
                     </select>

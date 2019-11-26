@@ -42,6 +42,8 @@ class SuslikWebController extends Controller
     {
         return view('susliks.suslikCreate', [
             'categories' => SusliksCategory::select('*')
+            ->orderBy('created_at', 'desc')->get(),
+            'regions' => Region::select('*')
             ->orderBy('created_at', 'desc')->get()
         ]); 
     }
@@ -492,6 +494,6 @@ class SuslikWebController extends Controller
         //         }
         //     }
         // }
-        return true;
+        return 'uploaded';
     }
 }
