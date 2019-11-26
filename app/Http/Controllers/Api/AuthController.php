@@ -219,7 +219,7 @@ class AuthController extends ApiBaseController
 
     public function getRegions() 
     { 
-        $regions = Region::select('*')->orderBy('number', 'desc')->get();
+        $regions = Region::select('*')->orderBy('number', 'asc')->get();
         return $this->sendResponse(
             $regions->ToArray(),
             'Regions returned');
