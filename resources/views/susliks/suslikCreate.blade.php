@@ -109,12 +109,12 @@
                     @endif
                 </div>
 
-                <div class="form-group{{ $errors->has('birthdaty') ? ' has-error' : '' }}">
-                    <label for="birthdaty" class="control-label">Дата рождения</label>
-                    <input id="birthdaty" type="date" class="form-control input-create-poll" name="birthdaty" value="{{ old('birthdaty') }}" required>
-                    @if ($errors->has('birthdaty'))
+                <div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}">
+                    <label for="birthday" class="control-label">Дата рождения</label>
+                    <input id="birthday" type="date" class="form-control input-create-poll" name="birthday" value="{{ old('birthday') }}" required>
+                    @if ($errors->has('birthday'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('birthdaty') }}</strong>
+                            <strong>{{ $errors->first('birthday') }}</strong>
                         </span>
                     @endif
                 </div>
