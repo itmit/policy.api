@@ -155,7 +155,7 @@ class PollWebController extends Controller
             ];
         }
 
-        dd($response);
+        // dd($response);
 
         return view('polls.pollDetail', [
             'poll' => Poll::where('id', '=', $id)->first(),
