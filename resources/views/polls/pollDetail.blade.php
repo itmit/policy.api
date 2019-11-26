@@ -31,7 +31,7 @@
             <label for="category_name" class="control-label">Категория: </label>
             <div id="category_name">{{ $poll->category()->name }}</div>
         </div>
-        <table>
+        <table class="table policy-table">
             <thead>
                 <tr>
                     <th scope="col">№</th>
