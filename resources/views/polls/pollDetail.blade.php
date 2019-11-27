@@ -67,6 +67,11 @@
                 <tr>
                     <td>{{ $i }}</td>
                     <td>{{ $item->user()->sex }}</td>
+                    <td>{{ $item->user()->birthday }}</td>
+                    <td>{{ $item->user()->education }}</td>
+                    <td>{{ $item->user()->region }}</td>
+                    <td>{{ $item->user()->id }}</td>
+                    <td>{{ $item->user()->name }}</td>
                 </tr>
             <?php $i++;?>
             @endforeach
