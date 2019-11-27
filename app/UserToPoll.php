@@ -15,4 +15,9 @@ class UserToPoll extends Model
      * @var string
      */
     protected $table = 'user_to_polls';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id')->first();
+    }
 }

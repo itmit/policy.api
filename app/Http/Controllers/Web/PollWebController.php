@@ -9,6 +9,7 @@ use App\PollCategories;
 use App\PollQuestions;
 use App\PollQuestionAnswers;
 use App\PollQuestionAnswerUsers;
+use App\UserToPoll;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -159,12 +160,15 @@ class PollWebController extends Controller
             ];
         }
 
+        $data = UserToPoll::where('poll_id', '=', $id)->get();
+
         // dd($response);
 
         return view('polls.pollDetail', [
             'poll' => Poll::where('id', '=', $id)->first(),
             'questions' => PollQuestions::where('poll_id', '=', $id)->get(),
-            'response' => $response
+            'response' => $response,
+            'data' => $data
         ]); 
     }
 
