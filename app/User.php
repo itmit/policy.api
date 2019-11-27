@@ -40,4 +40,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(PollQuestionAnswerUsers::class, 'user_id')->get();
     }
+
+    public function region()
+    {
+        return $this->hasOne(Region::class, 'region')->first();
+    }
 }
