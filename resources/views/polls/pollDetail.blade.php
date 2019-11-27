@@ -20,8 +20,8 @@
         @endif
         @if($poll->link != NULL)
             <div class="form-group">
-                <label for="link" class="control-label">Дата начала и завершения: </label>
-                <div id="link">{{ $poll->link }} {{ $poll->end_at }}</div>
+                <label for="link" class="control-label">Ссылка на опрос: </label>
+                <div id="link">{{ $poll->link }}</div>
             </div>
         @endif
         @if($poll->description != NULL)
@@ -112,9 +112,17 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td>К-во респондентов</td>
                     <td></td>
                     <td>Итог (%):</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Чел</td>
+                    <td>%%</td>
+                    <td>Источник</td>
+                    <td>{{ $poll->link }}</td>
                 </tr>
             </tbody>
         </table>
