@@ -62,10 +62,13 @@
                 </tr>
             </thead>
             <tbody>
+            <?php $i=1;?>
             @foreach($data as $item)
                 <tr>
-                    <td>{{ $item->email }}</td>
+                    <td>{{ $i }}</td>
+                    <td>{{ $item->user()->sex }}</td>
                 </tr>
+            <?php $i++;?>
             @endforeach
             </tbody>
         </table>
