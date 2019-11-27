@@ -85,12 +85,11 @@
                                     <td>1</td>
                                     <?php $flag=1;?>
                                 @endif
-                                @if($flag==0)
-                                    <td>0</td>
-                                @endif
                             @endforeach
                         @endforeach
-                        
+                        @if($flag==0)
+                            <td>0</td>
+                        @endif
                     @endforeach
                 </tr>
             <?php $i++;?>
