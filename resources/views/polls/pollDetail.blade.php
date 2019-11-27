@@ -82,18 +82,18 @@
                         @foreach ($value['answers'] as $a)
 
                             <?php $flag=0;?>
-
+                            <td>
                             @foreach($item->user()->userAnswer() as $answer)
                             
-                                <td>
+                                
                                 @if($a['answer_id'] == $answer->answer_id)
                                     1  
                                 @else
                                     0
                                 @endif
-                                </td>
+                                
                             @endforeach
-
+                            </td>
                             {{-- @if($flag==1)
                                 @continue
                             @endif
