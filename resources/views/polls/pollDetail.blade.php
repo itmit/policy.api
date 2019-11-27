@@ -76,25 +76,26 @@
                     @endif
                     <td>{{ $item->user()->id }}</td>
                     <td>{{ $item->user()->name }}</td>
-                    @foreach($item->user()->userAnswer() as $answer)
-                        
-                        @foreach ($response as $key => $value)
-                            <?php $flag=1;?>
-                            @foreach ($value['answers'] as $item)
+
+                    @foreach ($response as $key => $value)
+
+                        @foreach ($value['answers'] as $item)
+
+                            @foreach($item->user()->userAnswer() as $answer)
                             
-                                @if($item['answer_id'] == $answer->answer_id)
-                                    <?php $flag=1;?>
-                                @else
-                                    <?php $flag=0;?>
-                                @endif
-                            @endforeach
-                            @if($flag==1)
+                            @if($item['answer_id'] == $answer->answer_id)
                                 <td>1</td>
                             @else
                                 <td>0</td>
                             @endif
+
+                            @endforeach
+
                         @endforeach
+
                     @endforeach
+
+                    
                 </tr>
             <?php $i++;?>
             @endforeach
