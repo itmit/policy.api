@@ -79,11 +79,11 @@
 
                     @foreach ($response as $key => $value)
 
-                        @foreach ($value['answers'] as $item)
+                        @foreach ($value['answers'] as $a)
 
                             @foreach($item->user()->userAnswer() as $answer)
                             
-                            @if($item['answer_id'] == $answer->answer_id)
+                            @if($a['answer_id'] == $answer->answer_id)
                                 <td>1</td>
                             @else
                                 <td>0</td>
