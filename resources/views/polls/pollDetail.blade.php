@@ -69,7 +69,7 @@
                     <td>{{ $item->user()->sex }}</td>
                     <td>{{ $item->user()->birthday }}</td>
                     <td>{{ $item->user()->education }}</td>
-                    <td>{{ $item->user()->region->region()->name }}</td>
+                    <td>{{ $item->user()->region()->name }}</td>
                     <td>{{ $item->user()->id }}</td>
                     <td>{{ $item->user()->name }}</td>
                     @foreach($item->user()->userAnswer() as $answer)

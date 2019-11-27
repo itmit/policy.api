@@ -17,4 +17,9 @@ class Region extends Model
      * @var string
      */
     protected $table = 'regions';
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'region')->first();
+    }
 }
