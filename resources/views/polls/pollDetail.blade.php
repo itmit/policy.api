@@ -77,9 +77,9 @@
                     <td>{{ $item->user()->id }}</td>
                     <td>{{ $item->user()->name }}</td>
                     @foreach($item->user()->userAnswer() as $answer)
-                        <?php $flag=0;?>
+                        
                         @foreach ($response as $key => $value)
-                            
+                            <?php $flag=0;?>
                             @foreach ($value['answers'] as $item)
                             
                                 @if($item['answer_id'] == $answer->answer_id)
