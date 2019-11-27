@@ -86,7 +86,7 @@
                             @if($a['answer_id'] == $answer->answer_id)
                                 <td>1</td>
                             @else
-                                <td>0</td>
+                                @continue
                             @endif
 
                             @endforeach
