@@ -35,4 +35,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Rating::class, 'user_id')->get()->first();
     }
+
+    public function userAnswer()
+    {
+        return $this->hasOne(PollQuestionAnswerUsers::class, 'user_id')->get();
+    }
 }

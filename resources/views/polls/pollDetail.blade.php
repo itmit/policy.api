@@ -72,6 +72,9 @@
                     <td>{{ $item->user()->region }}</td>
                     <td>{{ $item->user()->id }}</td>
                     <td>{{ $item->user()->name }}</td>
+                    @foreach($item->user()->userAnswer() as $answer)
+                        <td>{{ $answer->uuid }}</td>
+                    @endforeach
                 </tr>
             <?php $i++;?>
             @endforeach
