@@ -158,7 +158,7 @@ class PollApiController extends ApiBaseController
             }
         }
 
-        $poll = Polls::where('uuid', '=', $request->uuid)->first();
+        $poll = Poll::where('uuid', '=', $request->uuid)->first();
 
         UserToPoll::create([
             'user_id' => auth('api')->user()->id,
