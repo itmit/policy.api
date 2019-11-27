@@ -79,17 +79,15 @@
                     @foreach($item->user()->userAnswer() as $answer)
                         
                         @foreach ($response as $key => $value)
-                            <?php $flag=0;?>
                             @foreach ($value['answers'] as $item)
                             
                                 @if($item['answer_id'] == $answer->answer_id)
                                     <td>1</td>
-                                    <?php $flag=1;?>
+                                @else
+                                    <td>0</td>
                                 @endif
                             @endforeach
-                            @if($flag==0)
-                                <td>0</td>
-                            @endif
+
                         @endforeach
                     @endforeach
                 </tr>
