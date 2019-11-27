@@ -8,6 +8,7 @@ use App\PollQuestions;
 use App\PollQuestionAnswers;
 use App\PollQuestionAnswerUsers;
 use App\PollCategories;
+use App\UserToPoll;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
@@ -124,26 +125,19 @@ class PollApiController extends ApiBaseController
     {
         $validator = Validator::make($request->all(), [ 
             'user_answer' => 'required|array',
+            'uuid' => 'required|uuid'
         ]);
 
         if ($validator->fails()) { 
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        // print_r($request->user_answer);
-
         foreach ($request->user_answer as $question_uuid => $answer_uuids)
         {
             foreach ($answer_uuids as $answer_uuid => $value)
-            {
-                // print_r($value);
-
-                // echo ' question: ' . $question_uuid . ' answer: ' . $answer_uuid . ' text: ' . $value['text'];
-                
+            {                
                 $answer_id = PollQuestionAnswers::where('uuid', '=', $answer_uuid)->first(['id', 'type']);
-                // echo $answer_id['id'];
                 $uuid = Str::uuid();
-                // echo $answer_id['type'];
                 if($answer_id['type'] == 0) // обычный ответ, не другой
                 {
                     PollQuestionAnswerUsers::create([
@@ -164,15 +158,15 @@ class PollApiController extends ApiBaseController
             }
         }
 
-        // $response = PollQuestionAnswerUsers::all();
-        // print_r($response);
+        $poll = Polls::where('uuid', '=', $request->uuid)->first();
+
+        UserToPoll::create([
+            'user_id' => auth('api')->user()->id,
+            'poll_id' => $poll->id
+        ]);
+        
     }
 
-    // PollQuestionAnswerUsers::create([
-    //     'uuid' => (string) Str::uuid(),
-    //     'answer_id' => ,
-    //     'user ' => ,
-    // ]);
 
     /**
      * Store a newly created resource in storage.
