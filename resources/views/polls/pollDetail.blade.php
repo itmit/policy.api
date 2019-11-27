@@ -86,8 +86,8 @@
                             @if($a['answer_id'] == $answer->answer_id)
                                 <td>1</td>
                             @else
-                                @continue
                                 <?php $flag=0;?>
+                                @continue  
                             @endif
                             @if($flag == 0)
                             <td>0</td>
