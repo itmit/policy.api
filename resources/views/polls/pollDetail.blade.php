@@ -67,7 +67,7 @@
                 <tr>
                     <td>{{ $i }}</td>
                     <td>{{ $item->user()->sex }}</td>
-                    <td>{{ $item->user()->birthday }}</td>
+                    <td>{{ date('Y', strtotime($item->user()->birthday)) }}</td>
                     <td>{{ $item->user()->education }}</td>
                     <td>{{ $item->user()->region()->name }}</td>
                     <td>{{ $item->user()->id }}</td>
