@@ -63,10 +63,10 @@ class SuslikWebController extends Controller
             'category' => 'required',
             'link' => 'required|min:3|max:191',
             'number' => 'required|unique:susliks',
-            'sex' => 'required',
-            'education' => 'required',
-            'region' => 'required',
-            'birthday' => 'required',
+            // 'sex' => 'required',
+            // 'education' => 'required',
+            // 'region' => 'required',
+            // 'birthday' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -84,10 +84,10 @@ class SuslikWebController extends Controller
             'category' => $request->category,
             'link' => $request->link,
             'number' => $request->number,
-            'sex' => $request->sex,
-            'education' => $request->education,
-            'region' => $request->region,
-            'birthday' => $request->birthday
+            // 'sex' => $request->sex,
+            // 'education' => $request->education,
+            // 'region' => $request->region,
+            // 'birthday' => $request->birthday
         ]);
 
         return redirect()->route('auth.susliks.index');
