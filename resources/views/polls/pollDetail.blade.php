@@ -88,6 +88,7 @@
                                 @if($a['answer_id'] == $answer->answer_id)
                                     <td>1</td>
                                     <?php $flag=1;?>
+                                    @break
                                 @endif
                             
                             @endforeach
