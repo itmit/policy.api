@@ -145,6 +145,7 @@ class PollWebController extends Controller
             foreach($question_answers as $question_answer)
             {
                 $response_answers [] = [
+                    'answer_id' => $question_answer->id,
                     'answer_uuid' => $question_answer->uuid,
                     'answer' => $question_answer->answer,
                     'type' => $question_answer->type
