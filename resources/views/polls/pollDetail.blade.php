@@ -41,26 +41,33 @@
 <div class="row">
     <div class="col-sm-12">
         <table class="table policy-table">
-                <thead>
-                    <tr>
-                        <th scope="col">№</th>
-                        <th scope="col">пол (1-м, 2-ж)</th>
-                        <th scope="col">Год рождения</th>
-                        <th scope="col">Образование (1-высшее, 2-ср.специальное, 3-среднее полное, 4-неполное среднее или ниже)</th>
-                        <th scope="col">Субъект РФ</th>
-                        <th scope="col">ID</th>
-                        <th scope="col">Имя/ник</th>
-                        <?php $i=1;?>
-                        @foreach ($response as $key => $value)
-                            <?php $y=1;?>
-                            @foreach ($value['answers'] as $item)
-                            <th scope="col">V{{$i}}_{{$y}}</th>
-                                <?php $y++;?>
-                            @endforeach
-                            <?php $i++;?>
+            <thead>
+                <tr>
+                    <th scope="col">№</th>
+                    <th scope="col">пол (1-м, 2-ж)</th>
+                    <th scope="col">Год рождения</th>
+                    <th scope="col">Образование (1-высшее, 2-ср.специальное, 3-среднее полное, 4-неполное среднее или ниже)</th>
+                    <th scope="col">Субъект РФ</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Имя/ник</th>
+                    <?php $i=1;?>
+                    @foreach ($response as $key => $value)
+                        <?php $y=1;?>
+                        @foreach ($value['answers'] as $item)
+                        <th scope="col">V{{$i}}_{{$y}}</th>
+                            <?php $y++;?>
                         @endforeach
-                    </tr>
-                </thead>
+                        <?php $i++;?>
+                    @endforeach
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($data as $item)
+                <tr>
+                    <td>{{ $item->email }}</td>
+                </tr>
+            @endforeach
+            </tbody>
         </table>
     </div>
 </div>
