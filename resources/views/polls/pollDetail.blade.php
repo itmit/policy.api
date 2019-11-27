@@ -69,7 +69,11 @@
                     <td>{{ $item->user()->sex }}</td>
                     <td>{{ date('Y', strtotime($item->user()->birthday)) }}</td>
                     <td>{{ $item->user()->education }}</td>
+                    @if($item->user()->region() == NULL)
+                    <td></td>
+                    @else
                     <td>{{ $item->user()->region()->name }}</td>
+                    @endif
                     <td>{{ $item->user()->id }}</td>
                     <td>{{ $item->user()->name }}</td>
                     @foreach($item->user()->userAnswer() as $answer)
