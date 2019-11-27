@@ -73,7 +73,16 @@
                     <td>{{ $item->user()->id }}</td>
                     <td>{{ $item->user()->name }}</td>
                     @foreach($item->user()->userAnswer() as $answer)
-                        <td>{{ $answer->uuid }}</td>
+                        @foreach ($response as $key => $value)
+                            @foreach ($value['answer_uuid'] as $item)
+                            @if($item == $answer->uuid)
+                                <td>1</td>
+                            @else
+                                <td>0</td>
+                            @endif
+                            @endforeach
+                        @endforeach
+                        
                     @endforeach
                 </tr>
             <?php $i++;?>
