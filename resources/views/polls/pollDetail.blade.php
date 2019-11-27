@@ -78,7 +78,9 @@
                     <td>{{ $item->user()->name }}</td>
 
                     @foreach ($response as $key => $value)
+
                         <?php $flag=0;?>
+
                         @foreach ($value['answers'] as $a)
                             
                             @foreach($item->user()->userAnswer() as $answer)
@@ -120,6 +122,14 @@
                     <td></td>
                     <td></td>
                     <td>Чел</td>
+                    <td>%%</td>
+                    <td>Источник</td>
+                    <td>{{ $poll->link }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>{{$data->count()}}</td>
                     <td>%%</td>
                     <td>Источник</td>
                     <td>{{ $poll->link }}</td>
