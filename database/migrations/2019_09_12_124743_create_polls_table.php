@@ -20,6 +20,7 @@ class CreatePollsTable extends Migration
             $table->text('description')->nullable();
             $table->bigInteger('category')->unsigned();
             $table->string('link')->nullable();
+            $table->string('page')->nullable();
             $table->timestamp('start_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('end_at')->nullable()->default(NULL);
 

@@ -130,9 +130,9 @@
                     <td></td>
                     <td></td>
                     <td>{{$data->count()}}</td>
-                    <td>%%</td>
-                    <td>Источник</td>
-                    <td>{{ $poll->link }}</td>
+                    <td>100%</td>
+                    <td>100%</td>
+                    <td>стр. {{ $poll->page }}</td>
                 </tr>
             </tbody>
         </table>
