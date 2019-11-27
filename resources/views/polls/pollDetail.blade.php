@@ -76,12 +76,13 @@
 
                         @foreach ($response as $key => $value)
                             @foreach ($value['answers'] as $item)
+                                @if($item['answer_id'] == $answer->answer_id)
                                 <td>{{$item['answer_id']}}</td>
                             {{-- @if($item['answer_uuid'] == $answer->uuid)
                                 <td>1</td>
                             @else
-                                <td>{{$item['answer_uuid']}}</td>
-                            @endif --}}
+                                <td>{{$item['answer_uuid']}}</td> --}}
+                                @endif
                             @endforeach
                         @endforeach
                         
