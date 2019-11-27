@@ -100,6 +100,22 @@
                 </tr>
             <?php $i++;?>
             @endforeach
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Итог (чел.):</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Итог (%):</td>
+                </tr>
             </tbody>
         </table>
     </div>
