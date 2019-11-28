@@ -65,7 +65,9 @@
             @if($data->count() == 0)
                 <tr>В данном опросе еще никто не принял участие</tr>
             @else
-            <?php $i=1;?>
+            <?php $i=1;
+            $sergay = [];
+            ?>
             @foreach($data as $item)
                 <tr>
                     <td>{{ $i }}</td>
@@ -90,7 +92,9 @@
                                 
                                 @if($a['answer_id'] == $answer->answer_id)
                                 <td>1</td>
-                                    <?php $flag=1;?>
+                                    <?php $flag=1;
+                                    $sergay[$answer->answer_id] = $sergay[$answer->answer_id] + 1;
+                                    ?>
                                 @endif
                                 
                             @endforeach
@@ -105,8 +109,7 @@
                         @endforeach
 
                     @endforeach
-
-                    
+  
                 </tr>
             <?php $i++;?>
             @endforeach
@@ -120,7 +123,7 @@
                     <td></td>
                     @foreach ($response as $key => $value)
                         @foreach ($value['answers'] as $item)
-                        <td></td>
+                        <td>{{ $sergay[$item['answer_id']] }}</td>
                         @endforeach
                     @endforeach
                 </tr>
