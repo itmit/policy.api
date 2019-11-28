@@ -161,11 +161,12 @@
             @endif
         </table>
 
+        <?php $i=1;?>
         @foreach($data as $item)
         <table class="table policy-table">
             <thead>
                 <tr>
-                    <th scope="col">Вопрос</th>
+                    <th scope="col">Вопрос V{{$i}} {{$item['question']}}</th>
                 </tr>
                 <tr>
                     <th scope="col"></th>
@@ -177,6 +178,7 @@
             </thead>
             <tbody>
         </table>
+        <?php $i++;?>
         @endforeach
 
     </div>
