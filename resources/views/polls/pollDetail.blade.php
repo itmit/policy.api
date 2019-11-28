@@ -40,7 +40,7 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-        @if($data == null)
+        @if($data->count() == 0)
         В данном опросе еще никто не принял участие
         @else
         <table class="table policy-table">
