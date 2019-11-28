@@ -133,6 +133,13 @@
                     <td>К-во респондентов</td>
                     <td></td>
                     <td>Итог (%):</td>
+                    <td></td>
+                    @foreach ($response as $key => $value)
+                        @foreach ($value['answers'] as $item)
+                        <?php $percent = $sergay[$item['answer_id']] / $data->count() * 100 ?>
+                        <td>{{ $percent }}</td>
+                        @endforeach
+                    @endforeach
                 </tr>
                 <tr>
                     <td></td>
