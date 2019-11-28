@@ -166,7 +166,7 @@
         <table class="table policy-table">
             <thead>
                 <tr>
-                    <th colspan="5" scope="col">Вопрос V{{$i}} {{$value['question']}}</th>
+                    <th colspan="2" scope="col">Вопрос V{{$i}} {{$value['question']}}</th>
                 </tr>
                 <tr>
                     <th scope="col"></th>
