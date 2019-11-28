@@ -83,10 +83,11 @@
                     <td>{{ $item->user()->name }}</td>
 
                     @foreach ($response as $key => $value)
-
                         @foreach ($value['answers'] as $a)
-                            <?php $flag=0;
                             $sergay[$a['answer_id']] = 0?>
+                        @endforeach
+                        @foreach ($value['answers'] as $a)
+                            <?php $flag=0;?>
                             
                             @foreach($item->user()->userAnswer() as $answer)
                             
