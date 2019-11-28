@@ -161,6 +161,7 @@
             @endif
         </table>
 
+        @foreach($data as $item)
         <table class="table policy-table">
             <thead>
                 <tr>
@@ -171,10 +172,12 @@
                     <th scope="col"></th>
                     <th scope="col"></th>
                     <th scope="col">Наши респонденты</th>
+                    <th scope="col">Социологический опрос</th>
                 </tr>
             </thead>
             <tbody>
         </table>
+        @endforeach
 
     </div>
 </div>
