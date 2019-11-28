@@ -85,7 +85,6 @@
                     @foreach ($response as $key => $value)
                         @foreach ($value['answers'] as $a)
                             <?php $sergay[$a['answer_id']] = 0;?>
-                            
                         @endforeach
                         @foreach ($value['answers'] as $a)
                             <?php $flag=0;?>
@@ -96,15 +95,12 @@
                                 @if($a['answer_id'] == $answer->answer_id)
                                 <td>1</td>
                                     <?php $flag=1;
-                                    $sergay[$answer->answer_id] = $sergay[$answer->answer_id] + 1;
+                                    $sergay[$a['answer_id']] = $sergay[$a['answer_id']] + 1;
                                     ?>
                                 @endif
                                 
                             @endforeach
-                            
-                            {{-- @if($flag==1)
-                                @continue
-                            @ --}}
+
                             @if($flag==0)
                                 <td>0</td>
                             @endif
