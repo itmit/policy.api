@@ -117,6 +117,12 @@
                     <td></td>
                     <td></td>
                     <td>Итог (чел.):</td>
+                    <td></td>
+                    @foreach ($response as $key => $value)
+                        @foreach ($value['answers'] as $item)
+                        <td></td>
+                        @endforeach
+                    @endforeach
                 </tr>
                 <tr>
                     <td></td>
