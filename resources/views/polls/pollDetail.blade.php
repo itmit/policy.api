@@ -162,11 +162,11 @@
         </table>
 
         <?php $i=1;?>
-        @foreach($response as $item)
+        @foreach($response as $key => $value)
         <table class="table policy-table">
             <thead>
                 <tr>
-                    <th scope="col">Вопрос V{{$i}} {{$item['question']}}</th>
+                    <th scope="col">Вопрос V{{$i}} {{$value['question']}}</th>
                 </tr>
                 <tr>
                     <th scope="col"></th>
@@ -177,6 +177,17 @@
                 </tr>
             </thead>
             <tbody>
+                <?php $y=1;?>
+                @foreach ($value['answers'] as $item)
+                    <tr>
+                        <td>V{{$i}}_{{$y}}.</td>
+                        <td></td>
+                        <td>{{$item['answer']}}</td>
+                    </tr>
+                    <?php $y++;?>
+                @endforeach
+                <?php $y++;?>
+            </tbody>
         </table>
         <?php $i++;?>
         @endforeach
