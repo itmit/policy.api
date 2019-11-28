@@ -40,6 +40,9 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
+        @if($data == null)
+        В данном опросе еще никто не принял участие
+        @else
         <table class="table policy-table">
             <thead>
                 <tr>
@@ -81,7 +84,6 @@
 
                         @foreach ($value['answers'] as $a)
 
-                            <?php $flag=0;?>
                             <td>
                             @foreach($item->user()->userAnswer() as $answer)
                             
@@ -143,6 +145,7 @@
                 </tr>
             </tbody>
         </table>
+        @endif
     </div>
 </div>
 @endsection
