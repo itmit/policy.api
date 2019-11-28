@@ -160,6 +160,22 @@
             </tbody>
             @endif
         </table>
+
+        <table class="table policy-table">
+            <thead>
+                <tr>
+                    <th scope="col">Вопрос</th>
+                </tr>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col">Наши респонденты</th>
+                </tr>
+            </thead>
+            <tbody>
+        </table>
+
     </div>
 </div>
 @endsection
