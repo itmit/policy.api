@@ -137,7 +137,7 @@
                     @foreach ($response as $key => $value)
                         @foreach ($value['answers'] as $item)
                         <?php $percent = $sergay[$item['answer_id']] / $data->count() * 100 ?>
-                        <td>{{ $percent }}</td>
+                        <td>{{ round($percent, 1) }}</td>
                         @endforeach
                     @endforeach
                 </tr>
