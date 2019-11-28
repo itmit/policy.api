@@ -40,9 +40,6 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-        @if($data->count() == 0)
-        В данном опросе еще никто не принял участие
-        @else
         <table class="table policy-table">
             <thead>
                 <tr>
@@ -65,6 +62,9 @@
                 </tr>
             </thead>
             <tbody>
+            @if($data->count() == 0)
+                В данном опросе еще никто не принял участие
+            @else
             <?php $i=1;?>
             @foreach($data as $item)
                 <tr>
