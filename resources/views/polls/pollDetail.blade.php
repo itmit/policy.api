@@ -81,11 +81,13 @@
                     @endif
                     <td>{{ $item->user()->id }}</td>
                     <td>{{ $item->user()->name }}</td>
-
                     @foreach ($response as $key => $value)
                         @foreach ($value['answers'] as $a)
                             <?php $sergay[$a['answer_id']] = 0;?>
                         @endforeach
+                    @endforeach
+
+                    @foreach ($response as $key => $value)
                         @foreach ($value['answers'] as $a)
                             <?php $flag=0;?>
                             
@@ -166,7 +168,7 @@
         <table class="table policy-table">
             <thead>
                 <tr>
-                    <th colspan="2" scope="col">Вопрос V{{$i}} {{$value['question']}}</th>
+                    <th colspan="3" scope="col">Вопрос V{{$i}} {{$value['question']}}</th>
                 </tr>
                 <tr>
                     <th scope="col"></th>
