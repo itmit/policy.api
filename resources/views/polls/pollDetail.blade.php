@@ -185,6 +185,7 @@
                         <td>V{{$i}}_{{$y}}.</td>
                         <td></td>
                         <td>{{$item['answer']}}</td>
+                        <td>{{$sergay[$item['answer_id']]}}</td>
                     </tr>
                     <?php $y++;?>
                 @endforeach
