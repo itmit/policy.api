@@ -132,6 +132,14 @@ class PollApiController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
+        $poll = Poll::where('uuid', '=', $request->uuid)->first();
+
+        $isAlreadyPassed = UserToPoll::where('user_id', '=', auth('api')->user()->id)->where('poll_id', '=', $poll->id)->first();
+        if($isAlreadyPassed != NULL)
+        {
+            return $this->sendError('Poll already passed', 'Опрос уже пройден');
+        }
+
         foreach ($request->user_answer as $question_uuid => $answer_uuids)
         {
             foreach ($answer_uuids as $answer_uuid => $value)
@@ -157,8 +165,6 @@ class PollApiController extends ApiBaseController
                 }
             }
         }
-
-        $poll = Poll::where('uuid', '=', $request->uuid)->first();
 
         UserToPoll::create([
             'user_id' => auth('api')->user()->id,
