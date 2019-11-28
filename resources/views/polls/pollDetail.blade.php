@@ -162,7 +162,7 @@
         </table>
 
         <?php $i=1;?>
-        @foreach($data as $item)
+        @foreach($response as $item)
         <table class="table policy-table">
             <thead>
                 <tr>
