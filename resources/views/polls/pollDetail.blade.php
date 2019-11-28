@@ -84,7 +84,8 @@
 
                     @foreach ($response as $key => $value)
                         @foreach ($value['answers'] as $a)
-                            $sergay[$a['answer_id']] = 0?>
+                            <?php $sergay[$a['answer_id']] = 0;?>
+                            
                         @endforeach
                         @foreach ($value['answers'] as $a)
                             <?php $flag=0;?>
