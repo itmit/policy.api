@@ -85,7 +85,8 @@
                     @foreach ($response as $key => $value)
 
                         @foreach ($value['answers'] as $a)
-                            <?php $flag=0;?>
+                            <?php $flag=0;
+                            $sergay[$a['answer_id']] = 0?>
                             
                             @foreach($item->user()->userAnswer() as $answer)
                             
