@@ -144,8 +144,8 @@
                     <td>стр. {{ $poll->page }}</td>
                 </tr>
             </tbody>
+            @endif
         </table>
-        @endif
     </div>
 </div>
 @endsection
