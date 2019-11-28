@@ -68,6 +68,11 @@
             <?php $i=1;
             $sergay = [];
             ?>
+            @foreach ($response as $key => $value)
+                @foreach ($value['answers'] as $a)
+                    <?php $sergay[$a['answer_id']] = 0;?>
+                @endforeach
+            @endforeach
             @foreach($data as $item)
                 <tr>
                     <td>{{ $i }}</td>
@@ -81,11 +86,7 @@
                     @endif
                     <td>{{ $item->user()->id }}</td>
                     <td>{{ $item->user()->name }}</td>
-                    @foreach ($response as $key => $value)
-                        @foreach ($value['answers'] as $a)
-                            <?php $sergay[$a['answer_id']] = 0;?>
-                        @endforeach
-                    @endforeach
+                    
 
                     @foreach ($response as $key => $value)
                         @foreach ($value['answers'] as $a)
@@ -93,7 +94,6 @@
                             
                             @foreach($item->user()->userAnswer() as $answer)
                             
-                                
                                 @if($a['answer_id'] == $answer->answer_id)
                                 <td>1</td>
                                     <?php $flag=1;
