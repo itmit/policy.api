@@ -185,7 +185,8 @@
                         <td>V{{$i}}_{{$y}}.</td>
                         <td></td>
                         <td>{{$item['answer']}}</td>
-                        <td>{{$sergay[$item['answer_id']]}}</td>
+                        <?php $percent = $sergay[$item['answer_id']] / $data->count() * 100 ?>
+                        <td>{{ round($percent, 1) }}</td>
                     </tr>
                     <?php $y++;?>
                 @endforeach
