@@ -76,7 +76,11 @@
             @foreach($data as $item)
                 <tr>
                     <td>{{ $i }}</td>
-                    <td>{{ $item->user()->sex }}</td>
+                    @if($item->user()->sex == 'мужской')
+                    <td>1</td>
+                    @else
+                    <td>0</td>
+                    @endif
                     <td>{{ date('Y', strtotime($item->user()->birthday)) }}</td>
                     <td>{{ $item->user()->education }}</td>
                     @if($item->user()->region() == NULL)
