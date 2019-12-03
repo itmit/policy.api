@@ -177,6 +177,7 @@ class AuthController extends ApiBaseController
             'education' => $input['education'],
             'region' => $input['region'],
             'city_type' => $input['city_type'],
+            'city' => $input['city'],
         ]);
 
         Auth::login($user);     
