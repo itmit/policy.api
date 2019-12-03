@@ -33,7 +33,7 @@ class AuthController extends ApiBaseController
         ]);
 
         if ($validator->fails()) { 
-            return response()->json(['error'=>$validator->errors()], 401);            
+            return $this->sendError($validator->errors()->first(), "Validation error", 401);      
         }
 
         if (filter_var(request('login'), FILTER_VALIDATE_EMAIL)) // ЛОГИН ПОЧТА
@@ -112,7 +112,7 @@ class AuthController extends ApiBaseController
         });
 
         if ($validator->fails()) { 
-            return response()->json(['error'=>$validator->errors()], 401);            
+            return $this->sendError($validator->errors()->first(), "Validation error", 401);          
         }
 
         $input = $request->all(); 
@@ -129,7 +129,7 @@ class AuthController extends ApiBaseController
             ]);
     
             if ($validator->fails()) { 
-                return response()->json(['error'=>$validator->errors()], 401);            
+                return $this->sendError($validator->errors()->first(), "Validation error", 401);       
             }
         }
 
@@ -152,7 +152,7 @@ class AuthController extends ApiBaseController
             ]);
     
             if ($validator->fails()) { 
-                return response()->json(['error'=>$validator->errors()], 401);            
+                return $this->sendError($validator->errors()->first(), "Validation error", 401);          
             }
 
             if (!filter_var(request('email'), FILTER_VALIDATE_EMAIL)) {
