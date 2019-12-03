@@ -82,7 +82,7 @@
                     @if($item->user()->region() == NULL)
                     <td></td>
                     @else
-                    <td>{{ $item->user()->region }}</td>
+                    <td>{{ $item->user()->region()->number }}</td>
                     @endif
                     <td>{{ $item->user()->id }}</td>
                     <td>{{ $item->user()->name }}</td>
