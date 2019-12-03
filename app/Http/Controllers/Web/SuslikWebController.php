@@ -475,7 +475,7 @@ class SuslikWebController extends Controller
                     $newSuslik = Region::create([
                         'uuid' => (string) Str::uuid(),
                         'name' => $item['B'],
-                        'number' => $item['A'],
+                        'id' => $item['A'],
                     ]);
                 }
             }      
