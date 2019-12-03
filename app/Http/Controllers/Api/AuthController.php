@@ -99,7 +99,7 @@ class AuthController extends ApiBaseController
             ],
             'education' => [
                 'required',
-                Rule::in(['высшее или неполное высшее', 'среднее (профессиональное)', 'среднее (полное)', 'среднее (общее) или ниже']),
+                Rule::in(['высшее или неполное высшее', 'среднее (профессиональное)', 'среднее (полное)', 'среднее (общее)', 'начальное']),
             ],
             'region' => 'required',
             'city_type' => 'required',
@@ -219,7 +219,7 @@ class AuthController extends ApiBaseController
 
     public function getRegions() 
     { 
-        $regions = Region::select('*')->orderBy('number', 'asc')->get();
+        $regions = Region::select('*')->orderBy('id', 'asc')->get();
         return $this->sendResponse(
             $regions->ToArray(),
             'Regions returned');
