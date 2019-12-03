@@ -466,7 +466,7 @@ class SuslikWebController extends Controller
                 
                 foreach($result as $item)
                 {
-                    $isSuslikExists = Suslik::where('id', '=', $item['A'])->first();
+                    $isSuslikExists = Region::where('id', '=', $item['A'])->first();
                     if($isSuslikExists != NULL)
                     {
                         continue;
@@ -481,19 +481,6 @@ class SuslikWebController extends Controller
             }      
         }
 
-        // $path = storage_path() . '/app/regions';
-        // if (file_exists($path)) {
-        //     foreach (glob($path.'/*') as $file) {
-        //         if(is_dir($file))
-        //         {
-        //             rmdir($file);
-        //         }
-        //         else
-        //         {
-        //             unlink($file);
-        //         }
-        //     }
-        // }
         return 'uploaded';
     }
 }
