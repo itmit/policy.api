@@ -466,7 +466,7 @@ class SuslikWebController extends Controller
                 
                 foreach($result as $item)
                 {
-                    $isSuslikExists = Suslik::where('number', '=', $item['A'])->first();
+                    $isSuslikExists = Suslik::where('id', '=', $item['A'])->first();
                     if($isSuslikExists != NULL)
                     {
                         continue;
