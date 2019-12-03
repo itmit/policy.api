@@ -82,7 +82,17 @@
                     <td>0</td>
                     @endif
                     <td>{{ date('Y', strtotime($item->user()->birthday)) }}</td>
-                    <td>{{ $item->user()->education }}</td>
+                    @if($item->user()->education == 'высшее или неполное высшее')
+                    <td>1</td>
+                    @elseif($item->user()->education == 'среднее (профессиональное)')
+                    <td>2</td>
+                    @elseif($item->user()->education == 'среднее (полное)')
+                    <td>3</td>
+                    @elseif($item->user()->education == 'среднее (общее)')
+                    <td>4</td>
+                    @elseif($item->user()->education == 'начальное')
+                    <td>5</td>
+                    @endif
                     @if($item->user()->region() == NULL)
                     <td></td>
                     @else
