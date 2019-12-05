@@ -103,6 +103,7 @@ class AuthController extends ApiBaseController
             ],
             'region' => 'required',
             'city_type' => 'required',
+            'name' => 'required'
         ]);
         
         $validator->after(function ($validator) {
@@ -178,6 +179,7 @@ class AuthController extends ApiBaseController
             'region' => $input['region'],
             'city_type' => $input['city_type'],
             'city' => $input['city'],
+            'name' => $input['name'],
         ]);
 
         Auth::login($user);     
