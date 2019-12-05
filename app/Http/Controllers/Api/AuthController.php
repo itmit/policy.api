@@ -126,7 +126,7 @@ class AuthController extends ApiBaseController
             $input['email'] = NULL;
 
             $validator = Validator::make($input, [ 
-                'phone' => 'required|min:11|unique:users', 
+                'phone' => 'required|min:12|unique:users', 
             ]);
     
             if ($validator->fails()) { 
