@@ -149,7 +149,7 @@ class AuthController extends ApiBaseController
             $input['phone'] = $phoneNumberUtil->format($phoneNumberObject, \libphonenumber\PhoneNumberFormat::E164);
 
             $validator = Validator::make($input, [ 
-                'phone' => 'required|min:11|unique:users', 
+                'phone' => 'required|min:12|unique:users', 
             ]);
     
             if ($validator->fails()) { 
