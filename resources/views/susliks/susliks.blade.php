@@ -46,6 +46,7 @@
                     <thead>
                     <tr>
                         <th><input type="checkbox" name="destroy-all-susliks" class="js-destroy-all"/></th>
+                        <th>#</th>
                         <th>Имя</th>
                         <th>Категория</th>
                         <th>Место работы</th>
@@ -64,6 +65,7 @@
                     @endif
                         <tr>
                             <td><input type="checkbox" data-suslik-id="{{ $suslik->id }}" name="destoy-suslik-{{ $suslik->id }}" class="js-destroy"/></td>
+                            <td>{{ $suslik->number }}</td>
                             <td>{{ $suslik->name }}</td>
                             <td>{{ $suslik->category()->name }}</td>
                             <td>{{ $suslik->place_of_work }}</td>
