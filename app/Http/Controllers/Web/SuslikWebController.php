@@ -164,7 +164,7 @@ class SuslikWebController extends Controller
                 if(is_dir($file))
                 {
                     foreach(scandir($file) as $p) if (($p!='.') && ($p!='..'))
-                    rmdir($file.DIRECTORY_SEPARATOR.$p);
+                    unlink($file.DIRECTORY_SEPARATOR.$p);
                     // return rmdir($file);
                 }
                 else
@@ -295,7 +295,7 @@ class SuslikWebController extends Controller
                 if(is_dir($file))
                 {
                     foreach(scandir($file) as $p) if (($p!='.') && ($p!='..'))
-                    rmdir($file.DIRECTORY_SEPARATOR.$p);
+                    unlink($file.DIRECTORY_SEPARATOR.$p);
                     // return rmdir($file);
                 }
                 else
