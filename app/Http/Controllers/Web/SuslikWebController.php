@@ -163,7 +163,9 @@ class SuslikWebController extends Controller
             foreach (glob($path.'/*') as $file) {
                 if(is_dir($file))
                 {
-                    rmdir($file);
+                    foreach(scandir($file) as $p) if (($p!='.') && ($p!='..'))
+                    rmRec($file.DIRECTORY_SEPARATOR.$p);
+                    // return rmdir($file);
                 }
                 else
                 {
@@ -292,7 +294,9 @@ class SuslikWebController extends Controller
             foreach (glob($path.'/*') as $file) {
                 if(is_dir($file))
                 {
-                    rmdir($file);
+                    foreach(scandir($file) as $p) if (($p!='.') && ($p!='..'))
+                    rmRec($file.DIRECTORY_SEPARATOR.$p);
+                    // return rmdir($file);
                 }
                 else
                 {
@@ -482,5 +486,10 @@ class SuslikWebController extends Controller
         }
 
         return 'uploaded';
+    }
+
+    public function clearUploadSusliksDirectory()
+    {
+
     }
 }

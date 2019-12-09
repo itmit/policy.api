@@ -36,6 +36,7 @@
             </form>
 
             <button type="button" class="btn-card btn-tc-danger js-destroy-button">Удалить отмеченных сусликов</button>
+            {{-- <button type="button" class="btn-card btn-tc-danger js-clear-dir-button">Очистить каталог</button> --}}
         </div>
     </div>
 </div>
@@ -109,6 +110,22 @@ $(document).ready(function() {
                 console.log(response);
                 $(".js-destroy:checked").closest('tr').remove();
                 $(".js-destroy").prop("checked", "");
+            },
+            error: function (xhr, err) { 
+                console.log("Error: " + xhr + " " + err);
+            }
+        });
+
+    });
+
+    $(document).on('click', '.js-clear-dir-button', function() {
+        $.ajax({
+            headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            dataType: "json",
+            url     : 'susliks/clearDir',
+            method    : 'get',
+            success: function (response) {
+                alert('Директория очищена!')
             },
             error: function (xhr, err) { 
                 console.log("Error: " + xhr + " " + err);
