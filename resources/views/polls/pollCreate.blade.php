@@ -108,10 +108,10 @@
                     <div class="answers_container">
                         <div class="answers">
                             <div class="answer offset-md-1">
-                                <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required> <input type="text" name="" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
+                                <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required><hr><input type="text" name="" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
                             </div>
                             <div class="answer offset-md-1">
-                                <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required> <input type="text" name="" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
+                                <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required><hr><input type="text" name="" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
                             </div>
                         </div>
                         <div class="add-answer offset-md-1">
@@ -276,10 +276,10 @@
             <div class="answers_container">
                 <div class="answers">
                     <div class="answer offset-md-1">
-                        <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required> <input type="text" name="" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
+                        <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required><hr><input type="text" name="" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
                     </div>
                     <div class="answer offset-md-1">
-                        <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required> <input type="text" name="" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
+                        <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required><hr><input type="text" name="" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
                     </div>
                 </div>
                 <div class="add-answer offset-md-1">
@@ -295,7 +295,7 @@
     <template id="radik">
         <div class="row">
             <div class="answer col-md-4 offset-md-1">
-                <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required> <input type="text" name="" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
+                <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required><hr><input type="text" name="" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
             </div>
             <div class="answer-delete col-md-2">
                 <i class="material-icons delete-answer">delete</i>
