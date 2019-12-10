@@ -108,10 +108,10 @@
                     <div class="answers_container">
                         <div class="answers">
                             <div class="answer offset-md-1">
-                                <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required> <input type="text" name="" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
+                                <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required> <input type="text" name="answer_count" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
                             </div>
                             <div class="answer offset-md-1">
-                                <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required> <input type="text" name="" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
+                                <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required> <input type="text" name="answer_count" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
                             </div>
                         </div>
                         <div class="add-answer offset-md-1">
@@ -200,6 +200,7 @@
             $( ".question" ).each(function( index ) {
                 let question_data = new Map(); 
                 let answer_data = new Map();  
+                let answer_count = new Map();  
 
                 question_data.set('question_name', $(this).find("input[name='question_name']").val());
                 question_data.set('multiple', $(this).find("input[name='multiple']").prop('checked'));
@@ -208,11 +209,14 @@
                 let i = 0;
                 $(this).find('.answer').each(function( index ) {
                     answer_data.set(i, $(this).find("input[name='answer']").val());
+                    answer_count.set(i, $(this).find("input[name='answer_count']").val());
                     i++;
                 });
 
                 answer_data = Object.fromEntries(answer_data)
+                answer_count = Object.fromEntries(answer_count)
                 question_data.set('answers', answer_data);
+                question_data.set('answer_count', answer_count);
                 question_data = Object.fromEntries(question_data)
                 // data.set('question'+question_number, question_data);
                 all_questions.set('question'+question_number, question_data);
@@ -222,7 +226,6 @@
 
             all_questions = Object.fromEntries(all_questions)
             all_data.set('questions', all_questions);
-            // all_data_array = JSON.stringify(all_data);
             const all_data_array = Object.fromEntries(all_data);
 
             $.ajax({
@@ -232,7 +235,6 @@
                 url     : '../polls',
                 method    : 'post',
                 success: function (response) {
-                    // console.log(data);
                     console.log(response);
                 },
                 error: function (xhr, err) { 
@@ -276,10 +278,10 @@
             <div class="answers_container">
                 <div class="answers">
                     <div class="answer offset-md-1">
-                        <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required> <input type="text" name="" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
+                        <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required> <input type="text" name="answer_count" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
                     </div>
                     <div class="answer offset-md-1">
-                        <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required> <input type="text" name="" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
+                        <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required> <input type="text" name="answer_count" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
                     </div>
                 </div>
                 <div class="add-answer offset-md-1">
@@ -295,7 +297,7 @@
     <template id="radik">
         <div class="row">
             <div class="answer col-md-4 offset-md-1">
-                <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required> <input type="text" name="" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
+                <input type="text" name="answer" placeholder=" Ответ" class="form-control input-create-poll" required> <input type="text" name="answer_count" placeholder=" Количество ответивших" class="form-control input-create-poll" required> 
             </div>
             <div class="answer-delete col-md-2">
                 <i class="material-icons delete-answer">delete</i>
