@@ -45,6 +45,7 @@
             @else
             <?php $i=1;
             $sergay = [];
+            $s=[];
             ?>
             <table class="table policy-table" style="text-align: center">
                 <thead>
@@ -193,6 +194,12 @@
             </thead>
             <tbody>
                 <?php $y=1;?>
+                @foreach($value['answers'] as $item)
+                    <?$s[$sergay[$item['answer_id']]] = 0;?>
+                @endforeach
+                @foreach($value['answers'] as $item)
+                    <?$s[$sergay[$item['answer_id']]] = $s[$sergay[$item['answer_id']]] + $item['answers_count'];?>
+                @endforeach
                 @foreach ($value['answers'] as $item)
                     <tr>
                         <td>V{{$i}}_{{$y}}.</td>
@@ -200,7 +207,7 @@
                         <td>{{$item['answer']}}</td>
                         <?php $percent = $sergay[$item['answer_id']] / $data->count() * 100 ?>
                         <td>{{ round($percent, 1) }}</td>
-                        <td>{{ $item['answers_count'] }}</td>
+                        <td>{{ $s[$sergay[$item['answer_id']]] }}</td>
                     </tr>
                     <?php $y++;?>
                 @endforeach
