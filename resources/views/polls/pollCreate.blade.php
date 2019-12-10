@@ -125,7 +125,7 @@
             </p>
             <div class="form-group">
                 <div class="col-md-offset-4">
-                    <input type="button" value="Создать опрос" class="test btn-card">
+                    {{-- <input type="button" value="Создать опрос" class="test btn-card"> --}}
                     <button type="submit" class="test btn-card">Создать опрос</button>
                 </div>
             </div>
@@ -173,8 +173,8 @@
             $(this).closest(".row").remove();
         });
 
-        $(document).on("click", ".test", function(e) {
-        // $("form").submit(function(e) {
+        // $(document).on("click", ".test", function(e) {
+        $("form").submit(function(e) {
 
             let all_data = new Map([
             ['name', $("input[name='name']").val()],
