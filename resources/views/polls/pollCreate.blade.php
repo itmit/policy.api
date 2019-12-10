@@ -243,7 +243,7 @@
             //     }
             // });
             // window.location.replace("http://policy.itmit-studio.ru/polls");
-            // return false;
+            return false;
         });
 
     })
