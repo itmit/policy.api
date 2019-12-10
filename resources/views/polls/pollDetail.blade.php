@@ -207,7 +207,7 @@
                         <td>{{$item['answer']}}</td>
                         <?php $percent = $sergay[$item['answer_id']] / $data->count() * 100 ?>
                         <td>{{ round($percent, 1) }}</td>
-                        <?php $percent2 = $sergay[$item['answer_id']] / $item['answers_count'] * 100 ?>
+                        <?php $percent2 = $s[$sergay[$item['answer_id']]] / $item['answers_count'] * 100 ?>
                         <td>{{ round($percent2, 1) }}</td>
                     </tr>
                     <?php $y++;?>
