@@ -18,6 +18,7 @@ class CreatePollQuestionAnswersTable extends Migration
             $table->uuid('uuid');
             $table->bigInteger('question_id')->unsigned();
             $table->text('answer');
+            $table->integer('answers_count')->unsigned()->nullable();
             $table->boolean('type');
             $table->timestamps();
 
