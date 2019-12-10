@@ -40,7 +40,7 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <table class="table policy-table">
+        <table class="table policy-table" style="text-align: center">
             <thead>
                 <tr>
                     <th scope="col">№</th>
