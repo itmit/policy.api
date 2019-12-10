@@ -10,7 +10,7 @@
     <div class="col-sm-12">
         <div class="form-group">
             <label for="created_at" class="control-label">Создан: </label>
-            <div id="created_at">{{ $poll->created_at }}</div>
+            <div id="created_at">{{ date('H:i:s d.m.Y', strtotime($poll->created_at->timezone('Europe/Moscow'))) }}</div>
         </div>
         @if($poll->start_at != NULL && $poll->end_at != NULL)
             <div class="form-group">
