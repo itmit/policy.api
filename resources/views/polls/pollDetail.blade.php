@@ -66,7 +66,7 @@
                 <tr>В данном опросе еще никто не принял участие</tr>
             @else
             <?php $i=1;
-            $sergay = [];
+            $sergay = [0];
             ?>
             @foreach ($response as $key => $value)
                 @foreach ($value['answers'] as $a)
@@ -199,7 +199,8 @@
                         <td>V{{$i}}_{{$y}}.</td>
                         <td></td>
                         <td>{{$item['answer']}}</td>
-                        
+                        <?php $percent = $sergay[$item['answer_id']] / $data->count() * 100 ?>
+                        <td>{{ round($percent, 1) }}</td>
                         <td>{{ $item['answers_count'] }}</td>
                     </tr>
                     <?php $y++;?>
