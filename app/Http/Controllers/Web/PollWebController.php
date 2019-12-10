@@ -93,7 +93,7 @@ class PollWebController extends Controller
                     'uuid' => (string) Str::uuid(),
                     'question_id' => $pollQuestion->id,
                     'answer' => $value,
-                    'answer_count' => $questions['answer_count'][$i],
+                    'answers_count' => $questions['answer_count'][$i],
                     'type' => 0,
                 ]);
                 $i++;
