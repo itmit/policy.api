@@ -229,19 +229,19 @@
             all_data.set('questions', all_questions);
             const all_data_array = Object.fromEntries(all_data);
 
-            $.ajax({
-                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                dataType: "html",
-                data    : {all_data : all_data_array},
-                url     : '../polls',
-                method    : 'post',
-                success: function (response) {
-                    console.log(response);
-                },
-                error: function (xhr, err) { 
-                    console.log("Error: " + xhr + " " + err);
-                }
-            });
+            // $.ajax({
+            //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            //     dataType: "html",
+            //     data    : {all_data : all_data_array},
+            //     url     : '../polls',
+            //     method    : 'post',
+            //     success: function (response) {
+            //         console.log(response);
+            //     },
+            //     error: function (xhr, err) { 
+            //         console.log("Error: " + xhr + " " + err);
+            //     }
+            // });
             // window.location.replace("http://policy.itmit-studio.ru/polls");
             // return false;
         });
