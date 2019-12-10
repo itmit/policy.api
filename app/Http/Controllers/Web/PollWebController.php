@@ -74,24 +74,31 @@ class PollWebController extends Controller
 
         foreach($request->all_data["questions"] as $questions)
         {
-            return $questions['answer_count'][0];
+            // return $questions['answer_count'][0];
 
             if($questions['multiple'] == 'true') $questions['multiple'] = 1;
             if($questions['multiple'] == 'false') $questions['multiple'] = 0;
+
             $pollQuestion = PollQuestions::create([
                 'uuid' => (string) Str::uuid(),
                 'poll_id' => $poll->id,
                 'question' => $questions['question_name'],
                 'multiple' => $questions['multiple'],
             ]);
+
+            $i = 0;
+
             foreach ($questions['answers'] as $key => $value) {
-                    $pollQuestionAnswer = PollQuestionAnswers::create([
-                        'uuid' => (string) Str::uuid(),
-                        'question_id' => $pollQuestion->id,
-                        'answer' => $value,
-                        'type' => 0,
-                    ]);
+                $pollQuestionAnswer = PollQuestionAnswers::create([
+                    'uuid' => (string) Str::uuid(),
+                    'question_id' => $pollQuestion->id,
+                    'answer' => $value,
+                    'answer_count' => $questions['answer_count'][$i],
+                    'type' => 0,
+                ]);
+                $i++;
             }
+
             if($questions['other'] == 'true'){
                 $pollQuestionAnswer = PollQuestionAnswers::create([
                     'uuid' => (string) Str::uuid(),
@@ -100,24 +107,6 @@ class PollWebController extends Controller
                     'type' => 1,
                 ]);
             }
-            
-            // foreach($questions as $key => $value)
-            // {
-            //     // $result .= ' key: ' . $key;
-            //     PollQuestions::create([
-            //         'uuid' => (string) Str::uuid(),
-            //         'poll_id' => $poll->id,
-            //         'question' => $request->all_data["description"],
-            //         'multiple' => $request->all_data["category"],
-            //     ]);
-            //     if($key == 'answers')
-            //     {
-            //         foreach($key as $key2 => $value2)
-            //         {
-                        
-            //         };
-            //     }
-            // };
         };
 
 
