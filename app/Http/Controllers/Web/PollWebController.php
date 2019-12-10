@@ -50,7 +50,6 @@ class PollWebController extends Controller
      */
     public function store(Request $request)
     {
-        return 'opa';
         // $poll = Poll::create([
         //     'uuid' => (string) Str::uuid(),
         //     'name' => $request->all_data["name"],
@@ -75,7 +74,7 @@ class PollWebController extends Controller
 
         foreach($request->all_data["questions"] as $questions)
         {
-            return $questions['answer_count'];
+            return $questions['answer_count'][0];
 
             if($questions['multiple'] == 'true') $questions['multiple'] = 1;
             if($questions['multiple'] == 'false') $questions['multiple'] = 0;
