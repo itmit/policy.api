@@ -218,7 +218,7 @@
                 question_data.set('answers', answer_data);
                 question_data.set('answer_count', answer_count);
                 question_data = Object.fromEntries(question_data)
-                data.set('question'+question_number, question_data);
+                // data.set('question'+question_number, question_data);
                 all_questions.set('question'+question_number, question_data);
                 
                 question_number++;
