@@ -210,6 +210,7 @@
                 $(this).find('.answer').each(function( index ) {
                     answer_data.set(i, $(this).find("input[name='answer']").val());
                     answer_count.set(i, $(this).find("input[name='answer_count']").val());
+                    console.log(answer_count);
                     i++;
                 });
 
