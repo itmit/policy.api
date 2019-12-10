@@ -195,7 +195,7 @@
             <tbody>
                 <?php $y=1;?>
                 @foreach($value['answers'] as $item)
-                    <?$s[$i] = 0;?>
+                    <?$s[$i] = 1;?>
                 @endforeach
                 @foreach($value['answers'] as $item)
                     <?$s[$i] = $s[$i] + $item['answers_count'];?>
