@@ -228,6 +228,7 @@
             all_data.set('questions', all_questions);
             const all_data_array = Object.fromEntries(all_data);
             console.log(all_data_array);
+            return false;
 
             // $.ajax({
             //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
