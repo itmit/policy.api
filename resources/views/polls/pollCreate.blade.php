@@ -173,8 +173,8 @@
             $(this).closest(".row").remove();
         });
 
-        // $(document).on("click", ".test", function(e) {
-        $("form").submit(function(e) {
+        $(document).on("click", ".test", function(e) {
+        // $("form").submit(function(e) {
 
             let all_data = new Map([
             ['name', $("input[name='name']").val()],
@@ -227,7 +227,7 @@
             all_questions = Object.fromEntries(all_questions)
             all_data.set('questions', all_questions);
             const all_data_array = Object.fromEntries(all_data);
-            // console.log(all_data_array);
+            console.log(all_data_array);
             return false;
 
             // $.ajax({
