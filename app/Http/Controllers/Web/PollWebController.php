@@ -50,15 +50,15 @@ class PollWebController extends Controller
      */
     public function store(Request $request)
     {
-        $poll = Poll::create([
-            'uuid' => (string) Str::uuid(),
-            'name' => $request->all_data["name"],
-            'description' => $request->all_data["description"],
-            'category' => $request->all_data["category"],
-            'link' => $request->all_data["link"],
-            'start_at' => $request->all_data["start_at"],
-            'end_at' => $request->all_data["end_at"],
-        ]);
+        // $poll = Poll::create([
+        //     'uuid' => (string) Str::uuid(),
+        //     'name' => $request->all_data["name"],
+        //     'description' => $request->all_data["description"],
+        //     'category' => $request->all_data["category"],
+        //     'link' => $request->all_data["link"],
+        //     'start_at' => $request->all_data["start_at"],
+        //     'end_at' => $request->all_data["end_at"],
+        // ]);
 
         // foreach($request->all_data["questions"] as $key => $value)
         // {
@@ -70,12 +70,12 @@ class PollWebController extends Controller
         //     ]);
         // };
 
-        // dd($request->all_data["questions"]);
+        dd($request->all_data["questions"]);
 
         foreach($request->all_data["questions"] as $questions)
         {
             return $questions['answer_count'];
-            
+
             if($questions['multiple'] == 'true') $questions['multiple'] = 1;
             if($questions['multiple'] == 'false') $questions['multiple'] = 0;
             $pollQuestion = PollQuestions::create([
