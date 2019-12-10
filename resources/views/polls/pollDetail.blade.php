@@ -195,10 +195,10 @@
             <tbody>
                 <?php $y=1;?>
                 @foreach($value['answers'] as $item)
-                    <?$s[$item[$i]] = 0;?>
+                    <?$s[$i] = 0;?>
                 @endforeach
                 @foreach($value['answers'] as $item)
-                    <?$s[$item[$i]] = $s[$item[$i]] + $item['answers_count'];?>
+                    <?$s[$i] = $s[$i] + $item['answers_count'];?>
                 @endforeach
                 @foreach ($value['answers'] as $item)
                     <tr>
@@ -207,7 +207,7 @@
                         <td>{{$item['answer']}}</td>
                         <?php $percent = $sergay[$item['answer_id']] / $data->count() * 100 ?>
                         <td>{{ round($percent, 1) }}</td>
-                        <?php $percent2 = $s[$item[$i]] / $item['answers_count'] * 100 ?>
+                        <?php $percent2 = $s[$i] / $item['answers_count'] * 100 ?>
                         <td>{{ round($percent2, 1) }}</td>
                     </tr>
                     <?php $y++;?>
