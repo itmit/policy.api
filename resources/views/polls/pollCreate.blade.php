@@ -210,16 +210,15 @@
                 $(this).find('.answer').each(function( index ) {
                     answer_data.set(i, $(this).find("input[name='answer']").val());
                     answer_count.set(i, $(this).find("input[name='answer_count']").val());
-                    console.log(answer_count);
                     i++;
                 });
 
                 answer_data = Object.fromEntries(answer_data)
                 answer_count = Object.fromEntries(answer_count)
                 question_data.set('answers', answer_data);
-                // question_data.set('answer_count', answer_count);
+                question_data.set('answer_count', answer_count);
                 question_data = Object.fromEntries(question_data)
-                // data.set('question'+question_number, question_data);
+                data.set('question'+question_number, question_data);
                 all_questions.set('question'+question_number, question_data);
                 
                 question_number++;
@@ -228,6 +227,8 @@
             all_questions = Object.fromEntries(all_questions)
             all_data.set('questions', all_questions);
             const all_data_array = Object.fromEntries(all_data);
+
+            console.log(all_data_array);
 
             // $.ajax({
             //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
