@@ -227,7 +227,6 @@
             all_questions = Object.fromEntries(all_questions)
             all_data.set('questions', all_questions);
             const all_data_array = Object.fromEntries(all_data);
-
             console.log(all_data_array);
 
             // $.ajax({

@@ -50,6 +50,7 @@ class PollWebController extends Controller
      */
     public function store(Request $request)
     {
+        return 'opa';
         // $poll = Poll::create([
         //     'uuid' => (string) Str::uuid(),
         //     'name' => $request->all_data["name"],
@@ -70,7 +71,7 @@ class PollWebController extends Controller
         //     ]);
         // };
 
-        dd($request->all_data);
+        // dd($request->all_data);
 
         foreach($request->all_data["questions"] as $questions)
         {
