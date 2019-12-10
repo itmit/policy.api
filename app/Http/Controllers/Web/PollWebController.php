@@ -148,7 +148,8 @@ class PollWebController extends Controller
                     'answer_id' => $question_answer->id,
                     'answer_uuid' => $question_answer->uuid,
                     'answer' => $question_answer->answer,
-                    'type' => $question_answer->type
+                    'type' => $question_answer->type,
+                    'answers_count' => $question_answer->answers_count
                 ];
                 // $data = [];
                 // $userAnswers[] = PollQuestionAnswerUsers::where('answer_id', '=', $question_answer->id)
