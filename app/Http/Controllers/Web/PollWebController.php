@@ -304,11 +304,11 @@ class PollWebController extends Controller
             ];
         }
 
-        $data = UserToPoll::where('poll_id', '=', $id)->get();
+        $data = UserToPoll::where('poll_id', '=', $poll->id)->get();
 
         return view('polls.pollDetail', [
-            'poll' => Poll::where('id', '=', $id)->first(),
-            'questions' => PollQuestions::where('poll_id', '=', $id)->get(),
+            'poll' => Poll::where('id', '=', $poll->id)->first(),
+            'questions' => PollQuestions::where('poll_id', '=', $poll->id)->get(),
             'response' => $response,
             'data' => $data
         ]); 
