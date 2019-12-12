@@ -209,7 +209,7 @@ class PollApiController extends ApiBaseController
 
         $data = UserToPoll::where('poll_id', '=', $poll->id)->get();
 
-        return view('polls.pollDetail', [
+        return view('polls.showPollResults', [
             'poll' => Poll::where('id', '=', $poll->id)->first(),
             'questions' => PollQuestions::where('poll_id', '=', $poll->id)->get(),
             'response' => $response,
