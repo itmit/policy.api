@@ -6,37 +6,6 @@
     <div class="col-sm-12">
         <a href="/polls">Назад</a>
     </div>
-<div class="row">
-    <div class="col-sm-12">
-        <div class="form-group">
-            <label for="created_at" class="control-label">Создан: </label>
-            <div id="created_at">{{ date('H:i:s d.m.Y', strtotime($poll->created_at->timezone('Europe/Moscow'))) }}</div>
-        </div>
-        @if($poll->start_at != NULL && $poll->end_at != NULL)
-            <div class="form-group">
-                <label for="description" class="control-label">Дата начала и завершения: </label>
-                <div id="description">{{ $poll->start_at }} {{ $poll->end_at }}</div>
-            </div>
-        @endif
-        @if($poll->link != NULL)
-            <div class="form-group">
-                <label for="link" class="control-label">Ссылка на опрос: </label>
-                <div id="link">{{ $poll->link }}</div>
-            </div>
-        @endif
-        @if($poll->description != NULL)
-        <div class="form-group">
-            <label for="description" class="control-label">Описание: </label>
-            <div id="description">{{ $poll->description }}</div>
-        </div>
-        @endif
-        <div class="form-group">
-            <label for="category_name" class="control-label">Категория: </label>
-            <div id="category_name">{{ $poll->category()->name }}</div>
-        </div>
-    </div>
-</div>
-
 </div>
 <div class="row">
     <div class="col-sm-12">
