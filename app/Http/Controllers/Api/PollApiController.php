@@ -174,59 +174,46 @@ class PollApiController extends ApiBaseController
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function showPollResults($uuid)
     {
-        //
-    }
+        $poll = Poll::where('uuid', '=', $uuid)->first('id');
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $questions = PollQuestions::where('poll_id', '=', $poll->id)->get();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $response = [];
+        $userAnswers = [];
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        foreach($questions as $question)
+        {
+            $response_answers = [];
+            $question_answers = PollQuestionAnswers::where('question_id', '=', $question->id)->get();
+            foreach($question_answers as $question_answer)
+            {
+                $response_answers [] = [
+                    'answer_id' => $question_answer->id,
+                    'answer_uuid' => $question_answer->uuid,
+                    'answer' => $question_answer->answer,
+                    'type' => $question_answer->type,
+                    'answers_count' => $question_answer->answers_count
+                ];
+                // $data = [];
+                // $userAnswers[] = PollQuestionAnswerUsers::where('answer_id', '=', $question_answer->id)
+            }
+            $response[] = [
+                'question_uuid' => $question->uuid,
+                'question' => $question->question,
+                'multiple' => $question->multiple,
+                'answers' => $response_answers
+            ];
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $data = UserToPoll::where('poll_id', '=', $id)->get();
+
+        return view('polls.pollDetail', [
+            'poll' => Poll::where('id', '=', $id)->first(),
+            'questions' => PollQuestions::where('poll_id', '=', $id)->get(),
+            'response' => $response,
+            'data' => $data
+        ]); 
     }
 }
