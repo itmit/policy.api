@@ -1,12 +1,6 @@
 @extends('layouts.layoutForApi')
 
 @section('content')
-<div class="col-sm-9 tabs-content">
-    <h1>Опрос {{ $poll->name }}</h1>
-    <div class="col-sm-12">
-        <a href="/polls">Назад</a>
-    </div>
-</div>
 <div class="row">
     <div class="col-sm-12">
             @if($data->count() == 0)
