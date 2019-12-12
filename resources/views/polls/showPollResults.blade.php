@@ -1,3 +1,5 @@
+@extends('layouts.layoutForApi')
+
 @section('content')
 <div class="col-sm-9 tabs-content">
     <h1>Опрос {{ $poll->name }}</h1>
