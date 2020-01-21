@@ -68,7 +68,7 @@ class SuslikApiController extends ApiBaseController
             $lastRateDate = $mark['created_at'];
             $lastRateDate = date_format($lastRateDate, 'Y-m-d');
     
-            if($current_date_unix > $lastRateDate)
+            if($current_date_unix == $lastRateDate)
             {
                 $suslik['mark'] = $mark->type;
             }
