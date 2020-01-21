@@ -56,6 +56,26 @@ class SuslikApiController extends ApiBaseController
             return $this->sendError(0, 'Ошибка');
         }
 
+        $mark = SuslikRatingHistory::where('from_suslik', '=', auth('api')->user()->id)
+                            ->where('whom_suslik', '=', $suslik->id)
+                            ->latest()->first('created_at');
+
+        if($mark != NULL)
+        {
+            $date = date_create();
+            $current_date_unix = date_format($date, 'Y-m-d');
+    
+            $lastRateDate = $mark['created_at'];
+            $lastRateDate = date_format($lastRateDate, 'Y-m-d');
+    
+            if($current_date_unix > $lastRateDate)
+            {
+                $suslik['mark'] = $mark->type;
+            }
+            else
+            $suslik['mark'] = null;
+        }
+
         $suslik['category'] = SusliksCategory::where('id', '=', $suslik['category'])->first(['name', 'uuid'])->toArray();
         
         return $this->sendResponse($suslik, 'Суслик');

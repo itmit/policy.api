@@ -8,7 +8,7 @@
 <style>
     ul.column {
         list-style: none;
-        width: 50px;
+        width: 20px;
         text-align: center;
         padding: 0px 15px;
         margin: 0;
@@ -53,6 +53,7 @@
     }
 
     .horizontal-columns-section {
+        font-size: 14px;
         display: flex;
         padding: 40px 10px 0 10px;
         height: 300px;
