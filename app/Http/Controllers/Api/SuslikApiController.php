@@ -57,7 +57,7 @@ class SuslikApiController extends ApiBaseController
         }
 
         $mark = SuslikRatingHistory::where('from_suslik', '=', auth('api')->user()->id)
-                            ->where('whom_suslik', '=', $suslik->id)
+                            ->where('whom_suslik', '=', $suslik['id'])
                             ->latest()->first('created_at');
 
         if($mark != NULL)
