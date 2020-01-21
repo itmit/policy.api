@@ -48,7 +48,7 @@ class SuslikApiController extends ApiBaseController
             return response()->json(['error'=>$validator->errors()], 401);            
         }
 
-        $suslik = Suslik::where('uuid', '=' , $request->suslik_uuid)->first(['uuid', 'name', 'place_of_work', 'position', 'likes', 
+        $suslik = Suslik::where('uuid', '=' , $request->suslik_uuid)->first(['id', 'uuid', 'name', 'place_of_work', 'position', 'likes', 
         'dislikes', 'neutrals', 'photo', 'category', 'link'])->toArray();
 
         if($suslik == null)
