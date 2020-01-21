@@ -76,6 +76,9 @@ class SuslikApiController extends ApiBaseController
             $suslik['mark'] = null;
         }
 
+        $suslik['today'] = $current_date_unix;
+        $suslik['lastRate'] = $lastRateDate;
+
         $suslik['category'] = SusliksCategory::where('id', '=', $suslik['category'])->first(['name', 'uuid'])->toArray();
         
         return $this->sendResponse($suslik, 'Суслик');
