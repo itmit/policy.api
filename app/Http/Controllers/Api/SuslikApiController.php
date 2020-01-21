@@ -75,6 +75,8 @@ class SuslikApiController extends ApiBaseController
             else
             $suslik['mark'] = null;
         }
+        else
+            $suslik['mark'] = null;
 
         $suslik['category'] = SusliksCategory::where('id', '=', $suslik['category'])->first(['name', 'uuid'])->toArray();
         
