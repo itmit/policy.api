@@ -58,7 +58,7 @@ class SuslikApiController extends ApiBaseController
 
         $mark = SuslikRatingHistory::where('from_suslik', '=', auth('api')->user()->id)
                             ->where('whom_suslik', '=', $suslik['id'])
-                            ->latest()->first('created_at');
+                            ->latest()->first(['created_at', 'type']);
 
         if($mark != NULL)
         {
@@ -75,9 +75,6 @@ class SuslikApiController extends ApiBaseController
             else
             $suslik['mark'] = null;
         }
-
-        $suslik['today'] = $current_date_unix;
-        $suslik['lastRate'] = $lastRateDate;
 
         $suslik['category'] = SusliksCategory::where('id', '=', $suslik['category'])->first(['name', 'uuid'])->toArray();
         
