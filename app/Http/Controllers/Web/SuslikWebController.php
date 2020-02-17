@@ -44,7 +44,7 @@ class SuslikWebController extends Controller
             'categories' => SusliksCategory::select('*')
             ->orderBy('created_at', 'desc')->get(),
             'regions' => Region::select('*')
-            ->orderBy('number', 'asc')->get()
+            ->orderBy('id', 'asc')->get()
         ]); 
     }
 
