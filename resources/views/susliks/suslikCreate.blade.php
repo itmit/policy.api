@@ -97,7 +97,7 @@
                     <label for="region" class="control-label">Субъект РФ:</label>
                     <select class="form-control" name="region">
                         @foreach($regions as $region)
-                            <option value="{{$region->number}}"">
+                            <option value="{{$region->id}}"">
                                 {{$region->name}}
                             </option>
                         @endforeach
