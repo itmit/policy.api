@@ -16,23 +16,15 @@ class CreateSusliksTable extends Migration
         Schema::create('susliks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid');
-            $table->string('name');
-            $table->integer('number')->unique();
-            $table->string('place_of_work');
-            $table->string('position');
-            $table->bigInteger('category');
-            
-            // $table->date('birthday'); // дата рождения
-
-            // $table->enum('sex', ['мужской', 'женский']); // пол
-            // $table->enum('education', ['высшее или неполное высшее', 'среднее (профессиональное)', 'среднее (полное)', 'среднее (общее) или ниже']); // образование
-            // $table->string('region'); // регион
+            $table->string('FIO');
+            $table->string('place_of_work')->nullable();
+            $table->string('position')->nullable();
+            $table->bigInteger('category')->unsigned();
+            $table->string('birthdate')->nullable(); // дата рождения
 
             $table->integer('likes')->default(0);
             $table->integer('dislikes')->default(0);
             $table->integer('neutrals')->default(0);
-
-            $table->string('link')->nullable();
 
             $table->string('photo')->nullable();
             $table->timestamps();

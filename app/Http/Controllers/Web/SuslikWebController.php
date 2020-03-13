@@ -29,7 +29,8 @@ class SuslikWebController extends Controller
     {
         return view('susliks.susliks', [
         'susliks' => Suslik::select('*')
-            ->orderBy('created_at', 'desc')->get()
+            ->orderBy('created_at', 'desc')->get(),
+        'categories' => SusliksCategory::get()
         ]); 
     }
 
