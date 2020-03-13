@@ -192,7 +192,7 @@ class SuslikWebController extends Controller
                 'position' => $suslik->position,
                 'place_of_work' => $suslik->place_of_work,
                 'position' => $suslik->position,
-                'category' => $category,
+                'category' => $data->category,
             ]);
         }
         // dd($data);
