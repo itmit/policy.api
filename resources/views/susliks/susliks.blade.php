@@ -99,7 +99,7 @@
                             <td>{{ $suslik->category()->name }}</td>
                             <td>{{ $suslik->place_of_work }}</td>
                             <td>{{ $suslik->position }}</td>
-                            <td>{{ $suslik->link }}</td>
+                            <td><a href="{{ $suslik->link }}">ссылка</a></td>
                             <td>{{ $suslik->likes }}</td>
                             <td>{{ $suslik->dislikes }}</td>
                             <td>{{ $suslik->neutrals }}</td>

@@ -188,7 +188,11 @@ class SuslikWebController extends Controller
             if(!isset($suslik->position)) $suslik->position = null;
             if(!isset($suslik->birthdate)) $suslik->birthdate = null;
             $link = explode(' ', $suslik->FIO);
-            if(!isset($link[2])) $link[2] = $link[1];
+            if(!isset($link[2]))
+            {
+                $link[2] = $link[1];
+                $link[1] = '';
+            } 
             Suslik::create([
                 'uuid' => (string) Str::uuid(),
                 'name' => $suslik->FIO,
