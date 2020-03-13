@@ -16,17 +16,18 @@ class CreateSusliksTable extends Migration
         Schema::create('susliks', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid');
-            $table->string('FIO');
-            $table->string('place_of_work')->nullable();
-            $table->string('position')->nullable();
+            $table->string('name');
+            $table->text('place_of_work')->nullable();
+            $table->text('position')->nullable();
             $table->bigInteger('category')->unsigned();
-            $table->string('birthdate')->nullable(); // дата рождения
+            $table->text('birthdate')->nullable(); // дата рождения
+            $table->text('link')->nullable(); // дата рождения
 
             $table->integer('likes')->default(0);
             $table->integer('dislikes')->default(0);
             $table->integer('neutrals')->default(0);
 
-            $table->string('photo')->nullable();
+            $table->text('photo')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

@@ -182,18 +182,21 @@ class SuslikWebController extends Controller
         $susliks = json_decode($j);
         foreach ($susliks->politic as $suslik) {
             if(!isset($suslik->FIO)) continue;
+            if(Suslik::where('FIO', $suslik->FIO)->exists()) continue;
             if(!isset($suslik->place_of_work)) $suslik->place_of_work = null;
             if(!isset($suslik->photo)) $suslik->photo = null;
             if(!isset($suslik->position)) $suslik->position = null;
             if(!isset($suslik->birthdate)) $suslik->birthdate = null;
+            $link = explode(' ', $suslik->FIO);
             Suslik::create([
                 'uuid' => (string) Str::uuid(),
-                'FIO' => $suslik->FIO,
+                'name' => $suslik->FIO,
                 'birthdate' => $suslik->birthdate,
                 'position' => $suslik->position,
                 'place_of_work' => $suslik->place_of_work,
                 'position' => $suslik->position,
                 'category' => $data->category,
+                'link' =>'https://ru.wikipedia.org/wiki/' . $link[2] . ',_' . $link[0] . '_' . $link[1]
             ]);
         }
         // dd($data);
