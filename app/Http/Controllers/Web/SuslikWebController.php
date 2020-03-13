@@ -182,7 +182,6 @@ class SuslikWebController extends Controller
         $susliks = json_decode($j);
         // dd($susliks);
         foreach ($susliks->politic as $suslik) {
-            dd($suslik);
             if(!isset($suslik['FIO'])) continue;
             if(!isset($suslik['place_of_work'])) $suslik['place_of_work'] = null;
             if(!isset($suslik['photo'])) $suslik['photo'] = null;
