@@ -178,7 +178,7 @@ class SuslikWebController extends Controller
 
         $file = $data->file('file');
         $path = storage_path() . '/app/' . $file->store('temp');
-        $j = file_get_contents( __DIR__ . DIRECTORY_SEPARATOR . 'data.json' ); // в примере все файлы в корне
+        $j = file_get_contents($path); // в примере все файлы в корне
         $data = json_decode($j);
         dd($data);
         // $zip = new ZipArchive;
