@@ -181,6 +181,7 @@ class SuslikWebController extends Controller
         $j = file_get_contents($path); // в примере все файлы в корне
         $susliks = json_decode($j);
         foreach ($susliks as $suslik) {
+            if(!isset($suslik['FIO'])) continue;
             if(!isset($suslik['place_of_work'])) $suslik['place_of_work'] = null;
             if(!isset($suslik['photo'])) $suslik['photo'] = null;
             if(!isset($suslik['position'])) $suslik['position'] = null;
