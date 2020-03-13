@@ -180,6 +180,7 @@ class SuslikWebController extends Controller
         $path = storage_path() . '/app/' . $file->store('temp');
         $j = file_get_contents($path);
         $susliks = json_decode($j);
+        dd($susliks);
         foreach ($susliks as $suslik) {
             dd($suslik);
             if(!isset($suslik['FIO'])) continue;
