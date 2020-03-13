@@ -8,19 +8,39 @@
                 <a href="{{ route('auth.susliks.create') }}" class="btn-card">Создать суслика</a>
                 <a href="{{ route('auth.createCategory') }}" class="btn-card">Создать категорию</a>
             </div>
-            <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ route('auth.uploadSusliks') }}">
+            <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="">
                 {{ csrf_field() }}
 
                 <br>
 
                 <div class="row form-group{{ $errors->has('file') ? ' has-error' : '' }}">
 
-                    {{-- <label for="file" class="col-md-4 form-control-file">.zip-папка для импорта</label>
+                    <label for="file" class="col-md-4 form-control-file">.zip-папка для импорта</label>
         
                     <div class="col-md-6">
                         <input type="file" name="file" id="file" accept=".zip">
-                    </div> --}}
+                    </div>
+        
+                    @if ($errors->has('file'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('file') }}</strong>
+                        </span>
+                    @endif
+                </div>
+        
+                <div class="form-group">
+                    <button type="submit" class="btn-card btn-tc-ct">
+                            Загрузить сусликов из .zip
+                    </button>
+                </div>
+            </form>
 
+            <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ route('auth.uploadSusliks') }}">
+                {{ csrf_field() }}
+
+                <br>
+
+                <div class="row form-group{{ $errors->has('file') ? ' has-error' : '' }}">
                     <label for="file" class="col-md-4 form-control-file">.json файл для импорта</label>
         
                     <div class="col-md-6">
@@ -61,7 +81,7 @@
                         <th>Категория</th>
                         <th>Место работы</th>
                         <th>Должность</th>
-                        <th>Дата рождения</th>
+                        <th>Ссылка</th>
                         <th>Лайки</th>
                         <th>Дизлайки</th>
                         <th>Нейтралы</th>
@@ -75,11 +95,11 @@
                     @endif
                         <tr>
                             <td><input type="checkbox" data-suslik-id="{{ $suslik->id }}" name="destoy-suslik-{{ $suslik->id }}" class="js-destroy"/></td>
-                            <td>{{ $suslik->FIO }}</td>
+                            <td>{{ $suslik->name }}</td>
                             <td>{{ $suslik->category()->name }}</td>
                             <td>{{ $suslik->place_of_work }}</td>
                             <td>{{ $suslik->position }}</td>
-                            <td>{{ $suslik->birthdate }}</td>
+                            <td>{{ $suslik->link }}</td>
                             <td>{{ $suslik->likes }}</td>
                             <td>{{ $suslik->dislikes }}</td>
                             <td>{{ $suslik->neutrals }}</td>
