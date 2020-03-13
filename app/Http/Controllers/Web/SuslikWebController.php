@@ -179,8 +179,23 @@ class SuslikWebController extends Controller
         $file = $data->file('file');
         $path = storage_path() . '/app/' . $file->store('temp');
         $j = file_get_contents($path); // в примере все файлы в корне
-        $data = json_decode($j);
-        dd($data);
+        $susliks = json_decode($j);
+        foreach ($susliks as $suslik) {
+            if(!isset($suslik->place_of_work)) $suslik->place_of_work = null;
+            if(!isset($suslik->photo)) $suslik->photo = null;
+            if(!isset($suslik->position)) $suslik->position = null;
+            if(!isset($suslik->birthdate)) $suslik->birthdate = null;
+            Suslik::create([
+                'uuid' => (string) Str::uuid(),
+                'FIO' => $suslik->FIO,
+                'birthdate' => $suslik->birthdate,
+                'position' => $suslik->position,
+                'place_of_work' => $suslik->place_of_work,
+                'position' => $suslik->position,
+                'category' => $category,
+            ]);
+        }
+        // dd($data);
         // $zip = new ZipArchive;
         // $res = $zip->open($path);
         // if ($res === TRUE) {
@@ -189,7 +204,7 @@ class SuslikWebController extends Controller
         //     $import = self::storeSusliksFromZip();
         // }
         // else return 'bad';
-        // return redirect()->route('auth.susliks.index');
+        return redirect()->route('auth.susliks.index');
     }
 
     /**
