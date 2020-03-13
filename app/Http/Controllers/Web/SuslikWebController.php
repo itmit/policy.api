@@ -178,7 +178,7 @@ class SuslikWebController extends Controller
 
         $file = $data->file('file');
         $path = storage_path() . '/app/' . $file->store('temp');
-        $susliks = file_get_contents($path); // в примере все файлы в корне
+        $j = file_get_contents($path); // в примере все файлы в корне
         $susliks = json_decode($j);
         foreach ($susliks->politic as $suslik) {
             if(!isset($suslik->place_of_work)) $suslik->place_of_work = null;
