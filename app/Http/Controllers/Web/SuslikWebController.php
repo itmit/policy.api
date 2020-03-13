@@ -182,7 +182,7 @@ class SuslikWebController extends Controller
         $susliks = json_decode($j);
         foreach ($susliks->politic as $suslik) {
             if(!isset($suslik->FIO)) continue;
-            if(Suslik::where('FIO', $suslik->FIO)->exists()) continue;
+            if(Suslik::where('name', $suslik->FIO)->exists()) continue;
             if(!isset($suslik->place_of_work)) $suslik->place_of_work = null;
             if(!isset($suslik->photo)) $suslik->photo = null;
             if(!isset($suslik->position)) $suslik->position = null;
