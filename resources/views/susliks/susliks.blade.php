@@ -35,7 +35,7 @@
         
                 <div class="form-group">
                     <button type="submit" class="btn-card btn-tc-ct">
-                            Загрузить сусликов из zip-файла
+                            Загрузить сусликов из .json
                     </button>
                 </div>
             </form>
@@ -51,15 +51,14 @@
                     <thead>
                     <tr>
                         <th><input type="checkbox" name="destroy-all-susliks" class="js-destroy-all"/></th>
-                        <th>#</th>
                         <th>Имя</th>
                         <th>Категория</th>
                         <th>Место работы</th>
                         <th>Должность</th>
+                        <th>Дата рождения</th>
                         <th>Лайки</th>
                         <th>Дизлайки</th>
                         <th>Нейтралы</th>
-                        <th>Ссылка</th>
                         <th>Дата создания</th>
                     </tr>
                     </thead>
@@ -70,15 +69,14 @@
                     @endif
                         <tr>
                             <td><input type="checkbox" data-suslik-id="{{ $suslik->id }}" name="destoy-suslik-{{ $suslik->id }}" class="js-destroy"/></td>
-                            <td>{{ $suslik->number }}</td>
-                            <td>{{ $suslik->name }}</td>
+                            <td>{{ $suslik->FIO }}</td>
                             <td>{{ $suslik->category()->name }}</td>
                             <td>{{ $suslik->place_of_work }}</td>
                             <td>{{ $suslik->position }}</td>
+                            <td>{{ $suslik->birthdate }}</td>
                             <td>{{ $suslik->likes }}</td>
                             <td>{{ $suslik->dislikes }}</td>
                             <td>{{ $suslik->neutrals }}</td>
-                            <td>{{ $suslik->link }}</td>
                             <td>{{ $suslik->created_at->timezone('Europe/Moscow') }}</td>
                         </tr>
                     @endforeach

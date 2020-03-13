@@ -143,6 +143,7 @@ class SuslikWebController extends Controller
     {
         $validator = Validator::make($data->all(), [
             'file' => 'required',
+            'category' => 'required|exists:susliks_categories,id'
         ]);
 
         if ($validator->fails()) {
@@ -177,15 +178,18 @@ class SuslikWebController extends Controller
 
         $file = $data->file('file');
         $path = storage_path() . '/app/' . $file->store('temp');
-        $zip = new ZipArchive;
-        $res = $zip->open($path);
-        if ($res === TRUE) {
-            $zip->extractTo(storage_path() . '/app/susliks_upload');
-            $zip->close();
-            $import = self::storeSusliksFromZip();
-        }
-        else return 'bad';
-        return redirect()->route('auth.susliks.index');
+        $j = file_get_contents( __DIR__ . DIRECTORY_SEPARATOR . 'data.json' ); // в примере все файлы в корне
+        $data = json_decode($j);
+        dd($data);
+        // $zip = new ZipArchive;
+        // $res = $zip->open($path);
+        // if ($res === TRUE) {
+        //     $zip->extractTo(storage_path() . '/app/susliks_upload');
+        //     $zip->close();
+        //     $import = self::storeSusliksFromZip();
+        // }
+        // else return 'bad';
+        // return redirect()->route('auth.susliks.index');
     }
 
     /**
