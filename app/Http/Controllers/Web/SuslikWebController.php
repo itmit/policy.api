@@ -372,8 +372,17 @@ class SuslikWebController extends Controller
                 'category' => $data->category,
                 'link' =>'https://ru.wikipedia.org/wiki/' . $link[2] . ',_' . $link[0] . '_' . $link[1],
             ]);
-            $local= storage_path() . '/app/suslik/' .$newSuslik->uuid . '.jpg';
-            file_put_contents($local, file_get_contents($suslik->photo));
+            $ReadFile = fopen ($suslik->photo, "rb");
+            if ($ReadFile) {
+                $WriteFile = fopen (storage_path() . '/app/suslik/', "wb");
+                if ($WriteFile){
+                    while(!feof($ReadFile)) {
+                        fwrite($WriteFile, fread($ReadFile, 4096 ));
+                    }
+                    fclose($WriteFile);
+                }
+                fclose($ReadFile);
+            }
             // Suslik::where('id', $suslik->id)->update(['photo' => storage_path() . '/app/suslik/' . $suslik->uuid . '.jpg' ]);
         }
 
