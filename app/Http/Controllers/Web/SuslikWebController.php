@@ -374,7 +374,7 @@ class SuslikWebController extends Controller
             ]);
             $ReadFile = fopen ($suslik->photo, "rb");
             if ($ReadFile) {
-                $WriteFile = fopen (storage_path() . '/app/public/suslik/' . $newSuslik->uuid . '.jpg', "wb");
+                $WriteFile = fopen (storage_path() . '/app/public/susliks/' . $newSuslik->uuid . '.jpg', "wb");
                 if ($WriteFile){
                     while(!feof($ReadFile)) {
                         fwrite($WriteFile, fread($ReadFile, 4096 ));
@@ -383,7 +383,7 @@ class SuslikWebController extends Controller
                 }
                 fclose($ReadFile);
             }
-            // Suslik::where('id', $suslik->id)->update(['photo' => storage_path() . '/app/suslik/' . $suslik->uuid . '.jpg' ]);
+            Suslik::where('id', $newSuslik->id)->update(['photo' => storage_path() . '/app/public/susliks/' . $newSuslik->uuid . '.jpg' ]);
         }
 
         return redirect()->route('auth.susliks.index');
