@@ -349,28 +349,29 @@ class SuslikWebController extends Controller
         $j = file_get_contents($path); // в примере все файлы в корне
         $susliks = json_decode($j);
         foreach ($susliks->politic as $suslik) {
-            if(!isset($suslik->FIO)) continue;
-            if(Suslik::where('name', $suslik->FIO)->exists()) continue;
+            if(!isset($suslik->name)) continue;
+            if(Suslik::where('name', $suslik->name)->exists()) continue;
             if(!isset($suslik->place_of_work)) $suslik->place_of_work = null;
             if(!isset($suslik->photo)) $suslik->photo = null;
             if(!isset($suslik->position)) $suslik->position = null;
             if(!isset($suslik->birthdate)) $suslik->birthdate = null;
-            $link = explode(' ', $suslik->FIO);
-            if(!isset($link[2]))
-            {
-                $link[2] = $link[1];
-                $link[1] = '';
-            };
+            // $link = explode(' ', $suslik->FIO);
+            // if(!isset($link[2]))
+            // {
+            //     $link[2] = $link[1];
+            //     $link[1] = '';
+            // };
 
             $newSuslik = Suslik::create([
                 'uuid' => (string) Str::uuid(),
-                'name' => $suslik->FIO,
+                'name' => $suslik->name,
                 'birthdate' => $suslik->birthdate,
                 'position' => $suslik->position,
                 'place_of_work' => $suslik->place_of_work,
                 'position' => $suslik->position,
                 'category' => $data->category,
-                'link' =>'https://ru.wikipedia.org/wiki/' . $link[2] . ',_' . $link[0] . '_' . $link[1],
+                // 'link' =>'https://ru.wikipedia.org/wiki/' . $link[2] . ',_' . $link[0] . '_' . $link[1],
+                'link' => $suslik->link
             ]);
             if($suslik->photo != null)
             {
