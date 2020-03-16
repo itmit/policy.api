@@ -372,8 +372,14 @@ class SuslikWebController extends Controller
                 'category' => $data->category,
                 'link' =>'https://ru.wikipedia.org/wiki/' . $link[2] . ',_' . $link[0] . '_' . $link[1],
             ]);
-            copy($suslik->photo, storage_path() . '/app/suslik/' . $newSuslik->uuid . '.jpg');
-            Suslik::where('id', $suslik->id)->update(['photo' => storage_path() . '/app/suslik/' . $suslik->uuid . '.jpg' ]);
+            $ch = curl_init($suslik->photo);
+            $fp = fopen($_SERVER['DOCUMENT_ROOT'] . storage_path() . '/app/suslik/', 'wb');
+            curl_setopt($ch, CURLOPT_FILE, $fp);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_exec($ch);
+            curl_close($ch);
+            fclose($fp);
+            // Suslik::where('id', $suslik->id)->update(['photo' => storage_path() . '/app/suslik/' . $suslik->uuid . '.jpg' ]);
         }
 
         return redirect()->route('auth.susliks.index');
