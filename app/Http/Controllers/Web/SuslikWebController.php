@@ -383,7 +383,7 @@ class SuslikWebController extends Controller
                 }
                 fclose($ReadFile);
             }
-            Suslik::where('id', $newSuslik->id)->update(['photo' => storage_path() . '/app/public/susliks/' . $newSuslik->uuid . '.jpg' ]);
+            Suslik::where('id', $newSuslik->id)->update(['photo' => $newSuslik->uuid . '.jpg' ]);
         }
 
         return redirect()->route('auth.susliks.index');
