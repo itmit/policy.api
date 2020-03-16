@@ -362,7 +362,7 @@ class SuslikWebController extends Controller
                 $link[1] = '';
             };
 
-            $suslik = Suslik::create([
+            $newSuslik = Suslik::create([
                 'uuid' => (string) Str::uuid(),
                 'name' => $suslik->FIO,
                 'birthdate' => $suslik->birthdate,
@@ -372,7 +372,7 @@ class SuslikWebController extends Controller
                 'category' => $data->category,
                 'link' =>'https://ru.wikipedia.org/wiki/' . $link[2] . ',_' . $link[0] . '_' . $link[1],
             ]);
-            copy($suslik->photo, storage_path() . '/app/suslik/' . $suslik->uuid . '.jpg');
+            copy($suslik->photo, storage_path() . '/app/suslik/' . $newSuslik->uuid . '.jpg');
             Suslik::where('id', $suslik->id)->update(['photo' => storage_path() . '/app/suslik/' . $suslik->uuid . '.jpg' ]);
         }
 
