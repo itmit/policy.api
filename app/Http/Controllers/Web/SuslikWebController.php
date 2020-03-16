@@ -360,7 +360,10 @@ class SuslikWebController extends Controller
             {
                 $link[2] = $link[1];
                 $link[1] = '';
-            }  
+            };
+            // $path = storage_path() . '/app/public/susliks/'.;
+            // file_put_contents($path, file_get_contents($suslik->photo));
+            Storage::disk('local')->put('/app/public/susliks/' . $suslik->FIO, file_get_contents($suslik->photo), 'public'); 
             $suslik = Suslik::create([
                 'uuid' => (string) Str::uuid(),
                 'name' => $suslik->FIO,
@@ -369,16 +372,9 @@ class SuslikWebController extends Controller
                 'place_of_work' => $suslik->place_of_work,
                 'position' => $suslik->position,
                 'category' => $data->category,
-                'link' =>'https://ru.wikipedia.org/wiki/' . $link[2] . ',_' . $link[0] . '_' . $link[1]
+                'link' =>'https://ru.wikipedia.org/wiki/' . $link[2] . ',_' . $link[0] . '_' . $link[1],
+                'photo' => $file_path= storage_path('/app/public/susliks/'.$suslik->FIO)
             ]);
-            if($suslik->photo != null)
-            {
-                $path = storage_path() . '/app/public/susliks/'.$suslik->uuid;
-                file_put_contents($path, file_get_contents($suslik->photo));
-                Suslik::where('id', $suslik->id)->update([
-                    'photo' => $path
-                ]);
-            }
         }
 
         return redirect()->route('auth.susliks.index');
