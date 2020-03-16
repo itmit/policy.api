@@ -371,7 +371,6 @@ class SuslikWebController extends Controller
                 'position' => $suslik->position,
                 'category' => $data->category,
                 'link' =>'https://ru.wikipedia.org/wiki/' . $link[2] . ',_' . $link[0] . '_' . $link[1],
-                'photo' => $path->pathname
             ]);
             copy($suslik->photo, storage_path() . '/app/suslik/' . $suslik->uuid . '.jpg');
             Suslik::where('id', $suslik->id)->update(['photo' => storage_path() . '/app/suslik/' . $suslik->uuid . '.jpg' ]);
