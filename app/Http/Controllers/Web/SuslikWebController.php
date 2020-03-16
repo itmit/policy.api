@@ -375,7 +375,7 @@ class SuslikWebController extends Controller
             ]);
             if($suslik->photo != null)
             {
-                $ReadFile = fopen ('https:'.$suslik->photo, "rb");
+                $ReadFile = fopen ($suslik->photo, "rb");
                 if ($ReadFile) {
                     $WriteFile = fopen (storage_path() . '/app/public/susliks/' . $newSuslik->uuid . '.jpg', "wb");
                     if ($WriteFile){
