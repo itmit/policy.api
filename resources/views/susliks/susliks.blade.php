@@ -8,7 +8,7 @@
                 <a href="{{ route('auth.susliks.create') }}" class="btn-card">Создать суслика</a>
                 <a href="{{ route('auth.createCategory') }}" class="btn-card">Создать категорию</a>
             </div>
-            <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="">
+            <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ route('auth.uploadSusliks') }}">
                 {{ csrf_field() }}
 
                 <br>
@@ -35,7 +35,7 @@
                 </div>
             </form>
 
-            <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ route('auth.uploadSusliks') }}">
+            <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{{ route('auth.uploadSusliksJSON') }}">
                 {{ csrf_field() }}
 
                 <br>

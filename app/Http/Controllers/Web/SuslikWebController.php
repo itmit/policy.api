@@ -176,43 +176,14 @@ class SuslikWebController extends Controller
             }
         }
 
-        $file = $data->file('file');
-        $path = storage_path() . '/app/' . $file->store('temp');
-        $j = file_get_contents($path); // в примере все файлы в корне
-        $susliks = json_decode($j);
-        foreach ($susliks->politic as $suslik) {
-            if(!isset($suslik->FIO)) continue;
-            if(Suslik::where('name', $suslik->FIO)->exists()) continue;
-            if(!isset($suslik->place_of_work)) $suslik->place_of_work = null;
-            if(!isset($suslik->photo)) $suslik->photo = null;
-            if(!isset($suslik->position)) $suslik->position = null;
-            if(!isset($suslik->birthdate)) $suslik->birthdate = null;
-            $link = explode(' ', $suslik->FIO);
-            if(!isset($link[2]))
-            {
-                $link[2] = $link[1];
-                $link[1] = '';
-            } 
-            Suslik::create([
-                'uuid' => (string) Str::uuid(),
-                'name' => $suslik->FIO,
-                'birthdate' => $suslik->birthdate,
-                'position' => $suslik->position,
-                'place_of_work' => $suslik->place_of_work,
-                'position' => $suslik->position,
-                'category' => $data->category,
-                'link' =>'https://ru.wikipedia.org/wiki/' . $link[2] . ',_' . $link[0] . '_' . $link[1]
-            ]);
+        $zip = new ZipArchive;
+        $res = $zip->open($path);
+        if ($res === TRUE) {
+            $zip->extractTo(storage_path() . '/app/susliks_upload');
+            $zip->close();
+            $import = self::storeSusliksFromZip();
         }
-        // dd($data);
-        // $zip = new ZipArchive;
-        // $res = $zip->open($path);
-        // if ($res === TRUE) {
-        //     $zip->extractTo(storage_path() . '/app/susliks_upload');
-        //     $zip->close();
-        //     $import = self::storeSusliksFromZip();
-        // }
-        // else return 'bad';
+        else return 'bad';
         return redirect()->route('auth.susliks.index');
     }
 
@@ -334,6 +305,83 @@ class SuslikWebController extends Controller
             }
         }
         return true;
+    }
+
+    public function uploadSusliksJSON(Request $data)
+    {
+        $validator = Validator::make($data->all(), [
+            'file' => 'required',
+            'category' => 'required|exists:susliks_categories,id'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('auth.susliks.index')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $path = storage_path() . '/app/temp';
+        if (file_exists($path)) {
+            foreach (glob($path.'/*') as $file) {
+                unlink($file);
+            }
+        }
+
+        $path = storage_path() . '/app/susliks_upload';
+        if (file_exists($path)) {
+            foreach (glob($path.'/*') as $file) {
+                if(is_dir($file))
+                {
+                    foreach(scandir($file) as $p) if (($p!='.') && ($p!='..'))
+                    unlink($file.DIRECTORY_SEPARATOR.$p);
+                    // return rmdir($file);
+                }
+                else
+                {
+                    unlink($file);
+                }
+            }
+        }
+
+        $file = $data->file('file');
+        $path = storage_path() . '/app/' . $file->store('temp');
+        $j = file_get_contents($path); // в примере все файлы в корне
+        $susliks = json_decode($j);
+        foreach ($susliks->politic as $suslik) {
+            if(!isset($suslik->FIO)) continue;
+            if(Suslik::where('name', $suslik->FIO)->exists()) continue;
+            if(!isset($suslik->place_of_work)) $suslik->place_of_work = null;
+            if(!isset($suslik->photo)) $suslik->photo = null;
+            if(!isset($suslik->position)) $suslik->position = null;
+            if(!isset($suslik->birthdate)) $suslik->birthdate = null;
+            $link = explode(' ', $suslik->FIO);
+            if(!isset($link[2]))
+            {
+                $link[2] = $link[1];
+                $link[1] = '';
+            }  
+            $suslik = Suslik::create([
+                'uuid' => (string) Str::uuid(),
+                'name' => $suslik->FIO,
+                'birthdate' => $suslik->birthdate,
+                'position' => $suslik->position,
+                'place_of_work' => $suslik->place_of_work,
+                'position' => $suslik->position,
+                'category' => $data->category,
+                'link' =>'https://ru.wikipedia.org/wiki/' . $link[2] . ',_' . $link[0] . '_' . $link[1]
+            ]);
+            if($suslik->photo != null)
+            {
+                $path = storage_path() . '/app/public/susliks/'.$suslik->uuid;
+                file_put_contents($path, file_get_contents($suslik->photo));
+                Suslik::where('id', $suslik->id)->update([
+                    'photo' => $path
+                ]);
+            }
+        }
+
+        return redirect()->route('auth.susliks.index');
     }
 
     /**
