@@ -361,9 +361,11 @@ class SuslikWebController extends Controller
                 $link[2] = $link[1];
                 $link[1] = '';
             };
-            // $path = storage_path() . '/app/public/susliks/'.;
-            // file_put_contents($path, file_get_contents($suslik->photo));
-            Storage::disk('local')->put('/app/public/susliks/' . $suslik->FIO, file_get_contents($suslik->photo), 'public'); 
+
+            $contents = file_get_contents($suslik->photo);
+            $name = substr($suslik->photo, strrpos($suslik->photo, '/') + 1);
+            $path = Storage::put($name, $contents);
+
             $suslik = Suslik::create([
                 'uuid' => (string) Str::uuid(),
                 'name' => $suslik->FIO,
@@ -373,7 +375,7 @@ class SuslikWebController extends Controller
                 'position' => $suslik->position,
                 'category' => $data->category,
                 'link' =>'https://ru.wikipedia.org/wiki/' . $link[2] . ',_' . $link[0] . '_' . $link[1],
-                'photo' => $file_path= storage_path('/app/public/susliks/'.$suslik->FIO)
+                'photo' => $path
             ]);
         }
 
