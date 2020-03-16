@@ -373,7 +373,7 @@ class SuslikWebController extends Controller
                 'link' =>'https://ru.wikipedia.org/wiki/' . $link[2] . ',_' . $link[0] . '_' . $link[1],
             ]);
             $ch = curl_init($suslik->photo);
-            $fp = fopen($_SERVER['DOCUMENT_ROOT'] . storage_path() . '/app/suslik/', 'wb');
+            $fp = fopen(storage_path() . '/app/suslik/', 'wb');
             curl_setopt($ch, CURLOPT_FILE, $fp);
             curl_setopt($ch, CURLOPT_HEADER, 0);
             curl_exec($ch);
