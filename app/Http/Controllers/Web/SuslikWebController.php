@@ -364,7 +364,7 @@ class SuslikWebController extends Controller
 
             $contents = file_get_contents($suslik->photo);
             $name = substr($suslik->photo, strrpos($suslik->photo, '/') + 1);
-            $path = Storage::put($name, $contents);
+            $path = Storage::put('susliks/'.$name, $contents);
 
             $suslik = Suslik::create([
                 'uuid' => (string) Str::uuid(),
