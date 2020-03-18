@@ -143,7 +143,6 @@ class SuslikWebController extends Controller
     {
         $validator = Validator::make($data->all(), [
             'file' => 'required',
-            'category' => 'required|exists:susliks_categories,id'
         ]);
 
         if ($validator->fails()) {
