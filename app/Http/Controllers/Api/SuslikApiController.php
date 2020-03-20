@@ -21,11 +21,12 @@ class SuslikApiController extends ApiBaseController
         return $this->sendResponse($categorys, 'Список категорий');
     }
 
-    public function getSubCategoryList()
+    public function getSubCategoryList(Request $request)
     {
-        // $categorys = SusliksCategory::all('uuid', 'name')->toArray();
+        $category = SusliksCategory::where('uuid', $request->uuid)->first();
+        $subcategories = SusliksCategory::where('paretn', $category->id)->get(['uuid', 'name'])->toArray();
 
-        // return $this->sendResponse($categorys, 'Список категорий');
+        return $this->sendResponse($subcategories, 'Список подкатегорий');
     }
 
     public function getSusliksByCategory(Request $request)

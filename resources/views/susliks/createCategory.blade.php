@@ -58,14 +58,12 @@
             let subcategory = $(this).val();
             let elem = $(this);
             let f = $(this).find(':selected').data('f');
-            console.log(f);
             if(subcategory == "")
             {
                 elem.nextAll('select[name="subcategory"]').remove();
             }
             if(f == "0")
             {
-                console.log('clck');
                 elem.nextAll('select[name="subcategory"]').remove();
                 if(subcategory != "")
                 {
