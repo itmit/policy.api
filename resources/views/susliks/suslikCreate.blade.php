@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('subcategory') ? ' has-error' : '' }}">
-                    <label for="position" class="control-label">Категория:</label>
+                    <label for="subcategory" class="control-label">Категория:</label>
                     <select name="subcategory" id="subcategory" class="form-control selectpoll">
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}" data-f="0">{{ $category->name }}</option>

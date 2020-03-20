@@ -73,16 +73,19 @@ class SuslikWebController extends Controller
                 ->withInput();
         }
 
-        dd($request);
+        $uuid = (string) Str::uuid();
+        $file = $request->file('photo');
+        $path = storage_path() . '/app/' . $file->store('susliks_upload');
+        Storage::putFileAs(storage_path() . '/app/public/susliks/', new File($path), $uuid.'.jpg');
 
         Suslik::create([
-            'uuid' => (string) Str::uuid(),
+            'uuid' => $uuid,
             'name' => $request->name,
             'place_of_work' => $request->place_of_work,
             'position' => $request->position,
             'category' => $request->subcategory,
             'link' => $request->link,
-            'number' => $request->number,
+            'photo' => $uuid . '.jpg'
         ]);
 
         return redirect()->route('auth.susliks.index');
