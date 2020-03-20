@@ -75,6 +75,7 @@ class SuslikWebController extends Controller
 
         $uuid = (string) Str::uuid();
         $file = $request->file('photo');
+        dd($file);
         $path = storage_path() . '/app/' . $file->store('susliks_upload');
         Storage::putFileAs(storage_path() . '/app/public/susliks/', new File($path), $uuid.'.jpg');
 
