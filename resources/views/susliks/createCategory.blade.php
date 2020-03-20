@@ -55,7 +55,7 @@
     $(document).ready(function()
     {
         $(document).on('change', 'select[name="subcategory"]', function() {
-            let subcategory = $('select[name="subcategory"]').val();
+            let subcategory = $(this).val();
             let elem = $(this);
             if(subcategory == "")
             {
