@@ -55,9 +55,8 @@
     $(document).ready(function()
     {
         $(document).on('change', 'select[name="subcategory"]', function() {
-            console.log('clc');
             let subcategory = $('select[name="subcategory"]').val();
-            if(block != null)
+            if(subcategory != null)
             {
                 $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
