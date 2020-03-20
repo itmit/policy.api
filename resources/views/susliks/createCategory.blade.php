@@ -66,12 +66,11 @@
                 url     : 'getSubcategories',
                 method    : 'post',
                 success: function (data) {
-                    console.log(data);
+                    elem.nextAll('select[name="subcategory"]').remove();
                     result = '<select name="subcategory" id="subcategory" class="form-control">';
-                    result += '<option selected value="">';
-                    result += '</option>';
+                    result += '<option selected value=""></option>';
                     data.forEach(element => {
-                        result += '<option>';
+                        result += '<option value="'.element['id']'">';
                         result += element['name'];
                         result += '</option>';
                     });
