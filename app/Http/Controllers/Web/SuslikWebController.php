@@ -358,6 +358,10 @@ class SuslikWebController extends Controller
         $susliks = json_decode($j);
         foreach ($susliks->politic as $suslik) {
             if(!isset($suslik->name)) continue;
+            if(!isset($suslik->place_of_work)) $suslik->place_of_work = null;
+            if(!isset($suslik->photo)) $suslik->photo = null;
+            if(!isset($suslik->position)) $suslik->position = null;
+            if(!isset($suslik->birthdate)) $suslik->birthdate = null;
             if(Suslik::where('name', $suslik->name)->exists())
             {
                 $newSuslik = Suslik::where('name', $suslik->name)->update([
@@ -369,10 +373,6 @@ class SuslikWebController extends Controller
                     'link' => $suslik->link
                 ]);
             }
-            if(!isset($suslik->place_of_work)) $suslik->place_of_work = null;
-            if(!isset($suslik->photo)) $suslik->photo = null;
-            if(!isset($suslik->position)) $suslik->position = null;
-            if(!isset($suslik->birthdate)) $suslik->birthdate = null;
 
             $newSuslik = Suslik::create([
                 'uuid' => (string) Str::uuid(),
