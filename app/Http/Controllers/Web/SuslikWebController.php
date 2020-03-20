@@ -175,6 +175,8 @@ class SuslikWebController extends Controller
             }
         }
 
+        $file = $data->file('file');
+        $path = storage_path() . '/app/' . $file->store('temp');
         $zip = new ZipArchive;
         $res = $zip->open($path);
         if ($res === TRUE) {
