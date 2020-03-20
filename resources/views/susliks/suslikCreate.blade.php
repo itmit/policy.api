@@ -77,7 +77,7 @@
 
                 <div class="form-group{{ $errors->has('photo') ? ' has-error' : '' }}">
                     <label for="photo" class="control-label">Фото:</label>
-                    <input id="photo" type="file" class="form-control input-create-poll" name="photo" value="{{ old('photo') }}" required accept="image/jpeg,image/png,image/gif">
+                    <input id="photo" type="file" class="form-control input-create-poll" name="photo" required accept="image/jpeg,image/png,image/gif">
                     @if ($errors->has('photo'))
                         <span class="help-block">
                             <strong>{{ $errors->first('photo') }}</strong>
