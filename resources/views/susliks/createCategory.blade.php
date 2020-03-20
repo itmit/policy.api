@@ -71,15 +71,18 @@
                 method    : 'post',
                 success: function (data) {
                     elem.nextAll('select[name="subcategory"]').remove();
-                    result = '<select name="subcategory" id="subcategory" class="form-control">';
-                    result += '<option selected value="'+subcategory+'"></option>';
-                    data.forEach(element => {
-                        result += '<option value="'+element['id']+'">';
-                        result += element['name'];
-                        result += '</option>';
-                    });
-                    result += '</select>';
-                    elem.after(result);
+                    if(data.length != 0)
+                    {
+                        result = '<select name="subcategory" id="subcategory" class="form-control">';
+                        result += '<option selected value="'+subcategory+'"></option>';
+                        data.forEach(element => {
+                            result += '<option value="'+element['id']+'">';
+                            result += element['name'];
+                            result += '</option>';
+                        });
+                        result += '</select>';
+                        elem.after(result);
+                    }
                 },
                 error: function (xhr, err) { 
                     console.log(err + " " + xhr);
