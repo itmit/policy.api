@@ -364,14 +364,7 @@ class SuslikWebController extends Controller
             if(!isset($suslik->birthdate)) $suslik->birthdate = null;
             if(Suslik::where('name', $suslik->name)->exists())
             {
-                $newSuslik = Suslik::where('name', $suslik->name)->update([
-                    'birthdate' => $suslik->birthdate,
-                    'position' => $suslik->position,
-                    'place_of_work' => $suslik->place_of_work,
-                    'position' => $suslik->position,
-                    'category' => $data->category,
-                    'link' => $suslik->link
-                ]);
+                $newSuslik = Suslik::where('name', $suslik->name)->first();
             }
 
             $newSuslik = Suslik::create([
