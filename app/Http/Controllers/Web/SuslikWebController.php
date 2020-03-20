@@ -132,6 +132,8 @@ class SuslikWebController extends Controller
                 ->withInput();
         }
 
+        dd($request);
+
         SusliksCategory::create([
             'uuid' => (string) Str::uuid(),
             'name' => $request->name,
