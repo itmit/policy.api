@@ -61,7 +61,7 @@ class SuslikWebController extends Controller
             'name' => 'required|min:3|max:191',
             'place_of_work' => 'required|min:3|max:191',
             'position' => 'required|min:3|max:191',
-            'category' => 'required',
+            'subcategory' => 'required',
             'link' => 'required|min:3|max:191',
             'photo' => 'required|image'
         ]);
@@ -80,7 +80,7 @@ class SuslikWebController extends Controller
             'name' => $request->name,
             'place_of_work' => $request->place_of_work,
             'position' => $request->position,
-            'category' => $request->category,
+            'category' => $request->subcategory,
             'link' => $request->link,
             'number' => $request->number,
         ]);
