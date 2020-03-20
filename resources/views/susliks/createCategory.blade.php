@@ -60,9 +60,8 @@
             if(subcategory == "")
             {
                 elem.nextAll('select[name="subcategory"]').remove();
-                console.log(elem.nextAll('select[name="subcategory"]'));
             }
-            if(subcategory != null)
+            if(subcategory != "")
             {
                 $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
