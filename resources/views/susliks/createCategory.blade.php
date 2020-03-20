@@ -66,10 +66,14 @@
                 url     : 'getSubcategories',
                 method    : 'post',
                 success: function (data) {
-                    elem.after('<select name="subcategory" id="subcategory" class="form-control"></select>');
-                    // data.forEach(element => {
-                        
-                    // });
+                    result = '<select name="subcategory" id="subcategory" class="form-control">';
+                    data.forEach(element => {
+                        result += '<option>';
+                        result += data['name'];
+                        result += '</option>';
+                    });
+                    result += '</select>';
+                    elem.after(result);
                 },
                 error: function (xhr, err) { 
                     console.log(err + " " + xhr);
