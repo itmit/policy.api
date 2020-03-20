@@ -70,7 +70,7 @@
                     result = '<select name="subcategory" id="subcategory" class="form-control">';
                     result += '<option selected value=""></option>';
                     data.forEach(element => {
-                        result += '<option value="'.element['id']'">';
+                        result += '<option value="'+element['id']+'">';
                         result += element['name'];
                         result += '</option>';
                     });
