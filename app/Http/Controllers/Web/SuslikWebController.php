@@ -42,7 +42,7 @@ class SuslikWebController extends Controller
     public function create()
     {
         return view('susliks.suslikCreate', [
-            'categories' => SusliksCategory::select('*')
+            'categories' => SusliksCategory::where('parent', null)
             ->orderBy('created_at', 'desc')->get(),
             'regions' => Region::select('*')
             ->orderBy('id', 'asc')->get()
@@ -63,11 +63,7 @@ class SuslikWebController extends Controller
             'position' => 'required|min:3|max:191',
             'category' => 'required',
             'link' => 'required|min:3|max:191',
-            'number' => 'required|unique:susliks',
-            // 'sex' => 'required',
-            // 'education' => 'required',
-            // 'region' => 'required',
-            // 'birthday' => 'required',
+            'photo' => 'required|image'
         ]);
 
         if ($validator->fails()) {
@@ -77,6 +73,8 @@ class SuslikWebController extends Controller
                 ->withInput();
         }
 
+        dd($request);
+
         Suslik::create([
             'uuid' => (string) Str::uuid(),
             'name' => $request->name,
@@ -85,10 +83,6 @@ class SuslikWebController extends Controller
             'category' => $request->category,
             'link' => $request->link,
             'number' => $request->number,
-            // 'sex' => $request->sex,
-            // 'education' => $request->education,
-            // 'region' => $request->region,
-            // 'birthday' => $request->birthday
         ]);
 
         return redirect()->route('auth.susliks.index');

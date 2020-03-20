@@ -40,17 +40,17 @@
                         @endif
                 </div>
 
-                <div class="form-group{{ $errors->has('category') ? ' has-error' : '' }}">
+                <div class="form-group{{ $errors->has('subcategory') ? ' has-error' : '' }}">
                     <label for="position" class="control-label">Категория:</label>
-                    <select name="category" id="category" class="form-control selectpoll">
+                    <select name="subcategory" id="subcategory" class="form-control selectpoll">
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
 
-                    @if ($errors->has('category'))
+                    @if ($errors->has('subcategory'))
                         <span class="help-block">
-                            <strong>{{ $errors->first('category') }}</strong>
+                            <strong>{{ $errors->first('subcategory') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -96,4 +96,50 @@
         </div>
     </div> 
 </div>   
+<script>
+    $(document).ready(function()
+    {
+        $(document).on('change', 'select[name="subcategory"]', function() {
+            let subcategory = $(this).val();
+            let elem = $(this);
+            let f = $(this).find(':selected').data('f');
+            if(subcategory == "")
+            {
+                elem.nextAll('select[name="subcategory"]').remove();
+            }
+            if(f == "0")
+            {
+                elem.nextAll('select[name="subcategory"]').remove();
+                if(subcategory != "")
+                {
+                    $.ajax({
+                    headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                    dataType: "json",
+                    data: {subcategory: subcategory},
+                    url     : 'getSubcategories',
+                    method    : 'post',
+                    success: function (data) {
+                        elem.nextAll('select[name="subcategory"]').remove();
+                        if(data.length != 0)
+                        {
+                            result = '<select name="subcategory" id="subcategory" class="form-control">';
+                            result += '<option selected value="'+subcategory+'" data-f="1">Добавить в эту категорию</option>';
+                            data.forEach(element => {
+                                result += '<option value="'+element['id']+'" data-f="0">';
+                                result += element['name'];
+                                result += '</option>';
+                            });
+                            result += '</select>';
+                            elem.after(result);
+                        }
+                    },
+                    error: function (xhr, err) { 
+                        console.log(err + " " + xhr);
+                    }
+                });
+                }
+            }
+        });
+    });
+</script>
 @endsection
