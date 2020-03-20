@@ -57,6 +57,10 @@
         $(document).on('change', 'select[name="subcategory"]', function() {
             let subcategory = $('select[name="subcategory"]').val();
             let elem = $(this);
+            if(subcategory == null)
+            {
+                elem.nextAll('select[name="subcategory"]').remove();
+            }
             if(subcategory != null)
             {
                 $.ajax({
