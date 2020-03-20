@@ -366,17 +366,19 @@ class SuslikWebController extends Controller
             {
                 $newSuslik = Suslik::where('name', $suslik->name)->first();
             }
-
-            $newSuslik = Suslik::create([
-                'uuid' => (string) Str::uuid(),
-                'name' => $suslik->name,
-                'birthdate' => $suslik->birthdate,
-                'position' => $suslik->position,
-                'place_of_work' => $suslik->place_of_work,
-                'position' => $suslik->position,
-                'category' => $data->category,
-                'link' => $suslik->link
-            ]);
+            else
+            {
+                $newSuslik = Suslik::create([
+                    'uuid' => (string) Str::uuid(),
+                    'name' => $suslik->name,
+                    'birthdate' => $suslik->birthdate,
+                    'position' => $suslik->position,
+                    'place_of_work' => $suslik->place_of_work,
+                    'position' => $suslik->position,
+                    'category' => $data->category,
+                    'link' => $suslik->link
+                ]);
+            }
             if($suslik->photo != null)
             {
                 $ReadFile = fopen ($suslik->photo, "rb");
