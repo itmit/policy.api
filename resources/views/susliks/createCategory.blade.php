@@ -61,7 +61,7 @@
             {
                 elem.nextAll('select[name="subcategory"]').remove();
             }
-            if(subcategory != "")
+            if(subcategory != "" && elem.data('f') != 1)
             {
                 $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
@@ -74,7 +74,7 @@
                     if(data.length != 0)
                     {
                         result = '<select name="subcategory" id="subcategory" class="form-control">';
-                        result += '<option selected value="'+subcategory+'"></option>';
+                        result += '<option selected value="'+subcategory+'" data-f="1">Добавить в эту категорию</option>';
                         data.forEach(element => {
                             result += '<option value="'+element['id']+'">';
                             result += element['name'];
