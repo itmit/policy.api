@@ -66,6 +66,7 @@
                 url     : 'getSubcategories',
                 method    : 'post',
                 success: function (data) {
+                    console.log(data);
                     result = '<select name="subcategory" id="subcategory" class="form-control">';
                     data.forEach(element => {
                         result += '<option>';
