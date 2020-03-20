@@ -62,34 +62,39 @@
             {
                 elem.nextAll('select[name="subcategory"]').remove();
             }
-            if(subcategory != "" || f == 0)
+            if(f == 0)
             {
-                $.ajax({
-                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-                dataType: "json",
-                data: {subcategory: subcategory},
-                url     : 'getSubcategories',
-                method    : 'post',
-                success: function (data) {
-                    elem.nextAll('select[name="subcategory"]').remove();
-                    if(data.length != 0)
-                    {
-                        result = '<select name="subcategory" id="subcategory" class="form-control">';
-                        result += '<option selected value="'+subcategory+'" data-f="1">Добавить в эту категорию</option>';
-                        data.forEach(element => {
-                            result += '<option value="'+element['id']+'" data-f="0">';
-                            result += element['name'];
-                            result += '</option>';
-                        });
-                        result += '</select>';
-                        elem.after(result);
+                elem.nextAll('select[name="subcategory"]').remove();
+                if(subcategory != "")
+                {
+                    $.ajax({
+                    headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                    dataType: "json",
+                    data: {subcategory: subcategory},
+                    url     : 'getSubcategories',
+                    method    : 'post',
+                    success: function (data) {
+                        elem.nextAll('select[name="subcategory"]').remove();
+                        if(data.length != 0)
+                        {
+                            result = '<select name="subcategory" id="subcategory" class="form-control">';
+                            result += '<option selected value="'+subcategory+'" data-f="1">Добавить в эту категорию</option>';
+                            data.forEach(element => {
+                                result += '<option value="'+element['id']+'" data-f="0">';
+                                result += element['name'];
+                                result += '</option>';
+                            });
+                            result += '</select>';
+                            elem.after(result);
+                        }
+                    },
+                    error: function (xhr, err) { 
+                        console.log(err + " " + xhr);
                     }
-                },
-                error: function (xhr, err) { 
-                    console.log(err + " " + xhr);
+                });
                 }
-            });
             }
+            
         });
     });
 </script>
