@@ -86,6 +86,7 @@
                         <th>Дизлайки</th>
                         <th>Нейтралы</th>
                         <th>Дата создания</th>
+                        <th><span class="material-icons">create</span></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -104,6 +105,7 @@
                             <td>{{ $suslik->dislikes }}</td>
                             <td>{{ $suslik->neutrals }}</td>
                             <td>{{ $suslik->created_at->timezone('Europe/Moscow') }}</td>
+                            <td><span class="material-icons"><a href="susliks/{{ $suslik->id }}/edit">create</a></span></td>
                         </tr>
                     @endforeach
                     </tbody>
