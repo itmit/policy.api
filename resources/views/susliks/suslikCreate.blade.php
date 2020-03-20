@@ -116,7 +116,7 @@
                     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                     dataType: "json",
                     data: {subcategory: subcategory},
-                    url     : 'getSubcategories',
+                    url     : '../getSubcategories',
                     method    : 'post',
                     success: function (data) {
                         elem.nextAll('select[name="subcategory"]').remove();
