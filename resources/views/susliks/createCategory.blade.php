@@ -56,13 +56,13 @@
     {
         $(document).on('change', 'select[name="subcategory"]', function() {
             console.log('clc');
-            let category = $('select[name="subcategory"]').val();
+            let subcategory = $('select[name="subcategory"]').val();
             if(block != null)
             {
                 $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 dataType: "json",
-                data: {category: category},
+                data: {subcategory: subcategory},
                 url     : 'getSubcategories',
                 method    : 'post',
                 success: function (data) {
