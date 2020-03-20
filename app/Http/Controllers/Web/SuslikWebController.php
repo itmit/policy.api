@@ -63,7 +63,7 @@ class SuslikWebController extends Controller
             'position' => 'required|min:3|max:191',
             'subcategory' => 'required',
             'link' => 'required|min:3|max:191',
-            'photo' => 'required|image'
+            'photo' => 'required'
         ]);
 
         if ($validator->fails()) {
