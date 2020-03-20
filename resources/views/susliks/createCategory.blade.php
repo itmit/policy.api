@@ -62,7 +62,7 @@
             {
                 elem.nextAll('select[name="subcategory"]').remove();
             }
-            if(f == 0)
+            if(f == "0")
             {
                 elem.nextAll('select[name="subcategory"]').remove();
                 if(subcategory != "")
