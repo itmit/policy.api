@@ -60,6 +60,7 @@
             if(subcategory == null)
             {
                 elem.nextAll('select[name="subcategory"]').remove();
+                console.log(elem.nextAll('select[name="subcategory"]'));
             }
             if(subcategory != null)
             {
