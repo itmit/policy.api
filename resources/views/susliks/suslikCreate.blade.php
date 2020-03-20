@@ -5,7 +5,7 @@
    <h1>Создание суслика</h1>
     <div class="row">
         <div class="col-sm-12">
-            <form class="form-horizontal" method="POST" action="{{ route('auth.susliks.store') }}">
+            <form class="form-horizontal" method="POST" action="{{ route('auth.susliks.store') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
