@@ -27,9 +27,9 @@
 
                 <div class="form-group{{ $errors->has('subcategory') ? ' has-error' : '' }}">
                     <select name="subcategory" id="subcategory" class="form-control">
-                        <option value="" selected>Нет</option>
+                        <option value="" selected data-f="1">Нет</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" data-f="0">{{ $category->name }}</option>
                         @endforeach
                     </select>
                     @if ($errors->has('subcategory'))
@@ -57,11 +57,12 @@
         $(document).on('change', 'select[name="subcategory"]', function() {
             let subcategory = $(this).val();
             let elem = $(this);
+            let f = $(this).data('f');
             if(subcategory == "")
             {
                 elem.nextAll('select[name="subcategory"]').remove();
             }
-            if(subcategory != "" && elem.data('f') != 1)
+            if(subcategory != "" && f == 0)
             {
                 $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
@@ -76,7 +77,7 @@
                         result = '<select name="subcategory" id="subcategory" class="form-control">';
                         result += '<option selected value="'+subcategory+'" data-f="1">Добавить в эту категорию</option>';
                         data.forEach(element => {
-                            result += '<option value="'+element['id']+'">';
+                            result += '<option value="'+element['id']+'" data-f="0">';
                             result += element['name'];
                             result += '</option>';
                         });
