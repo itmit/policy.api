@@ -62,7 +62,7 @@
             {
                 elem.nextAll('select[name="subcategory"]').remove();
             }
-            if(subcategory != "" && f == 0)
+            if(subcategory != "" || f == 0)
             {
                 $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
