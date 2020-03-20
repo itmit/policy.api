@@ -72,7 +72,7 @@
                 success: function (data) {
                     elem.nextAll('select[name="subcategory"]').remove();
                     result = '<select name="subcategory" id="subcategory" class="form-control">';
-                    result += '<option selected value=""></option>';
+                    result += '<option selected value="'+subcategory+'"></option>';
                     data.forEach(element => {
                         result += '<option value="'+element['id']+'">';
                         result += element['name'];
