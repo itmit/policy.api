@@ -50,4 +50,37 @@
         </div>  
     </div> 
 </div> 
+
+<script>
+    $(document).ready(function()
+    {
+        $(document).on('change', 'select[name="subcategory"]', function() {
+            console.log('clc');
+            // let block = $('select[name="block"]').val();
+            // let status = $('select[name="status"]').val();
+            // if(block != null)
+            // {
+            //     $.ajax({
+            //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            //     dataType: "json",
+            //     data: {block: block, status: status},
+            //     url     : 'places/createExcelFile',
+            //     method    : 'post',
+            //     success: function (data) {
+            //         var $a = $("<a>");
+            //         $a.attr("href",data);
+            //         $("body").append($a);
+            //         $a.attr("download","Места.xlsx");
+            //         $a[0].click();
+            //         $a.remove();
+            //     },
+            //     error: function (xhr, err) { 
+            //         console.log(err + " " + xhr);
+            //     }
+            // });
+            // }
+        });
+    });
+</script>
+
 @endsection

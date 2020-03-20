@@ -107,6 +107,12 @@ class SuslikWebController extends Controller
         ]); 
     }
 
+    public function getSubcategories(Request $request)
+    {
+        return response()->json(SusliksCategory::where('parent', $request->subcategory)
+        ->orderBy('created_at', 'desc')->get()->toArray(), 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

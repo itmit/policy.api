@@ -31,6 +31,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     Route::delete('susliks/delete', 'Web\SuslikWebController@destroy');
     Route::get('susliks/clearDir', 'Web\SuslikWebController@clearUploadSusliksDirectory');
     Route::get('createCategory', 'Web\SuslikWebController@createCategory')->name('createCategory');
+    Route::post('getSubcategories', 'Web\SuslikWebController@getSubcategories')->name('getSubcategories');
     Route::post('storeCategory', 'Web\SuslikWebController@storeCategory')->name('storeCategory');
     Route::post('uploadSusliks', 'Web\SuslikWebController@uploadSusliks')->name('uploadSusliks');
     Route::post('uploadSusliksJSON', 'Web\SuslikWebController@uploadSusliksJSON')->name('uploadSusliksJSON');
