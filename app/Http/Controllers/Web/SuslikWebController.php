@@ -73,6 +73,7 @@ class SuslikWebController extends Controller
                 ->withInput();
         }
 
+        dd($request);
         $uuid = (string) Str::uuid();
         $file = $request->file('photo');
         dd($request->file('photo'));
