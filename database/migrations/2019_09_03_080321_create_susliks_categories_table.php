@@ -16,6 +16,7 @@ class CreateSusliksCategoriesTable extends Migration
         Schema::create('susliks_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid');
+            $table->bigInteger('parent')->nullable();
             $table->string('name');
             $table->timestamps();
         });

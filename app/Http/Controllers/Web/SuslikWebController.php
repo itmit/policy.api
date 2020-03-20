@@ -129,6 +129,7 @@ class SuslikWebController extends Controller
         SusliksCategory::create([
             'uuid' => (string) Str::uuid(),
             'name' => $request->name,
+            'parent' => $request->subcategory
         ]);
 
         return redirect()->route('auth.susliks.index');
@@ -351,17 +352,21 @@ class SuslikWebController extends Controller
         $susliks = json_decode($j);
         foreach ($susliks->politic as $suslik) {
             if(!isset($suslik->name)) continue;
-            if(Suslik::where('name', $suslik->name)->exists()) continue;
+            if(Suslik::where('name', $suslik->name)->exists())
+            {
+                $newSuslik = Suslik::where('name', $suslik->name)->update([
+                    'birthdate' => $suslik->birthdate,
+                    'position' => $suslik->position,
+                    'place_of_work' => $suslik->place_of_work,
+                    'position' => $suslik->position,
+                    'category' => $data->category,
+                    'link' => $suslik->link
+                ]);
+            }
             if(!isset($suslik->place_of_work)) $suslik->place_of_work = null;
             if(!isset($suslik->photo)) $suslik->photo = null;
             if(!isset($suslik->position)) $suslik->position = null;
             if(!isset($suslik->birthdate)) $suslik->birthdate = null;
-            // $link = explode(' ', $suslik->FIO);
-            // if(!isset($link[2]))
-            // {
-            //     $link[2] = $link[1];
-            //     $link[1] = '';
-            // };
 
             $newSuslik = Suslik::create([
                 'uuid' => (string) Str::uuid(),
@@ -371,7 +376,6 @@ class SuslikWebController extends Controller
                 'place_of_work' => $suslik->place_of_work,
                 'position' => $suslik->position,
                 'category' => $data->category,
-                // 'link' =>'https://ru.wikipedia.org/wiki/' . $link[2] . ',_' . $link[0] . '_' . $link[1],
                 'link' => $suslik->link
             ]);
             if($suslik->photo != null)
