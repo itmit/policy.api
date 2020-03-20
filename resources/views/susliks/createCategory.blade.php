@@ -56,6 +56,7 @@
     {
         $(document).on('change', 'select[name="subcategory"]', function() {
             let subcategory = $('select[name="subcategory"]').val();
+            let elem = $(this);
             if(subcategory != null)
             {
                 $.ajax({
@@ -65,7 +66,10 @@
                 url     : 'getSubcategories',
                 method    : 'post',
                 success: function (data) {
-                    console.log(data);
+                    elem.after('<select name="subcategory" id="subcategory" class="form-control"></select>');
+                    // data.forEach(element => {
+                        
+                    // });
                 },
                 error: function (xhr, err) { 
                     console.log(err + " " + xhr);
