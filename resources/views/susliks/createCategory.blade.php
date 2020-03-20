@@ -68,6 +68,8 @@
                 success: function (data) {
                     console.log(data);
                     result = '<select name="subcategory" id="subcategory" class="form-control">';
+                    result += '<option selected value="">';
+                    result += '</option>';
                     data.forEach(element => {
                         result += '<option>';
                         result += element['name'];
