@@ -57,7 +57,7 @@
         $(document).on('change', 'select[name="subcategory"]', function() {
             let subcategory = $(this).val();
             let elem = $(this);
-            let f = $(this).data('f');
+            let f = $(this).find(':selected').data('f');
             console.log(f);
             if(subcategory == "")
             {
