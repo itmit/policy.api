@@ -68,7 +68,7 @@ $('#category-creating').submit(function() {
 });
 $(document).ready(function() {
     $(".textareaPoll").on("click", ".delete-category", function(e) {
-        let isDelete = confirm("Удалить категорию? Все опросы, прикрепленные к данной категории, будут удалены без возможности восстановления");
+        let isDelete = confirm("Удалить категорию? Все опросы и подкатегории, прикрепленные к данной категории, будут удалены без возможности восстановления");
 
         if(isDelete)
         {

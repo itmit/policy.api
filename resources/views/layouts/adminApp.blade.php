@@ -79,6 +79,7 @@
                 <ul class="list-group">
                     <a class="btn-card" href="{{ route('auth.polls.index') }}">Опросы</a>
                     <a class="btn-card" href="{{ route('auth.susliks.index') }}">Суслики</a>
+                    <a class="btn-card" href="{{ route('auth.clients.index') }}">Пользователи</a>
                 </ul>
             </div>
             <div class="loader" style="display: none;position: fixed;margin: auto;top: 0;right: 0;bottom: 0;left: 0;z-index: 999;"></div>

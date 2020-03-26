@@ -178,10 +178,6 @@ class SuslikApiController extends ApiBaseController
 
             return $this->sendResponse($newRating, 'Суслик');
         }
-
-        
-
-        
     }
 
     public function getSuslikRatingHistory(Request $request)
@@ -436,7 +432,7 @@ class SuslikApiController extends ApiBaseController
         $i = 1;
         $max = 0;
         $votes = [];
-        while ($i <= 7) {
+        while ($i <= 1) {
             $key = date("d.m", strtotime($day));
             $voteDetail = [];
             $likes = 0;
