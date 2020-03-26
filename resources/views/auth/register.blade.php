@@ -47,9 +47,10 @@
                             </div>
                         </div>
 
+                        @error()
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
-                        </span>
+                        </span>@enderror
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
