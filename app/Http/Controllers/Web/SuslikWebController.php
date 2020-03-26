@@ -28,10 +28,19 @@ class SuslikWebController extends Controller
     public function index()
     {
         return view('susliks.susliks', [
-        'susliks' => Suslik::select('*')
-            ->orderBy('created_at', 'desc')->get(),
+        // 'susliks' => Suslik::select('*')
+        //     ->orderBy('created_at', 'desc')->get(),
         'categories' => SusliksCategory::get()
-        ]); 
+        ]);
+    }
+
+    public function getSusliksByCategory()
+    {
+        // return view('susliks.susliks', [
+        // 'susliks' => Suslik::select('*')
+        //     ->orderBy('created_at', 'desc')->get(),
+        // 'categories' => SusliksCategory::get()
+        // ]);
     }
 
     /**

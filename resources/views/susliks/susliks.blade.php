@@ -73,6 +73,11 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
+        <select name="category" class="form-control suslik-by-category">
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
         <table class="table policy-table">
                     <thead>
                     <tr>
@@ -90,7 +95,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($susliks as $suslik)
+                    {{-- @foreach($susliks as $suslik)
                     @if($suslik->category() == NULL)
                     @continue
                     @endif
@@ -107,7 +112,7 @@
                             <td>{{ $suslik->created_at->timezone('Europe/Moscow') }}</td>
                             <td><span class="material-icons"><a href="susliks/{{ $suslik->id }}/edit">create</a></span></td>
                         </tr>
-                    @endforeach
+                    @endforeach --}}
                     </tbody>
                 </table>
     </div>
@@ -165,6 +170,22 @@ $(document).ready(function() {
             }
         });
 
+    });
+
+    $(document).on('change', '.suslik-by-category', function() {
+        // $.ajax({
+        //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        //     dataType: "json",
+        //     url     : 'susliks/clearDir',
+        //     method    : 'get',
+        //     success: function (response) {
+        //         alert('Директория очищена!')
+        //     },
+        //     error: function (xhr, err) { 
+        //         console.log("Error: " + xhr + " " + err);
+        //     }
+        // });
+        console.log('changed');
     });
 })
 </script>
