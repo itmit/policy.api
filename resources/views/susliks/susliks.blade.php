@@ -182,13 +182,15 @@ $(document).ready(function() {
             data    : {category: category},
             method    : 'post',
             success: function (response) {
-                result = '<tr>';
+                result = '';
                 response.forEach(element => {
+                    result = '<tr>';
                     result += '<td>';
                     result += '<input type="checkbox" data-suslik-id="'+element['id']+'" name="destoy-suslik-'+element['id']+'" class="js-destroy"/>';
                     result += '</td>';
+                    result += '</tr>';
                 });
-                result += '</tr>';
+                
                 $('tbody').html(result);
             },
             error: function (xhr, err) { 
