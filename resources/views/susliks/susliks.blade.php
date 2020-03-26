@@ -18,7 +18,7 @@
                     <label for="file" class="col-md-4 form-control-file">.zip-папка для импорта</label>
         
                     <div class="col-md-6">
-                        <input type="file" name="file" id="file" accept=".zip">
+                        <input type="file" name="file" id="file2" accept=".zip">
                     </div>
         
                     @if ($errors->has('file'))
@@ -174,7 +174,6 @@ $(document).ready(function() {
 
     $(document).on('change', '.suslik-by-category', function() {
         let category = $(this).children("option:selected").val();
-        console.log(category);
         $.ajax({
             headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             dataType: "json",
@@ -182,7 +181,13 @@ $(document).ready(function() {
             data    : {category: category},
             method    : 'post',
             success: function (response) {
-                console.log(response);
+                result = '<tr>';
+                response.forEach(element => {
+                    result += '<td>';
+                    result += '<input type="checkbox" data-suslik-id="'+element['id']+'" name="destoy-suslik-'+element['id']+'" class="js-destroy"/>';
+                    result += '</td>';
+                });
+                result += '</tr>';
             },
             error: function (xhr, err) { 
                 console.log("Error: " + xhr + " " + err);
