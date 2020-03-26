@@ -16,6 +16,7 @@ class CreatePollCategoriesTable extends Migration
         Schema::create('poll_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid');
+            $table->bigInteger('parent')->nullable();
             $table->string('name');
             $table->timestamps();
             $table->softDeletes();
