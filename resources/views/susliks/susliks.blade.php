@@ -179,7 +179,7 @@ $(document).ready(function() {
             headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             dataType: "json",
             url     : 'susliks/getSusliksByCategory',
-            data    : {category: category}
+            data    : {category: category},
             method    : 'post',
             success: function (response) {
                 console.log(response);
