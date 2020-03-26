@@ -184,14 +184,14 @@ $(document).ready(function() {
             success: function (response) {
                 result = '';
                 response.forEach(element => {
-                    result = '<tr>';
+                    result += '<tr>';
                     result += '<td>';
                     result += '<input type="checkbox" data-suslik-id="'+element['id']+'" name="destoy-suslik-'+element['id']+'" class="js-destroy"/>';
                     result += '</td>';
                     result += '</tr>';
                 });
-                
                 $('tbody').html(result);
+                $('.loader').css('display', 'none');
             },
             error: function (xhr, err) { 
                 console.log("Error: " + xhr + " " + err);
