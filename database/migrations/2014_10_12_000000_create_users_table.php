@@ -19,21 +19,22 @@ class CreateUsersTable extends Migration
             $table->string('phone')->unique()->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->text('photo'); // путь к фото
-            $table->string('name'); // ФИО
-            $table->string('city'); // город
-            $table->string('field_of_activity'); // сфера деятельности
-            $table->string('organization'); // организация 
-            $table->string('position'); // должность
-            $table->string('link'); // ссылка
-            $table->date('birthday'); // дата рождения
+            $table->text('photo')->nullable();; // путь к фото
+            $table->string('name')->nullable();; // ФИО
+            $table->string('city')->nullable();; // город
+            $table->string('field_of_activity')->nullable();; // сфера деятельности
+            $table->string('organization')->nullable();; // организация 
+            $table->string('position')->nullable();; // должность
+            $table->string('link')->nullable();; // ссылка
+            $table->date('birthday')->nullable();; // дата рождения
 
-            $table->enum('sex', ['мужской', 'женский']); // пол
-            $table->enum('education', ['высшее или неполное высшее', 'среднее (профессиональное)', 'среднее (полное)', 'среднее (общее)', 'начальное']); // образование
-            $table->string('region'); // регион
-            $table->string('city_type'); // тип нас. пункта
+            $table->enum('sex', ['мужской', 'женский'])->nullable();; // пол
+            $table->enum('education', ['высшее или неполное высшее', 'среднее (профессиональное)', 'среднее (полное)', 'среднее (общее)', 'начальное'])->nullable();; // образование
+            $table->string('region')->nullable();; // регион
+            $table->string('city_type')->nullable();; // тип нас. пункта
 
             $table->string('uid')->unique(); // id пользователя из приложения
+            $table->boolean('is_admin')->default(0); // id пользователя из приложения
             $table->rememberToken();
             $table->timestamps();
         });

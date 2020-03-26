@@ -17,7 +17,7 @@ class ClientController extends Controller
     {
         return view('clients.clientList',
         [
-            'clients' => User::get(),
+            'clients' => User::where('is_admin', 0)->get(),
         ]);
     }
 
