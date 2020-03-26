@@ -432,7 +432,7 @@ class SuslikApiController extends ApiBaseController
         $i = 1;
         $max = 0;
         $votes = [];
-        while ($i <= 1) {
+        while ($i <= 30) {
             $key = date("d.m", strtotime($day));
             $voteDetail = [];
             $likes = 0;
