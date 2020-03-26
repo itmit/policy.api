@@ -81,6 +81,7 @@
                     <a class="btn-card" href="{{ route('auth.susliks.index') }}">Суслики</a>
                 </ul>
             </div>
+            <div class="loader" style="display: none; position:fixed"></div>
             @yield('content')
         </div>
     </div>

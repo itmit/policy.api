@@ -173,6 +173,7 @@ $(document).ready(function() {
     });
 
     $(document).on('change', '.suslik-by-category', function() {
+        $('.loader').css('display', 'block');
         let category = $(this).children("option:selected").val();
         $.ajax({
             headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
@@ -188,6 +189,7 @@ $(document).ready(function() {
                     result += '</td>';
                 });
                 result += '</tr>';
+                $('tbody').html(result);
             },
             error: function (xhr, err) { 
                 console.log("Error: " + xhr + " " + err);
