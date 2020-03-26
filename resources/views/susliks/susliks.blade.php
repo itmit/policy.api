@@ -71,7 +71,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row" style="width: 100%;">
     <div class="col-sm-12">
         <select name="category" class="form-control suslik-by-category">
             @foreach ($categories as $category)
@@ -79,42 +79,42 @@
             @endforeach
         </select>
         <table class="table policy-table">
-                    <thead>
-                    <tr>
-                        <th><input type="checkbox" name="destroy-all-susliks" class="js-destroy-all"/></th>
-                        <th>Имя</th>
-                        {{-- <th>Категория</th> --}}
-                        <th>Место работы</th>
-                        <th>Должность</th>
-                        <th>Ссылка</th>
-                        <th>Лайки</th>
-                        <th>Дизлайки</th>
-                        <th>Нейтралы</th>
-                        {{-- <th>Дата создания</th> --}}
-                        <th><span class="material-icons">create</span></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {{-- @foreach($susliks as $suslik)
-                    @if($suslik->category() == NULL)
-                    @continue
-                    @endif
-                        <tr>
-                            <td><input type="checkbox" data-suslik-id="{{ $suslik->id }}" name="destoy-suslik-{{ $suslik->id }}" class="js-destroy"/></td>
-                            <td>{{ $suslik->name }}</td>
-                            <td>{{ $suslik->category()->name }}</td>
-                            <td>{{ $suslik->place_of_work }}</td>
-                            <td>{{ $suslik->position }}</td>
-                            <td><a href="{{ $suslik->link }}" target="_blank">ссылка</a></td>
-                            <td>{{ $suslik->likes }}</td>
-                            <td>{{ $suslik->dislikes }}</td>
-                            <td>{{ $suslik->neutrals }}</td>
-                            <td>{{ $suslik->created_at->timezone('Europe/Moscow') }}</td>
-                            <td><span class="material-icons"><a href="susliks/{{ $suslik->id }}/edit">create</a></span></td>
-                        </tr>
-                    @endforeach --}}
-                    </tbody>
-                </table>
+            <thead>
+            <tr>
+                <th><input type="checkbox" name="destroy-all-susliks" class="js-destroy-all"/></th>
+                <th>Имя</th>
+                {{-- <th>Категория</th> --}}
+                <th>Место работы</th>
+                <th>Должность</th>
+                <th>Ссылка</th>
+                <th>Лайки</th>
+                <th>Дизлайки</th>
+                <th>Нейтралы</th>
+                {{-- <th>Дата создания</th> --}}
+                <th><span class="material-icons">create</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            {{-- @foreach($susliks as $suslik)
+            @if($suslik->category() == NULL)
+            @continue
+            @endif
+                <tr>
+                    <td><input type="checkbox" data-suslik-id="{{ $suslik->id }}" name="destoy-suslik-{{ $suslik->id }}" class="js-destroy"/></td>
+                    <td>{{ $suslik->name }}</td>
+                    <td>{{ $suslik->category()->name }}</td>
+                    <td>{{ $suslik->place_of_work }}</td>
+                    <td>{{ $suslik->position }}</td>
+                    <td><a href="{{ $suslik->link }}" target="_blank">ссылка</a></td>
+                    <td>{{ $suslik->likes }}</td>
+                    <td>{{ $suslik->dislikes }}</td>
+                    <td>{{ $suslik->neutrals }}</td>
+                    <td>{{ $suslik->created_at->timezone('Europe/Moscow') }}</td>
+                    <td><span class="material-icons"><a href="susliks/{{ $suslik->id }}/edit">create</a></span></td>
+                </tr>
+            @endforeach --}}
+            </tbody>
+        </table>
     </div>
 </div>
 <script>
