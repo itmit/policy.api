@@ -184,6 +184,8 @@ $(document).ready(function() {
             success: function (response) {
                 result = '';
                 response.forEach(element => {
+                    if(element['place_of_work'] == null) element['place_of_work'] = '';
+                    if(element['position'] == null) element['position'] = '';
                     result += '<tr>';
                     result += '<td><input type="checkbox" data-suslik-id="'+element['id']+'" name="destoy-suslik-'+element['id']+'" class="js-destroy"/></td>';
                     result += '<td>'+element['name']+'</td>';

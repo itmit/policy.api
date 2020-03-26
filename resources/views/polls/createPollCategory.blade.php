@@ -31,6 +31,19 @@
                         </span>
                     @endif
                 </div>
+                <div class="form-group{{ $errors->has('subcategory') ? ' has-error' : '' }}">
+                    <select name="subcategory" id="subcategory" class="form-control">
+                        <option value="" selected data-f="1">Нет</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" data-f="0">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    @if ($errors->has('subcategory'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('subcategory') }}</strong>
+                        </span>
+                    @endif
+                </div>
                 <div class="form-group">
                     <button type="submit" class="btn-card">
                         Создать категорию
