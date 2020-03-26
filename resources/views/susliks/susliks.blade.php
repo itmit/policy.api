@@ -83,14 +83,14 @@
                     <tr>
                         <th><input type="checkbox" name="destroy-all-susliks" class="js-destroy-all"/></th>
                         <th>Имя</th>
-                        <th>Категория</th>
+                        {{-- <th>Категория</th> --}}
                         <th>Место работы</th>
                         <th>Должность</th>
                         <th>Ссылка</th>
                         <th>Лайки</th>
                         <th>Дизлайки</th>
                         <th>Нейтралы</th>
-                        <th>Дата создания</th>
+                        {{-- <th>Дата создания</th> --}}
                         <th><span class="material-icons">create</span></th>
                     </tr>
                     </thead>
@@ -185,9 +185,15 @@ $(document).ready(function() {
                 result = '';
                 response.forEach(element => {
                     result += '<tr>';
-                    result += '<td>';
-                    result += '<input type="checkbox" data-suslik-id="'+element['id']+'" name="destoy-suslik-'+element['id']+'" class="js-destroy"/>';
-                    result += '</td>';
+                    result += '<td><input type="checkbox" data-suslik-id="'+element['id']+'" name="destoy-suslik-'+element['id']+'" class="js-destroy"/></td>';
+                    result += '<td>'+element['name']+'</td>';
+                    result += '<td>'+element['place_of_work']+'</td>';
+                    result += '<td>'+element['position']+'</td>';
+                    result += '<td><a href="'+element['link']+'" target="_blank">ссылка</a></td>';
+                    result += '<td>'+element['likes']+'</td>';
+                    result += '<td>'+element['dislikes']+'</td>';
+                    result += '<td>'+element['neutrals']+'</td>';
+                    result += '<td><span class="material-icons"><a href="susliks/'+element['id']+'/edit">create</a></span></td>';
                     result += '</tr>';
                 });
                 $('tbody').html(result);
