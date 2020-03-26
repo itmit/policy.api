@@ -24,7 +24,7 @@ class SuslikApiController extends ApiBaseController
     public function getSubCategoryList(Request $request)
     {
         $category = SusliksCategory::where('uuid', $request->uuid)->first();
-        $subcategories = SusliksCategory::where('paretn', $category->id)->get(['uuid', 'name'])->toArray();
+        $subcategories = SusliksCategory::where('parent', $category->id)->get(['uuid', 'name'])->toArray();
 
         return $this->sendResponse($subcategories, 'Список подкатегорий');
     }

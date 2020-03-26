@@ -27,6 +27,14 @@ class PollApiController extends ApiBaseController
         return $this->sendResponse($categories, 'Список категорий');
     }
 
+    public function getSubCategoryList(Request $request)
+    {
+        $category = PollCategories::where('uuid', $request->uuid)->first();
+        $subcategories = PollCategories::where('parent', $category->id)->get(['uuid', 'name'])->toArray();
+
+        return $this->sendResponse($subcategories, 'Список подкатегорий');
+    }
+
     /**
      * Выводит список опросов
      *

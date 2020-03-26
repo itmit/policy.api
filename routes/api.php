@@ -26,6 +26,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('user/sendFeedback', 'Api\UserController@sendFeedback');
 
     Route::post('suslik/getCategoryList', 'Api\SuslikApiController@getCategoryList');
+    Route::post('suslik/getSubCategoryList', 'Api\SuslikApiController@getSubCategoryList');
     Route::post('suslik/getSusliksByCategory', 'Api\SuslikApiController@getSusliksByCategory');
     Route::post('suslik/getSuslikByID', 'Api\SuslikApiController@getSuslikByID');
     Route::post('suslik/rateSuslik', 'Api\SuslikApiController@rateSuslik');
@@ -46,6 +47,7 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 Route::post('poll/getPollCategoryList', 'Api\PollApiController@getPollCategoryList');
+Route::post('poll/getSubCategoryList', 'Api\PollApiController@getSubCategoryList');
 Route::post('poll/getPollList', 'Api\PollApiController@getPollList');
 Route::post('poll/getPollQuestionList', 'Api\PollApiController@getPollQuestionList');
 Route::post('poll/passPoll', 'Api\PollApiController@passPoll');
