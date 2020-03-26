@@ -29,6 +29,7 @@
             <tr>
                 <td>{{ $client->id }}</td>
                 <td>{{ $client->name }}</td>
+                <td>{{ $client->email }}</td>
                 <td>{{ $client->phone }}</td>
                 <td>{{ $client->city }}</td>
                 <td>{{ $client->field_of_activity }}</td>
