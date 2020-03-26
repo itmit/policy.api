@@ -35,6 +35,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     Route::post('storeCategory', 'Web\SuslikWebController@storeCategory')->name('storeCategory');
     Route::post('uploadSusliks', 'Web\SuslikWebController@uploadSusliks')->name('uploadSusliks');
     Route::post('uploadSusliksJSON', 'Web\SuslikWebController@uploadSusliksJSON')->name('uploadSusliksJSON');
+    Route::post('susliks/getSusliksByCategory', 'Web\SuslikWebController@getSusliksByCategory')->name('getSusliksByCategory');
 
     Route::get('createPollCategory', 'Web\PollWebController@createCategory')->name('createPollCategory');
     Route::post('storePollCategory', 'Web\PollWebController@storeCategory')->name('storePollCategory');

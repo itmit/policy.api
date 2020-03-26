@@ -173,19 +173,21 @@ $(document).ready(function() {
     });
 
     $(document).on('change', '.suslik-by-category', function() {
-        // $.ajax({
-        //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-        //     dataType: "json",
-        //     url     : 'susliks/clearDir',
-        //     method    : 'get',
-        //     success: function (response) {
-        //         alert('Директория очищена!')
-        //     },
-        //     error: function (xhr, err) { 
-        //         console.log("Error: " + xhr + " " + err);
-        //     }
-        // });
-        console.log('changed');
+        let category = $(this).children("option:selected").val();
+        console.log(category);
+        $.ajax({
+            headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            dataType: "json",
+            url     : 'susliks/getSusliksByCategory',
+            data    : {category: category}
+            method    : 'post',
+            success: function (response) {
+                alert('Директория очищена!')
+            },
+            error: function (xhr, err) { 
+                console.log("Error: " + xhr + " " + err);
+            }
+        });
     });
 })
 </script>
