@@ -262,9 +262,7 @@ class PollWebController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-
-        dd($request);
-
+        
         PollCategories::create([
             'uuid' => (string) Str::uuid(),
             'name' => $request->name,
