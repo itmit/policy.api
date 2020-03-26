@@ -34,13 +34,10 @@ class SuslikWebController extends Controller
         ]);
     }
 
-    public function getSusliksByCategory()
+    public function getSusliksByCategory(Request $request)
     {
-        // return view('susliks.susliks', [
-        // 'susliks' => Suslik::select('*')
-        //     ->orderBy('created_at', 'desc')->get(),
-        // 'categories' => SusliksCategory::get()
-        // ]);
+        $susliks = Suslik::where('category_id', $request->category)->orderBy('name')->get();
+        return response()->json($susliks, 200);
     }
 
     /**
