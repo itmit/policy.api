@@ -17,7 +17,7 @@ class ClientController extends Controller
     {
         return view('clients.clientList',
         [
-            'clients' => Client::get(),
+            'clients' => User::get(),
         ]);
     }
 
