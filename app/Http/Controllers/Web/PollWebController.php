@@ -268,6 +268,7 @@ class PollWebController extends Controller
         PollCategories::create([
             'uuid' => (string) Str::uuid(),
             'name' => $request->name,
+            'parent' => $request->subcategory,
         ]);
 
         return redirect()->route('auth.polls.index');
