@@ -215,6 +215,7 @@ $(document).ready(function() {
         let sortBy = $(this).data('sort-by');
         let category = $('.suslik-by-category').children("option:selected").val();
         let direction = $(this).data('d');
+        let elem = $(this);
         $.ajax({
             headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             dataType: "json",
@@ -242,10 +243,10 @@ $(document).ready(function() {
                 $('tbody').html(result);
                 switch (direction) {
                     case "0":
-                        $(this).data('d', 1);
+                        elem.data('d', 1);
                         break;
                     case "1":
-                        $(this).data('d', 0);
+                        elem.data('d', 0);
                         break;
                     default:
                         break;
