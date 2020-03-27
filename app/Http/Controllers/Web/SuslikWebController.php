@@ -36,14 +36,14 @@ class SuslikWebController extends Controller
 
     public function getSusliksByCategory(Request $request)
     {
-        $susliks = Suslik::where('category', $request->category)->orderBy('place_of_work')->get();
+        $susliks = Suslik::where('category', $request->category)->orderBy('name')->get();
         return response()->json($susliks, 200);
     }
 
     public function sort(Request $request)
     {
         $susliks = Suslik::where('category', $request->category)->orderBy($request->sortBy)->get();
-        return response()->json($susliks, 200);
+        return response()->json($request->sortBy, 200);
     }
 
     /**
