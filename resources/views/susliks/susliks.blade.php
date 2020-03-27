@@ -82,14 +82,14 @@
             <thead>
             <tr>
                 <th><input type="checkbox" name="destroy-all-susliks" class="js-destroy-all"/></th>
-                <th>Имя</th>
+                <th class="suslik-sort" data-sort-by="name">Имя</th>
                 {{-- <th>Категория</th> --}}
-                <th>Место работы</th>
-                <th>Должность</th>
-                <th>Ссылка</th>
-                <th>Лайки</th>
-                <th>Дизлайки</th>
-                <th>Нейтралы</th>
+                <th class="suslik-sort" data-sort-by="place_of_work">Место работы</th>
+                <th class="suslik-sort" data-sort-by="position">Должность</th>
+                <th class="suslik-sort" data-sort-by="link">Ссылка</th>
+                <th class="suslik-sort" data-sort-by="likes">Лайки</th>
+                <th class="suslik-sort" data-sort-by="dislikes">Дизлайки</th>
+                <th class="suslik-sort" data-sort-by="neutrals">Нейтралы</th>
                 {{-- <th>Дата создания</th> --}}
                 <th><span class="material-icons">create</span></th>
             </tr>
@@ -119,6 +119,7 @@
 </div>
 <script>
 $(document).ready(function() {
+    let arrayOfSusliks;
     $(function(){
         $(".js-destroy-all").on("click", function() {
 
@@ -182,6 +183,7 @@ $(document).ready(function() {
             data    : {category: category},
             method    : 'post',
             success: function (response) {
+                arrayOfSusliks = response;
                 result = '';
                 response.forEach(element => {
                     if(element['place_of_work'] == null) element['place_of_work'] = '';
@@ -205,6 +207,12 @@ $(document).ready(function() {
                 console.log("Error: " + xhr + " " + err);
             }
         });
+    });
+
+    $(document).on('click', '.suslik-sort', function() {
+        let sortBy = $(this).data('sort-by');
+        console.log(sortBy);
+
     });
 })
 </script>
