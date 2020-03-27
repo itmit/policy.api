@@ -206,6 +206,7 @@ $(document).ready(function() {
                 });
                 $('tbody').html(result);
                 $('.loader').css('display', 'none');
+                $('#table').DataTable();
             },
             error: function (xhr, err) { 
                 console.log("Error: " + xhr + " " + err);
