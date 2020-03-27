@@ -215,7 +215,7 @@ $(document).ready(function() {
         $('.loader').css('display', 'block');
         let sortedRows = Array.from(table.rows)
         .slice(1)
-        .sort((rowA, rowB) => rowA.cells[1].innerHTML > rowB.cells[1].innerHTML ? 1 : -1);
+        .sort((rowA, rowB) => rowA.cells[2].innerHTML > rowB.cells[2].innerHTML ? 2 : -1);
 
         table.tBodies[0].append(...sortedRows);
         $('.loader').css('display', 'none');
