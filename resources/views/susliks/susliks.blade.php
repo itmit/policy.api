@@ -211,11 +211,12 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.suslik-sort', function() {
+        $('.loader').css('display', 'block');
         let sortBy = $(this).data('sort-by');
         $('tbody > tr').remove();
         arrayOfSusliks.sort(function(a,b)
         {
-            return a.place_of_work-b.place_of_work
+            return b.place_of_work-a.place_of_work;
         });
         arrayOfSusliks.forEach(element => {
             if(element['place_of_work'] == null) element['place_of_work'] = '';
