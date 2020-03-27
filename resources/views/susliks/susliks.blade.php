@@ -216,7 +216,12 @@ $(document).ready(function() {
         $('tbody > tr').remove();
         arrayOfSusliks.sort(function(a,b)
         {
-            return b.place_of_work-a.place_of_work;
+            var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
+            if (nameA < nameB) //сортируем строки по возрастанию
+            return -1
+            if (nameA > nameB)
+            return 1
+            return 0 // Никакой сортировки
         });
         arrayOfSusliks.forEach(element => {
             if(element['place_of_work'] == null) element['place_of_work'] = '';
