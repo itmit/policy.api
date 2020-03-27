@@ -211,6 +211,7 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.suslik-sort', function() {
+        console.log('click');
         $('.loader').css('display', 'block');
         let sortBy = $(this).data('sort-by');
         $('tbody > tr').remove();
