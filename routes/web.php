@@ -50,6 +50,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     // Route::get('showPollResults/{uuid}', 'Api\PollApiController@showPollResults')->name('showPollResults');
 
     Route::resource('clients', 'Web\ClientController');
+    Route::post('clients/sort', 'Web\ClientController@sort')->name('clientssort');
     
 });
 

@@ -21,6 +21,13 @@ class ClientController extends Controller
         ]);
     }
 
+    public function sort(Request $request)
+    {
+        if($request->direction == "0") $users = User::where('is_admin', 0)->orderBy($request->sortBy, 'desc')->get();
+        if($request->direction == "1") $users = User::where('is_admin', 0)->orderBy($request->sortBy, 'asc')->get();
+        return response()->json($users, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
