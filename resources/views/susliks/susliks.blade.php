@@ -74,7 +74,7 @@
 <div class="row" style="width: 100%;">
     <div class="col-sm-12">
         <select name="category" class="form-control suslik-by-category">
-            <option value="" disabled>Выберите категорию для просмотра</option>
+            <option value="" selected disabled>Выберите категорию для просмотра</option>
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
