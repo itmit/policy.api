@@ -214,6 +214,7 @@ $(document).ready(function() {
         $('.loader').css('display', 'block');
         let sortBy = $(this).data('sort-by');
         let category = $('select[name="category"]').children("option:selected").val();
+        console.log(sortBy+' '+category);
         $.ajax({
             headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             dataType: "json",
