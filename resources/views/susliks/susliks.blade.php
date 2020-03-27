@@ -221,7 +221,7 @@ $(document).ready(function() {
             data    : {category: category, sortBy: sortBy},
             method    : 'post',
             success: function (response) {
-                arrayOfSusliks = response;
+                $('tbody > tr').remove();
                 result = '';
                 response.forEach(element => {
                     if(element['place_of_work'] == null) element['place_of_work'] = '';
