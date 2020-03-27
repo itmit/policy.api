@@ -83,14 +83,14 @@
             <thead>
             <tr>
                 <th><input type="checkbox" name="destroy-all-susliks" class="js-destroy-all"/></th>
-                <th class="suslik-sort" data-sort-by="name">Имя</th>
+                <th class="suslik-sort" style="cursor: pointer" data-sort-by="name">Имя</th>
                 {{-- <th>Категория</th> --}}
-                <th class="suslik-sort" data-sort-by="place_of_work">Место работы</th>
-                <th class="suslik-sort" data-sort-by="position">Должность</th>
-                <th class="suslik-sort" data-sort-by="link">Ссылка</th>
-                <th class="suslik-sort" data-sort-by="likes">Лайки</th>
-                <th class="suslik-sort" data-sort-by="dislikes">Дизлайки</th>
-                <th class="suslik-sort" data-sort-by="neutrals">Нейтралы</th>
+                <th class="suslik-sort" style="cursor: pointer" data-sort-by="place_of_work">Место работы</th>
+                <th class="suslik-sort" style="cursor: pointer" data-sort-by="position">Должность</th>
+                <th class="suslik-sort" style="cursor: pointer" style="cursor: pointer" data-sort-by="link">Ссылка</th>
+                <th class="suslik-sort" style="cursor: pointer" data-sort-by="likes">Лайки</th>
+                <th class="suslik-sort" style="cursor: pointer" data-sort-by="dislikes">Дизлайки</th>
+                <th class="suslik-sort" style="cursor: pointer" data-sort-by="neutrals">Нейтралы</th>
                 {{-- <th>Дата создания</th> --}}
                 <th><span class="material-icons">create</span></th>
             </tr>
