@@ -213,7 +213,7 @@ $(document).ready(function() {
     $(document).on('click', '.suslik-sort', function() {
         $('.loader').css('display', 'block');
         let sortBy = $(this).data('sort-by');
-        let category = $('select[name="category"]').children("option:selected").val();
+        let category = $('.suslik-by-category').children("option:selected").val();
         console.log(sortBy+' '+category);
         $.ajax({
             headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
