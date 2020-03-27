@@ -42,7 +42,8 @@ class SuslikWebController extends Controller
 
     public function sort(Request $request)
     {
-        $susliks = Suslik::where('category', $request->category)->orderBy($request->sortBy)->get();
+        if($request->direction == "0") $susliks = Suslik::where('category', $request->category)->orderBy($request->sortBy, 'desc')->get();
+        if($request->direction == "1") $susliks = Suslik::where('category', $request->category)->orderBy($request->sortBy, 'asc')->get();
         return response()->json($susliks, 200);
     }
 

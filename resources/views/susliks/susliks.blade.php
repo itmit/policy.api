@@ -83,14 +83,14 @@
             <thead>
             <tr>
                 <th><input type="checkbox" name="destroy-all-susliks" class="js-destroy-all"/></th>
-                <th class="suslik-sort" style="cursor: pointer" data-sort-by="name">Имя</th>
+                <th class="suslik-sort" style="cursor: pointer" data-sort-by="name" data-d="0">Имя</th>
                 {{-- <th>Категория</th> --}}
-                <th class="suslik-sort" style="cursor: pointer" data-sort-by="place_of_work">Место работы</th>
-                <th class="suslik-sort" style="cursor: pointer" data-sort-by="position">Должность</th>
-                <th class="suslik-sort" style="cursor: pointer" style="cursor: pointer" data-sort-by="link">Ссылка</th>
-                <th class="suslik-sort" style="cursor: pointer" data-sort-by="likes">Лайки</th>
-                <th class="suslik-sort" style="cursor: pointer" data-sort-by="dislikes">Дизлайки</th>
-                <th class="suslik-sort" style="cursor: pointer" data-sort-by="neutrals">Нейтралы</th>
+                <th class="suslik-sort" style="cursor: pointer" data-sort-by="place_of_work" data-d="0">Место работы</th>
+                <th class="suslik-sort" style="cursor: pointer" data-sort-by="position" data-d="0">Должность</th>
+                <th class="suslik-sort" style="cursor: pointer" style="cursor: pointer" data-sort-by="link" data-d="0">Ссылка</th>
+                <th class="suslik-sort" style="cursor: pointer" data-sort-by="likes" data-d="0">Лайки</th>
+                <th class="suslik-sort" style="cursor: pointer" data-sort-by="dislikes" data-d="0">Дизлайки</th>
+                <th class="suslik-sort" style="cursor: pointer" data-sort-by="neutrals" data-d="0">Нейтралы</th>
                 {{-- <th>Дата создания</th> --}}
                 <th><span class="material-icons">create</span></th>
             </tr>
@@ -214,12 +214,12 @@ $(document).ready(function() {
         $('.loader').css('display', 'block');
         let sortBy = $(this).data('sort-by');
         let category = $('.suslik-by-category').children("option:selected").val();
-        console.log(sortBy+' '+category);
+        let direction = $(this).data('d');
         $.ajax({
             headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             dataType: "json",
             url     : 'susliks/sort',
-            data    : {category: category, sortBy: sortBy},
+            data    : {category: category, sortBy: sortBy, direction: direction},
             method    : 'post',
             success: function (response) {
                 $('tbody > tr').remove();
@@ -240,6 +240,17 @@ $(document).ready(function() {
                     result += '</tr>';
                 });
                 $('tbody').html(result);
+                switch (direction) {
+                    case "0":
+                        $(this).data('d') = "1";
+                        break;
+                    case "1":
+                        $(this).data('d') = "0";
+                        break;
+                    default:
+                        break;
+                }
+                
                 $('.loader').css('display', 'none');
             },
             error: function (xhr, err) { 
