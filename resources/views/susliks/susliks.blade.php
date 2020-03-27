@@ -120,6 +120,9 @@
 </div>
 <script>
 $(document).ready(function() {
+    $(document).ready( function () {
+        $('#table').DataTable();
+    } );
     let arrayOfSusliks;
     $(function(){
         $(".js-destroy-all").on("click", function() {
@@ -210,12 +213,12 @@ $(document).ready(function() {
         });
     });
 
-    $(document).on('click', '.suslik-sort', function() {
-        console.log(arrayOfSusliks);
-        let sortBy = $(this).data('sort-by');
-        $('tbody > tr').remove();
-        $('.loader').css('display', 'none');
-    });
+    // $(document).on('click', '.suslik-sort', function() {
+    //     console.log(arrayOfSusliks);
+    //     let sortBy = $(this).data('sort-by');
+    //     $('tbody > tr').remove();
+    //     $('.loader').css('display', 'none');
+    // });
 })
 </script>
 
