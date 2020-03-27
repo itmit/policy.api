@@ -78,7 +78,7 @@
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         </select>
-        <table class="table policy-table">
+        <table class="table policy-table" id="table">
             <thead>
             <tr>
                 <th><input type="checkbox" name="destroy-all-susliks" class="js-destroy-all"/></th>
