@@ -211,8 +211,13 @@ $(document).ready(function() {
 
     $(document).on('click', '.suslik-sort', function() {
         let sortBy = $(this).data('sort-by');
-        console.log(sortBy);
+        $('.loader').css('display', 'block');
+        let sortedRows = Array.from(table.rows)
+        .slice(1)
+        .sort((rowA, rowB) => rowA.cells[0].innerHTML > rowB.cells[0].innerHTML ? 1 : -1);
 
+        table.tBodies[0].append(...sortedRows);
+        $('.loader').css('display', 'none');
     });
 })
 </script>
