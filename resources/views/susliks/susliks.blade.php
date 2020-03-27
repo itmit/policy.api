@@ -120,9 +120,6 @@
 </div>
 <script>
 $(document).ready(function() {
-    $(document).ready( function () {
-        $('#table').DataTable();
-    } );
     let arrayOfSusliks;
     $(function(){
         $(".js-destroy-all").on("click", function() {
@@ -206,9 +203,6 @@ $(document).ready(function() {
                 });
                 $('tbody').html(result);
                 $('.loader').css('display', 'none');
-                $('#table').DataTable( {
-                    data: response
-                } );
             },
             error: function (xhr, err) { 
                 console.log("Error: " + xhr + " " + err);
@@ -216,12 +210,31 @@ $(document).ready(function() {
         });
     });
 
-    // $(document).on('click', '.suslik-sort', function() {
-    //     console.log(arrayOfSusliks);
-    //     let sortBy = $(this).data('sort-by');
-    //     $('tbody > tr').remove();
-    //     $('.loader').css('display', 'none');
-    // });
+    $(document).on('click', '.suslik-sort', function() {
+        let sortBy = $(this).data('sort-by');
+        $('tbody > tr').remove();
+        arrayOfSusliks.sort(function(a,b)
+        {
+            return a.place_of_work-b.place_of_work
+        });
+        arrayOfSusliks.forEach(element => {
+            if(element['place_of_work'] == null) element['place_of_work'] = '';
+            if(element['position'] == null) element['position'] = '';
+            result += '<tr>';
+            result += '<td><input type="checkbox" data-suslik-id="'+element['id']+'" name="destoy-suslik-'+element['id']+'" class="js-destroy"/></td>';
+            result += '<td>'+element['name']+'</td>';
+            result += '<td>'+element['place_of_work']+'</td>';
+            result += '<td>'+element['position']+'</td>';
+            result += '<td><a href="'+element['link']+'" target="_blank">ссылка</a></td>';
+            result += '<td>'+element['likes']+'</td>';
+            result += '<td>'+element['dislikes']+'</td>';
+            result += '<td>'+element['neutrals']+'</td>';
+            result += '<td><span class="material-icons"><a href="susliks/'+element['id']+'/edit">create</a></span></td>';
+            result += '</tr>';
+        });
+        $('tbody').html(result);
+        $('.loader').css('display', 'none');
+    });
 })
 </script>
 
