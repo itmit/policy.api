@@ -242,10 +242,10 @@ $(document).ready(function() {
                 $('tbody').html(result);
                 switch (direction) {
                     case "0":
-                        $(this).data('d') = "1";
+                        $(this).data('d', '1');
                         break;
                     case "1":
-                        $(this).data('d') = "0";
+                        $(this).data('d', '0');
                         break;
                     default:
                         break;
