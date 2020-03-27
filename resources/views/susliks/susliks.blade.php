@@ -74,6 +74,7 @@
 <div class="row" style="width: 100%;">
     <div class="col-sm-12">
         <select name="category" class="form-control suslik-by-category">
+            <option value="" selected disabled>Выберите категорию для просмотра</option>
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
@@ -212,7 +213,7 @@ $(document).ready(function() {
     $(document).on('click', '.suslik-sort', function() {
         console.log(arrayOfSusliks);
         let sortBy = $(this).data('sort-by');
-        $('tr').remove();
+        $('tbody > tr').remove();
         $('.loader').css('display', 'none');
     });
 })
