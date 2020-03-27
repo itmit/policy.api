@@ -241,6 +241,7 @@ $(document).ready(function() {
                     result += '</tr>';
                 });
                 $('tbody').html(result);
+                console.log(elem.data('d'));
                 switch (direction) {
                     case "0":
                         elem.data('d', 1);
