@@ -28,7 +28,7 @@
             ?>
             <tr>
                 <td>{{ $client->id }}</td>
-                <td>{{ $client->name }}</td>
+                <td><a href="clients/{{ $client->id }}">{{ $client->name }}</a></td>
                 <td>{{ $client->email }}</td>
                 <td>{{ $client->phone }}</td>
                 <td>{{ $client->city }}</td>
@@ -77,7 +77,7 @@ $(document).ready(function() {
                     if(element['created_at'] == null) element['created_at'] = '';
                     result += '<tr>';
                     result += '<td>'+element['id']+'</td>';
-                    result += '<td>'+element['name']+'</td>';
+                    result += '<td><a href="clients/'+element['id']+'">'+element['name']+'</a></td>';
                     result += '<td>'+element['email']+'</td>';
                     result += '<td>'+element['phone']+'</td>';
                     result += '<td>'+element['city']+'</td>';

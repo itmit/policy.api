@@ -89,6 +89,17 @@
                 @endif
             </div>
 
+            <div class="form-group{{ $errors->has('notification') ? ' has-error' : '' }}">
+                <label for="notification" class="control-label">Уведомить об этом опросе</label>
+                <input type="checkbox" name="notification">
+
+                @if ($errors->has('notification'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('notification') }}</strong>
+                    </span>
+                @endif
+            </div>
+
             <hr>
             <h2>Создание вопросов</h2>
 
