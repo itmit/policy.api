@@ -241,17 +241,18 @@ $(document).ready(function() {
                     result += '</tr>';
                 });
                 $('tbody').html(result);
+
                 switch (elem.data('d')) {
-                    case "0":
+                    case 0:
                         elem.data('d', 1);
                         break;
-                    case "1":
+                    case 1:
                         elem.data('d', 0);
                         break;
                     default:
                         break;
                 }
-                
+
                 $('.loader').css('display', 'none');
             },
             error: function (xhr, err) { 
