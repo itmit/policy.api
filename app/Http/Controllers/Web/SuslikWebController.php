@@ -40,6 +40,12 @@ class SuslikWebController extends Controller
         return response()->json($susliks, 200);
     }
 
+    public function sort(Request $request)
+    {
+        $susliks = Suslik::where('category', $request->category)->orderBy($request->sortBy)->get();
+        return response()->json($susliks, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

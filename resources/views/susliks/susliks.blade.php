@@ -211,36 +211,40 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.suslik-sort', function() {
-        console.log('click');
         $('.loader').css('display', 'block');
         let sortBy = $(this).data('sort-by');
-        $('tbody > tr').remove();
-        arrayOfSusliks.sort(function(a,b)
-        {
-            var nameA=a.name.toLowerCase(), nameB=b.name.toLowerCase()
-            if (nameA < nameB) //сортируем строки по возрастанию
-            return -1
-            if (nameA > nameB)
-            return 1
-            return 0 // Никакой сортировки
+        let category = $('select[name="category"]').children("option:selected").val();
+        $.ajax({
+            headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            dataType: "json",
+            url     : 'susliks/sort',
+            data    : {category: category, sortBy: sortBy},
+            method    : 'post',
+            success: function (response) {
+                arrayOfSusliks = response;
+                result = '';
+                response.forEach(element => {
+                    if(element['place_of_work'] == null) element['place_of_work'] = '';
+                    if(element['position'] == null) element['position'] = '';
+                    result += '<tr>';
+                    result += '<td><input type="checkbox" data-suslik-id="'+element['id']+'" name="destoy-suslik-'+element['id']+'" class="js-destroy"/></td>';
+                    result += '<td>'+element['name']+'</td>';
+                    result += '<td>'+element['place_of_work']+'</td>';
+                    result += '<td>'+element['position']+'</td>';
+                    result += '<td><a href="'+element['link']+'" target="_blank">ссылка</a></td>';
+                    result += '<td>'+element['likes']+'</td>';
+                    result += '<td>'+element['dislikes']+'</td>';
+                    result += '<td>'+element['neutrals']+'</td>';
+                    result += '<td><span class="material-icons"><a href="susliks/'+element['id']+'/edit">create</a></span></td>';
+                    result += '</tr>';
+                });
+                $('tbody').html(result);
+                $('.loader').css('display', 'none');
+            },
+            error: function (xhr, err) { 
+                console.log("Error: " + xhr + " " + err);
+            }
         });
-        arrayOfSusliks.forEach(element => {
-            if(element['place_of_work'] == null) element['place_of_work'] = '';
-            if(element['position'] == null) element['position'] = '';
-            result += '<tr>';
-            result += '<td><input type="checkbox" data-suslik-id="'+element['id']+'" name="destoy-suslik-'+element['id']+'" class="js-destroy"/></td>';
-            result += '<td>'+element['name']+'</td>';
-            result += '<td>'+element['place_of_work']+'</td>';
-            result += '<td>'+element['position']+'</td>';
-            result += '<td><a href="'+element['link']+'" target="_blank">ссылка</a></td>';
-            result += '<td>'+element['likes']+'</td>';
-            result += '<td>'+element['dislikes']+'</td>';
-            result += '<td>'+element['neutrals']+'</td>';
-            result += '<td><span class="material-icons"><a href="susliks/'+element['id']+'/edit">create</a></span></td>';
-            result += '</tr>';
-        });
-        $('tbody').html(result);
-        $('.loader').css('display', 'none');
     });
 })
 </script>
