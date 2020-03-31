@@ -185,7 +185,7 @@
             ['description', $("[name='description']").val()],
             ['category', $("[name='category']").val()],
             ['link', $("input[name='link']").val()],
-            ['notification', $("input[name='notification']").val()]
+            ['notification', $("input[name='notification']").prop('checked')]
             ]);  
 
             if($('input:radio[name=time]:checked').val() == 'limited')
