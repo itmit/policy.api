@@ -246,7 +246,6 @@
                     console.log("Error: " + xhr + " " + err);
                 }
             });
-            return false;
             window.location.replace("http://policy.itmit-studio.ru/polls");
             return false;
         });

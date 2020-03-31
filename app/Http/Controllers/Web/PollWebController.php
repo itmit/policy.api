@@ -50,8 +50,6 @@ class PollWebController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-
         $poll = Poll::create([
             'uuid' => (string) Str::uuid(),
             'name' => $request->all_data["name"],
@@ -61,18 +59,6 @@ class PollWebController extends Controller
             'start_at' => $request->all_data["start_at"],
             'end_at' => $request->all_data["end_at"],
         ]);
-
-        // foreach($request->all_data["questions"] as $key => $value)
-        // {
-        //     PollQuestions::create([
-        //         'uuid' => (string) Str::uuid(),
-        //         'poll_id' => $request->all_data["name"],
-        //         'question' => $request->all_data["description"],
-        //         'multiple' => $request->all_data["category"],
-        //     ]);
-        // };
-
-        // dd($request->all_data);
 
         foreach($request->all_data["questions"] as $questions)
         {
@@ -112,9 +98,7 @@ class PollWebController extends Controller
         };
 
 
-        // return $result;
-        // dd($request->all_data["questions"]);
-
+        if($request->all_data["notification"]) self::sendPush();
     }
 
     /**
@@ -272,5 +256,35 @@ class PollWebController extends Controller
         ]);
 
         return redirect()->route('auth.polls.index');
+    }
+
+    public function sendPush(Request $request)
+    {
+        $url = 'https://fcm.googleapis.com/fcm/send';
+
+        $fields = array (
+            'to' => '/topics/all',
+            "notification" => [
+                "body" => "Приглашаем пройти новый опрос!",
+                "title" => "Простая статистика"
+            ]
+        );
+        $fields = json_encode ( $fields );
+
+        $headers = array (
+                'Authorization: key=AIzaSyBPSA2I_5ydDVOd4_pofNuz4o8zurPQqDA',
+                'Content-Type: application/json'
+        );
+
+        $ch = curl_init ();
+        curl_setopt ( $ch, CURLOPT_URL, $url );
+        curl_setopt ( $ch, CURLOPT_POST, true );
+        curl_setopt ( $ch, CURLOPT_HTTPHEADER, $headers );
+        curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, true );
+        curl_setopt ( $ch, CURLOPT_POSTFIELDS, $fields );
+
+        curl_exec ( $ch );
+
+        curl_close ( $ch );
     }
 }
