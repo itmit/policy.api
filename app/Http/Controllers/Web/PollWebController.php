@@ -97,7 +97,6 @@ class PollWebController extends Controller
             }
         };
 
-
         if($request->all_data["notification"]) self::sendPush();
     }
 
@@ -258,7 +257,7 @@ class PollWebController extends Controller
         return redirect()->route('auth.polls.index');
     }
 
-    public function sendPush(Request $request)
+    public function sendPush()
     {
         $url = 'https://fcm.googleapis.com/fcm/send';
 
@@ -272,7 +271,7 @@ class PollWebController extends Controller
         $fields = json_encode ( $fields );
 
         $headers = array (
-                'Authorization: key=AIzaSyBPSA2I_5ydDVOd4_pofNuz4o8zurPQqDA',
+                'Authorization: key=AAAAUnlyV4I:APA91bGiQmLus9UnVp1yBggANKWsZZRk0tFTgOYOV0ayiEOzHArSzTTWo5OF9IvNnaQBZbgF1LhnDYU2HaYhCQEkAWpGBBPPLYehnuqYe-tUf2z9fK5deWGSF2N3xYX14f1_m20KnF17',
                 'Content-Type: application/json'
         );
 
