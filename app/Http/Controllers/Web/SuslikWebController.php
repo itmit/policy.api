@@ -17,6 +17,7 @@ use SplFileInfo;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 // use PhpOffice\PhpSpreadsheet\MyReadFilter;
+use Illuminate\Http\File;
 
 class SuslikWebController extends Controller
 {
