@@ -201,7 +201,7 @@ $(document).ready(function() {
                     result += '<td><span class="material-icons"><a href="susliks/'+element['id']+'/edit">create</a></span></td>';
                     result += '</tr>';
                 });
-                result += '<tr><td colspan="9">загрузить еще</td></tr>'
+                result += '<tr><td colspan="9" style="text-align: center; cursor: pointer" name="load-more" data-c="50">загрузить еще</td></tr>';
                 $('tbody').html(result);
                 $('.loader').css('display', 'none');
             },
@@ -217,11 +217,12 @@ $(document).ready(function() {
         let category = $('.suslik-by-category').children("option:selected").val();
         let direction = $(this).data('d');
         let elem = $(this);
+        let c = $('td[name="load-more"]').data("c");
         $.ajax({
             headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             dataType: "json",
             url     : 'susliks/sort',
-            data    : {category: category, sortBy: sortBy, direction: direction},
+            data    : {category: category, sortBy: sortBy, direction: direction, c: c},
             method    : 'post',
             success: function (response) {
                 $('tbody > tr').remove();
@@ -241,6 +242,7 @@ $(document).ready(function() {
                     result += '<td><span class="material-icons"><a href="susliks/'+element['id']+'/edit">create</a></span></td>';
                     result += '</tr>';
                 });
+                result += '<tr><td colspan="9" style="text-align: center; cursor: pointer" name="load-more" data-c="'+c+'">загрузить еще</td></tr>';
                 $('tbody').html(result);
 
                 switch (elem.data('d')) {
@@ -261,6 +263,11 @@ $(document).ready(function() {
             }
         });
     });
+
+    $(document).on('click', 'td[name="load-more"]', function() {
+        $('.loader').css('display', 'block');
+
+    })
 })
 </script>
 
