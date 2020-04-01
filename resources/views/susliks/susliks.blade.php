@@ -216,7 +216,6 @@ $(document).ready(function() {
         let sortBy = $(this).data('sort-by');
         let category = $('.suslik-by-category').children("option:selected").val();
         let direction = $(this).data('d');
-        $('th').data('d', 0);
         let elem = $(this);
         let c = $('td[name="load-more"]').data("c");
         $.ajax({
@@ -256,7 +255,7 @@ $(document).ready(function() {
                     default:
                         break;
                 }
-
+                $('th').data('d', 0);
                 $('.loader').css('display', 'none');
             },
             error: function (xhr, err) { 
