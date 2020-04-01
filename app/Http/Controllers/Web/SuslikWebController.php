@@ -50,7 +50,7 @@ class SuslikWebController extends Controller
 
     public function loadMore(Request $request)
     {
-        $susliks = Suslik::where('category', $request->category)->orderBy('name')->offset(0)->limit(50)->get();
+        $susliks = Suslik::where('category', $request->category)->orderBy('name')->offset($request->c)->limit(50)->get();
         return response()->json($susliks, 200);
     }
 

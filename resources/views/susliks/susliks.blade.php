@@ -201,7 +201,7 @@ $(document).ready(function() {
                     result += '<td><span class="material-icons"><a href="susliks/'+element['id']+'/edit">create</a></span></td>';
                     result += '</tr>';
                 });
-                result += '<tr><td colspan="9" style="text-align: center; cursor: pointer" name="load-more" data-c="50">загрузить еще</td></tr>';
+                result += '<tr name="l-m"><td colspan="9" style="text-align: center; cursor: pointer" name="load-more" data-c="50">загрузить еще</td></tr>';
                 $('tbody').html(result);
                 $('.loader').css('display', 'none');
             },
@@ -242,7 +242,7 @@ $(document).ready(function() {
                     result += '<td><span class="material-icons"><a href="susliks/'+element['id']+'/edit">create</a></span></td>';
                     result += '</tr>';
                 });
-                result += '<tr><td colspan="9" style="text-align: center; cursor: pointer" name="load-more" data-c="'+c+'">загрузить еще</td></tr>';
+                result += '<tr name="l-m"><td colspan="9" style="text-align: center; cursor: pointer" name="load-more" data-c="'+c+'">загрузить еще</td></tr>';
                 $('tbody').html(result);
 
                 switch (elem.data('d')) {
@@ -268,53 +268,42 @@ $(document).ready(function() {
         let category = $('.suslik-by-category').children("option:selected").val();
         let c = $('td[name="load-more"]').data("c");
         let newC = c + 50;
-        let sortBy = $('th[data-d="1"]').data('sort-by');
-        let direction = $('th[data-d="1"]').data('d');
-        console.log(category + ' ' + newC + ' ' + sortBy + ' ' + direction);
-        // $.ajax({
-        //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-        //     dataType: "json",
-        //     url     : 'susliks/loadMore',
-        //     data    : {category: category, sortBy: sortBy, direction: direction, c: c},
-        //     method    : 'post',
-        //     success: function (response) {
-        //         $('tbody > tr').remove();
-        //         result = '';
-        //         response.forEach(element => {
-        //             if(element['place_of_work'] == null) element['place_of_work'] = '';
-        //             if(element['position'] == null) element['position'] = '';
-        //             result += '<tr>';
-        //             result += '<td><input type="checkbox" data-suslik-id="'+element['id']+'" name="destoy-suslik-'+element['id']+'" class="js-destroy"/></td>';
-        //             result += '<td>'+element['name']+'</td>';
-        //             result += '<td>'+element['place_of_work']+'</td>';
-        //             result += '<td>'+element['position']+'</td>';
-        //             result += '<td><a href="'+element['link']+'" target="_blank">ссылка</a></td>';
-        //             result += '<td>'+element['likes']+'</td>';
-        //             result += '<td>'+element['dislikes']+'</td>';
-        //             result += '<td>'+element['neutrals']+'</td>';
-        //             result += '<td><span class="material-icons"><a href="susliks/'+element['id']+'/edit">create</a></span></td>';
-        //             result += '</tr>';
-        //         });
-        //         result += '<tr><td colspan="9" style="text-align: center; cursor: pointer" name="load-more" data-c="'+c+'">загрузить еще</td></tr>';
-        //         $('tbody').html(result);
-
-        //         switch (elem.data('d')) {
-        //             case 0:
-        //                 elem.data('d', 1);
-        //                 break;
-        //             case 1:
-        //                 elem.data('d', 0);
-        //                 break;
-        //             default:
-        //                 break;
-        //         }
-
-        //         $('.loader').css('display', 'none');
-        //     },
-        //     error: function (xhr, err) { 
-        //         console.log("Error: " + xhr + " " + err);
-        //     }
-        // });
+        // let sortBy = $('th[data-d="1"]').data('sort-by');
+        // let direction = $('th[data-d="1"]').data('d');
+        // console.log(category + ' ' + newC + ' ' + sortBy + ' ' + direction);
+        $.ajax({
+            headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            dataType: "json",
+            url     : 'susliks/loadMore',
+            data    : {category: category, c: c},
+            method    : 'post',
+            success: function (response) {
+                $('tbody > tr').remove();
+                result = '';
+                response.forEach(element => {
+                    if(element['place_of_work'] == null) element['place_of_work'] = '';
+                    if(element['position'] == null) element['position'] = '';
+                    result += '<tr>';
+                    result += '<td><input type="checkbox" data-suslik-id="'+element['id']+'" name="destoy-suslik-'+element['id']+'" class="js-destroy"/></td>';
+                    result += '<td>'+element['name']+'</td>';
+                    result += '<td>'+element['place_of_work']+'</td>';
+                    result += '<td>'+element['position']+'</td>';
+                    result += '<td><a href="'+element['link']+'" target="_blank">ссылка</a></td>';
+                    result += '<td>'+element['likes']+'</td>';
+                    result += '<td>'+element['dislikes']+'</td>';
+                    result += '<td>'+element['neutrals']+'</td>';
+                    result += '<td><span class="material-icons"><a href="susliks/'+element['id']+'/edit">create</a></span></td>';
+                    result += '</tr>';
+                });
+                result += '<tr><td colspan="9" style="text-align: center; cursor: pointer" name="load-more" data-c="'+newC+''">загрузить еще</td></tr>';
+                $('tr[name="l-m"]').remove();
+                $('tbody').append(result);
+                $('.loader').css('display', 'none');
+            },
+            error: function (xhr, err) { 
+                console.log("Error: " + xhr + " " + err);
+            }
+        });
     })
 })
 </script>
