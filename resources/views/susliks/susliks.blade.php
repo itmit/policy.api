@@ -83,7 +83,7 @@
             <thead>
             <tr>
                 <th><input type="checkbox" name="destroy-all-susliks" class="js-destroy-all"/></th>
-                <th class="suslik-sort" style="cursor: pointer" data-sort-by="name" data-d="1">Имя</th>
+                <th class="suslik-sort" style="cursor: pointer" data-sort-by="name" data-d="0">Имя</th>
                 {{-- <th>Категория</th> --}}
                 <th class="suslik-sort" style="cursor: pointer" data-sort-by="place_of_work" data-d="0">Место работы</th>
                 <th class="suslik-sort" style="cursor: pointer" data-sort-by="position" data-d="0">Должность</th>
