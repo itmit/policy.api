@@ -295,7 +295,7 @@ $(document).ready(function() {
                     result += '<td><span class="material-icons"><a href="susliks/'+element['id']+'/edit">create</a></span></td>';
                     result += '</tr>';
                 });
-                result += '<tr><td colspan="9" style="text-align: center; cursor: pointer" name="load-more" data-c="'+newC+''">загрузить еще</td></tr>';
+                result += '<tr><td colspan="9" style="text-align: center; cursor: pointer" name="load-more" data-c="'+newC+'">загрузить еще</td></tr>';
                 $('tr[name="l-m"]').remove();
                 $('tbody').append(result);
                 $('.loader').css('display', 'none');
