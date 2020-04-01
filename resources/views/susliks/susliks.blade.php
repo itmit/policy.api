@@ -201,6 +201,7 @@ $(document).ready(function() {
                     result += '<td><span class="material-icons"><a href="susliks/'+element['id']+'/edit">create</a></span></td>';
                     result += '</tr>';
                 });
+                result += '<tr><td colspan="9">загрузить еще</td></tr>'
                 $('tbody').html(result);
                 $('.loader').css('display', 'none');
             },
