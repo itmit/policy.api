@@ -278,8 +278,9 @@ $(document).ready(function() {
             data    : {category: category, c: c},
             method    : 'post',
             success: function (response) {
-                $('tbody > tr').remove();
+                // $('tbody > tr').remove();
                 result = '';
+                if(response.lenght == 0) $('tr[name="l-m"]').remove();
                 response.forEach(element => {
                     if(element['place_of_work'] == null) element['place_of_work'] = '';
                     if(element['position'] == null) element['position'] = '';
