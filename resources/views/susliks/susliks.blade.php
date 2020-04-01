@@ -255,7 +255,6 @@ $(document).ready(function() {
                     default:
                         break;
                 }
-                $('th').data('d', 0);
                 $('.loader').css('display', 'none');
             },
             error: function (xhr, err) { 
