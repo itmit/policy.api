@@ -36,7 +36,7 @@ Route::group(['middleware' => 'auth:api'], function() {
     Route::post('suslik/addToFav', 'Api\SuslikApiController@addToFav');
     Route::post('suslik/removeFromFav', 'Api\SuslikApiController@removeFromFav');
 
-    Route::get('statistic/{uuid}', 'Api\SuslikApiController@showStatistic')->name('showStatistic');
+    Route::get('statistic/{uuid}/{days}', 'Api\SuslikApiController@showStatistic')->name('showStatistic');
     Route::get('showPollResults/{uuid}', 'Api\PollApiController@showPollResults')->name('showPollResults');
 });
 
