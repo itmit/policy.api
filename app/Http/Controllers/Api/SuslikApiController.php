@@ -417,7 +417,7 @@ class SuslikApiController extends ApiBaseController
     /**
      * Вывод стастистики суслика
      */
-    public function showStatistic($uuid)
+    public function showStatistic($uuid, $days)
     {
         $suslik = Suslik::where('uuid', '=', $uuid)->first();
 
@@ -432,7 +432,7 @@ class SuslikApiController extends ApiBaseController
         $i = 1;
         $max = 0;
         $votes = [];
-        while ($i <= 30) {
+        while ($i <= $days) {
             $key = date("d.m", strtotime($day));
             $voteDetail = [];
             $likes = 0;
