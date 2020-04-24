@@ -36,7 +36,7 @@
         </div>
         <div class="form-group">
             <label for="download-pdf" class="control-label">Скачать PDF: </label>
-            <input type="button" id="download-pdf" value="скачать" class="btn">
+            <input type="button" id="download-pdf" value="скачать" class="btn" data-i="{{$poll->id}}">
         </div>
     </div>
 </div>
@@ -228,24 +228,26 @@
 $(document).ready(function()
     {
         $(document).on('click', '#download-pdf', function() {
-            console.log('text');
-            // $.ajax({
-            //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            //     dataType: "json",
-            //     url     : 'wastes/createExcelFile',
-            //     method    : 'post',
-            //     success: function (data) {
-            //         var $a = $("<a>");
-            //         $a.attr("href",data);
-            //         $("body").append($a);
-            //         $a.attr("download","Отходные.xlsx");
-            //         $a[0].click();
-            //         $a.remove();
-            //     },
-            //     error: function (xhr, err) { 
-            //         console.log(err + " " + xhr);
-            //     }
-            // });
+            let id = $(this).data('i');
+            console.log(id);
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                url     : 'poll/downloadPDF',
+                data    : {id: id},
+                method    : 'post',
+                success: function (data) {
+                    var $a = $("<a>");
+                    $a.attr("href",data);
+                    $("body").append($a);
+                    $a.attr("download","Опрос.pdf");
+                    $a[0].click();
+                    $a.remove();
+                },
+                error: function (xhr, err) { 
+                    console.log(err + " " + xhr);
+                }
+            });
         });
     });
 </script>

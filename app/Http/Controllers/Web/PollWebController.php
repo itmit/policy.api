@@ -13,6 +13,7 @@ use App\UserToPoll;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use PDF;
 
 class PollWebController extends Controller
 {
@@ -285,5 +286,52 @@ class PollWebController extends Controller
         curl_exec ( $ch );
 
         curl_close ( $ch );
+    }
+
+    public function downloadPDF(Request $request)
+    {
+        $questions = PollQuestions::where('poll_id', '=', $id)->get();
+
+        $response = [];
+        $userAnswers = [];
+
+        foreach($questions as $question)
+        {
+            $response_answers = [];
+            $question_answers = PollQuestionAnswers::where('question_id', '=', $question->id)->get();
+            foreach($question_answers as $question_answer)
+            {
+                $response_answers [] = [
+                    'answer_id' => $question_answer->id,
+                    'answer_uuid' => $question_answer->uuid,
+                    'answer' => $question_answer->answer,
+                    'type' => $question_answer->type,
+                    'answers_count' => $question_answer->answers_count
+                ];
+            }
+            $response[] = [
+                'question_uuid' => $question->uuid,
+                'question' => $question->question,
+                'multiple' => $question->multiple,
+                'answers' => $response_answers
+            ];
+        }
+
+        $data = UserToPoll::where('poll_id', '=', $id)->get();
+
+        $pdf = PDF::loadView('polls.showPollResults.blade', [
+            'poll' => Poll::where('id', '=', $id)->first(),
+            'questions' => PollQuestions::where('poll_id', '=', $id)->get(),
+            'response' => $response,
+            'data' => $data
+        ]); 
+
+        // Выводим HTTP-заголовки
+        $writer = $pdf;
+        ob_start();
+        $writer->save('php://output');
+        $xlsData = ob_get_contents();
+        ob_end_clean();
+        echo json_encode('data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,'.base64_encode($xlsData));
     }
 }
