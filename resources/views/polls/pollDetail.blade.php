@@ -34,6 +34,10 @@
             <label for="category_name" class="control-label">Категория: </label>
             <div id="category_name">{{ $poll->category()->name }}</div>
         </div>
+        <div class="form-group">
+            <label for="download-pdf" class="control-label">Скачать PDF: </label>
+            <input type="button" id="download-pdf" value="скачать" class="btn">
+        </div>
     </div>
 </div>
 
@@ -220,4 +224,29 @@
         @endif
     </div>
 </div>
+<script>
+$(document).ready(function()
+    {
+        $(document).on('click', '#download-pdf', function() {
+            console.log('text');
+            // $.ajax({
+            //     headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            //     dataType: "json",
+            //     url     : 'wastes/createExcelFile',
+            //     method    : 'post',
+            //     success: function (data) {
+            //         var $a = $("<a>");
+            //         $a.attr("href",data);
+            //         $("body").append($a);
+            //         $a.attr("download","Отходные.xlsx");
+            //         $a[0].click();
+            //         $a.remove();
+            //     },
+            //     error: function (xhr, err) { 
+            //         console.log(err + " " + xhr);
+            //     }
+            // });
+        });
+    });
+</script>
 @endsection
