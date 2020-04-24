@@ -290,7 +290,7 @@ class PollWebController extends Controller
 
     public function downloadPDF(Request $request)
     {
-        $questions = PollQuestions::where('poll_id', '=', $id)->get();
+        $questions = PollQuestions::where('poll_id', '=', $request->id)->get();
 
         $response = [];
         $userAnswers = [];
