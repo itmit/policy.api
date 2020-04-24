@@ -134,9 +134,9 @@ class SuslikWebController extends Controller
      */
     public function deleteCategory(Request $request)
     {
-        Poll::destroy($request->input('ids'));
+        SusliksCategory::destroy($request->input('ids'));
 
-        return response()->json(['Polls destroyed']);
+        return response()->json(['Cats destroyed']);
     }
 
     public function getSubcategories(Request $request)
