@@ -2,10 +2,6 @@
 
 @section('content')
 <div class="col-sm-9 tabs-content">
-    <h1>Опрос {{ $poll->name }}</h1>
-    <div class="col-sm-12">
-        <a href="/polls">Назад</a>
-    </div>
 <div class="row">
     <div class="col-sm-12">
         <div class="form-group">
@@ -33,10 +29,6 @@
         <div class="form-group">
             <label for="category_name" class="control-label">Категория: </label>
             <div id="category_name">{{ $poll->category()->name }}</div>
-        </div>
-        <div class="form-group">
-            <label for="download-pdf" class="control-label">Скачать PDF: </label>
-            <input type="button" id="download-pdf" value="скачать" class="btn" data-i="{{$poll->id}}">
         </div>
     </div>
 </div>
