@@ -325,7 +325,7 @@ class PollWebController extends Controller
             'questions' => PollQuestions::where('poll_id', '=', $id)->get(),
             'response' => $response,
             'data' => $data
-        ])->setPaper('a4', 'landscape'); 
+        ])->setPaper('a2', 'landscape'); 
 
         // Выводим HTTP-заголовки
         $writer = $pdf;
