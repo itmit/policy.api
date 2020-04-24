@@ -134,7 +134,7 @@ class SuslikWebController extends Controller
      */
     public function deleteCategory(Request $request)
     {
-        SusliksCategory::destroy($request->input('ids'));
+        SusliksCategory::destroy($request->input('id'));
 
         return response()->json(['Cats destroyed']);
     }
