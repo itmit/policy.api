@@ -229,11 +229,10 @@ $(document).ready(function()
     {
         $(document).on('click', '#download-pdf', function() {
             let id = $(this).data('i');
-            console.log(id);
             $.ajax({
                 headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
                 dataType: "json",
-                url     : 'poll/downloadPDF',
+                url     : 'downloadPDF',
                 data    : {id: id},
                 method    : 'post',
                 success: function (data) {
