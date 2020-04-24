@@ -320,7 +320,7 @@ class PollWebController extends Controller
 
         $data = UserToPoll::where('poll_id', '=', $id)->get();
 
-        $pdf = PDF::loadView('polls.showPollResults.blade', [
+        $pdf = PDF::loadView('polls.showPollResults', [
             'poll' => Poll::where('id', '=', $id)->first(),
             'questions' => PollQuestions::where('poll_id', '=', $id)->get(),
             'response' => $response,
