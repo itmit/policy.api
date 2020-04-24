@@ -44,7 +44,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     Route::delete('pollCategory/delete', 'Web\PollWebController@destroyCategory'); // удалить категорию опросов
     Route::delete('pollCategory/showDeleted', 'Web\PollWebController@showDeleted'); // показать удаленные категории опросов
     Route::get('poll/{id}', 'Web\PollWebController@show');
-    Route::get('poll/downloadPDF', 'Web\PollWebController@downloadPDF');
+    Route::post('poll/downloadPDF', 'Web\PollWebController@downloadPDF');
     // Route::delete('poll/showDeleted', 'Web\PollWebController@showDeleted'); // показать удаленные категории опросов
 
     Route::get('statistic/{id}', 'Web\SuslikWebController@showStatistic')->name('showStatistic');
