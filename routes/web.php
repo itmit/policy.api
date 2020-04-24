@@ -33,6 +33,7 @@ Route::group(['as' => 'auth.', 'middleware' => 'auth'], function () {
     Route::get('createCategory', 'Web\SuslikWebController@createCategory')->name('createCategory');
     Route::post('getSubcategories', 'Web\SuslikWebController@getSubcategories')->name('getSubcategories');
     Route::post('storeCategory', 'Web\SuslikWebController@storeCategory')->name('storeCategory');
+    Route::post('deleteCategory', 'Web\SuslikWebController@deleteCategory')->name('deleteCategory');
     Route::post('uploadSusliks', 'Web\SuslikWebController@uploadSusliks')->name('uploadSusliks');
     Route::post('uploadSusliksJSON', 'Web\SuslikWebController@uploadSusliksJSON')->name('uploadSusliksJSON');
     Route::post('susliks/getSusliksByCategory', 'Web\SuslikWebController@getSusliksByCategory')->name('getSusliksByCategory');

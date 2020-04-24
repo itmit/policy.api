@@ -10,6 +10,10 @@
                 @foreach ($categories as $category)
                 <div class="category-item">
                 {{ $category->name }}
+                <div class="category-item" style="display: flex;
+                float: left;">
+                {{ $category->name }} <i class="material-icons delete-category" style="cursor: pointer; align-items:center" data-category="{{ $category->id }}">delete</i>
+                </div>
                 </div>
                 @endforeach
             </div>
@@ -95,6 +99,29 @@
                 }
             }
         });
+
+        $(".textareaPoll").on("click", ".delete-category", function(e) {
+        let isDelete = confirm("Удалить категорию?");
+
+        if(isDelete)
+        {
+            let id = $(this).data('category');
+            
+            $.ajax({
+                headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                dataType: "json",
+                data    : { id: id },
+                url     : 'deleteCategory',
+                method    : 'post',
+                success: function (response) {
+                    $(this).closest(".category-item").remove();
+                },
+                error: function (xhr, err) { 
+                    console.log("Error: " + xhr + " " + err);
+                }
+            });
+        }
+    });
     });
 </script>
 
